@@ -1,3 +1,3 @@
-## Critterycovery
+## critterycovery
 
 websiteurl: critterycovery.me
