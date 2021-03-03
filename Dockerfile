@@ -6,9 +6,6 @@ WORKDIR /critterycovery
 
 RUN git pull --force
 
-# delete the next line later
-RUN git checkout docker && git pull --force
-
 RUN cd frontend && yarn install && yarn build
 
 RUN pip3 install -r backend/requirements.txt
