@@ -1,6 +1,6 @@
 import React from 'react'; 
   
-const About = () => { 
+const Habitats = () => { 
   return ( 
     <div 
       style={{ 
@@ -10,9 +10,9 @@ const About = () => {
         height: '100vh'
       }} 
     > 
-      <h1>GITLAB CONTENT IN HERE?</h1> 
+      <h1>Imagine not livining in a concrete jungle!</h1> 
     </div> 
   ); 
 }; 
   
-export default About;
+export default Habitats;

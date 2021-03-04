@@ -1,6 +1,6 @@
 import React from 'react'; 
   
-const About = () => { 
+const Countries = () => { 
   return ( 
     <div 
       style={{ 
@@ -10,9 +10,9 @@ const About = () => {
         height: '100vh'
       }} 
     > 
-      <h1>GITLAB CONTENT IN HERE?</h1> 
+      <h1>Uganda or something...</h1> 
     </div> 
   ); 
 }; 
   
-export default About;
+export default Countries;
