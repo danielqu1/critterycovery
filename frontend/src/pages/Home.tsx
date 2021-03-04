@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /// https://www.geeksforgeeks.org/reactjs-importing-exporting/
-class About extends Component<{}, { color: string }> {
+class Home extends Component<{}, { color: string }> {
 	
 	constructor(props: any) {
 		super(props);
@@ -19,10 +19,9 @@ class About extends Component<{}, { color: string }> {
 	render() {
 		return <h1 style={ this.state}
 					onClick = {this.getClick.bind(this)}>
-				You are looking at About page
-				<Link to="/">Should be link to Home</Link>
+				You are looking at Home page!
+				<Link to="/about">Should be link to About</Link>
 				</h1>
 	}
 }
-
-export default About;
+export default Home;
