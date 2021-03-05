@@ -11,11 +11,11 @@ import Countries from './pages/Countries';
 
 function App() {
 
-  const [name, setName] = useState("new");
+  // const [name, setName] = useState("new");
 
-  axios.get("/api/name").then((response) => {
-    setName(response.data.name);
-  });
+  // axios.get("/api/name").then((response) => {
+  //   setName(response.data.name);
+  // });
 
   return (
     <div className="App">
@@ -30,7 +30,7 @@ function App() {
         </Switch> 
       </Router>
       <p>
-        { name }
+        {/* { name } */}
       </p>
     </div>
   );
