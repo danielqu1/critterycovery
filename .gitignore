@@ -1,4 +1,5 @@
 .vscode
+.vs
 
 frontend/yarn.lock
 frontend/node_modules
