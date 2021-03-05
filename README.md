@@ -1,5 +1,5 @@
 # critterycovery
-----
+---
 ## Purpose
 Our goal is to create a website that will raise awareness for endangered animals and the habitats that they live in. In the past decade alone, almost 500 species have gone extinct, and we wanted to take the first step in raising awareness of those that are close to extinction. 
 
