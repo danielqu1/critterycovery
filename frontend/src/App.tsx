@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css'; 
-import Navbar from './components/Navbar'; 
+import Navbar from './components/Navbar/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 import axios from 'axios';
 import Home from './pages/Home';
-import About from './pages/About';
+import About from './pages/about/About';
 import Species from './pages/Species';
 import Habitats from './pages/Habitats';
 import Countries from './pages/Countries';
