@@ -9,6 +9,7 @@ import Species from './pages/Species';
 import Habitats from './pages/Habitats';
 import Countries from './pages/Countries';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ScrollToTopBtn from "./hooks/ScrollToTop";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <Router> 
         <Navbar_main /> 
+        <ScrollToTopBtn />
         <Switch> 
           <Route path='/' exact component={Home} /> 
           <Route path='/about' exact component={About} /> 
