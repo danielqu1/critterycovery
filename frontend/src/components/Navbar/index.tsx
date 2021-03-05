@@ -1,39 +1,28 @@
 import React from 'react'; 
-import { 
-  Nav, 
-  NavLink, 
-  Bars, 
-  NavMenu, 
-  NavBtn, 
-  NavBtnLink, 
-} from './NavbarElements'; 
+import {Navbar, NavDropdown, Nav, Form, Button, FormControl} from 'react-bootstrap'
   
-const Navbar = () => { 
+const Navbar_main = () => { 
   return ( 
-    <> 
-      <Nav> 
-        <Bars /> 
-
-        <NavMenu> 
-          <NavLink exact to='/' activeStyle={{'color': '#000000'}}> 
-            Home 
-          </NavLink> 
-          <NavLink to='/about' activeStyle={{'color': '#000000'}}> 
-            About 
-          </NavLink>
-          <NavLink to='/species' activeStyle={{'color': '#000000'}}> 
-            Species 
-          </NavLink>
-          <NavLink to='/habitats' activeStyle={{'color': '#000000'}}> 
-            Habitats 
-          </NavLink>
-          <NavLink to='/countries' activeStyle={{'color': '#000000'}}> 
-            Countries 
-          </NavLink>
-        </NavMenu>
-      </Nav> 
-    </> 
+    <>
+      <Navbar sticky="top" bg="light" expand="lg">
+        <Navbar.Brand href="#home">critterycovery</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/species">Species</Nav.Link>
+            <Nav.Link href="/habitats">Habitats</Nav.Link>
+            <Nav.Link href="/countries">Countries</Nav.Link>
+          </Nav>
+          <Form inline>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+    </>
   ); 
 }; 
   
-export default Navbar;
+export default Navbar_main;
