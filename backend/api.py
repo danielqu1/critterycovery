@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from flask_cors import CORS
-import requests
 from gitlab import stats
 
 app = Flask(
@@ -21,8 +20,7 @@ def name():
 
 @app.route("/api/gitlabstats")
 def gitlabstats():
-    response = requests.get("https://gitlab.com/api/v4/projects/24707879/repository/commits").json()
-    return stats(response)
+    return stats()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
