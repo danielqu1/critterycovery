@@ -26,7 +26,7 @@ Shaharyar Lakhani
 
 ---
 
-### Time Completion (hours)
+### Time Completion (hours):
 Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 15 |  
@@ -34,6 +34,8 @@ Sahithi Golkonda | 15 |
 Shaharyar Lakhani |15 |
 Daniel Qu | 15 | 
 Brian Wang |15 |
+
+--- 
 
 ### Website: 
 [critterycovery.me](critterycovery.me)
