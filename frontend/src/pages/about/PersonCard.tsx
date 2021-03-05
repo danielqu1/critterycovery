@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap'
+import Person from './About'
 
 function PersonCard(props: any) {
     return(
@@ -6,7 +7,11 @@ function PersonCard(props: any) {
             <Card.Body>
                 <Card.Title>{props.person.name}</Card.Title>
                 <Card.Text>{props.person.aboutInfo}</Card.Text>
-                <Card.Footer>GitlabStats</Card.Footer>
+                <Card.Footer>
+                    Commits: {props.person.stats.commits}
+                    Issues: {props.person.stats.issues}
+                    Unit Tests: {props.person.stats.unittests}
+                </Card.Footer>
             </Card.Body>
         </Card>
     );

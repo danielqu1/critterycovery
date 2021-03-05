@@ -7,29 +7,28 @@ def stats():
     commitsResponse = requests.get(commitsLink).json()
     issuesResponse = requests.get(issuesLink).json()
     
-    data = {}
-    totalCommits = 0
-    totalIssues = 0
+    data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 0}}
 
     for i in commitsResponse:
-        totalCommits += 1
-        name = i["author_name"]
+        data["total"]["commits"] += 1
+        name = i["author_name"][:2].lower()
         if name in data:
-            data[name][0] += 1
+            data[name]["commits"] += 1
         else:
-            data[name] = [1, 0, 0]
+            data[name] = {"name": name, "commits": 1, "issues": 0, "unittests": 0}
 
     for i in issuesResponse:
-        totalIssues += 1
         if i["state"] == "closed":
+            data["total"]["issues"] += 1
             """if none assigned, add for everyone"""
             if not i["assignees"]:
                 for person in data:
-                    data[person][1] += 1
+                    data[person]["issues"] += 1
             else:
                 for person in i["assignees"]:
-                    data[person["name"]][1] += 1
-
-    data["total"] = [totalCommits, totalIssues, 0]
-    
-    return data
+                    name = person["name"][:2].lower()
+                    if name in data:
+                        data[name]["issues"] += 1
+                    else:
+                        data[name] = {"name": name, "commits": 0, "issues": 1, "unittests": 0}
+    return {"stats": list(data.values())}
