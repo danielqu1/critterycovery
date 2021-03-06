@@ -6,6 +6,8 @@ import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
 import savetheanimals from './ourPhotos/savetheanimals.jpg';
+import will from './ourPhotos/will.jpg';
+import sahithi from './ourPhotos/sahithi.jpg';
 
 interface PersonStats {
   name: string;
@@ -86,16 +88,22 @@ function About() {
     {
       name: "William Crawford",
       stats: getStats(stats, "wi"),
-      aboutInfo: "Male",
+      aboutInfo: "William Crawford is a junior CS major at UT Austin. He is new" +
+      " to web dev, but likes to do a little bit of everything. He is yet another" + 
+      " startup hopeful and wants to learn something new everyday. In his free " +
+      "time, he likes to swim and play building or strategy based video games.",
       role: "Frontend Developer and Designer",
-      photo: shaharyar
+      photo: will
     },
     {
       name: "Sahithi Golkonda",
       stats: getStats(stats, "sa"),
-      aboutInfo: "Female",
+      aboutInfo: "Sahithi Golkonda is junior UT Austin, where she is double majoring" +
+      " in CS and Math. She’s interested in web dev and AI, and is also the Academic" +
+      " Officer for the Women in Computer Science organization at UT. In her free " +
+      "time, she spends time outdoors running, hiking, and rowing.",
       role: "API Manager and Data Lead",
-      photo: shaharyar
+      photo: sahithi
     },
     {
       name: "total",
@@ -132,6 +140,19 @@ function About() {
             <PersonCard person={people[4]}></PersonCard>
             <PersonCard person={people[5]}></PersonCard>
           </CardDeck>
+        <div className="text-center">
+          <h2>View our code base here: </h2>
+          <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br/>
+          <h2>View our Postman API Documentation here: </h2>
+          <a href="https://documenter.getpostman.com/view/14742162/Tz5jf14x">API Documentation</a><br/>
+        </div>
+        <div className="text-center">
+          <h2>Tools used:</h2>
+          React/Typescript: For building the website's frontend using a component structure <br/>
+          Python/Flask: For building the website's backend and making api requests<br/>
+          AWS EC2 and Route53: For hosting the website on the cloud<br/>
+          Postman: For creating the API documentation for our own API (linked above)
+        </div>
       </div>
     </div> 
   ); 
