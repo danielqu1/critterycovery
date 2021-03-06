@@ -106,10 +106,10 @@ function About() {
       photo: sahithi
     },
     {
-      name: "total",
+      name: "Total",
       stats: getStats(stats, "total"),
       aboutInfo: "All",
-      role: "Full Stack Development",
+      role: "All commits, issues, and unittests",
       photo: savetheanimals
     }
   ];
