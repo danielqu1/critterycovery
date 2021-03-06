@@ -17,6 +17,12 @@ const Home = () => {
             className='react-player'
             url='https://www.youtube.com/watch?v=8rPB4A3zDnQ'
             playing={true}
+            controls={false}
+            config={{
+              youtube: {
+                playerVars: { autoplay: 1, showinfo: 1, disablekb: 1, fs: 0, iv_load_policy: 3, loop: 1, modestbranding: 1, rel: 0, pip: 0 }
+              }
+            }}
             muted={true}
             loop={true}
             width='100%'
