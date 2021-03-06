@@ -35,7 +35,7 @@ const Home = () => {
           <Col>
             <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" src="https://i.imgur.com/dyN72lq.png" />
                 <Card.Body>
                   <Card.Title>Species</Card.Title>
                   <Card.Text>
@@ -46,11 +46,11 @@ const Home = () => {
           <Col>
           <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
               <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Img variant="top" src="https://i.imgur.com/bU8w49l.jpg" />
                 <Card.Body>
-                  <Card.Title>Species</Card.Title>
+                  <Card.Title>Habitats</Card.Title>
                   <Card.Text>
-                    Click here to go to species
+                    Click here to go to Habitats
                   </Card.Text>
                 </Card.Body>
               </Card></Button></Col>
@@ -58,11 +58,11 @@ const Home = () => {
           <Col>
             <Button href='/species' variant="light" style={{border:'none',}}>
                 <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src="holder.js/100px180" />
+                  <Card.Img variant="top" src="https://i.imgur.com/o1e9atI.jpeg" />
                   <Card.Body>
-                    <Card.Title>Species</Card.Title>
+                    <Card.Title>Countries</Card.Title>
                     <Card.Text>
-                      Click here to go to species
+                      Click here to go to countries
                     </Card.Text>
                   </Card.Body>
                 </Card></Button></Col>
