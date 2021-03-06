@@ -42,6 +42,11 @@ Brian Wang |15 |
 
 ---
 
+### Postman API Documentation:
+[https://documenter.getpostman.com/view/14742162/Tz5jf14x](https://documenter.getpostman.com/view/14742162/Tz5jf14x)
+
+---
+
 ### GitLab: 
 [https://gitlab.com/cs373-group16/critterycovery](https://gitlab.com/cs373-group16/critterycovery)
 

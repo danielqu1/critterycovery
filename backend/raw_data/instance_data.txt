@@ -1,0 +1,251 @@
+species:
+
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 792042,
+            "uniqueId": "ELEMENT_GLOBAL.2.792042",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.792042/Eubalaena_glacialis",
+            "elcode": "AMAGJ02010",
+            "scientificName": "Eubalaena glacialis",
+            "formattedScientificName": "<i>Eubalaena glacialis</i>",
+            "primaryCommonName": "North Atlantic Right Whale",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "CA",
+                    "roundedNRank": "N1N,N1M",
+                    "subnations": [
+                        {
+                            "subnationCode": "PE",
+                            "roundedSRank": "SH",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "QC",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "NS",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "NB",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                },
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "DE",
+                            "roundedSRank": "SXB",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "MA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "ME",
+                            "roundedSRank": "SNR",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "GA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "NJ",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "FL",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "RI",
+                            "roundedSRank": "SU",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "MD",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "NC",
+                            "roundedSRank": "SNA",
+                            "exotic": false,
+                            "native": true
+                        },
+                        {
+                            "subnationCode": "NY",
+                            "roundedSRank": "SNA",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T03:57:37.199807Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": "E",
+                "saraCode": "Endangered/En voie de disparition",
+                "synonyms": [
+                    "Balaena glacialis"
+                ],
+                "otherCommonNames": [
+                    "Baleine noire de l'Atlantique Nord",
+                    "Ballena Franca",
+                    "Northern Right Whale",
+                    "Right Whale"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Mammalia",
+                "taxorder": "Cetacea",
+                "family": "Balaenidae",
+                "genus": "Eubalaena",
+                "taxonomicComments": "Bowhead whales and right whales often have been included in the same genus (<i>Balaena</i>) (e.g., Rice 1998), but most recent classifications recognize them as distinct genera (<i>Balaena </i>for bowhead whale, <i>Eubalaena </i>for right whales) (e.g., Baker et al. 2003; Mead and Brownell, in Wilson and Reeder 2005). MtDNA data are consistent with recognition of <i>Balaena </i>and <i>Eubalaena </i>as distinct genera (Rosenbaum et al. 2000).<br /><br />A strong consensus does not exist regarding the taxonomic status of the various populations of right whales. Based on mtDNA data, Rosenbaum et al. (2000) proposed that the North Atlantic, North Pacific, and Southern Hemisphere populations could be recognized as distinct species (<i>E. glacialis</i>, <i>E. japonica</i>, and <i>E. australis</i>, respectively). Baker et al. (2003) argued against this proposal, noting among other things that no other consistent differences have been found among the three populations. The recovery plan for this species and Mead and Brownell (in Wilson and Reeder 1993) regarded the southern right whale (<i>E. australis</i>) as a distinct species, but Rice (1998) and Baker et al. (2003) included <i>australis</i> in <i>Eubalaena </i>(or <i>Balaena</i>)<i> glacialis.</i> Mead and Brownell (in Wilson and Reeder 2005) cited Rosenbaum et al. (2000) in recognizing <i>E. glacialis</i>, <i>E. australis</i>, and <i>E. japonica</i> as distinct species. <br /><br />Sighting and mtDNA data indicate that western North Atlantic right whales segregate between separate nursery areas but probably represent a single breeding population (Schaeff et al. 1993).",
+                "informalTaxonomy": "Animals - Vertebrates - Mammals",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        }
+
+
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 102086,
+            "uniqueId": "ELEMENT_GLOBAL.2.102086",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.102086/Urocyon_littoralis_catalinae",
+            "elcode": "AMAJA04022",
+            "scientificName": "Urocyon littoralis catalinae",
+            "formattedScientificName": "<i>Urocyon littoralis catalinae</i>",
+            "primaryCommonName": "Santa Catalina Island Fox",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-03-05T23:46:12.904635Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "T",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Mammalia",
+                "taxorder": "Carnivora",
+                "family": "Canidae",
+                "genus": "Urocyon",
+                "taxonomicComments": null,
+                "informalTaxonomy": "Animals - Vertebrates - Mammals",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G3T1"
+        }
+
+
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 101467,
+            "uniqueId": "ELEMENT_GLOBAL.2.101467",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.101467/Odocoileus_virginianus_clavium",
+            "elcode": "AMALC02021",
+            "scientificName": "Odocoileus virginianus clavium",
+            "formattedScientificName": "<i>Odocoileus virginianus clavium</i>",
+            "primaryCommonName": "Key Deer",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "FL",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-03-05T23:44:38.590726Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [
+                    "key deer"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Mammalia",
+                "taxorder": "Artiodactyla",
+                "family": "Cervidae",
+                "genus": "Odocoileus",
+                "taxonomicComments": "Most authorities accord it subspecific status, though a few regard it as a full species.",
+                "informalTaxonomy": "Animals - Vertebrates - Mammals",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G5T1"
+        }
