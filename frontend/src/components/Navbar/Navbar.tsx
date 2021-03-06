@@ -5,7 +5,7 @@ const Navbar_main = () => {
   return ( 
     <>
       <Navbar sticky="top" bg="light" expand="lg">
-        <Navbar.Brand href="#home">critterycovery</Navbar.Brand>
+        <Navbar.Brand href="/">critterycovery</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
