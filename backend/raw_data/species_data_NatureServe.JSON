@@ -1,0 +1,1024 @@
+{
+    "results": [
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 103392,
+            "uniqueId": "ELEMENT_GLOBAL.2.103392",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.103392/Ambystoma_macrodactylum_croceum",
+            "elcode": "AAAAA01082",
+            "scientificName": "Ambystoma macrodactylum croceum",
+            "formattedScientificName": "<i>Ambystoma macrodactylum croceum</i>",
+            "primaryCommonName": "Santa Cruz Long-toed Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:43:06.602534Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Ambystomatidae",
+                "genus": "Ambystoma",
+                "taxonomicComments": "Proposed as a distinct species by Collins (1991), who expressed the opinion that any allopatric subspecies that is in some way morphologically distinct should be treated as a distinct species. Dowling (1993) and others cited by Dowling rejected Collins's taxonomic proposals and emphasized that taxonomic decisions should be based on adequate data deriving from a careful examination of specimens, not on a simple examination of generalized (and often inaccurate) range maps and old subspecies descriptions.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G5T1T2"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 103735,
+            "uniqueId": "ELEMENT_GLOBAL.2.103735",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.103735/Ambystoma_mavortium_stebbinsi",
+            "elcode": "AAAAA01145",
+            "scientificName": "Ambystoma mavortium stebbinsi",
+            "formattedScientificName": "<i>Ambystoma mavortium stebbinsi</i>",
+            "primaryCommonName": "Sonoran Tiger Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "AZ",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:44:05.244011Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Ambystoma tigrinum stebbinsi"
+                ],
+                "otherCommonNames": [
+                    "Sonora tiger Salamander"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Ambystomatidae",
+                "genus": "Ambystoma",
+                "taxonomicComments": "Originally described in 1954; regarded as taxonomically invalid by some authors from 1965 to 1988; reaffirmed as a valid subspecies by Jones et al. (1988); mtDNA data suggest origin from \"hybridization\" between subspecies <i>nebulosum </i>and <i>mavortium </i>(Collins et al. 1988, Jones et al. 1995).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G5T1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 101600,
+            "uniqueId": "ELEMENT_GLOBAL.2.101600",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.101600/Anaxyrus_baxteri",
+            "elcode": "AAABB01220",
+            "scientificName": "Anaxyrus baxteri",
+            "formattedScientificName": "<i>Anaxyrus baxteri</i>",
+            "primaryCommonName": "Wyoming Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "WY",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:38:25.942166Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Bufo baxteri",
+                    "Bufo hemiophrys baxteri"
+                ],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "The genus <i>Anaxyrus </i>was split from <i>Bufo </i>by Frost et al. (2006). However, taxonomy within the genus <i>Bufo </i>remains controversial and many references still use the long-established <i>Bufo</i>.<br /><br />Recognized as a distinct species by Smith et al. (1998).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 101917,
+            "uniqueId": "ELEMENT_GLOBAL.2.101917",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.101917/Anaxyrus_exsul",
+            "elcode": "AAABB01070",
+            "scientificName": "Anaxyrus exsul",
+            "formattedScientificName": "<i>Anaxyrus exsul</i>",
+            "primaryCommonName": "Black Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:39:13.567799Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Bufo exsul"
+                ],
+                "otherCommonNames": [
+                    "black toad"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "The genus <i>Anaxyrus </i>was split from <i>Bufo </i>by Frost et al. (2006). However, taxonomy within the genus <i>Bufo </i>remains controversial and many references still use the long-established <i>Bufo</i>. Considered by some authors to be a subspecies of <i>Anaxyrus boreas</i>.<br /><br />Molecular data indicate that <i>Bufo exsul</i> is phylogenetically nested within <i>Bufo canorus</i>; further data are needed to determine whether <i>Bufo exsul</i> should be subsumed with <i>Bufo canorus</i> (Shaffer et al. 2000).<br /><br />Phylogenetic analyses of mtDNA data from throughout the range of the <i>Bufo </i>(<i>Anaxyrus</i>) <i>boreas </i>species group (including <i>boreas</i>, <i>canorus</i>, <i>exsul</i>, and <i>nelsoni</i>) by Goebel et al. (2009) identified three major haplotype clades. The Northwest clade (NW) includes both subspecies of <i>boreas </i>(<i>boreas </i>and <i>halophilus</i>) and divergent minor clades in the middle Rocky Mountains, coastal, and central regions of the west and Pacific Northwest. The Southwest (SW) clade includes <i>exsul</i>, <i>nelsoni</i>, and minor clades in southern California. <i>Bufo </i>(<i>Anaxyrus</i>) <i>canorus</i>, previously identified as paraphyletic, has populations in both the NW and SW major clades. The Eastern major clade (E) includes three divergent lineages from southern Utah, the southern Rocky Mountains, and north of the Great Basin at the border of Utah and Nevada. Goebel et al. (2009) tentatively suggested that some or many of the clades might warrant recognition as distinct species. However, the authors refrained from delineating new species circumscriptions, noting that additional research might suggest different taxonomic outcomes (e.g., recognizing the traditionally defined <i>Bufo canorus</i> as two distinct species or, conversely, combining it with other minor groups and thus broadening its scope).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 103748,
+            "uniqueId": "ELEMENT_GLOBAL.2.103748",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.103748/Anaxyrus_houstonensis",
+            "elcode": "AAABB01090",
+            "scientificName": "Anaxyrus houstonensis",
+            "formattedScientificName": "<i>Anaxyrus houstonensis</i>",
+            "primaryCommonName": "Houston Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:44:07.384649Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Bufo houstonensis"
+                ],
+                "otherCommonNames": [
+                    "Houston toad"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "The genus <i>Anaxyrus </i>was split from <i>Bufo </i>by Frost et al. (2006). However, taxonomy within the genus <i>Bufo </i>remains controversial and many references still use the long-established <i>Bufo</i>. Treated as a subspecies of <i>B. americanus</i> in older literature. Natural hybridization with <i>B. valliceps </i>and with <i>B. woodhousii</i> has been recorded (Brown 1973).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 1154629,
+            "uniqueId": "ELEMENT_GLOBAL.2.1154629",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.1154629/Anaxyrus_monfontanus",
+            "elcode": "AAABB01260",
+            "scientificName": "Anaxyrus monfontanus",
+            "formattedScientificName": "<i>Anaxyrus monfontanus</i>",
+            "primaryCommonName": "Hot Creek Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "NV",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T05:29:16.281583Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Bufo monfontanus"
+                ],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "A molecular study suggests that <i>A. monfontanus</i> are more closely related to western toads in Utah, research examining the historic hydrological connections into Railroad Valley suggests a connection from the now disjunct White River to the Colorado River, which may have provided the corridors necessary for toad dispersal into the southern Great Basin (Noles 2010). This may provide some explanation for the high level of divergence exhibited in <i>A. nevadensis</i> and <i>A. monfontanus</i> to Great Basin <i>A. boreas</i> and allied taxa, and elucidate the genetic link to western toads outside the region.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 1154635,
+            "uniqueId": "ELEMENT_GLOBAL.2.1154635",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.1154635/Anaxyrus_nevadensis",
+            "elcode": "AAABB01250",
+            "scientificName": "Anaxyrus nevadensis",
+            "formattedScientificName": "<i>Anaxyrus nevadensis</i>",
+            "primaryCommonName": "Railroad Valley Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "NV",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T05:29:17.172067Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Bufo nevadensis"
+                ],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "A molecular study (Gordon et al., 2020) suggests that <i>A. nevadensis</i> are more closely related to western toads in Colorado, research examining the historic hydrological connections into Railroad Valley suggests a connection from the now disjunct White River to the Colorado River, which may have provided the corridors necessary for toad dispersal into the southern Great Basin (Noles 2010). This may provide some explanation for the high level of divergence exhibited in <i>A. nevadensis</i> and <i>A. monfontanus</i> to Great Basin <i>A. boreas</i> and allied taxa, and elucidate the genetic link to western toads outside the region. <i>A. nevadensis</i> forms a terminal clade and is basal to populations of boreal toads near the northwestern Utah border and Colorado, and genetic distance of this species to <i>A. boreas</i> was 1.7% (Gordon et al., 2020). Additionally, the haplotype network highlights the divergent lineages of <i>A. monfontanus</i> and <i>A. nevadensis</i>, from each other and to all <i>A. boreas</i> within the hydrological Great Basin and illustrates the regional divide in diversity among populations of <i>A. boreas</i> and related taxa within the species complex (Gordon et al. 2020).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 106026,
+            "uniqueId": "ELEMENT_GLOBAL.2.106026",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.106026/Anaxyrus_williamsi",
+            "elcode": "AAABB01X10",
+            "scientificName": "Anaxyrus williamsi",
+            "formattedScientificName": "<i>Anaxyrus williamsi</i>",
+            "primaryCommonName": "Dixie Valley Toad",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "NU",
+                    "subnations": [
+                        {
+                            "subnationCode": "NV",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:49:58.983584Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Anura",
+                "family": "Bufonidae",
+                "genus": "Anaxyrus",
+                "taxonomicComments": "The genus <i>Anaxyrus </i>was split from <i>Bufo </i>by Frost et al. (2006). However, taxonomy within the genus <i>Bufo </i>remains controversial and many references still use the long-established <i>Bufo</i>. Gordon et al. (2017) using 14 distinct morphological characteristics as well as genomic DNA extracted from tissue described the Dixie Valley toad as a distinct species: <i>Anaxyrus williamsi</i>.<br /><br />Phylogenetic analysis of mtDNA data from throughout the range of the <i>Bufo </i>(<i>Anaxyrus</i>) <i>boreas </i>species group (including <i>boreas</i>, <i>canorus</i>, <i>exsul</i>, and <i>nelsoni</i>) by Goebel et al. (2009) identified three major haplotype clades. The Northwest clade (NW) includes both subspecies of <i>boreas </i>(<i>boreas </i>and <i>halophilus</i>) and divergent minor clades in the middle Rocky Mountains, coastal, and central regions of the west, and Pacific Northwest. However, Forrest et al. (2017) found very little mtDNA sequence difference for the Dixie Valley Toad (DVT) or McCoy Ranch toads (a population 50 km north of Dixie Valley) analyzed with respect to the range of <i>A. boreas</i> sequences presented by Goebel et al (2009). In fact, 6 of the DVT samples (DM1, DM3, DM4, DM6, DS1, and DS2) that were analyzed are identical to <i>A. boreas</i> sequences from Beaverhead County, Montana. The maximum likelihood phylogenetic analysis of the combined CR and COI data provides no evidence to support the hypothesis that the DVT is a distinct species or subspecies. Instead, the DVT forms part of the well-supported North Western <i>A. boreas</i> clade identified in Goebel et al. Here we follow Gordon et al. (2017) and USFWS in recognizing this taxon as <i>A. williamsi</i>.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 1157658,
+            "uniqueId": "ELEMENT_GLOBAL.2.1157658",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.1157658/Aneides_caryaensis",
+            "elcode": "AAAAD01100",
+            "scientificName": "Aneides caryaensis",
+            "formattedScientificName": "<i>Aneides caryaensis</i>",
+            "primaryCommonName": "Hickory Nut Gorge Green Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "NC",
+                            "roundedSRank": "SNR",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T05:30:42.876428Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Aneides",
+                "taxonomicComments": "Patton et al. (2019) describe the Hickory Nut Gorge lineage as a distinct species on the basis of molecular and preliminary morphological differentiation. They adopt the use of subgenus <i>Castaneides </i>(Dubois and Raffaelli 2012) when referring to the species complex of green salamanders, as this etymology was initially established to refer to eastern <i>Aneides </i>which was thought to harbor at least three cryptic species.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 105465,
+            "uniqueId": "ELEMENT_GLOBAL.2.105465",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.105465/Batrachoseps_major_aridus",
+            "elcode": "AAAAD02042",
+            "scientificName": "Batrachoseps major aridus",
+            "formattedScientificName": "<i>Batrachoseps major aridus</i>",
+            "primaryCommonName": "Desert Slender Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:48:33.638633Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Batrachoseps aridus"
+                ],
+                "otherCommonNames": [
+                    "desert slender salamander"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Batrachoseps",
+                "taxonomicComments": "Formerly regarded as a distinct species (<i>B. aridus</i>); regarded as a subspecies of <i>B. major</i> by Wake and Jockusch (2000).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G4T1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 101886,
+            "uniqueId": "ELEMENT_GLOBAL.2.101886",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.101886/Batrachoseps_minor",
+            "elcode": "AAAAD02170",
+            "scientificName": "Batrachoseps minor",
+            "formattedScientificName": "<i>Batrachoseps minor</i>",
+            "primaryCommonName": "Lesser Slender Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:39:08.333384Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Batrachoseps",
+                "taxonomicComments": "Formerly included in <i>B. pacificus</i> as defined by Yanev (1980).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 889920,
+            "uniqueId": "ELEMENT_GLOBAL.2.889920",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.889920/Batrachoseps_relictus",
+            "elcode": "AAAAD02070",
+            "scientificName": "Batrachoseps relictus",
+            "formattedScientificName": "<i>Batrachoseps relictus</i>",
+            "primaryCommonName": "Relictual Slender Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "CA",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T04:21:35.84614Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Batrachoseps",
+                "taxonomicComments": "Jockusch et al. (1998) redefined <i>B. relictus</i>; <i>B. diabolicus</i>, <i>B. regius</i>, <i>B. kawia</i>, all formerly included in <i>B. relictus</i>, were recognized as distinct species.<br /><br /><i>Batrachoseps altasierrae</i> (Jockusch et al. 2012) formerly was encompassed in <i>B. relictus</i>, which now has a much more restricted distribution.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 800951,
+            "uniqueId": "ELEMENT_GLOBAL.2.800951",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.800951/Desmognathus_ochrophaeus_pop_1",
+            "elcode": "AAAAD03071",
+            "scientificName": "Desmognathus ochrophaeus pop. 1",
+            "formattedScientificName": "<i>Desmognathus ochrophaeus </i>pop. 1",
+            "primaryCommonName": "Allegheny Mountain Dusky Salamander - Appalachian population",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "T1",
+            "nations": [
+                {
+                    "nationCode": "CA",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "ON",
+                            "roundedSRank": "SNR",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T03:59:43.107974Z",
+            "classificationStatus": "Provisional",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": "E",
+                "saraCode": "Endangered/En voie de disparition",
+                "synonyms": [],
+                "otherCommonNames": [
+                    "Salamandre sombre des montagnes - Population des Appalaches"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Desmognathus",
+                "taxonomicComments": null,
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": true,
+                "completeDistribution": true
+            },
+            "gRank": "G5T1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 103095,
+            "uniqueId": "ELEMENT_GLOBAL.2.103095",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.103095/Eurycea_chisholmensis",
+            "elcode": "AAAAD05190",
+            "scientificName": "Eurycea chisholmensis",
+            "formattedScientificName": "<i>Eurycea chisholmensis</i>",
+            "primaryCommonName": "Salado Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:42:14.961178Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "T",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [
+                    "Salado Springs Salamander"
+                ],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Based on morphological distinctiveness and distribution, Chippindale et al. (1994) regarded salamanders from Salado Springs as a distinct species and indicated their plans to describe it as such. Chippindale et al. (2000) formally described this species as <i>Eurycea chisholmensis</i>. <br /><br />Sweet (1982) included this salamander in <i>E. neotenes</i>.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 106379,
+            "uniqueId": "ELEMENT_GLOBAL.2.106379",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.106379/Eurycea_nana",
+            "elcode": "AAAAD05070",
+            "scientificName": "Eurycea nana",
+            "formattedScientificName": "<i>Eurycea nana</i>",
+            "primaryCommonName": "San Marcos Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:50:54.296919Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "T",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Chippindale et al. (1998, 2000) reviewed the systematic status of this salamander.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 105895,
+            "uniqueId": "ELEMENT_GLOBAL.2.105895",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.105895/Eurycea_naufragia",
+            "elcode": "AAAAD05210",
+            "scientificName": "Eurycea naufragia",
+            "formattedScientificName": "<i>Eurycea naufragia</i>",
+            "primaryCommonName": "Georgetown Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:49:38.452063Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "T",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Salamanders from springs in the vicinity of Lake Georgetown display a unique combination of alleles and have distinctive mtDNA characteristics; possibily they are distinguishable also by pigmentation characteristics (Chippindale et al. 1994). Regarded as a distinct species by Chippindale et al. (1994). Formally described as <i>E. naufragia</i> by Chippindale et al. (2000). <br /><br />Included in <i>E. neotenes</i> by Sweet (1978, 1982).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 105042,
+            "uniqueId": "ELEMENT_GLOBAL.2.105042",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.105042/Eurycea_neotenes",
+            "elcode": "AAAAD05080",
+            "scientificName": "Eurycea neotenes",
+            "formattedScientificName": "<i>Eurycea neotenes</i>",
+            "primaryCommonName": "Texas Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:47:22.528151Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Sweet (1984) concluded that <i>Eurycea latitans</i> apparently comprises a troglobitic population of <i>E. neotenes</i> that episodically incorporates individuals of <i>E. tridentifera</i>. Chippindale et al. (1994, 2000) conducted genetic analyses and concluded that the name <i>E. neotenes</i> should be restricted to populations in Helotes Creek Spring (Bexar County), Leon Springs (Bexar County), and Mueller's Spring (Kendall County), all in central Texas.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1G2"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 103877,
+            "uniqueId": "ELEMENT_GLOBAL.2.103877",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.103877/Eurycea_rathbuni",
+            "elcode": "AAAAD05250",
+            "scientificName": "Eurycea rathbuni",
+            "formattedScientificName": "<i>Eurycea rathbuni</i>",
+            "primaryCommonName": "Texas Blind Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:44:25.134953Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Typhlomolge rathbuni"
+                ],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Formerly included in the genus <i>Typhlomolge </i>(see Mitchell and Reddell 1965; Chippindale et al. 1994, 2000).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 104377,
+            "uniqueId": "ELEMENT_GLOBAL.2.104377",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.104377/Eurycea_robusta",
+            "elcode": "AAAAD05260",
+            "scientificName": "Eurycea robusta",
+            "formattedScientificName": "<i>Eurycea robusta</i>",
+            "primaryCommonName": "Blanco Blind Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:45:43.448596Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": null,
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [
+                    "Typhlomolge robusta"
+                ],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Formerly included in the genus <i>Typhlomolge</i> (see Mitchell and Reddell 1965; Chippindale et al. 1994, 2000). Questionably distinct from <i>E. rathbuni</i>.",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        },
+        {
+            "recordType": "SPECIES",
+            "elementGlobalId": 104730,
+            "uniqueId": "ELEMENT_GLOBAL.2.104730",
+            "nsxUrl": "/Taxon/ELEMENT_GLOBAL.2.104730/Eurycea_sosorum",
+            "elcode": "AAAAD05170",
+            "scientificName": "Eurycea sosorum",
+            "formattedScientificName": "<i>Eurycea sosorum</i>",
+            "primaryCommonName": "Barton Springs Salamander",
+            "primaryCommonNameLanguage": "EN",
+            "roundedGRank": "G1",
+            "nations": [
+                {
+                    "nationCode": "US",
+                    "roundedNRank": "N1",
+                    "subnations": [
+                        {
+                            "subnationCode": "TX",
+                            "roundedSRank": "S1",
+                            "exotic": false,
+                            "native": true
+                        }
+                    ],
+                    "exotic": false,
+                    "native": true
+                }
+            ],
+            "lastModified": "2021-02-06T02:46:37.261868Z",
+            "classificationStatus": "Standard",
+            "speciesGlobal": {
+                "usesaCode": "E",
+                "cosewicCode": null,
+                "saraCode": null,
+                "synonyms": [],
+                "otherCommonNames": [],
+                "kingdom": "Animalia",
+                "phylum": "Craniata",
+                "taxclass": "Amphibia",
+                "taxorder": "Caudata",
+                "family": "Plethodontidae",
+                "genus": "Eurycea",
+                "taxonomicComments": "Sweet (1984) found this salamander to be structurally intermediate between <i>E. neotenes</i> and <i>E. tridentifera</i>. Chippindale et al. (1993, 2000) determined that this species is morphologically and biochemically distinct from all known species of plethodontids. Included in <i>E. neotenes</i> by Brown (1950, 1967).",
+                "informalTaxonomy": "Animals - Vertebrates - Amphibians",
+                "infraspecies": false,
+                "completeDistribution": true
+            },
+            "gRank": "G1"
+        }
+    ],
+    "resultsSummary": {
+        "page": 0,
+        "recordsPerPage": 20,
+        "totalPages": 271,
+        "totalResults": 5420,
+        "speciesResults": {
+            "total": 5420
+        }
+    },
+    "searchCriteria": {
+        "criteriaType": "species",
+        "textCriteria": [],
+        "statusCriteria": [
+            {
+                "paramType": "globalRank",
+                "globalRank": "G1"
+            }
+        ],
+        "locationCriteria": [],
+        "pagingOptions": {
+            "page": 0,
+            "recordsPerPage": 20
+        },
+        "recordSubtypeCriteria": [],
+        "modifiedSince": null,
+        "locationOptions": null,
+        "classificationOptions": null,
+        "speciesTaxonomyCriteria": []
+    }
+}
