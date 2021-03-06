@@ -8,13 +8,13 @@ function Antelope() {
             <h1>Antelope</h1>
             <img src={img}/>
             <p>
-                bodyMass: 430 lbs <br />
-                length: 9.7 <br />
-                height: 4.6 <br />
-                number left: 71000 <br />
-                scientific name: Antilocapra americana <br />
-                located in: <Nav.Link href='/countries/Argentina'>Argentina</Nav.Link>
-                habitat: <Nav.Link href='/habitats/Desert'>Desert</Nav.Link>
+                Body Mass: 430 lbs <br />
+                Length: 9.7 <br />
+                Height: 4.6 <br />
+                Number left: 71000 <br />
+                Scientific name: Antilocapra americana <br />
+                Located in: <Nav.Link href='/countries/Argentina'>Argentina</Nav.Link>
+                Habitat: <Nav.Link href='/habitats/Desert'>Desert</Nav.Link>
             </p>
         </div>
     )

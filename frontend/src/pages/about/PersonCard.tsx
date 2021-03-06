@@ -3,9 +3,11 @@ import Person from './About'
 
 function PersonCard(props: any) {
     return(
-        <Card bg="white" style={{width: '30rem'}}>
+        <Card bg="white" style={{width: '20rem'}}>
+            <Card.Img variant="top" src={props.person.photo}></Card.Img>
             <Card.Body>
                 <Card.Title>{props.person.name}</Card.Title>
+                <Card.Footer>{props.person.role}</Card.Footer>
                 <Card.Text>{props.person.aboutInfo}</Card.Text>
                 <Card.Footer>
                     Commits: {props.person.stats.commits} <br />

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios'; 
 import PersonCard from './PersonCard'
 import { Card, CardColumns, CardDeck, CardGroup } from 'react-bootstrap';
+import shaharyar from './ourPhotos/shaharyar.jpg';
+import brian from './ourPhotos/brian.jpg';
+import daniel from './ourPhotos/daniel.jpg';
+import savetheanimals from './ourPhotos/savetheanimals.jpg';
 
 interface PersonStats {
   name: string;
@@ -42,9 +46,11 @@ function About() {
   });
 
   type Person = {
-    name: String;
+    name: string;
     stats: PersonStats;
-    aboutInfo: String;
+    aboutInfo: string;
+    role: string;
+    photo: string;
   }
 
   let people: Person[] = [
@@ -55,36 +61,48 @@ function About() {
       " here at UT Austin. He has learned a lot about web development through" + 
       " this project, and is excited to use his skills from this class so" +
       " far to potentially create a startup! His hobbies include playing basketball," +
-      " going on hikes, singing, and cooking."
+      " going on hikes, singing, and cooking.",
+      role: "Project Lead: Backend Manager",
+      photo: shaharyar
     },
     {
       name: "Brian Wang",
       stats: getStats(stats, "br"),
       aboutInfo: "Brian Wang is a junior at UT Austin. He is thrilled to be in" +
       " SWE this semester, and he can't wait to see the website up and running!" +
-      " His hobbies include reading and doing jigsaw puzzles."
+      " His hobbies include reading and doing jigsaw puzzles.",
+      role: "Lead Frontend Developer",
+      photo: brian
     },
     {
       name: "Daniel Qu",
       stats: getStats(stats, "da"),
       aboutInfo: "Daniel Qu is a sophomore in the CS department at UT Austin. He is" +
       " fairly new to web development, but is very eager to learn. He recently adopted a" +
-      " kitten named Kiki! In his free time he enjoys playing chess and Sudoku."
+      " kitten named Kiki! In his free time he enjoys playing chess and Sudoku.",
+      role: "Developer and Report Manager",
+      photo: daniel
     },
     {
       name: "William Crawford",
       stats: getStats(stats, "wi"),
-      aboutInfo: "Male"
+      aboutInfo: "Male",
+      role: "Frontend Developer and Designer",
+      photo: shaharyar
     },
     {
       name: "Sahithi Golkonda",
       stats: getStats(stats, "sa"),
-      aboutInfo: "Female"
+      aboutInfo: "Female",
+      role: "API Manager and Data Lead",
+      photo: shaharyar
     },
     {
       name: "total",
       stats: getStats(stats, "total"),
-      aboutInfo: "All"
+      aboutInfo: "All",
+      role: "Full Stack Development",
+      photo: savetheanimals
     }
   ];
 
@@ -107,12 +125,10 @@ function About() {
           <CardDeck>
             <PersonCard person={people[0]}></PersonCard>
             <PersonCard person={people[1]}></PersonCard>
-          </CardDeck>
-          <CardDeck>
             <PersonCard person={people[2]}></PersonCard>
-            <PersonCard person={people[3]}></PersonCard>
           </CardDeck>
           <CardDeck>
+            <PersonCard person={people[3]}></PersonCard>
             <PersonCard person={people[4]}></PersonCard>
             <PersonCard person={people[5]}></PersonCard>
           </CardDeck>
