@@ -1,18 +1,11 @@
 import React from 'react'; 
 import ReactPlayer from 'react-player';
+import {Container, Row, Col, Card, Button} from 'react-bootstrap'
+import { relative } from 'node:path';
 
 const Home = () => { 
-  return ( 
-    <div 
-      style={{ 
-        display: 'flex', 
-        justifyContent: 'Right', 
-        alignItems: 'Right', 
-        height: '90vh'
-        
-      }} 
-    > 
-      <div>
+  return (
+  <body>
         <div className='home-video' style={{width:'100vw', height:'calc(100vw * .5625)', zIndex:10}}>.</div>
         <div className='player-wrapper home-video'>
           <ReactPlayer
@@ -33,21 +26,50 @@ const Home = () => {
             width='100vw'
             height='calc(100vw * .5625)'
           />
-
           <div className='home-title'>
             <p className='font-big'> Critters need Recovery</p>
             <p className='font-medium-big'>If you love animals, you should support them</p>
           </div>
-          <h1>Welcome to critterycovery</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, veritatis. Soluta pariatur nesciunt voluptatum id incidunt minus ratione obcaecati laborum unde? Voluptatibus officia quia ducimus odio labore atque aperiam sint. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolores provident animi deserunt maxime. Officiis explicabo odit vitae. Doloremque nemo nobis voluptates ducimus aperiam libero maiores accusamus earum ipsam voluptate! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea nostrum commodi et exercitationem, maiores eum facere dicta repellendus laborum voluptatibus amet ipsam animi repellat distinctio deleniti quis? Dicta, aperiam nobis.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, veritatis. Soluta pariatur nesciunt voluptatum id incidunt minus ratione obcaecati laborum unde? Voluptatibus officia quia ducimus odio labore atque aperiam sint. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolores provident animi deserunt maxime. Officiis explicabo odit vitae. Doloremque nemo nobis voluptates ducimus aperiam libero maiores accusamus earum ipsam voluptate! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea nostrum commodi et exercitationem, maiores eum facere dicta repellendus laborum voluptatibus amet ipsam animi repellat distinctio deleniti quis? Dicta, aperiam nobis.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, veritatis. Soluta pariatur nesciunt voluptatum id incidunt minus ratione obcaecati laborum unde? Voluptatibus officia quia ducimus odio labore atque aperiam sint. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolores provident animi deserunt maxime. Officiis explicabo odit vitae. Doloremque nemo nobis voluptates ducimus aperiam libero maiores accusamus earum ipsam voluptate! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea nostrum commodi et exercitationem, maiores eum facere dicta repellendus laborum voluptatibus amet ipsam animi repellat distinctio deleniti quis? Dicta, aperiam nobis.</p>
-        </div>
+        <Container fluid='md' style={{alignContent:'center', top: '100vh'}}>
+        <Row>
+          <Col>
+            <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>Species</Card.Title>
+                  <Card.Text>
+                    Click here to go to species
+                  </Card.Text>
+                </Card.Body>
+              </Card></Button></Col>
+          <Col>
+          <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
+              <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>Species</Card.Title>
+                  <Card.Text>
+                    Click here to go to species
+                  </Card.Text>
+                </Card.Body>
+              </Card></Button></Col>
+
+          <Col>
+            <Button href='/species' variant="light" style={{border:'none',}}>
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img variant="top" src="holder.js/100px180" />
+                  <Card.Body>
+                    <Card.Title>Species</Card.Title>
+                    <Card.Text>
+                      Click here to go to species
+                    </Card.Text>
+                  </Card.Body>
+                </Card></Button></Col>
+        </Row>
+      </Container>
       </div>
-     
-      
-      
-    </div> 
+  </body>
   ); 
 }; 
   

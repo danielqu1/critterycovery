@@ -29,9 +29,8 @@ body {
 
 .home-title {
   position: absolute;
-  top: 0;
+  top: calc(50vw * .5625);
   left: 0;
-  margin-top: 60vh;
   margin-left: 5vw;
   text-align: left;
 }
