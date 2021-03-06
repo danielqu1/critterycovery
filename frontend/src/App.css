@@ -9,6 +9,21 @@ body {
     margin-right: 0;
 }
 
+.aspect16by9 {
+    padding-top: 56.25%;
+    background-color: red;
+    width: 100%;
+    position: relative; /* If you want text inside of it */
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 /* Added for to-top button*/
 .scroll-to-top {
     position: fixed;

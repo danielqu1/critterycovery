@@ -3,8 +3,6 @@ import React from 'react';
 // need all four to build a table
 import type {ColumnDefinitionType} from "../components/Table/ColumnDefinitionType";
 import Table from "../components/Table/Table";
-import TableHeader from "../components/Table/TableHeader";
-import TableRows from "../components/Table/TableRows";
 
 // what the data looks like
 interface Cat {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css'; 
 import Navbar_main from './components/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import axios from 'axios';
+//import axios from 'axios';
 import Home from './pages/Home';
 import About from './pages/About';
 import Species from './pages/Species';
@@ -13,7 +13,7 @@ import ScrollToTopBtn from "./hooks/ScrollToTop";
 
 function App() {
 
-  const [name, setName] = useState("new");
+  //const [name, setName] = useState("new");
 
   //axios.get("/api/name").then((response) => {
     //setName(response.data.name);
@@ -32,9 +32,6 @@ function App() {
           <Route path='/countries' exact component={Countries} /> 
         </Switch> 
       </Router>
-      <p>
-        { name }
-      </p>
     </div>
   );
 }
