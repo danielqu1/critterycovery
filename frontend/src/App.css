@@ -1,0 +1,60 @@
+body {
+  background-color: #e6eeff;
+  color: black;
+  padding: 0px;
+  font-family: Arial;
+  text-align: center;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Added for to-top button*/
+.scroll-to-top {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  animation: fadeIn 700ms ease-in-out 1s both;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.home-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.home-title {
+  position: absolute;
+  top: calc(50vw * .5625);
+  left: 0;
+  margin-left: 5vw;
+  text-align: left;
+}
+
+.font-big {
+  color: tomato;
+  font-size: 5vw;
+  text-shadow: 5px 1px 1px rgba(1,1,1,1);
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  padding-bottom: 0;
+}
+
+.font-medium-big {
+  color: red;
+  font-size: 2.5vw
+}
+
+/* Added for to-top button*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
