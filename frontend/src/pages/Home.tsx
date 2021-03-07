@@ -44,7 +44,7 @@ const Home = () => {
                 </Card.Body>
               </Card></Button></Col>
           <Col>
-          <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
+          <Button href='/habitats' variant="light" style={{padding:'none', margin:'none'}}>
               <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="https://i.imgur.com/bU8w49l.jpg" />
                 <Card.Body>
@@ -56,7 +56,7 @@ const Home = () => {
               </Card></Button></Col>
 
           <Col>
-            <Button href='/species' variant="light" style={{border:'none',}}>
+            <Button href='/countries' variant="light" style={{border:'none',}}>
                 <Card style={{ width: '18rem' }}>
                   <Card.Img variant="top" src="https://i.imgur.com/o1e9atI.jpeg" />
                   <Card.Body>
