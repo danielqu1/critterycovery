@@ -1,5 +1,4 @@
 import { Card, Button} from 'react-bootstrap'
-import Models from './Home'
 
 function ModelCard(props: any) {
     return(

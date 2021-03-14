@@ -1,5 +1,4 @@
 import { Card } from 'react-bootstrap'
-import Person from './About'
 
 function PersonCard(props: any) {
     return(

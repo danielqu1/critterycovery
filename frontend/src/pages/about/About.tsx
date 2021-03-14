@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import PersonCard from './PersonCard'
-import { Card, CardColumns, CardDeck, CardGroup } from 'react-bootstrap';
+import { Card, CardColumns, CardDeck, CardGroup, Container } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
@@ -115,31 +115,23 @@ function About() {
   ];
 
   return ( 
-    <div 
-      style={{ 
-        display: 'flex', 
-        justifyContent: 'Right', 
-        alignItems: 'Right', 
-        height: '100vh'
-      }} 
-    > 
-      <div>
+    <body className='body'> 
+      <Container>
         <h1>General Description:</h1>
-        <br />
         <p>{ description }</p>
         <h1>Data:</h1>
-        <br />
         <p>{ compilation }</p>
-          <CardDeck>
-            <PersonCard person={people[0]}></PersonCard>
-            <PersonCard person={people[1]}></PersonCard>
-            <PersonCard person={people[2]}></PersonCard>
-          </CardDeck>
-          <CardDeck>
-            <PersonCard person={people[3]}></PersonCard>
-            <PersonCard person={people[4]}></PersonCard>
-            <PersonCard person={people[5]}></PersonCard>
-          </CardDeck>
+      </Container>      
+      <CardDeck>
+        <PersonCard person={people[0]}></PersonCard>
+        <PersonCard person={people[1]}></PersonCard>
+        <PersonCard person={people[2]}></PersonCard>
+      </CardDeck>
+      <CardDeck>
+        <PersonCard person={people[3]}></PersonCard>
+        <PersonCard person={people[4]}></PersonCard>
+        <PersonCard person={people[5]}></PersonCard>
+      </CardDeck>
         <div className="text-center">
           <h2>View our code base here: </h2>
           <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br/>
@@ -154,14 +146,13 @@ function About() {
           Postman: For creating the API documentation for our own API (linked above)
         </div>
 
-		<div className="text-center">
-		  <h2>APIs used:</h2>
-		  <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br/>
-		  <a href="https://api.speciesplus.net/">https://api.speciesplus.net/</a> Information about specific species<br/>
-		  <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br/>
-		</div>
+      <div className="text-center">
+        <h2>APIs used:</h2>
+        <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br/>
+        <a href="https://api.speciesplus.net/">https://api.speciesplus.net/</a> Information about specific species<br/>
+        <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br/>
       </div>
-    </div> 
+    </body>
   ); 
 }; 
   
