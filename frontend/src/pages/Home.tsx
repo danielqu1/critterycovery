@@ -2,12 +2,15 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import {Container, Row, Col, Card, Button} from 'react-bootstrap'
 import { relative } from 'node:path';
+import { Left } from 'react-bootstrap/lib/Media';
 
 const Home = () => { 
   return (
-  <body>
-        <div className='home-video' style={{width:'100vw', height:'calc(100vw * .5625)', zIndex:10}}>.</div>
-        <div className='player-wrapper home-video'>
+
+    <body className='body' style={{position:'relative', alignContent:'left'}}>
+      <Container fluid style={{padding:'0px'}}>
+        <div className='home-video' style={{width:'100vw', height:'calc(100vw * .5625)', zIndex:9}}></div>
+        <div className='player-wrapper' style={{overflowX:'hidden', overflowY:'hidden'}}>
           <ReactPlayer
             className='react-player'
             url={'https://www.youtu.be/8rPB4A3zDnQ?t='+ Math.floor(Math.random()*1200)}
@@ -17,7 +20,7 @@ const Home = () => {
               youtube: {
                 playerVars: { autoplay: 1, showinfo: 0, disablekb: 1, 
                               fs: 0, iv_load_policy: 3, loop: 1, 
-                              modestbranding: 0, rel: 0, pip: 0, 
+                              modestbranding: 1, rel: 0, pip: 0, 
                               end: 1190}
               }
             }}
@@ -26,11 +29,13 @@ const Home = () => {
             width='100vw'
             height='calc(100vw * .5625)'
           />
-          <div className='home-title'>
-            <p className='font-big'> Critters need Recovery</p>
-            <p className='font-medium-big'>If you love animals, you should support them</p>
-          </div>
-        <Container fluid='md' style={{alignContent:'center', top: '100vh'}}>
+        </div>
+        <div className='home-title'>
+          <p className='font-big'> Critters need Recovery</p>
+          <p className='font-medium-big'>If you love animals, you should support them</p>
+        </div>
+      </Container>
+      <Container fluid='md' style={{alignContent:'center', top: '100vh'}}>
         <Row>
           <Col>
             <Button href='/species' variant="light" style={{padding:'none', margin:'none'}}>
@@ -68,8 +73,8 @@ const Home = () => {
                 </Card></Button></Col>
         </Row>
       </Container>
-      </div>
-  </body>
+          
+    </body>
   ); 
 }; 
   
