@@ -153,6 +153,13 @@ function About() {
           AWS EC2 and Route53: For hosting the website on the cloud<br/>
           Postman: For creating the API documentation for our own API (linked above)
         </div>
+
+		<div className="text-center">
+		  <h2>APIs used:</h2>
+		  <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br/>
+		  <a href="https://api.speciesplus.net/">https://api.speciesplus.net/</a> Information about specific species<br/>
+		  <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br/>
+		</div>
       </div>
     </div> 
   ); 
