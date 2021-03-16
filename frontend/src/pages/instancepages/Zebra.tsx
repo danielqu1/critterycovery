@@ -6,7 +6,7 @@ function Zebra() {
     return(
         <div className="text-center">
             <h1>Zebra</h1>
-            <img src={img}/>
+            <img src={img} alt="Four legged animal with stripes"/>
             <p>
                 Body Mass: 800 lbs <br />
                 Length: 5.8 <br />

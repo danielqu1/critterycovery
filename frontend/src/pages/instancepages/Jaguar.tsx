@@ -6,7 +6,7 @@ function Jaguar() {
     return(
         <div className="text-center">
             <h1>Jaguar</h1>
-            <img src={img}/>
+            <img src={img} alt="Four legged spotted animal"/>
             <p>
                 Body Mass: 180 lbs <br />
                 Length: 5.2 <br />

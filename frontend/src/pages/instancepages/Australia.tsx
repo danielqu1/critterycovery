@@ -6,7 +6,7 @@ function Australia() {
     return(
         <div className="text-center">
             <h1>Australia</h1>
-            <img src={img}/>
+            <img src={img} alt="Map of Australia"/>
             <p>
                 Capital: Canberra <br/>
                 Location: Oceania <br/>

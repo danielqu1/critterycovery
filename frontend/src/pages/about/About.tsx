@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import PersonCard from './PersonCard'
-import { Card, CardColumns, CardDeck, CardGroup, Container } from 'react-bootstrap';
+import { CardDeck, Container } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
@@ -22,7 +22,7 @@ interface GitlabData {
 
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
   for (let i = 0; i < stats.length; i++) {
-    if (stats[i].name == shortened) {
+    if (stats[i].name === shortened) {
       return stats[i];
     }
   }

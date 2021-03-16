@@ -1,6 +1,6 @@
 import React from 'react'; 
 import ReactPlayer from 'react-player';
-import {Container, Row, Col, Card, Button, CardDeck} from 'react-bootstrap'
+import {Container, CardDeck} from 'react-bootstrap'
 import ModelCard from './ModelCard'
 
 const Home = () => { 

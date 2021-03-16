@@ -6,7 +6,7 @@ function Desert() {
     return(
         <div className="text-center">
             <h1>Desert</h1>
-            <img src={img}/>
+            <img src={img} alt="Sandy desert"/>
             <p>
                 Rain: 8.03 in <br/>
                 Temperature: 117 degrees F <br/>
