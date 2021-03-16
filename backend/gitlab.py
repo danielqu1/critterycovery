@@ -7,13 +7,10 @@ def stats():
 	data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 0}}
 
 	for branch in branches:
-
-		commitsLink = "https://gitlab.com/api/v4/projects/24707879/repository/commits?ref_name=" + branch + "&per_page=100"
-		#issuesLink = "https://gitlab.com/api/v4/projects/24707879/issues"
+		
+		# reference: https://stackoverflow.com/questions/43733179/gitlab-api-to-get-all-commits-of-a-specific-branch
+		commitsLink = "https://gitlab.com/api/v4/projects/24707879/repository/commits?ref_name=" + branch + "&per_page=100"		# get from specific branch, and use max of 100 commits
 		commitsResponse = requests.get(commitsLink).json()
-		#issuesResponse = requests.get(issuesLink).json()
-	
-		num = 0
 
 		for i in commitsResponse:
 
@@ -28,9 +25,6 @@ def stats():
 			else:
 				data[name] = {"name": name, "commits": 1, "issues": 0, "unittests": 0}
 
-			num += 1
-
-		#print("num =", num, " for branch ", branch)
 
 	issuesLink = "https://gitlab.com/api/v4/projects/24707879/issues"
 	issuesResponse = requests.get(issuesLink).json()
