@@ -87,7 +87,7 @@ function About() {
     },
     {
       name: "William Crawford",
-      stats: getStats(stats, "wi"),
+      stats: getStats(stats, "w"),
       aboutInfo: "William Crawford is a junior CS major at UT Austin. He is new" +
       " to web dev, but likes to do a little bit of everything. He is yet another" + 
       " startup hopeful and wants to learn something new everyday. In his free " +
