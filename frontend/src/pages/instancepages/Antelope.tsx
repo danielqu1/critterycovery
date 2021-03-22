@@ -6,7 +6,7 @@ function Antelope() {
     return(
         <div className="text-center">
             <h1>Antelope</h1>
-            <img src={img}/>
+            <img src={img} alt = "Antelope"/>
             <p>
                 Body Mass: 430 lbs <br />
                 Length: 9.7 <br />

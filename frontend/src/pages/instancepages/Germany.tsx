@@ -6,7 +6,7 @@ function Germany() {
     return(
         <div className="text-center">
             <h1>Germany</h1>
-            <img src={img}/>
+            <img src={img} alt="Map of country in Europe"/>
             <p>
                 Capital: Berlin <br/>
                 Location: Europe <br/>

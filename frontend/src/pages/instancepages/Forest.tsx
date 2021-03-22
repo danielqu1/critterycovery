@@ -6,7 +6,7 @@ function Forest() {
     return(
         <div className="text-center">
             <h1>Forest</h1>
-            <img src={img}/>
+            <img src={img} alt="Many trees"/>
             <p>
                 Rain: 80-100 in <br/>
                 Temperature: 50 degrees F <br/>

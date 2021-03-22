@@ -6,7 +6,7 @@ function Grassland() {
     return(
         <div className="text-center">
             <h1>Grassland</h1>
-            <img src={img}/>
+            <img src={img} alt="Lots of green grass"/>
             <p>
                 Rain: 30 in <br/>
                 Temperature: 60-70 degrees F <br/>
