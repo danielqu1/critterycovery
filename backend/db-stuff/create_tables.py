@@ -34,18 +34,14 @@ def create_countries_table():
                         "total_pop int, capital varchar, region varchar, subregion varchar, latitude float, " +
                         "longitude float, area float, gini_index int, flag varchar)"))
         conn.execute(
-            text("INSERT INTO countries_table (name, alpha2_code, alpha3_code, total_pop, capital, region, subregion, " +
-                        "latitude, longitude, area, gini_index, flag) " +
-                        "VALUES (:name, :alpha2_code, :alpha3_code, :total_pop, :capital, :region, :subregion, " +
-                        ":latitude, :longitude, :area, :gini_index, :flag)"),
+            text("INSERT INTO countries_table (" + string_helper(countries_array[0], False) + ") " +
+                        "VALUES (" + string_helper(countries_array[0], True) + ")"), 
             countries_array
         )
         conn.commit()
         result = conn.execute(text("SELECT * FROM countries_table"))
         for row in result:
             print(row)
-            # print(f"{row.name} {row.alpha2_code} {row.alpha3_code} {row.total_pop} {row.capital} {row.region} " +
-            #         f"{row.subregion} {row.latitude} {row.longitude} {row.area} {row.gini_index}, {row.flag}")
 
 def create_habitats_table():
     habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
@@ -74,18 +70,14 @@ def create_habitats_table():
                         "reported_marine_area float, reported_terrestrial_area float, countries varchar, " + 
                         "iucn_category int, designation_name varchar, designation_id int, link varchar)"))
         conn.execute(
-            text("INSERT INTO habitats_table (id, name, marine, reported_marine_area, " +
-                        "reported_terrestrial_area, countries, iucn_category, designation_name, designation_id, link) " +
-                        "VALUES (:id, :name, :marine, :reported_marine_area, :reported_terrestrial_area, " +
-                        ":countries, :iucn_category, :designation_name, :designation_id, :link)"),
+            text("INSERT INTO habitats_table (" + string_helper(habitats_array[0], False) + ") " +
+                        "VALUES (" + string_helper(habitats_array[0], True) + ")"), 
             habitats_array
         )
         conn.commit()
         result = conn.execute(text("SELECT * FROM habitats_table"))
         for row in result:
             print(row)
-            # print(f"{row.id} {row.name} {row.marine} {row.reported_marine_area} {row.reported_terrestrial_area} " +
-            #         f"{row.countries} {row.iucn_category} {row.designation_name} {row.designation_id} {row.link}")
 
 def create_species_table():
     iucn_link_base = "https://apiv3.iucnredlist.org/api/v3/species/"
@@ -106,7 +98,7 @@ def create_species_table():
         d["kingdom"] = specifics_response["kingdom"]
         d["phylum"] = specifics_response["phylum"]
         d["_class"] = specifics_response["class"]
-        d["order"] = specifics_response["order"]
+        d["_order"] = specifics_response["order"]
         d["family"] = specifics_response["family"]
         d["genus"] = specifics_response["genus"]
         d["common_name"] = specifics_response["main_common_name"]
@@ -117,5 +109,28 @@ def create_species_table():
         species_array.append(d)
         break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
+    with engine.connect() as conn:
+        conn.execute(text("CREATE TABLE species_table (scientific_name varchar, subspecies varchar, " +
+                        "subpopulation varchar, countries varchar, kingdom varchar, phylum varchar, " +
+                        "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
+                        "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean)"))
+        conn.execute(
+            text("INSERT INTO species_table (" + string_helper(species_array[0], False) + ") " +
+                        "VALUES (" + string_helper(species_array[0], True) + ")"), 
+            species_array
+        )
+        conn.commit()
+        result = conn.execute(text("SELECT * FROM species_table"))
+        for row in result:
+            print(row)
+
+def string_helper(d: dict, b: bool):
+    result = ""
+    for key in d:
+        if b == True:
+            result = result + ":"
+        result = result + key + ", "
+    result = result[:-2]
+    return result
 
 create_species_table()
