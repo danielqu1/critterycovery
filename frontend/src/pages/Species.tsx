@@ -1,59 +1,63 @@
 import React from 'react';
 import { CardDeck } from 'react-bootstrap';
-import SpeciesCard from './SpeciesCard';
+import { useParams, useLocation } from 'react-router-dom';
+import SpeciesCard from '../components/Cards/SpeciesCard';
+import SpeciesModal from '../components/Modal/SpeciesModal';
 
 import antelope from './speciesPhotos/antelope.jpg';
 import zebra from './speciesPhotos/zebra.jpg';
 import jaguar from './speciesPhotos/jaguar.jpg';
 
-type animal = {
-    name: string;
-    bodyMass: string;
-    length: string;
-    height: string;
-    num: number;
-    taxa: string;
+type species = {
+    common_name: string;
+    scientific_name: string;
+    kingdom: string;
+    phylum: string;
+    _class: string;
+    order: string;
+    family: string;
+    subspecies: string;
+    subpopulations: string;
 }
 
 function Species() {
+    const {id} = useParams<{ id: string }>();
+    const [modalShow, setModalShow] = React.useState(id != null);
+    let location = useLocation();
+    
+    const animals: species[] = [
+        {
+            common_name: 'Cat',
+            scientific_name: 'Felis Catus',
+            kingdom: 'Animalia',
+            phylum: 'Chordata',
+            _class: 'Mammalia',
+            order: 'Carnivora',
+            family: 'Felidae',
+            subspecies: 'None',
+            subpopulations: 'N/A'
+        }];
 
-    const animals: animal[] = [
-        {
-            name: "Antelope",
-            bodyMass: "430 lbs",
-            length: "9.7",
-            height: "4.6",
-            num: 71000,
-            taxa: "Antilocapra americana"
-        },
-        {
-            name: "Zebra",
-            bodyMass: "800 lbs",
-            length: "5.8",
-            height: "4.8",
-            num: 9000,
-            taxa: "Equus zebra Linnaeus"
-        },
-        {
-            name: "Jaguar",
-            bodyMass: "180 lbs",
-            length: "5.2",
-            height: "2.3",
-            num: 64000,
-            taxa: "Panthera onca"
+        const speciesCards = [];
+        for (let i = 0; i < animals.length; i++) {
+            speciesCards.push(<SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard>);
         }
-    ]
 
     return(
         <div>
-            <h1>Species</h1>
+            <h1>Species {id}</h1>
             <CardDeck>
-                <SpeciesCard animal={animals[0]} photo={antelope}></SpeciesCard>
-                <SpeciesCard animal={animals[1]} photo={zebra}></SpeciesCard>
-                <SpeciesCard animal={animals[2]} photo={jaguar}></SpeciesCard>
+                <ul>{speciesCards}</ul>
             </CardDeck>
+            <SpeciesModal
+                species={animals[0]}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </div>
+        
     );
 }
-
+/*
+*/
 export default Species;

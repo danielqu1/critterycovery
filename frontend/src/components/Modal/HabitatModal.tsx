@@ -19,13 +19,13 @@ function HabitatModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Is Marine?: {props.habitat.marine}
-        Marine Area: {props.habitat.reported_marine_area}
-        Land Area: {props.habitat.reported_terrestrial_area}
-        Countries: {props.habitat.countries}
-        icun Category: {props.habitat.icun_category}
-        Designation: {props.habitat.designation}
-        Link: {props.habitat.link}
+        Is Marine?: {props.habitat.marine}<br/>
+        Marine Area: {props.habitat.reported_marine_area}<br/>
+        Land Area: {props.habitat.reported_terrestrial_area}<br/>
+        Countries: {props.habitat.countries}<br/>
+        icun Category: {props.habitat.icun_category}<br/>
+        Designation: {props.habitat.designation}<br/>
+        Link: {props.habitat.link}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

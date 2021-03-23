@@ -15,12 +15,9 @@ import ScrollToTopBtn from "./hooks/ScrollToTop";
 function App() {
 
   // const [name, setName] = useState("new");
-
   // axios.get("/api/name").then((response) => {
   //   setName(response.data.name);
   // });
-
-  // let {id} = useParams<{ id: string }>();
 
   return (
     <div className="App">
@@ -33,9 +30,9 @@ function App() {
           <Route path='/species' exact component={Species} /> 
           <Route path='/habitats' exact component={Habitats} /> 
           <Route path='/countries' exact component={Countries} /> 
-          <Route path='/species/:id' children={Species} />
-          <Route path='/habitats/:id' children={Habitats} />
-          <Route path='/countries/:id' children={Countries} />
+          <Route path='/species/:id' children={<Species />} />
+          <Route path='/habitats/:id' children={<Habitats />} />
+          <Route path='/countries/:id' children={<Countries />} />
           <Route component={Error}/>
         </Switch> 
       </Router>

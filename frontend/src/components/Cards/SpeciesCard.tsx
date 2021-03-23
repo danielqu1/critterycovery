@@ -6,7 +6,7 @@ function SpeciesCard(props: any) {
         <Card bg="white" style={{width: '30rem'}}>
             <Card.Img variant="top" src={props.photo}/>
             <Card.Body>
-                <Card.Title><Nav.Link href={"/species/" + props.animal.name}>{props.animal.name}</Nav.Link></Card.Title>
+                <Card.Title><Nav.Link href={"/species/" + props.animal.scientific_name}>{props.animal.common_name}</Nav.Link></Card.Title>
                 <Card.Text>
                     Body Mass: {props.animal.bodyMass} <br />
                     Length: {props.animal.length} <br />

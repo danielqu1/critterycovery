@@ -19,17 +19,17 @@ function CountryModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        alpha2 Code: {props.country.alpha2_code}
-        alpha3 Code: {props.country.alpha3_code}
-        Total Population: {props.country.total_pop}
-        Capital: {props.country.capital}
-        Region: {props.country.region}
-        Subregion: {props.country.subregion}
-        Latitude: {props.country.latitude}
-        Longitude: {props.country.longitude}
-        Area: {props.country.area}
-        Gini Index: {props.country.gini_index}
-        Flag: {props.country.flag}
+        alpha2 Code: {props.country.alpha2_code}<br/>
+        alpha3 Code: {props.country.alpha3_code}<br/>
+        Total Population: {props.country.total_pop}<br/>
+        Capital: {props.country.capital}<br/>
+        Region: {props.country.region}<br/>
+        Subregion: {props.country.subregion}<br/>
+        Latitude: {props.country.latitude}<br/>
+        Longitude: {props.country.longitude}<br/>
+        Area: {props.country.area}<br/>
+        Gini Index: {props.country.gini_index}<br/>
+        Flag: {props.country.flag}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

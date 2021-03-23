@@ -19,14 +19,14 @@ function SpeciesModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Scientific Name: {props.species.scientific_name}
-        Kingdom: {props.species.kingdom}
-        Phylum: {props.species.phylum}
-        Class: {props.species._class}
-        Order: {props.species.order}
-        Family: {props.species.family}
-        Subspecies: {props.species.subspecies}
-        Subpopulations: {props.species.subpopulations}
+        Scientific Name: {props.species.scientific_name}<br/>
+        Kingdom: {props.species.kingdom}<br/>
+        Phylum: {props.species.phylum}<br/>
+        Class: {props.species._class}<br/>
+        Order: {props.species.order}<br/>
+        Family: {props.species.family}<br/>
+        Subspecies: {props.species.subspecies}<br/>
+        Subpopulations: {props.species.subpopulations}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
