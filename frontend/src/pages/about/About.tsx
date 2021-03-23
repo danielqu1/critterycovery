@@ -136,7 +136,7 @@ function About() {
           <h2>View our code base here: </h2>
           <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br/>
           <h2>View our Postman API Documentation here: </h2>
-          <a href="https://documenter.getpostman.com/view/14742162/Tz5jf14x">API Documentation</a><br/>
+          <a href="https://documenter.getpostman.com/view/14742162/Tz5jfM1L">API Documentation</a><br/>
         </div>
         <div className="text-center">
           <h2>Tools used:</h2>

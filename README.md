@@ -29,21 +29,21 @@ Shaharyar Lakhani
 ### Time Completion (hours):
 Name | Estimated | Actual
 --------- | --------- | ---------
-William Crawford | 15 |  
-Sahithi Golkonda | 15 | 
-Shaharyar Lakhani |15 |
-Daniel Qu | 15 | 
-Brian Wang |15 |
+William Crawford | 15 | 24
+Sahithi Golkonda | 15 | 24
+Shaharyar Lakhani | 15 | 23
+Daniel Qu | 15 | 20
+Brian Wang | 15 | 21
 
 --- 
 
 ### Website: 
-[critterycovery.me](critterycovery.me)
+[critterycovery.me](https://critterycovery.me)
 
 ---
 
 ### Postman API Documentation:
-[https://documenter.getpostman.com/view/14742162/Tz5jf14x](https://documenter.getpostman.com/view/14742162/Tz5jf14x)
+[https://documenter.getpostman.com/view/14742162/Tz5jfM1L](https://documenter.getpostman.com/view/14742162/Tz5jfM1L)
 
 ---
 
