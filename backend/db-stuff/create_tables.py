@@ -133,4 +133,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-create_species_table()
+create_countries_table()
