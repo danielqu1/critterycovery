@@ -18,22 +18,27 @@ class Country(db.Model):
 
 # model of Species for SQLAlchemy
 class Species(db.Model):
-    # some connection between species plus and IUCN
-    common_name = db.Column(db.Unicode) # some type of array, not unicode?
     scientific_name = db.Column(db.Unicode)
+    subspecies = db.Column(db.Unicode)
+    subpopulations = db.Column(db.Unicode)
+    # countries = db.Column(db.Unicode) # some type of array
     kingdom = db.Column(db.Unicode)
     phylum = db.Column(db.Unicode)
     _class = db.Column(db.Unicode)
-    order = db.Column(db.Unicode)
+    _order = db.Column(db.Unicode)
     family = db.Column(db.Unicode)
-    subspecies = db.Column(db.Unicode)
-    subpopulations = db.Column(db.Unicode)
+    genus = db.Column(db.Unicode)
+    common_name = db.Column(db.Unicode)
+    population_trend = db.Column(db.Unicode)
+    marine = db.Column(db.Boolean)
+    freshwater = db.Column(db.Boolean)
+    terrestrial = db.Column(db.Boolean)
 
 # model of Habitat for SQLAlchemy
 class Habitat(db.Model):
     id = cd.Column(db.Integer)
     name = db.Column(db.Unicode)
-    marine = db.Column(db.Unicode) # boolean? 
+    marine = db.Column(db.Boolean) 
     reported_marine_area = db.Column(db.Float)
     reported_terrestrial_area = db.Column(db.Float)
     # countries = smthn - array
