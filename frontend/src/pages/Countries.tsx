@@ -1,7 +1,9 @@
 ﻿import React from 'react';
 import { Table, Nav } from 'react-bootstrap';
+import { useParams } from "react-router-dom";
 
 function Countries() {
+
     return(
         <div>
             <h1>Countries</h1>
