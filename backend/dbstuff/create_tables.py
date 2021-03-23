@@ -18,7 +18,7 @@ db_connection_name = "critterycovery:us-central1:myinstance"
 
 # db = SQLAlchemy(app)
 
-# engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
+engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
 
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
@@ -101,6 +101,7 @@ def create_species_table():
     iucn_link = iucn_link_base + "category/CR" + iucn_token
     species_response = requests.get(iucn_link).json()["result"]
     species_array = []
+    countries_per_species = []
     for i in species_response:
         d = {}
         d["scientific_name"] = i["scientific_name"]
@@ -108,7 +109,11 @@ def create_species_table():
         d["subpopulation"] = i["subpopulation"]
         countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
         countries_response = requests.get(countries_endpoint).json()["result"]
-        d["countries"] = countries_response[0]["code"] # returns iso2, or could do "country"
+        for j in countries_response:
+            d_temp = {}
+            d_temp["scientific_name"] = i["scientific_name"]
+            d_temp["alpha2_code"] = j["code"]  # returns iso2, or could do "country"
+            countries_per_species.append(d_temp)
         specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
         specifics_response = requests.get(specifics_endpoint).json()["result"][0]
         d["kingdom"] = specifics_response["kingdom"]
@@ -127,7 +132,7 @@ def create_species_table():
 
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE species_table (scientific_name varchar, subspecies varchar, " +
-                        "subpopulation varchar, countries varchar, kingdom varchar, phylum varchar, " +
+                        "subpopulation varchar, kingdom varchar, phylum varchar, " +
                         "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
                         "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean)"))
         conn.execute(
@@ -136,7 +141,18 @@ def create_species_table():
             species_array
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM species_table"))
+        # result = conn.execute(text("SELECT * FROM species_table"))
+        # for row in result:
+        #     print(row)
+
+        conn.execute(text("CREATE TABLE countries_per_species (scientific_name varchar, alpha2_code varchar)"))
+        conn.execute(
+            text("INSERT INTO countries_per_species (scientific_name, alpha2_code) " +
+                        "VALUES (:scientific_name, :alpha2_code)"), 
+            countries_per_species
+        )
+        conn.commit()
+        result = conn.execute(text("SELECT * FROM countries_per_species"))
         for row in result:
             print(row)
 
@@ -149,4 +165,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-# create_habitats_table()
+create_species_table()
