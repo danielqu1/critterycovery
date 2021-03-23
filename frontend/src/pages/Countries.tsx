@@ -3,10 +3,12 @@ import { Table, Nav } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 
 function Countries() {
+    const {id} = useParams<{ id: string }>();
+    const [modalShow, setModalShow] = React.useState(id != null);
 
     return(
         <div>
-            <h1>Countries</h1>
+            <h1>Countries {id}</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>

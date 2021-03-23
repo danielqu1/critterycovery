@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import PersonCard from './PersonCard'
+import PersonCard from '../../components/Cards/PersonCard'
 import { CardDeck, Container } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';

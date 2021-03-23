@@ -5,7 +5,7 @@ function changeContent(props: any){
   return
 }
 
-function SpeciesModal(props: any) {
+function HabitatModal(props: any) {
   return (
     <Modal
       {...props}
@@ -15,18 +15,17 @@ function SpeciesModal(props: any) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.species.common_name}
+          {props.habitat.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Scientific Name: {props.species.scientific_name}<br/>
-        Kingdom: {props.species.kingdom}<br/>
-        Phylum: {props.species.phylum}<br/>
-        Class: {props.species._class}<br/>
-        Order: {props.species.order}<br/>
-        Family: {props.species.family}<br/>
-        Subspecies: {props.species.subspecies}<br/>
-        Subpopulations: {props.species.subpopulations}<br/>
+        Is Marine?: {props.habitat.marine}<br/>
+        Marine Area: {props.habitat.reported_marine_area}<br/>
+        Land Area: {props.habitat.reported_terrestrial_area}<br/>
+        Countries: {props.habitat.countries}<br/>
+        icun Category: {props.habitat.icun_category}<br/>
+        Designation: {props.habitat.designation}<br/>
+        Link: {props.habitat.link}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -35,4 +34,4 @@ function SpeciesModal(props: any) {
   );
 }
 
-export default SpeciesModal;
+export default HabitatModal;
