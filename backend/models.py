@@ -31,6 +31,7 @@ class Species(db.Model):
 
 # model of Habitat for SQLAlchemy
 class Habitat(db.Model):
+    id = cd.Column(db.Integer)
     name = db.Column(db.Unicode)
     marine = db.Column(db.Unicode) # boolean? 
     reported_marine_area = db.Column(db.Float)
