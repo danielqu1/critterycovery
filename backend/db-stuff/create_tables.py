@@ -43,12 +43,16 @@ def create_countries_table():
         conn.commit()
         result = conn.execute(text("SELECT * FROM countries_table"))
         for row in result:
-            print(f"{row.name} {row.alpha2_code} {row.alpha3_code} {row.total_pop} {row.capital} {row.region} " +
-                    f"{row.subregion} {row.latitude} {row.longitude} {row.area} {row.gini_index}, {row.flag}")
+            print(row)
+            # print(f"{row.name} {row.alpha2_code} {row.alpha3_code} {row.total_pop} {row.capital} {row.region} " +
+            #         f"{row.subregion} {row.latitude} {row.longitude} {row.area} {row.gini_index}, {row.flag}")
 
 def create_habitats_table():
+    habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
+    habitats_token = "?token=c92c5b78feaa4845c2d9eca6ea90cc61"
+    habitats_pages = "&per_page=50&page="
     for page_num in range(1, 2):  # change this later for more pages
-        habitats_link = "http://api.protectedplanet.net/v3/protected_areas?token=c92c5b78feaa4845c2d9eca6ea90cc61&per_page=50&page=" + str(page_num) 
+        habitats_link = habitats_link_base + habitats_token + habitats_pages + str(page_num) 
         habitats_response = requests.get(habitats_link).json()["protected_areas"]
         habitats_array = []
         for i in habitats_response:
@@ -79,11 +83,14 @@ def create_habitats_table():
         conn.commit()
         result = conn.execute(text("SELECT * FROM habitats_table"))
         for row in result:
-            print(f"{row.id} {row.name} {row.marine} {row.reported_marine_area} {row.reported_terrestrial_area} " +
-                    f"{row.countries} {row.iucn_category} {row.designation_name} {row.designation_id} {row.link}")
+            print(row)
+            # print(f"{row.id} {row.name} {row.marine} {row.reported_marine_area} {row.reported_terrestrial_area} " +
+            #         f"{row.countries} {row.iucn_category} {row.designation_name} {row.designation_id} {row.link}")
 
 def create_species_table():
-    iucn_link = "https://apiv3.iucnredlist.org/api/v3/species/category/CR?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
+    iucn_link_base = "https://apiv3.iucnredlist.org/api/v3/species/"
+    iucn_token = "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
+    iucn_link = iucn_link_base + "category/CR" + iucn_token
     species_response = requests.get(iucn_link).json()["result"]
     species_array = []
     for i in species_response:
@@ -91,11 +98,11 @@ def create_species_table():
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
         d["subpopulation"] = i["subpopulation"]
-        countries_endpoint = "https://apiv3.iucnredlist.org/api/v3/species/countries/name/" + i["scientific_name"] + "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
+        countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
         countries_response = requests.get(countries_endpoint).json()["result"]
         d["countries"] = countries_response[0]["code"] # returns iso2, or could do "country"
-        specifics_endpoint = "https://apiv3.iucnredlist.org/api/v3/species/" + i["scientific_name"] + "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
-        specifics_response = requests.get(specifics_endpoint).json()["result"]
+        specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
+        specifics_response = requests.get(specifics_endpoint).json()["result"][0]
         d["kingdom"] = specifics_response["kingdom"]
         d["phylum"] = specifics_response["phylum"]
         d["_class"] = specifics_response["class"]
@@ -111,4 +118,4 @@ def create_species_table():
         break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
 
-#create_habitats_table()
+create_species_table()
