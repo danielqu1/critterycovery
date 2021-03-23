@@ -1,6 +1,11 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from gitlab import stats					# gitlab.py
+from dbstuff.create_tables import create_habitats_table
+import requests
+from sqlalchemy import create_engine
+from sqlalchemy import text
+from flask_sqlalchemy import SQLAlchemy
 # add more imports
 
 from flask_sqlalchemy import SQLAlchemy
@@ -12,22 +17,41 @@ app = Flask(
 )
 CORS(app)
 
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://postgres:somethinghere/critterycovery"
+db_user = "postgres"
+db_password = "pleaseWork"
+db_name = "104.197.145.153/postgres"
+db_connection_name = "critterycovery:us-central1:myinstance"
+
+# This is for Postgres, it's similar for MySQL
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{db_name}'
+
+
+# app.config[
+#     "SQLALCHEMY_DATABASE_URI"
+# ] = "postgresql://postgres:somethinghere/critterycovery"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-manager = APIManager(app, flask_sqlalchemy_db=db)
+# manager = APIManager(app, flask_sqlalchemy_db=db)
+
+engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=True, future=True)
+create_habitats_table(engine)
+# with engine.connect() as conn:
+#     conn.execute(text("DROP TABLE countries_table"))
+        # result = conn.execute(text("SELECT * FROM countries_table"))
+        # for row in result:
+        #     print(row)
+
+# my_function(request)
 
 # pls keep after initializing db, because models.py needs to import this db
-from models import (						# models.py
-	Country,
-	Species,
-	Habitats
-)
+# from models import (						# models.py
+# 	Country,
+# 	Species,
+# 	Habitats
+# )
 
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
 
 # then populate database
 

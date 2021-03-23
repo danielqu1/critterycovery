@@ -1,10 +1,26 @@
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy import text
+# from flask import current_app as app
+from flask_sqlalchemy import SQLAlchemy
 
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
+# Set these in the environment variables for the function
+db_user = "critter1"
+db_password = "pleaseWork"
+db_name = "myinstance"
+db_connection_name = "critterycovery:us-central1:myinstance"
 
-def create_countries_table():
+# # This is for Postgres, it's similar for MySQL
+# app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@/{db_name}?host=/cloudsql/{db_connection_name}'
+
+# # This must be set, determine which is best for you
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# db = SQLAlchemy(app)
+
+# engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
+
+def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
     countries_array = []
@@ -43,14 +59,14 @@ def create_countries_table():
         for row in result:
             print(row)
 
-def create_habitats_table():
+def create_habitats_table(engine):
     habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
     habitats_token = "?token=c92c5b78feaa4845c2d9eca6ea90cc61"
     habitats_pages = "&per_page=50&page="
-    for page_num in range(1, 2):  # change this later for more pages
+    habitats_array = []
+    for page_num in range(1, 11):  # change this later for more pages
         habitats_link = habitats_link_base + habitats_token + habitats_pages + str(page_num) 
         habitats_response = requests.get(habitats_link).json()["protected_areas"]
-        habitats_array = []
         for i in habitats_response:
             d = {}
             d["id"] = i["id"]
@@ -58,7 +74,7 @@ def create_habitats_table():
             d["marine"] = i["marine"]
             d["reported_marine_area"] = i["reported_marine_area"]
             d["reported_terrestrial_area"] = i["reported_area"]
-            d["countries"] = i["countries"][0]["iso_3"] # or could connect on "name"
+            d["countries"] =  i["countries"][0]["iso_3"]
             d["iucn_category"] = i["iucn_category"]["id"]
             d["designation_name"] = i["designation"]["name"]
             d["designation_id"] = i["designation"]["id"]
@@ -75,9 +91,9 @@ def create_habitats_table():
             habitats_array
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM habitats_table"))
-        for row in result:
-            print(row)
+        # result = conn.execute(text("SELECT * FROM habitats_table"))
+        # for row in result:
+        #     print(row)
 
 def create_species_table():
     iucn_link_base = "https://apiv3.iucnredlist.org/api/v3/species/"
@@ -133,4 +149,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-create_countries_table()
+# create_habitats_table()
