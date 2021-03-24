@@ -20,7 +20,6 @@ class Country(db.Model):
 class Species(db.Model):
     scientific_name = db.Column(db.Unicode)
     subspecies = db.Column(db.Unicode)
-    subpopulations = db.Column(db.Unicode)
     # countries = db.Column(db.Unicode) # some type of array
     kingdom = db.Column(db.Unicode)
     phylum = db.Column(db.Unicode)

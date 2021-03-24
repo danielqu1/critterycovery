@@ -4,21 +4,7 @@ from sqlalchemy import text
 # from flask import current_app as app
 from flask_sqlalchemy import SQLAlchemy
 
-# Set these in the environment variables for the function
-db_user = "critter1"
-db_password = "pleaseWork"
-db_name = "myinstance"
-db_connection_name = "critterycovery:us-central1:myinstance"
-
-# # This is for Postgres, it's similar for MySQL
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@/{db_name}?host=/cloudsql/{db_connection_name}'
-
-# # This must be set, determine which is best for you
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# db = SQLAlchemy(app)
-
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=True, future=True)
+engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
@@ -95,18 +81,23 @@ def create_habitats_table(engine):
         # for row in result:
         #     print(row)
 
-def create_species_table():
+def create_species_table(engine):
     iucn_link_base = "https://apiv3.iucnredlist.org/api/v3/species/"
     iucn_token = "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
     iucn_link = iucn_link_base + "category/CR" + iucn_token
     species_response = requests.get(iucn_link).json()["result"]
     species_array = []
     countries_per_species = []
+    count = 5
     for i in species_response:
+        count += 1
+        if count % 16 != 0:
+            continue
+        # if count > 100:
+        #     break
         d = {}
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
-        d["subpopulation"] = i["subpopulation"]
         countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
         countries_response = requests.get(countries_endpoint).json()["result"]
         for j in countries_response:
@@ -128,11 +119,11 @@ def create_species_table():
         d["freshwater"] = specifics_response["freshwater_system"]
         d["terrestrial"] = specifics_response["terrestrial_system"]
         species_array.append(d)
-        break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
+        # break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE species_table (scientific_name varchar, subspecies varchar, " +
-                        "subpopulation varchar, kingdom varchar, phylum varchar, " +
+                        "kingdom varchar, phylum varchar, " +
                         "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
                         "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean)"))
         conn.execute(
@@ -141,10 +132,10 @@ def create_species_table():
             species_array
         )
         conn.commit()
-        # result = conn.execute(text("SELECT * FROM species_table"))
-        # for row in result:
-        #     print(row)
-
+        result = conn.execute(text("SELECT * FROM species_table"))
+        for row in result:
+            print(row)
+        print("STARTING COUNTRIES_PER_SPECIES TABLE")
         conn.execute(text("CREATE TABLE countries_per_species (scientific_name varchar, alpha2_code varchar)"))
         conn.execute(
             text("INSERT INTO countries_per_species (scientific_name, alpha2_code) " +
@@ -165,4 +156,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-create_species_table()
+# create_species_table()

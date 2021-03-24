@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from gitlab import stats					# gitlab.py
-from dbstuff.create_tables import create_habitats_table
+from dbstuff.create_tables import create_species_table
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy import text
@@ -33,8 +33,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 # manager = APIManager(app, flask_sqlalchemy_db=db)
 
-engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=True, future=True)
-create_habitats_table(engine)
+engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
+create_species_table(engine)
 # with engine.connect() as conn:
 #     conn.execute(text("DROP TABLE countries_table"))
         # result = conn.execute(text("SELECT * FROM countries_table"))
