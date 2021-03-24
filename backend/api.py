@@ -29,8 +29,7 @@ engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=F
 
 # model of Country for SQLAlchemy
 class Country(db.Model):
-    id = db.Column(db.Unicode, primary_key=True)
-    name = db.Column(db.Unicode)
+    name = db.Column(db.Unicode, primary_key=True)
     alpha2_code = db.Column(db.Unicode)
     alpha3_code = db.Column(db.Unicode)
     total_pop = db.Column(db.Integer)
@@ -47,7 +46,6 @@ class Country(db.Model):
 class Species(db.Model):
     scientific_name = db.Column(db.Unicode, primary_key=True)
     subspecies = db.Column(db.Unicode)
-    # countries = db.Column(db.Unicode) # some type of array
     kingdom = db.Column(db.Unicode)
     phylum = db.Column(db.Unicode)
     _class = db.Column(db.Unicode)
@@ -67,11 +65,16 @@ class Habitat(db.Model):
     marine = db.Column(db.Boolean) 
     reported_marine_area = db.Column(db.Float)
     reported_terrestrial_area = db.Column(db.Float)
-    # countries = smthn - array
+    countries = db.Column(db.Unicode)
     iucn_category = db.Column(db.Integer)
     designation = db.Column(db.Unicode)
     link = db.Column(db.Unicode)
 
+# model for connection between Species and Country
+class CountrySpeciesLink(db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # this field needs to be added to db
+    scientific_name = db.Column(db.Unicode)
+    alpha2_code = db.Column(db.Unicode)
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
