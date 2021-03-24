@@ -8,22 +8,13 @@ import About from './pages/about/About';
 import Species from './pages/Species';
 import Habitats from './pages/Habitats';
 import Countries from './pages/Countries';
-import Argentina from './pages/instancepages/Argentina';
-import Australia from './pages/instancepages/Australia';
-import Germany from './pages/instancepages/Germany';
-import Desert from './pages/instancepages/Desert';
-import Grassland from './pages/instancepages/Grassland';
-import Forest from './pages/instancepages/Forest';
-import Antelope from './pages/instancepages/Antelope';
-import Zebra from './pages/instancepages/Zebra';
-import Jaguar from './pages/instancepages/Jaguar';
+import Error from './pages/Error'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
 
 function App() {
 
   // const [name, setName] = useState("new");
-
   // axios.get("/api/name").then((response) => {
   //   setName(response.data.name);
   // });
@@ -39,15 +30,10 @@ function App() {
           <Route path='/species' exact component={Species} /> 
           <Route path='/habitats' exact component={Habitats} /> 
           <Route path='/countries' exact component={Countries} /> 
-          <Route path='/countries/Argentina' exact component={Argentina} /> 
-          <Route path='/countries/Australia' exact component={Australia} /> 
-          <Route path='/countries/Germany' exact component={Germany} /> 
-          <Route path='/habitats/Desert' exact component={Desert} /> 
-          <Route path='/habitats/Grassland' exact component={Grassland} /> 
-          <Route path='/habitats/Forest' exact component={Forest} /> 
-          <Route path='/species/Antelope' exact component={Antelope} /> 
-          <Route path='/species/Zebra' exact component={Zebra} /> 
-          <Route path='/species/Jaguar' exact component={Jaguar} /> 
+          <Route path='/species/:id' children={<Species />} />
+          <Route path='/habitats/:id' children={<Habitats />} />
+          <Route path='/countries/:id' children={<Countries />} />
+          <Route component={Error}/>
         </Switch> 
       </Router>
     </div>

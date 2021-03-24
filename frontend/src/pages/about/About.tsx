@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import PersonCard from './PersonCard'
+import PersonCard from '../../components/Cards/PersonCard'
 import { CardDeck, Container } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
@@ -98,10 +98,10 @@ function About() {
     {
       name: "Sahithi Golkonda",
       stats: getStats(stats, "sa"),
-      aboutInfo: "Sahithi Golkonda is junior UT Austin, where she is double majoring" +
+      aboutInfo: "Sahithi Golkonda is a junior at UT Austin, where she's double majoring" +
       " in CS and Math. She’s interested in web dev and AI, and is also the Academic" +
       " Officer for the Women in Computer Science organization at UT. In her free " +
-      "time, she spends time outdoors running, hiking, and rowing.",
+      "time, she enjoys running, hiking, and rowing.",
       role: "API Manager and Data Lead",
       photo: sahithi
     },

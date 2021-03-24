@@ -1,7 +1,11 @@
 import React from 'react';
 import { Table, Nav } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function Habitats() {
+    const {id} = useParams<{ id: string }>();
+    const [modalShow, setModalShow] = React.useState(id != null);
+
     return(
         <div>
             <h1>Habitats</h1>
