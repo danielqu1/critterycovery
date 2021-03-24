@@ -6,6 +6,7 @@ import requests
 from sqlalchemy import create_engine
 from sqlalchemy import text
 from flask_sqlalchemy import SQLAlchemy
+from flask_restless import APIManager
 
 app = Flask(
     __name__,
@@ -18,26 +19,58 @@ db_user = "postgres"
 db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{db_name}'
+app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{db_user}:{db_password}@{db_name}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-# manager = APIManager(app, flask_sqlalchemy_db=db)
+manager = APIManager(app, flask_sqlalchemy_db=db)
 
 engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 # create_countries_table(engine)  # keep commented, do not run this again
 
-# pls keep after initializing db, because models.py needs to import this db
-# from models import (						# models.py
-# 	Country,
-# 	Species,
-# 	Habitats
-# )
+# model of Country for SQLAlchemy
+class Country(db.Model):
+    id = db.Column(db.Unicode, primary_key=True)
+    name = db.Column(db.Unicode)
+    alpha2_code = db.Column(db.Unicode)
+    alpha3_code = db.Column(db.Unicode)
+    total_pop = db.Column(db.Integer)
+    capital = db.Column(db.Unicode)
+    region = db.Column(db.Unicode)
+    subregion = db.Column(db.Unicode)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    area = db.Column(db.Integer)
+    gini_index = db.Column(db.Float)
+    flag = db.Column(db.Unicode) # it's a link, is it a string?
 
-# db.create_all()
-# db.session.commit()
+# model of Species for SQLAlchemy
+class Species(db.Model):
+    scientific_name = db.Column(db.Unicode, primary_key=True)
+    subspecies = db.Column(db.Unicode)
+    # countries = db.Column(db.Unicode) # some type of array
+    kingdom = db.Column(db.Unicode)
+    phylum = db.Column(db.Unicode)
+    _class = db.Column(db.Unicode)
+    _order = db.Column(db.Unicode)
+    family = db.Column(db.Unicode)
+    genus = db.Column(db.Unicode)
+    common_name = db.Column(db.Unicode)
+    population_trend = db.Column(db.Unicode)
+    marine = db.Column(db.Boolean)
+    freshwater = db.Column(db.Boolean)
+    terrestrial = db.Column(db.Boolean)
 
-# then populate database
-
+# model of Habitat for SQLAlchemy
+class Habitat(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode)
+    marine = db.Column(db.Boolean) 
+    reported_marine_area = db.Column(db.Float)
+    reported_terrestrial_area = db.Column(db.Float)
+    # countries = smthn - array
+    iucn_category = db.Column(db.Integer)
+    designation = db.Column(db.Unicode)
+    link = db.Column(db.Unicode)
 
 
 @app.route("/", defaults={"path": ""})
@@ -53,19 +86,15 @@ def name():
 def gitlabstats():
     return stats()
 
+
+
+manager.create_api(Country, methods=["GET"], collection_name="countries")
+manager.create_api(Species, methods=["GET"], collection_name="species")
+manager.create_api(Habitat, methods=["GET"], collection_name="habitat")
+
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
 
 
-
-# https://www.kite.com/python/docs/sqlalchemy.create_engine
-
-#Create a new Engine instance.
-
-#The standard calling form is to send the URL as the first positional argument, usually a string that indicates database dialect and connection arguments:
-
-#engine = create_engine("postgresql://scott:tiger@localhost/test")
-#Additional keyword arguments may then follow it which establish various options on the resulting Engine and its underlying Dialect and Pool constructs:
-
-#engine = create_engine("mysql://scott:tiger@hostname/dbname", encoding='latin1', echo=True)
-#The string form of the URL is dialect[+driver]://user:password@host/dbname[?key=value..], where dialect is a database name such as mysql, oracle, postgresql, etc., and driver the name of a DBAPI, such as psycopg2, pyodbc, cx_oracle, etc. 
