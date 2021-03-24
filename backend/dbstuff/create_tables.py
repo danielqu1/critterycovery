@@ -91,22 +91,25 @@ def create_species_table(engine):
     count = 5
     for i in species_response:
         count += 1
-        if count % 16 != 0:
+        if count % 15 != 0:
             continue
-        # if count > 100:
-        #     break
+        if count > 100:
+            break
         d = {}
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
         countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
-        countries_response = requests.get(countries_endpoint).json()["result"]
+        specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
+        try:
+            countries_response = requests.get(countries_endpoint).json()["result"]
+            specifics_response = requests.get(specifics_endpoint).json()["result"][0]
+        except:
+            continue
         for j in countries_response:
             d_temp = {}
             d_temp["scientific_name"] = i["scientific_name"]
             d_temp["alpha2_code"] = j["code"]  # returns iso2, or could do "country"
             countries_per_species.append(d_temp)
-        specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
-        specifics_response = requests.get(specifics_endpoint).json()["result"][0]
         d["kingdom"] = specifics_response["kingdom"]
         d["phylum"] = specifics_response["phylum"]
         d["_class"] = specifics_response["class"]
@@ -156,4 +159,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-# create_species_table()
+# create_species_table()  # keep this commented out 

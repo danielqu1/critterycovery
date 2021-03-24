@@ -1,13 +1,10 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from gitlab import stats					# gitlab.py
-from dbstuff.create_tables import create_species_table
+# from dbstuff.create_tables import create_species_table
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy import text
-from flask_sqlalchemy import SQLAlchemy
-# add more imports
-
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(
@@ -20,28 +17,14 @@ CORS(app)
 db_user = "postgres"
 db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
-db_connection_name = "critterycovery:us-central1:myinstance"
 
-# This is for Postgres, it's similar for MySQL
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{db_name}'
-
-
-# app.config[
-#     "SQLALCHEMY_DATABASE_URI"
-# ] = "postgresql://postgres:somethinghere/critterycovery"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 # manager = APIManager(app, flask_sqlalchemy_db=db)
 
 engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
-create_species_table(engine)
-# with engine.connect() as conn:
-#     conn.execute(text("DROP TABLE countries_table"))
-        # result = conn.execute(text("SELECT * FROM countries_table"))
-        # for row in result:
-        #     print(row)
-
-# my_function(request)
+# create_countries_table(engine)  # keep commented, do not run this again
 
 # pls keep after initializing db, because models.py needs to import this db
 # from models import (						# models.py
