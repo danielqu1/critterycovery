@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, Nav } from 'react-bootstrap';
+import Pagination_main from '../components/Pagination/Pagination'; 
 import { useParams } from 'react-router-dom';
 
 function Habitats() {
@@ -47,6 +48,7 @@ function Habitats() {
                     </tr>
                 </tbody>
             </Table>
+            <Pagination_main /> 
         </div>
     );
 }
