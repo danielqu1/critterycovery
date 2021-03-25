@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { Table, Nav } from 'react-bootstrap';
 import Pagination_main from '../components/Pagination/Pagination'; 
 import { useParams } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 
-function Habitats() {
+
+class Habitats extends React.Component {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            offset: 0,
+            data: [],
+            entriesPerPage: 0,
+            currentPage: 0,
+            totalPages: 0
+        };
+        this.handlePageClick = this.handlePageClick.bind(this)
+    }
+    render() {
     const {id} = useParams<{ id: string }>();
     const [modalShow, setModalShow] = React.useState(id != null);
 
@@ -51,6 +66,7 @@ function Habitats() {
             <Pagination_main /> 
         </div>
     );
+    }
 }
 
 export default Habitats;

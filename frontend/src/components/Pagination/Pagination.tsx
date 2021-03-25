@@ -2,6 +2,7 @@ import React from 'react';
 import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
 
+
 const Pagination_main = () => { 
     return ( 
         <>
@@ -21,7 +22,7 @@ const Pagination_main = () => {
                 <Pagination.Item>{20}</Pagination.Item>
                 <Pagination.Next />
                 <Pagination.Last />
-                </Pagination>
+            </Pagination>
         </>
     );
 };
