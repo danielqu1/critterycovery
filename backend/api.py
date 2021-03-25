@@ -7,10 +7,6 @@ import json									# jsonify
 from flask import jsonify
 from gitlab import stats					# gitlab.py
 
-
-# Just another api.py, but using Marshmallow
-# ALL UNTESTED BECAUSE I CAN'T ACCESS THE DATABASE
-
 # https://flask-marshmallow.readthedocs.io/en/latest/
 
 app = Flask(
@@ -42,12 +38,12 @@ class countries_table(db.Model):
 	subregion = db.Column(db.Unicode)
 	latitude = db.Column(db.Float)
 	longitude = db.Column(db.Float)
-	area = db.Column(db.Integer)
-	gini_index = db.Column(db.Float)
+	area = db.Column(db.Float)
+	gini_index = db.Column(db.Integer)
 	flag = db.Column(db.Unicode) # it's a link, is it a string?
 
 # model of Species for SQLAlchemy
-class Species(db.Model):
+class species_table(db.Model):
 	scientific_name = db.Column(db.Unicode, primary_key=True)
 	subspecies = db.Column(db.Unicode)
 	kingdom = db.Column(db.Unicode)
@@ -63,7 +59,7 @@ class Species(db.Model):
 	terrestrial = db.Column(db.Boolean)
 
 # model of Habitat for SQLAlchemy
-class Habitat(db.Model):
+class habitats_table(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.Unicode)
 	marine = db.Column(db.Boolean) 
@@ -75,7 +71,7 @@ class Habitat(db.Model):
 	link = db.Column(db.Unicode)
 
 # model for connection between Species and Country
-class CountrySpeciesLink(db.Model):
+class countries_per_species(db.Model):
 	id = db.Column(db.Integer, primary_key=True)  # this field needs to be added to db
 	scientific_name = db.Column(db.Unicode)
 	alpha2_code = db.Column(db.Unicode)
@@ -94,8 +90,8 @@ class CountrySchema(ma.Schema):
 	subregion =fields.String(required=False)
 	latitude = fields.Float(required=False)
 	longitude = fields.Float(required=False)
-	area = fields.Integer(required=False)
-	gini_index = fields.Float(required=False)
+	area = fields.Float(required=False)
+	gini_index = fields.Integer(required=False)
 	flag = fields.String(required=False) # it's a link, is it a string?
 
 
@@ -167,13 +163,11 @@ def name():
 def gitlabstats():
 	return stats()
 
-
 # get all countries
 @app.route("/api/countries")
 def get_countries():
 	countries = countries_table.query.all()
 	response = countries_schema.dump(countries)
-
 	return jsonify({"countries" : response})
 
 # get a single country by name
@@ -181,14 +175,11 @@ def get_countries():
 @app.route("/api/countries/name=<name>", methods=["GET"])
 def get_country(name):
 	country = countries_table.query.filter_by(name=name).first()
-
 	if country is None:
 		print("country ", name, " does not exist")
 		print("How to make error page?")
 		return {}
-
 	response = country_schema.dump(country)
-
 	return jsonify({"country" : response})
 
 
