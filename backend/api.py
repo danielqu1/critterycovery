@@ -60,14 +60,15 @@ class species_table(db.Model):
 
 # model of Habitat for SQLAlchemy
 class habitats_table(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.Unicode)
+	id = db.Column(db.Integer)
+	name = db.Column(db.Unicode, primary_key=True)
 	marine = db.Column(db.Boolean) 
 	reported_marine_area = db.Column(db.Float)
 	reported_terrestrial_area = db.Column(db.Float)
 	countries = db.Column(db.Unicode)
 	iucn_category = db.Column(db.Integer)
-	designation = db.Column(db.Unicode)
+	designation_name = db.Column(db.Unicode)
+	designation_id = db.Column(db.Integer)
 	link = db.Column(db.Unicode)
 
 # model for connection between Species and Country
@@ -118,14 +119,15 @@ class HabitatSchema(ma.Schema):
 	class Meta:
 		ordered = True
 
-	id = fields.Integer(required=True)
-	name = fields.String(required=False)
+	id = fields.Integer(required=False)
+	name = fields.String(required=True)
 	marine = fields.Boolean(required=False)
 	reported_marine_area = fields.Float(required=False)
 	reported_terrestrial_area = fields.Float(required=False)
 	countries = fields.String(required=False)
 	iucn_category = fields.Integer(required=False)
-	designation = fields.String(required=False)
+	designation_name = fields.String(required=False)
+	designation_id = fields.Integer(required=False)
 	link = fields.String(required=False)
 
 
@@ -181,6 +183,42 @@ def get_country(name):
 		return {}
 	response = country_schema.dump(country)
 	return jsonify({"country" : response})
+
+# get all habitats
+@app.route("/api/habitats")
+def get_habitats():
+	habitats = habitats_table.query.all()
+	response = habitats_schema.dump(habitats)
+	return jsonify({"habitats" : response})
+
+# get a single habitat by name
+@app.route("/api/habitats/name=<name>", methods=["GET"])
+def get_habitat(name):
+	habitat = habitats_table.query.filter_by(name=name).first()
+	if habitat is None:
+		print("habitat ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = habitat_schema.dump(habitat)
+	return jsonify({"habitat" : response})
+
+# get all species
+@app.route("/api/species")
+def get_species():
+	species = species_table.query.all()
+	response = species_schema.dump(species)
+	return jsonify({"species" : response})
+
+# get a single species by name
+@app.route("/api/species/name=<name>", methods=["GET"])
+def get_specie(name):
+	specie = species_table.query.filter_by(scientific_name=name).first()
+	if specie is None:
+		print("specie ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = specie_schema.dump(specie)
+	return jsonify({"species" : response})
 
 
 if __name__ == "__main__":

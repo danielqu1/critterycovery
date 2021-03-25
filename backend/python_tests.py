@@ -10,8 +10,9 @@ class TestBackend(unittest.TestCase):
 		
 
 	def test_get_all_countries(self):
-		r = requests.get('https://critterycovery.me/api/countries')	
-		self.assertEqual(len(r.json()["countries"]), 250)
+		# r = requests.get('https://critterycovery.me/api/countries').json()
+		r = requests.get('http://0.0.0.0/api/countries').json() # this is weird but it works lol
+		self.assertEqual(len(r["countries"]), 250)
 
 
 
