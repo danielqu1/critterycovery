@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import fields
 import json									# jsonify
-
+from flask import jsonify
 from gitlab import stats					# gitlab.py
 
 
@@ -32,7 +32,7 @@ ma = Marshmallow(app)
 
 
 # model of Country for SQLAlchemy
-class Country(db.Model):
+class countries_table(db.Model):
 	name = db.Column(db.Unicode, primary_key=True)
 	alpha2_code = db.Column(db.Unicode)
 	alpha3_code = db.Column(db.Unicode)
@@ -171,7 +171,7 @@ def gitlabstats():
 # get all countries
 @app.route("/api/countries")
 def get_countries():
-	countries = Country.query.all()
+	countries = countries_table.query.all()
 	response = countries_schema.dump(countries)
 
 	return jsonify({"countries" : response})
@@ -180,10 +180,10 @@ def get_countries():
 # https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records
 @app.route("/api/countries/name=<name>", methods=["GET"])
 def get_country(name):
-	country = Country.query.filter_by(name=name).first()
+	country = countries_table.query.filter_by(name=name).first()
 
 	if country is None:
-		print("coutnry ", name, " does not exist")
+		print("country ", name, " does not exist")
 		print("How to make error page?")
 		return {}
 

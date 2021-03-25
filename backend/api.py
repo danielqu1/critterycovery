@@ -2,9 +2,9 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 from gitlab import stats					# gitlab.py
 # from dbstuff.create_tables import create_species_table
-import requests
+# import requests
 from sqlalchemy import create_engine
-from sqlalchemy import text
+# from sqlalchemy import text
 from flask_sqlalchemy import SQLAlchemy
 from flask_restless import APIManager
 from flask_restful import Api 
@@ -26,12 +26,14 @@ db = SQLAlchemy(app)
 manager = APIManager(app, flask_sqlalchemy_db=db)
 #manager.init_app(app)
 
+api = Api(app)
+
 # # database setup
-# engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
+engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=True, future=True)
 # create_countries_table(engine)  # keep commented, do not run this again
 
 # model of Country for SQLAlchemy
-class Country(db.Model):
+class countries_table(db.Model):
     name = db.Column(db.Unicode, primary_key=True)
     alpha2_code = db.Column(db.Unicode)
     alpha3_code = db.Column(db.Unicode)
@@ -105,7 +107,7 @@ def create_endpoint(model, name, single=None):
 
 
 def country_singleton(result):
-	links = Country.query.filter_by(name=result["name"]).all()
+	links = countries_table.query.filter_by(name=result["name"]).all()
 	result["countries"] = [
 		{"id" : 5, "name" : "Beluga"}
 	]
@@ -116,35 +118,23 @@ def country_singleton(result):
 #manager.create_api(Species, methods=["GET"], collection_name="species")
 #manager.create_api(Habitat, methods=["GET"], collection_name="habitat")
 
-create_endpoint(Country, "countries", country_singleton)
+create_endpoint(countries_table, "countries_table", country_singleton)
 
 
 
 @app.route("/api/countries")
 def get_country():
-
-	from sqlalchemy.orm import sessionmaker
-	Session = sessionmaker(bind=engine)
-
-	session = Session()
-
-	country_name = request.args.get('country')	# Spain
-
-	print("country name =", country_name)
-
-
-	my_country = session.query(Country).filter_by(name=country_name).first() 
-	
-	
-	session.close()
-	
-	
-	ret = {}
-	ret['blah'] = my_country
-	return ret
-
-
-
+    from sqlalchemy.orm import sessionmaker
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    country_name = request.args.get('country')	# Spain
+    print("country name =", country_name)
+    # my_country = session.query(countries_table).filter_by(name=country_name).first() 
+    my_country = session.query(countries_table)
+    # session.close()
+    ret = {}
+    ret['blah'] = my_country
+    return ret
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
