@@ -2,7 +2,10 @@ import React from 'react';
 import { Table, Nav } from 'react-bootstrap';
 import Pagination_main from '../components/Pagination/Pagination'; 
 import { useParams } from 'react-router-dom';
+import './Habitats.css'
+import ReactPaginate from 'react-paginate';
 
+  
 function Habitats() {
     const {id} = useParams<{ id: string }>();
     const [modalShow, setModalShow] = React.useState(id != null);
