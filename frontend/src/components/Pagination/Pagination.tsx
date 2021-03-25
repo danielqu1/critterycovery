@@ -13,8 +13,8 @@ const Pagination_main = () => {
     return ( 
         <>
              <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
                     breakLabel={"..."}
                     breakClassName={"break-me"}
                     pageCount={50}

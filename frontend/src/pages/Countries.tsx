@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { Table, Nav } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
+import Pagination_main from '../components/Pagination/Pagination'; 
 
 function Countries() {
     const {id} = useParams<{ id: string }>();
@@ -47,6 +48,7 @@ function Countries() {
                     </tr>
                 </tbody>
             </Table>
+            <Pagination_main /> 
         </div>
     );
 }
