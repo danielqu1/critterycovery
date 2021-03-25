@@ -1,4 +1,8 @@
 flask
 flask_cors
-
+SQLAlchemy==1.4.2
+flask-marshmallow==0.14.0 
+Flask-Restless==0.17.0
+Flask-SQLAlchemy==2.5.1
+psycopg2-binary==2.8.6
 requests
