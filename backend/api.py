@@ -1,10 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import fields
 import json									# jsonify
-from flask import jsonify
 from gitlab import stats					# gitlab.py
 
 # https://flask-marshmallow.readthedocs.io/en/latest/
