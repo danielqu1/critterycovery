@@ -14,7 +14,15 @@ class TestBackend(unittest.TestCase):
 		r = requests.get('http://0.0.0.0/api/countries').json() # this is weird but it works lol
 		self.assertEqual(len(r["countries"]), 250)
 
+	def test_get_all_habitats(self):
+		# r = requests.get('https://critterycovery.me/api/habitats').json()
+		r = requests.get('http://0.0.0.0/api/habitats').json() # this is weird but it works lol
+		self.assertEqual(len(r["habitats"]), 500)
 
+	def test_get_all_species(self):
+		# r = requests.get('https://critterycovery.me/api/species').json()
+		r = requests.get('http://0.0.0.0/api/species').json() # this is weird but it works lol
+		self.assertEqual(len(r["species"]), 536)
 
 if __name__ == '__main__':
     unittest.main()
