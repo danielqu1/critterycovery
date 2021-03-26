@@ -28,7 +28,8 @@ interface species{
 }
 
 function Species() {
-    const maxCardsShown = 50;
+    const maxCardsShown = 10;
+    const offset = 3;
     const {id} = useParams<{ id: string }>();
     const [animals, setAnimals] = React.useState(new Array<species>());
     const [isLoading, setLoading] = React.useState(true);
@@ -71,9 +72,17 @@ function Species() {
     }
 
     const pageButtons = [];
-    for (let i = startingCard/maxCardsShown - 1; i <= startingCard/maxCardsShown + 3; i++) {
-        if(i > 0 && i < animals.length/maxCardsShown + 1){
-            if(i == startingCard/maxCardsShown + 1){
+    const totalPages = Math.ceil(animals.length/maxCardsShown);
+    const activePage = startingCard/maxCardsShown + 1;
+    if (activePage - offset > 0){
+        pageButtons.push(<Pagination.Item onClick={() => setStart(0)}>{1}</Pagination.Item>)
+        if (activePage - offset - 1 > 0){
+            pageButtons.push(<Pagination.Ellipsis/>)
+        }
+    }
+    for (let i = activePage - offset + 1; i <= startingCard/maxCardsShown + offset; i++) {
+        if(i > 0 && i < totalPages + 1){
+            if(i === activePage){
                 pageButtons.push(<Pagination.Item active disabled>{i}</Pagination.Item>)
             }
             else{
@@ -81,7 +90,14 @@ function Species() {
             }
         }
     }
-    
+    if (activePage + offset < totalPages){
+        if (activePage + offset - 1 < totalPages){
+            pageButtons.push(<Pagination.Ellipsis/>)
+        }
+        pageButtons.push(<Pagination.Item onClick={() => setStart((animals.length % maxCardsShown === 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}>{totalPages}</Pagination.Item>)
+        
+    }
+
     return(
         <div>
             <h1>Species {id}</h1>
@@ -97,8 +113,9 @@ function Species() {
                 <Pagination.First onClick={() => setStart(0)}/>
                 <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
                 {pageButtons}
-                <Pagination.Next onClick={() => setStart(Math.min(((animals.length % maxCardsShown == 0) ? (animals.length - maxCardsShown) : (animals.length - animals.length % maxCardsShown)), startingCard + maxCardsShown))}/>
-                <Pagination.Last onClick={() => setStart((animals.length % maxCardsShown == 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}/>
+                <Pagination.Next onClick={() => setStart(Math.min(((animals.length % maxCardsShown === 0) ? (animals.length - maxCardsShown) : (animals.length - animals.length % maxCardsShown)), startingCard + maxCardsShown))}/>
+                <Pagination.Last onClick={() => setStart((animals.length % maxCardsShown === 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}/>
+                
             </Pagination>
             {/* <Pagination_main />  */}
         </div>
