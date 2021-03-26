@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardDeck, Button } from 'react-bootstrap';
+import { CardDeck, Pagination } from 'react-bootstrap';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
@@ -8,6 +8,7 @@ import antelope from './speciesPhotos/antelope.jpg';
 import zebra from './speciesPhotos/zebra.jpg';
 import jaguar from './speciesPhotos/jaguar.jpg';
 import axios from 'axios'
+import { mainModule } from 'node:process';
 
 interface species{
     common_name: string;
@@ -27,12 +28,13 @@ interface species{
 }
 
 function Species() {
-    
+    const maxCardsShown = 50;
     const {id} = useParams<{ id: string }>();
     const [animals, setAnimals] = React.useState(new Array<species>());
     const [isLoading, setLoading] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(id != null);
     const [species, setSpecies] = React.useState(animals[0])
+    const [startingCard, setStart] = React.useState(0)
     let location = useLocation();
 
     React.useEffect(() => {
@@ -59,7 +61,7 @@ function Species() {
     }
 
     const speciesCards = [];
-    for (let i = 0; i < animals.length; i++) {
+    for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
         speciesCards.push(<a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
         to={{
           pathname: `/species/${animals[i].scientific_name}`,
@@ -67,11 +69,22 @@ function Species() {
         }}
       ><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></Link></a>);
     }
+
+    const pageButtons = [];
+    for (let i = startingCard/maxCardsShown - 1; i <= startingCard/maxCardsShown + 3; i++) {
+        if(i > 0 && i < animals.length/maxCardsShown + 1){
+            if(i == startingCard/maxCardsShown + 1){
+                pageButtons.push(<Pagination.Item active disabled>{i}</Pagination.Item>)
+            }
+            else{
+                pageButtons.push(<Pagination.Item onClick={() => setStart((i-1) * maxCardsShown)}>{i}</Pagination.Item>)
+            }
+        }
+    }
     
     return(
         <div>
             <h1>Species {id}</h1>
-            {animals[0].scientific_name}
             <CardDeck>
                 {speciesCards}
             </CardDeck>
@@ -80,11 +93,17 @@ function Species() {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
-            <Pagination_main /> 
+            <Pagination>
+                <Pagination.First onClick={() => setStart(0)}/>
+                <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
+                {pageButtons}
+                <Pagination.Next onClick={() => setStart(Math.min(((animals.length % maxCardsShown == 0) ? (animals.length - maxCardsShown) : (animals.length - animals.length % maxCardsShown)), startingCard + maxCardsShown))}/>
+                <Pagination.Last onClick={() => setStart((animals.length % maxCardsShown == 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}/>
+            </Pagination>
+            {/* <Pagination_main />  */}
         </div>
         
     );
 }
-/*
-*/
+
 export default Species;

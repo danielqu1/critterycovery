@@ -28,9 +28,9 @@ function SpeciesModal(props: any) {
         Subspecies: {props.species.subspecies}<br/>
         Subpopulations: {props.species.subpopulations}<br/>
         Population Trend: {props.species.population_trend}<br/>
-        Marine: {props.species.marine}<br/>
-        Freshwater: {props.species.freshwater}<br/>
-        Terrestrial: {props.species.terrestrial}<br/>
+        Marine: {props.species.marine.toString()}<br/>
+        Freshwater: {props.species.freshwater.toString()}<br/>
+        Terrestrial: {props.species.terrestrial.toString()}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
