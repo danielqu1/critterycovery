@@ -1,56 +1,74 @@
 import React from 'react';
-import { CardDeck } from 'react-bootstrap';
-import { useParams, useLocation } from 'react-router-dom';
+import { CardDeck, Button } from 'react-bootstrap';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import Pagination_main from '../components/Pagination/Pagination'; 
 import antelope from './speciesPhotos/antelope.jpg';
 import zebra from './speciesPhotos/zebra.jpg';
 import jaguar from './speciesPhotos/jaguar.jpg';
+import axios from 'axios'
 
-type species = {
+interface species{
     common_name: string;
     scientific_name: string;
     kingdom: string;
     phylum: string;
     _class: string;
-    order: string;
+    _order: string;
     family: string;
+    genus: string;
     subspecies: string;
     subpopulations: string;
+    population_trend: string;
+    marine: boolean;
+    freshwater: boolean;
+    terrestrial: boolean;
 }
 
 function Species() {
-    const {id} = useParams<{ id: string }>();
-    const [modalShow, setModalShow] = React.useState(id != null);
-    let location = useLocation();
     
-    const animals: species[] = [
-        {
-            common_name: 'Cat',
-            scientific_name: 'Felis Catus',
-            kingdom: 'Animalia',
-            phylum: 'Chordata',
-            _class: 'Mammalia',
-            order: 'Carnivora',
-            family: 'Felidae',
-            subspecies: 'None',
-            subpopulations: 'N/A'
-        }];
+    const {id} = useParams<{ id: string }>();
+    const [animals, setAnimals] = React.useState(new Array<species>());
+    const [isLoading, setLoading] = React.useState(true);
+    const [modalShow, setModalShow] = React.useState(id != null);
+    const [species, setSpecies] = React.useState(animals[0])
+    let location = useLocation();
 
-        const speciesCards = [];
-        for (let i = 0; i < animals.length; i++) {
-            speciesCards.push(<SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard>);
-        }
+    React.useEffect(() => {
+        axios.get("/api/species").then((response) => {
+            setAnimals(response.data.species);
+            setLoading(false);    
+    })}, []);
+    
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
+    }
 
+    function update(animal : species) {
+        setSpecies(animal)
+        setModalShow(true)
+    }
+
+    const speciesCards = [];
+    for (let i = 0; i < animals.length; i++) {
+        speciesCards.push(<a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
+        to={{
+          pathname: `/species/${animals[i].scientific_name}`,
+          state: { background: location }
+        }}
+      ><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></Link></a>);
+    }
+    
     return(
         <div>
             <h1>Species {id}</h1>
+            {animals[0].scientific_name}
             <CardDeck>
-                <ul>{speciesCards}</ul>
+                {speciesCards}
             </CardDeck>
             <SpeciesModal
-                species={animals[0]}
+                species={species}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />

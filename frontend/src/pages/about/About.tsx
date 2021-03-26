@@ -41,11 +41,10 @@ function About() {
 
   const [stats, setStats] = useState(new Array<PersonStats>());
 
-  axios.get<GitlabData>("/api/gitlabstats").then((response) => {
-    setStats(response.data.stats);
-    // if (stats.length > 0)
-    //   console.log(stats[0].name);
-  });
+  React.useEffect(() => {
+    axios.get<GitlabData>("/api/gitlabstats").then((response) => {
+      setStats(response.data.stats);
+  })}, []);
 
   type Person = {
     name: string;

@@ -1,12 +1,11 @@
 import { Card, Nav } from 'react-bootstrap';
 
 function SpeciesCard(props: any) {
-    console.log(props.photo);
     return(
         <Card bg="white" style={{width: '30rem'}}>
             <Card.Img variant="top" src={props.photo}/>
             <Card.Body>
-                <Card.Title><Nav.Link href={"/species/" + props.animal.scientific_name}>{props.animal.common_name}</Nav.Link></Card.Title>
+                <Card.Title>{props.animal.common_name}</Card.Title>
                 <Card.Text>
                     Body Mass: {props.animal.bodyMass} <br />
                     Length: {props.animal.length} <br />
