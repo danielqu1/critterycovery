@@ -36,10 +36,18 @@ function Species() {
     let location = useLocation();
 
     React.useEffect(() => {
-        axios.get("/api/species").then((response) => {
-            setAnimals(response.data.species);
-            setLoading(false);    
-    })}, []);
+            axios.get("/api/species").then((response) => {
+                setAnimals(response.data.species);
+                if(id != null){
+                    axios.get("/api/species/name=" + id).then((response) => {
+                        if(response.data != null){
+                            update(response.data.species);
+                        } 
+                    })
+                }
+                setLoading(false);    
+        })}, []);
+    
     
     if (isLoading) {
         return <div className="App">Loading...</div>;

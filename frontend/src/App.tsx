@@ -33,7 +33,7 @@ function App() {
           <Route path='/species/:id' children={<Species />} />
           <Route path='/habitats/:id' children={<Habitats />} />
           <Route path='/countries/:id' children={<Countries />} />
-          {/* <Route component={Error}/> */}
+          <Route component={Error}/>
         </Switch> 
       </Router>
     </div>
