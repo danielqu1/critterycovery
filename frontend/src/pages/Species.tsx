@@ -3,6 +3,7 @@ import { CardDeck, Pagination } from 'react-bootstrap';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
+import './Pagination.css'
 import Pagination_main from '../components/Pagination/Pagination'; 
 import antelope from './speciesPhotos/antelope.jpg';
 import zebra from './speciesPhotos/zebra.jpg';
