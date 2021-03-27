@@ -3,6 +3,7 @@ import { Pagination, Button, ButtonGroup, Container, Table, Row, Col } from 'rea
 import { useParams, useLocation, Link } from 'react-router-dom';
 import HabitatEntry from '../components/TableEntries/HabitatEntry';
 import HabitatModal from '../components/Modal/HabitatModal';
+import Pagination_main from '../components/Pagination/Pagination'
 import jaguar from './speciesPhotos/jaguar.jpg';
 import axios from 'axios'
 
@@ -63,33 +64,6 @@ function Habitats() {
       ><HabitatEntry habitat={habitats[i]}></HabitatEntry></Link></a></tr>);
     }
 
-    const pageButtons = [];
-    const totalPages = Math.ceil(habitats.length/maxCardsShown);
-    const activePage = Math.floor(startingCard/maxCardsShown + 1);
-    if (activePage - offset > 0){
-        pageButtons.push(<Pagination.Item onClick={() => setStart(0)}>{1}</Pagination.Item>)
-        if (activePage - offset - 1 > 0){
-            pageButtons.push(<Pagination.Ellipsis/>)
-        }
-    }
-    for (let i = activePage - offset + 1; i <= startingCard/maxCardsShown + offset; i++) {
-        if(i > 0 && i < totalPages + 1){
-            if(i === activePage){
-                pageButtons.push(<Pagination.Item active>{i}</Pagination.Item>)
-            }
-            else{
-                pageButtons.push(<Pagination.Item onClick={() => setStart((i-1) * maxCardsShown)}>{i}</Pagination.Item>)
-            }
-        }
-    }
-    if (activePage + offset < totalPages){
-        if (activePage + offset - 1 < totalPages){
-            pageButtons.push(<Pagination.Ellipsis/>)
-        }
-        pageButtons.push(<Pagination.Item onClick={() => setStart(Math.floor(habitats.length / maxCardsShown) * maxCardsShown)}>{totalPages}</Pagination.Item>)
-        
-    }
-
     return(
         <div>
             <HabitatModal
@@ -118,24 +92,14 @@ function Habitats() {
                         </tbody>
                     </Table>
                 </Row>
-                <Row className="justify-content-md-center" style={{paddingTop: '1%'}}>
-                    <Col sm={8} md="auto">
-                        <Pagination>
-                            <Pagination.First onClick={() => setStart(0)}/>
-                            <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
-                            {pageButtons}
-                            <Pagination.Next onClick={() => setStart(Math.min((Math.floor(habitats.length / maxCardsShown) * maxCardsShown), startingCard + maxCardsShown))}/>
-                            <Pagination.Last onClick={() => setStart(Math.floor(habitats.length / maxCardsShown) * maxCardsShown)}/>
-                        </Pagination>
-                    </Col>
-                    <Col sm={3} lg="2">
-                        <ButtonGroup>
-                            <Button variant="outline-primary" onClick={() => setCardsShown(10)}>10</Button> 
-                            <Button variant="outline-primary" onClick={() => setCardsShown(20)}>20</Button> 
-                            <Button variant="outline-primary" onClick={() => setCardsShown(50)}>50</Button>
-                        </ButtonGroup>
-                    </Col>
-                </Row>
+                <Pagination_main 
+                    instancesPerPage= {maxCardsShown}
+                    totalInstances= {habitats.length}
+                    startingInstance= {startingCard}
+                    offsetPagesShownFromCurrent= {offset}
+                    setStartingInstance= {setStart}
+                    setInstancesPerPage= {setCardsShown}
+                ></Pagination_main>
             </Container>
         </div>
         
