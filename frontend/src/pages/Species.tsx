@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import Pagination_main from '../components/Pagination/Pagination'
@@ -34,6 +34,7 @@ function Species() {
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
     let location = useLocation();
+    let history = useHistory();
 
     React.useEffect(() => {
             axios.get("/api/species").then((response) => {
@@ -58,6 +59,11 @@ function Species() {
         setModalShow(true)
     }
 
+    function closeModal(){
+        history.goBack()
+        setModalShow(false)
+    }
+
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
         speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
@@ -75,7 +81,7 @@ function Species() {
             <SpeciesModal
                 species={species}
                 show={modalShow}
-                onHide={() => setModalShow(false)}
+                onHide={() => closeModal()}
             />
 
             <Container fluid className="justify-content-md-center">

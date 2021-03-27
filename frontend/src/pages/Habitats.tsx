@@ -1,7 +1,8 @@
 import React from 'react';
 import { Pagination, Button, ButtonGroup, Container, Table, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, Link } from 'react-router-dom';
-import HabitatEntry from '../components/TableEntries/HabitatEntry';
+import BootstrapTable from 'react-bootstrap-table-next';
+import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import Pagination_main from '../components/Pagination/Pagination'
 import jaguar from './speciesPhotos/jaguar.jpg';
@@ -20,7 +21,7 @@ interface habitat{
     link: string;
 }
 
-function Habitats() {
+function Habitats(props : any) {
     const offset = 3;
     const {id} = useParams<{ id: string }>();
     const [habitats, setHabitats] = React.useState(new Array<habitat>());
@@ -30,6 +31,7 @@ function Habitats() {
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
     let location = useLocation();
+    let history = useHistory();
 
     React.useEffect(() => {
             axios.get("/api/habitats").then((response) => {
@@ -37,7 +39,7 @@ function Habitats() {
                 if(id != null){
                     axios.get("/api/habitats/name=" + id).then((response) => {
                         if(response.data != null){
-                            update(response.data.species);
+                            update(response.data.habitat);
                         } 
                     })
                 }
@@ -54,43 +56,29 @@ function Habitats() {
         setModalShow(true)
     }
 
-    const habitatEntries = [];
-    for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, habitats.length); i++) {
-        habitatEntries.push(<tr><a style={{ cursor: 'pointer' }} onClick={() => update(habitats[i])}><Link
-        to={{
-          pathname: `/habitats/${habitats[i].name}`,
-          state: { background: location }
-        }}
-      ><HabitatEntry habitat={habitats[i]}></HabitatEntry></Link></a></tr>);
+    function closeModal(){
+        history.goBack()
+        setModalShow(false)
     }
-
+    
     return(
         <div>
             <HabitatModal
                 habitat={habitat}
                 show={modalShow}
-                onHide={() => setModalShow(false)}
+                onHide={() => closeModal()}
             />
 
             <Container fluid className="justify-content-md-center">
                 <Row>
                     <h1>{habitats.length} Habitats. {maxCardsShown} per page</h1>
                 </Row>
-                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Designation</th>
-                                <th>Land Area</th>
-                                <th>Water Area</th>
-                                <th>Countries</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {habitatEntries}
-                        </tbody>
-                    </Table>
+                <Row>
+                    <HabitatTable
+                        maxCardsShown={maxCardsShown}
+                        habitats={habitats}
+                        startingCard={startingCard}
+                        update={update}/>
                 </Row>
                 <Pagination_main 
                     instancesPerPage= {maxCardsShown}
