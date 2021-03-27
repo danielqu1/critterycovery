@@ -88,21 +88,28 @@ def create_species_table(engine):
     species_response = requests.get(iucn_link).json()["result"]
     species_array = []
     countries_per_species = []
-    count = 5
+    count = 0
     for i in species_response:
         count += 1
-        if count % 15 != 0:
+        if count % 7 != 0:
             continue
-        if count > 100:
+        if count > 50:
             break
         d = {}
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
         countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
         specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
+        text_endpoint = iucn_link_base + "narrative/" + i["scientific_name"] + iucn_token
+        try:
+            specifics_response = requests.get(specifics_endpoint).json()["result"][0]
+        except:
+            continue
+        if specifics_response["kingdom"] != "ANIMALIA":
+            continue
         try:
             countries_response = requests.get(countries_endpoint).json()["result"]
-            specifics_response = requests.get(specifics_endpoint).json()["result"][0]
+            text_response = requests.get(text_endpoint).json()["result"]
         except:
             continue
         for j in countries_response:
@@ -110,6 +117,7 @@ def create_species_table(engine):
             d_temp["scientific_name"] = i["scientific_name"]
             d_temp["alpha2_code"] = j["code"]  # returns iso2, or could do "country"
             countries_per_species.append(d_temp)
+        # data from specifics response
         d["kingdom"] = specifics_response["kingdom"]
         d["phylum"] = specifics_response["phylum"]
         d["_class"] = specifics_response["class"]
@@ -121,6 +129,14 @@ def create_species_table(engine):
         d["marine"] = specifics_response["marine_system"]
         d["freshwater"] = specifics_response["freshwater_system"]
         d["terrestrial"] = specifics_response["terrestrial_system"]
+        # data from narative text
+        d["taxonomic_notes"] = text_response["taxonomicnotes"]
+        d["rationale"] = text_response["rationale"]
+        d["geographic_range"] = text_response["geographicrange"]
+        d["population"] = text_response["population"]
+        d["text_habitat"] = text_response["habitat"]
+        d["threats"] = text_response["threats"]
+        d["conservation_measures"] = text_response["conservationmeasures"]
         species_array.append(d)
         # break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
