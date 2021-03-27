@@ -64,12 +64,12 @@ function Species() {
 
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
-        speciesCards.push(<a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
+        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
         to={{
           pathname: `/species/${animals[i].scientific_name}`,
           state: { background: location }
         }}
-      ><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></Link></a>);
+      ><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></Link></a></Col>);
     }
 
     const pageButtons = [];
@@ -109,12 +109,10 @@ function Species() {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>{animals.length} Species</h1>
+                    <h1>{animals.length} Species. {maxCardsShown} per page</h1>
                 </Row>
-                <Row>
-                    <CardDeck>
-                        {speciesCards}
-                    </CardDeck>
+                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
+                    {speciesCards}
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col sm={8} md="auto">

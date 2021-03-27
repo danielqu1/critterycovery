@@ -2,7 +2,7 @@ import { Card, Nav } from 'react-bootstrap';
 
 function SpeciesCard(props: any) {
     return(
-        <Card bg="white" style={{width: '30rem'}}>
+        <Card bg="white" style={{width: '100%'}}>
             <Card.Img variant="top" src={props.photo}/>
             <Card.Body>
                 <Card.Title>{props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}</Card.Title>
