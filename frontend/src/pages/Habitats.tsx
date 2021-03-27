@@ -2,7 +2,7 @@ import React from 'react';
 import { Pagination, Button, ButtonGroup, Container, Table, Row, Col } from 'react-bootstrap';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
-import HabitatEntry from '../components/TableEntries/HabitatEntry';
+import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import Pagination_main from '../components/Pagination/Pagination'
 import jaguar from './speciesPhotos/jaguar.jpg';
@@ -60,32 +60,6 @@ function Habitats(props : any) {
         history.goBack()
         setModalShow(false)
     }
-
-    <th data-field="snum" >Computer</th>
-
-    const columns = [{
-        dataField: 'name',
-        text: 'Name'
-      }, {
-        dataField: 'designation_name',
-        text: 'Designation'
-      }, {
-        dataField: 'reported_terrestrial_area',
-        text: 'Land Area'
-      }, {
-        dataField: 'reported_marine_area',
-        text: 'Water Area'
-      }, {
-        dataField: 'countries',
-        text: 'Countries'
-      }];
-
-    const rowEvents = {
-        onClick: (e: any, row: any, rowIndex: number) => {
-            update(habitats[rowIndex + startingCard]);
-            props.history.push(`/habitats/${habitats[rowIndex + startingCard].name}`)
-        },
-    };
     
     return(
         <div>
@@ -100,7 +74,11 @@ function Habitats(props : any) {
                     <h1>{habitats.length} Habitats. {maxCardsShown} per page</h1>
                 </Row>
                 <Row>
-                    <BootstrapTable keyField='name' data={ habitats.slice(startingCard, startingCard+maxCardsShown) } columns={ columns } rowEvents={ rowEvents } hover/>
+                    <HabitatTable
+                        maxCardsShown={maxCardsShown}
+                        habitats={habitats}
+                        startingCard={startingCard}
+                        update={update}/>
                 </Row>
                 <Pagination_main 
                     instancesPerPage= {maxCardsShown}
