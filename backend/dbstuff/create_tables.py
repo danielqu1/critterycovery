@@ -1,15 +1,14 @@
 import requests
 from sqlalchemy import create_engine
 from sqlalchemy import text
-# from flask import current_app as app
 from flask_sqlalchemy import SQLAlchemy
 
 db_user = "postgres"
 db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
-# engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
+engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 
-engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
+# engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
@@ -99,8 +98,8 @@ def create_species_table(engine):
         count += 1
         if count % 7 != 0:
             continue
-        if count > 50:
-            break
+        # if count > 50:
+        #     break
         d = {}
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
@@ -163,10 +162,10 @@ def create_species_table(engine):
             species_array
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM species_table_2"))
-        for row in result:
-            print(row)
-        print("STARTING COUNTRIES_PER_SPECIES TABLE")
+        # result = conn.execute(text("SELECT * FROM species_table_2"))
+        # for row in result:
+        #     print(row)
+        # print("STARTING COUNTRIES_PER_SPECIES TABLE")
         conn.execute(text("CREATE TABLE countries_per_species_2 (id int, scientific_name varchar, alpha2_code varchar)"))
         conn.execute(
             text("INSERT INTO countries_per_species_2 (id, scientific_name, alpha2_code) " +
@@ -174,9 +173,9 @@ def create_species_table(engine):
             countries_per_species
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM countries_per_species_2"))
-        for row in result:
-            print(row)
+        # result = conn.execute(text("SELECT * FROM countries_per_species_2"))
+        # for row in result:
+        #     print(row)
 
 image_link1 = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&cx=23d27d9bd3761439e&q="
 image_link2 = "&searchType=image&num=1"
