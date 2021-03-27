@@ -145,6 +145,8 @@ def create_species_table(engine):
         d["text_habitat"] = text_response["habitat"]
         d["threats"] = text_response["threats"]
         d["conservation_measures"] = text_response["conservationmeasures"]
+        # image link
+        d["image_link"] = get_species_image(i["scientific_name"])
         species_array.append(d)
         # break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
@@ -154,7 +156,7 @@ def create_species_table(engine):
                         "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
                         "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean, " +
                         "taxonomic_notes text, rationale text, geographic_range text, population text, " +
-                        "text_habitat text, threats text, conservation_measures text)"))
+                        "text_habitat text, threats text, conservation_measures text, image_link varchar)"))
         conn.execute(
             text("INSERT INTO species_table_2 (" + string_helper(species_array[0], False) + ") " +
                         "VALUES (" + string_helper(species_array[0], True) + ")"), 
@@ -175,6 +177,19 @@ def create_species_table(engine):
         result = conn.execute(text("SELECT * FROM countries_per_species_2"))
         for row in result:
             print(row)
+
+image_link1 = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&cx=23d27d9bd3761439e&q="
+image_link2 = "&searchType=image&num=1"
+fake_img = "https://www.wiki.sc4devotion.com/images/6/62/Wiki_no_image.png"
+
+def get_species_image(name: str):
+    img_endpoint = image_link1 + name + image_link2
+    ret = ""
+    try:
+        ret = requests.get(img_endpoint).json()["items"][0]["link"]
+    except:
+        ret = fake_img
+    return ret
 
 def string_helper(d: dict, b: bool):
     result = ""
