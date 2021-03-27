@@ -5,13 +5,13 @@ function SpeciesCard(props: any) {
         <Card bg="white" style={{width: '30rem'}}>
             <Card.Img variant="top" src={props.photo}/>
             <Card.Body>
-                <Card.Title>{props.animal.common_name}</Card.Title>
+                <Card.Title>{props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}</Card.Title>
                 <Card.Text>
-                    Body Mass: {props.animal.bodyMass} <br />
-                    Length: {props.animal.length} <br />
-                    Height: {props.animal.height} <br />
-                    Number Left: {props.animal.num} <br />
-                    Scientific Name: {props.animal.taxa} <br />
+                    Kingdom: {props.animal.kingdom}<br/>
+                    Phylum: {props.animal.phylum}<br/>
+                    Class: {props.animal._class}<br/>
+                    Order: {props.animal._order}<br/>
+                    Family: {props.animal.family}<br/>
                 </Card.Text>
             </Card.Body>
         </Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardDeck, Pagination } from 'react-bootstrap';
+import { CardDeck, Pagination, Button, ButtonGroup } from 'react-bootstrap';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
@@ -29,7 +29,6 @@ interface species{
 }
 
 function Species() {
-    const maxCardsShown = 10;
     const offset = 3;
     const {id} = useParams<{ id: string }>();
     const [animals, setAnimals] = React.useState(new Array<species>());
@@ -37,6 +36,7 @@ function Species() {
     const [modalShow, setModalShow] = React.useState(id != null);
     const [species, setSpecies] = React.useState(animals[0])
     const [startingCard, setStart] = React.useState(0)
+    const [maxCardsShown, setCardsShown] = React.useState(10)
     let location = useLocation();
 
     React.useEffect(() => {
@@ -74,7 +74,7 @@ function Species() {
 
     const pageButtons = [];
     const totalPages = Math.ceil(animals.length/maxCardsShown);
-    const activePage = startingCard/maxCardsShown + 1;
+    const activePage = Math.floor(startingCard/maxCardsShown + 1);
     if (activePage - offset > 0){
         pageButtons.push(<Pagination.Item onClick={() => setStart(0)}>{1}</Pagination.Item>)
         if (activePage - offset - 1 > 0){
@@ -95,13 +95,13 @@ function Species() {
         if (activePage + offset - 1 < totalPages){
             pageButtons.push(<Pagination.Ellipsis/>)
         }
-        pageButtons.push(<Pagination.Item onClick={() => setStart((animals.length % maxCardsShown === 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}>{totalPages}</Pagination.Item>)
+        pageButtons.push(<Pagination.Item onClick={() => setStart(Math.floor(animals.length / maxCardsShown) * maxCardsShown)}>{totalPages}</Pagination.Item>)
         
     }
 
     return(
         <div>
-            <h1>Species {id}</h1>
+            <h1>{animals.length} Species</h1>
             <CardDeck>
                 {speciesCards}
             </CardDeck>
@@ -114,10 +114,16 @@ function Species() {
                 <Pagination.First onClick={() => setStart(0)}/>
                 <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
                 {pageButtons}
-                <Pagination.Next onClick={() => setStart(Math.min(((animals.length % maxCardsShown === 0) ? (animals.length - maxCardsShown) : (animals.length - animals.length % maxCardsShown)), startingCard + maxCardsShown))}/>
-                <Pagination.Last onClick={() => setStart((animals.length % maxCardsShown === 0) ? animals.length - maxCardsShown : animals.length - animals.length % maxCardsShown)}/>
+                <Pagination.Next onClick={() => setStart(Math.min((Math.floor(animals.length / maxCardsShown) * maxCardsShown), startingCard + maxCardsShown))}/>
+                <Pagination.Last onClick={() => setStart(Math.floor(animals.length / maxCardsShown) * maxCardsShown)}/>
                 
             </Pagination>
+
+            <ButtonGroup className="mr-2" aria-label="First group">
+                <Button onClick={() => setCardsShown(10)}>10</Button> 
+                <Button onClick={() => setCardsShown(20)}>20</Button> 
+                <Button onClick={() => setCardsShown(50)}>50</Button>
+            </ButtonGroup>
             {/* <Pagination_main />  */}
         </div>
         
