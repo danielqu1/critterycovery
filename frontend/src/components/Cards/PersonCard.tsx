@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap'
 
 function PersonCard(props: any) {
     return(
-        <Card bg="white" style={{width: '20rem'}}>
+        <Card bg="white" style={{width: '95%'}}>
             <Card.Img variant="top" src={props.person.photo}></Card.Img>
             <Card.Body>
                 <Card.Title>{props.person.name}</Card.Title>

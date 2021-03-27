@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardDeck, Pagination, Button, ButtonGroup } from 'react-bootstrap';
+import { CardDeck, Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
@@ -84,7 +84,7 @@ function Species() {
     for (let i = activePage - offset + 1; i <= startingCard/maxCardsShown + offset; i++) {
         if(i > 0 && i < totalPages + 1){
             if(i === activePage){
-                pageButtons.push(<Pagination.Item active disabled>{i}</Pagination.Item>)
+                pageButtons.push(<Pagination.Item active>{i}</Pagination.Item>)
             }
             else{
                 pageButtons.push(<Pagination.Item onClick={() => setStart((i-1) * maxCardsShown)}>{i}</Pagination.Item>)
@@ -101,30 +101,40 @@ function Species() {
 
     return(
         <div>
-            <h1>{animals.length} Species</h1>
-            <CardDeck>
-                {speciesCards}
-            </CardDeck>
             <SpeciesModal
                 species={species}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />
-            <Pagination>
-                <Pagination.First onClick={() => setStart(0)}/>
-                <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
-                {pageButtons}
-                <Pagination.Next onClick={() => setStart(Math.min((Math.floor(animals.length / maxCardsShown) * maxCardsShown), startingCard + maxCardsShown))}/>
-                <Pagination.Last onClick={() => setStart(Math.floor(animals.length / maxCardsShown) * maxCardsShown)}/>
-                
-            </Pagination>
 
-            <ButtonGroup className="mr-2" aria-label="First group">
-                <Button onClick={() => setCardsShown(10)}>10</Button> 
-                <Button onClick={() => setCardsShown(20)}>20</Button> 
-                <Button onClick={() => setCardsShown(50)}>50</Button>
-            </ButtonGroup>
-            {/* <Pagination_main />  */}
+            <Container fluid className="justify-content-md-center">
+                <Row>
+                    <h1>{animals.length} Species</h1>
+                </Row>
+                <Row>
+                    <CardDeck>
+                        {speciesCards}
+                    </CardDeck>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col sm={8} md="auto">
+                        <Pagination>
+                            <Pagination.First onClick={() => setStart(0)}/>
+                            <Pagination.Prev onClick={() => setStart(Math.max(0, startingCard - maxCardsShown))}/>
+                            {pageButtons}
+                            <Pagination.Next onClick={() => setStart(Math.min((Math.floor(animals.length / maxCardsShown) * maxCardsShown), startingCard + maxCardsShown))}/>
+                            <Pagination.Last onClick={() => setStart(Math.floor(animals.length / maxCardsShown) * maxCardsShown)}/>
+                        </Pagination>
+                    </Col>
+                    <Col sm={3} lg="2">
+                        <ButtonGroup>
+                            <Button variant="outline-primary" onClick={() => setCardsShown(10)}>10</Button> 
+                            <Button variant="outline-primary" onClick={() => setCardsShown(20)}>20</Button> 
+                            <Button variant="outline-primary" onClick={() => setCardsShown(50)}>50</Button>
+                        </ButtonGroup>
+                    </Col>
+                </Row>
+            </Container>
         </div>
         
     );

@@ -1,5 +1,5 @@
 
-.pagination {
+/* .pagination {
     margin: 25px auto 100px;
     display: flex;
     list-style: none;
@@ -26,5 +26,5 @@
   }
   .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
     border-radius: unset
-  }
+  } */
   

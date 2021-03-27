@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import PersonCard from '../../components/Cards/PersonCard'
-import { CardDeck, Container } from 'react-bootstrap';
+import { CardDeck, Container, Row, Col } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
@@ -113,24 +113,25 @@ function About() {
     }
   ];
 
+  const cards = []
+  for(let i = 0; i < people.length; i++){
+    cards.push(<Col><PersonCard person={people[i]}></PersonCard></Col>)
+  }
+
   return ( 
     <body className='body'> 
-      <Container>
-        <h1>General Description:</h1>
-        <p>{ description }</p>
-        <h1>Data:</h1>
-        <p>{ compilation }</p>
+      <Container fluid style={{width: '90%'}}>
+        <Row>
+          <h1>General Description:</h1>
+          <p>{ description }</p>
+          <h1>Data:</h1>
+          <p>{ compilation }</p>
+        </Row>
+        <Row xs={1} sm={2} md={2} lg={3} xl={4}>
+          {cards}
+        </Row>
       </Container>      
-      <CardDeck>
-        <PersonCard person={people[0]}></PersonCard>
-        <PersonCard person={people[1]}></PersonCard>
-        <PersonCard person={people[2]}></PersonCard>
-      </CardDeck>
-      <CardDeck>
-        <PersonCard person={people[3]}></PersonCard>
-        <PersonCard person={people[4]}></PersonCard>
-        <PersonCard person={people[5]}></PersonCard>
-      </CardDeck>
+      
         <div className="text-center">
           <h2>View our code base here: </h2>
           <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br/>
