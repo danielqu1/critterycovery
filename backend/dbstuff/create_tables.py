@@ -4,6 +4,11 @@ from sqlalchemy import text
 # from flask import current_app as app
 from flask_sqlalchemy import SQLAlchemy
 
+db_user = "postgres"
+db_password = "pleaseWork"
+db_name = "104.197.145.153/postgres"
+# engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
+
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
 def create_countries_table(engine):
@@ -89,6 +94,7 @@ def create_species_table(engine):
     species_array = []
     countries_per_species = []
     count = 0
+    id_count = 0
     for i in species_response:
         count += 1
         if count % 7 != 0:
@@ -109,11 +115,13 @@ def create_species_table(engine):
             continue
         try:
             countries_response = requests.get(countries_endpoint).json()["result"]
-            text_response = requests.get(text_endpoint).json()["result"]
+            text_response = requests.get(text_endpoint).json()["result"][0]
         except:
             continue
         for j in countries_response:
             d_temp = {}
+            id_count += 1
+            d_temp["id"] = id_count
             d_temp["scientific_name"] = i["scientific_name"]
             d_temp["alpha2_code"] = j["code"]  # returns iso2, or could do "country"
             countries_per_species.append(d_temp)
@@ -141,28 +149,30 @@ def create_species_table(engine):
         # break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
     with engine.connect() as conn:
-        conn.execute(text("CREATE TABLE species_table (scientific_name varchar, subspecies varchar, " +
+        conn.execute(text("CREATE TABLE species_table_2 (scientific_name varchar, subspecies varchar, " +
                         "kingdom varchar, phylum varchar, " +
                         "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
-                        "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean)"))
+                        "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean, " +
+                        "taxonomic_notes text, rationale text, geographic_range text, population text, " +
+                        "text_habitat text, threats text, conservation_measures text)"))
         conn.execute(
-            text("INSERT INTO species_table (" + string_helper(species_array[0], False) + ") " +
+            text("INSERT INTO species_table_2 (" + string_helper(species_array[0], False) + ") " +
                         "VALUES (" + string_helper(species_array[0], True) + ")"), 
             species_array
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM species_table"))
+        result = conn.execute(text("SELECT * FROM species_table_2"))
         for row in result:
             print(row)
         print("STARTING COUNTRIES_PER_SPECIES TABLE")
-        conn.execute(text("CREATE TABLE countries_per_species (scientific_name varchar, alpha2_code varchar)"))
+        conn.execute(text("CREATE TABLE countries_per_species_2 (id int, scientific_name varchar, alpha2_code varchar)"))
         conn.execute(
-            text("INSERT INTO countries_per_species (scientific_name, alpha2_code) " +
-                        "VALUES (:scientific_name, :alpha2_code)"), 
+            text("INSERT INTO countries_per_species_2 (id, scientific_name, alpha2_code) " +
+                        "VALUES (:id, :scientific_name, :alpha2_code)"), 
             countries_per_species
         )
         conn.commit()
-        result = conn.execute(text("SELECT * FROM countries_per_species"))
+        result = conn.execute(text("SELECT * FROM countries_per_species_2"))
         for row in result:
             print(row)
 
@@ -175,4 +185,4 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result
 
-# create_species_table()  # keep this commented out 
+create_species_table(engine)  # keep this commented out 
