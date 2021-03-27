@@ -1,11 +1,10 @@
 import React from 'react'; 
 import {Modal, Button} from 'react-bootstrap'
 
-function changeContent(props: any){
-  return
-}
-
 function HabitatModal(props: any) {
+  if(props.habitat == null){
+    return(<a></a>)
+  }
   return (
     <Modal
       {...props}
@@ -19,13 +18,14 @@ function HabitatModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Is Marine?: {props.habitat.marine}<br/>
-        Marine Area: {props.habitat.reported_marine_area}<br/>
-        Land Area: {props.habitat.reported_terrestrial_area}<br/>
+        ID: {props.habitat.id.toString()}<br/>
+        Marine: {props.habitat.marine.toString()}<br/>
+        Water Area: {props.habitat.reported_marine_area.toString()}<br/>
+        Land Area: {props.habitat.reported_terrestrial_area.toString()}<br/>
         Countries: {props.habitat.countries}<br/>
-        icun Category: {props.habitat.icun_category}<br/>
-        Designation: {props.habitat.designation}<br/>
-        Link: {props.habitat.link}<br/>
+        icun Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
+        Designation: {props.habitat.designation_name}<br/>
+        Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

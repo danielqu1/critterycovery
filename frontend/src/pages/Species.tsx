@@ -1,15 +1,10 @@
 import React from 'react';
-import { CardDeck, Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
+import { Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
-import './Pagination.css'
-import Pagination_main from '../components/Pagination/Pagination'; 
-import antelope from './speciesPhotos/antelope.jpg';
-import zebra from './speciesPhotos/zebra.jpg';
 import jaguar from './speciesPhotos/jaguar.jpg';
 import axios from 'axios'
-import { mainModule } from 'node:process';
 
 interface species{
     common_name: string;
@@ -114,7 +109,7 @@ function Species() {
                 <Row xs={1} sm={2} md={3} lg={4} xl={5}>
                     {speciesCards}
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center" style={{paddingTop: '1%'}}>
                     <Col sm={8} md="auto">
                         <Pagination>
                             <Pagination.First onClick={() => setStart(0)}/>
