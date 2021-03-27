@@ -183,6 +183,28 @@ def get_country(name):
 	response = country_schema.dump(country)
 	return jsonify({"country" : response})
 
+# get a single country by ISO 2
+@app.route("/api/countries/alpha2_code=<alpha2_code>", methods=["GET"])
+def get_country_alpha2(alpha2_code):
+	country = countries_table.query.filter_by(alpha2_code=alpha2_code).first()
+	if country is None:
+		print("country ", alpha2_code, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = country_schema.dump(country)
+	return jsonify({"country" : response})
+
+# get a single country by ISO 3
+@app.route("/api/countries/alpha3_code=<alpha3_code>", methods=["GET"])
+def get_country_alpha3(alpha3_code):
+	country = countries_table.query.filter_by(alpha3_code=alpha3_code).first()
+	if country is None:
+		print("country ", alpha3_code, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = country_schema.dump(country)
+	return jsonify({"country" : response})
+
 # get all habitats
 @app.route("/api/habitats")
 def get_habitats():
