@@ -29,6 +29,14 @@ function CountryModal(props: any) {
         Longitude: {props.country.longitude}<br/>
         Area: {props.country.area}<br/>
         Gini Index: {props.country.gini_index}<br/>
+        <iframe
+          width="600"
+          height="450"
+          style={{border: 0}}
+          loading="lazy"
+          allowFullScreen
+          src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyCEuQ1QfuLRbXpgy16yPdz44kWYTrHHKlc&q=country+"+props.country.name}>
+        </iframe>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
