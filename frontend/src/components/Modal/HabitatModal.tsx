@@ -1,6 +1,5 @@
 import React from 'react'; 
 import {Modal, Button} from 'react-bootstrap'
-import { useHistory } from "react-router-dom";
 
 function HabitatModal(props: any) {
   if(props.habitat == null){

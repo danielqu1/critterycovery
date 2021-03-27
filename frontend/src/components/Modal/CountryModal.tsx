@@ -1,11 +1,10 @@
 import React from 'react'; 
-import {Modal, Button} from 'react-bootstrap'
-
-function changeContent(props: any){
-  return
-}
+import {Modal, Button, Image} from 'react-bootstrap'
 
 function CountryModal(props: any) {
+  if(props.country == null){
+    return(<a></a>)
+  }
   return (
     <Modal
       {...props}
@@ -15,10 +14,11 @@ function CountryModal(props: any) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.species.name}
+          {props.country.name}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <Image src={props.country.flag} rounded fluid style={{width:'50%'}}/><br/>
         alpha2 Code: {props.country.alpha2_code}<br/>
         alpha3 Code: {props.country.alpha3_code}<br/>
         Total Population: {props.country.total_pop}<br/>
@@ -29,7 +29,6 @@ function CountryModal(props: any) {
         Longitude: {props.country.longitude}<br/>
         Area: {props.country.area}<br/>
         Gini Index: {props.country.gini_index}<br/>
-        Flag: {props.country.flag}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
