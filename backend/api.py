@@ -140,7 +140,7 @@ country_schema = CountrySchema()
 countries_schema = CountrySchema(many=True)
 
 specie_schema = SpeciesSchema()
-species_names_schema = SpeciesSchema(many=True)
+species_schema = SpeciesSchema(many=True)
 
 habitat_schema = HabitatSchema()
 habitats_schema = HabitatSchema(many=True)
