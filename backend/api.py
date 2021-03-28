@@ -6,8 +6,6 @@ from marshmallow import fields
 import json									# jsonify
 from gitlab import stats					# gitlab.py
 
-# https://flask-marshmallow.readthedocs.io/en/latest/
-
 app = Flask(
 	__name__,
 	static_folder="../frontend/build/static",
@@ -56,6 +54,14 @@ class species_table(db.Model):
 	marine = db.Column(db.Boolean)
 	freshwater = db.Column(db.Boolean)
 	terrestrial = db.Column(db.Boolean)
+	taxonomic_notes = db.Column(db.Unicode)
+	rationale = db.Column(db.Unicode)
+	geographic_range = db.Column(db.Unicode)
+	population = db.Column(db.Unicode)
+	text_habitat = db.Column(db.Unicode)
+	threats = db.Column(db.Unicode)
+	conservation_measures = db.Column(db.Unicode)
+	image_link = db.Column(db.Unicode)
 
 # model of Habitat for SQLAlchemy
 class habitats_table(db.Model):
@@ -112,6 +118,14 @@ class SpeciesSchema(ma.Schema):
 	marine = fields.Boolean(required=False)
 	freshwater = fields.Boolean(required=False)
 	terrestrial = fields.Boolean(required=False)
+	taxonomic_notes = fields.String(required=False)
+	rationale = fields.String(required=False)
+	geographic_range = fields.String(required=False)
+	population = fields.String(required=False)
+	text_habitat = fields.String(required=False)
+	threats = fields.String(required=False)
+	conservation_measures = fields.String(required=False)
+	image_link = fields.String(required=False)
 
 
 class HabitatSchema(ma.Schema):
@@ -146,6 +160,7 @@ species_schema = SpeciesSchema(many=True)
 
 habitat_schema = HabitatSchema()
 habitats_schema = HabitatSchema(many=True)
+habitats_names_schema = HabitatSchema(only=["name"], many=True)
 
 country_species_link_schema = CountrySpeciesLinkSchema()
 countries_species_link_schema = CountrySpeciesLinkSchema(many=True)
@@ -163,6 +178,9 @@ def name():
 @app.route("/api/gitlabstats")
 def gitlabstats():
 	return stats()
+
+
+# countries endpoints
 
 # get all countries
 @app.route("/api/countries")
@@ -183,6 +201,57 @@ def get_country(name):
 	response = country_schema.dump(country)
 	return jsonify({"country" : response})
 
+# get a single country by ISO 2
+@app.route("/api/countries/alpha2_code=<alpha2_code>", methods=["GET"])
+def get_country_alpha2(alpha2_code):
+	country = countries_table.query.filter_by(alpha2_code=alpha2_code).first()
+	if country is None:
+		print("country ", alpha2_code, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = country_schema.dump(country)
+	return jsonify({"country" : response})
+
+# get a single country by ISO 3
+@app.route("/api/countries/alpha3_code=<alpha3_code>", methods=["GET"])
+def get_country_alpha3(alpha3_code):
+	country = countries_table.query.filter_by(alpha3_code=alpha3_code).first()
+	if country is None:
+		print("country ", alpha3_code, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = country_schema.dump(country)
+	return jsonify({"country" : response})
+
+# get habitats for a single country by name
+@app.route("/api/countries/habitats/name=<name>", methods=["GET"])
+def get_country_habitats(name):
+	country = country_schema.dump(countries_table.query.filter_by(name=name).first())
+	alpha3_code = country["alpha3_code"]
+	habitats = habitats_table.query.filter_by(countries=alpha3_code).all()
+	if habitats is None:
+		print("country ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = habitats_names_schema.dump(habitats)
+	return jsonify({"habitats" : response})
+
+# get species for a single country by name 
+@app.route("/api/countries/species/name=<name>", methods=["GET"])
+def get_country_species(name):
+	country = country_schema.dump(countries_table.query.filter_by(name=name).first())
+	alpha2_code = country["alpha2_code"]
+	species = countries_per_species.query.filter_by(alpha2_code=alpha2_code).all()
+	if species is None:
+		print("country ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = species_schema.dump(species)
+	return jsonify({"species" : response})
+
+
+# habitats endpoints
+
 # get all habitats
 @app.route("/api/habitats")
 def get_habitats():
@@ -201,6 +270,9 @@ def get_habitat(name):
 	response = habitat_schema.dump(habitat)
 	return jsonify({"habitat" : response})
 
+
+# species endpoints
+
 # get all species
 @app.route("/api/species")
 def get_species():
@@ -218,6 +290,17 @@ def get_specie(name):
 		return {}
 	response = specie_schema.dump(specie)
 	return jsonify({"species" : response})
+
+# get country codes for a single species by name 
+@app.route("/api/species/countries/name=<name>", methods=["GET"])
+def get_species_countries(name):
+	alpha2_code = countries_per_species.query.filter_by(scientific_name=name).all()
+	if alpha2_code is None:
+		print("species ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = countries_schema.dump(alpha2_code)
+	return jsonify({"countries" : response})
 
 
 if __name__ == "__main__":
