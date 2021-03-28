@@ -33,7 +33,7 @@ manager = APIManager(app, flask_sqlalchemy_db=db)
 api = Api(app)
 
 # # database setup
-engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=True, future=True)
+engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 # create_countries_table(engine)  # keep commented, do not run this again
 
 # model of Country for SQLAlchemy

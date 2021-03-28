@@ -1,7 +1,7 @@
 import React from 'react'; 
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
   
-const Navbar_main = () => { 
+const NavbarMain = () => { 
   return ( 
     <>
       <Navbar sticky="top" bg="light" expand="lg">
@@ -25,4 +25,4 @@ const Navbar_main = () => {
   ); 
 }; 
   
-export default Navbar_main;
+export default NavbarMain;

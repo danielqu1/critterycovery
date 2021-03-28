@@ -1,9 +1,9 @@
-﻿import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
-import Pagination_main from '../components/Pagination/Pagination'
+import PaginationMain from '../components/Pagination/Pagination'
 import axios from 'axios'
 
 interface country{
@@ -80,14 +80,14 @@ function Countries(props : any) {
                         startingCard={startingCard}
                         update={update}/>
                 </Row>
-                <Pagination_main 
+                <PaginationMain 
                     instancesPerPage= {maxCardsShown}
                     totalInstances= {countries.length}
                     startingInstance= {startingCard}
                     offsetPagesShownFromCurrent= {offset}
                     setStartingInstance= {setStart}
                     setInstancesPerPage= {setCardsShown}
-                ></Pagination_main>
+                ></PaginationMain>
             </Container>
         </div>
         

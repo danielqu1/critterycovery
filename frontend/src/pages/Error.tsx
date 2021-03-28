@@ -1,5 +1,4 @@
 import React from 'react';
-import { Table, Nav } from 'react-bootstrap';
 
 function Error() {
     return(

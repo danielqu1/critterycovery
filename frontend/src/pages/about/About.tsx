@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import PersonCard from '../../components/Cards/PersonCard'
-import { CardDeck, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
