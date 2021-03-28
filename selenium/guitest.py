@@ -5,6 +5,8 @@ from selenium.webdriver.common.keys import Keys
 # followed example at https://selenium-python.readthedocs.io/getting-started.html
 # api at https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.chrome.webdriver
 
+# make sure to pip3 install -r requirements.txt  to install selenium
+
 DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 # right now, don't use the linux one; does not seem to work'
 
