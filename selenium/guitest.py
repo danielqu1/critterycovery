@@ -87,6 +87,19 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(driver.current_url, URL + "/")	
 
+	def test_navbar_1(self):
+		driver = self.driver
+		driver.get(URL + "/countries")
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")	
+
 	def test_about_page_0(self):
 		driver = self.driver
 
