@@ -90,6 +90,22 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(result.text, "General Description:")
 
+	def test_about_page_1(self):
+		driver = self.driver
+
+		driver.get(URL + "/about")
+
+		# print("title =" + driver.title) # critterycovery
+
+		xpath = "/html/body/div/div/div[2]/div/div[3]/a[1]"
+
+		if DEV:
+			xpath = "/html/body/div/div/body/div[2]/a[1]"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, "https://gitlab.com/cs373-group16/critterycovery")
+
 
 	def tearDown(self):						# part of unittest library; called after every test
 		self.driver.close()					# from example 
