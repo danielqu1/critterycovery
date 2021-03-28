@@ -6,8 +6,6 @@ from marshmallow import fields
 import json									# jsonify
 from gitlab import stats					# gitlab.py
 
-# https://flask-marshmallow.readthedocs.io/en/latest/
-
 app = Flask(
 	__name__,
 	static_folder="../frontend/build/static",
