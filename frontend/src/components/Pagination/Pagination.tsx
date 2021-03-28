@@ -1,17 +1,5 @@
 import React from 'react';
 import { Pagination, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
-//import { useParams, useLocation, Link } from 'react-router-dom';
-
-/*
-interface PaginationProps {
-    instancesPerPage: number,
-    totalInstances: number,
-    startingInstance: number,
-    offsetPagesShownFromCurrent: number,
-    setStartingInstance: Function,
-    setInstancesPerPage: Function
-}
-*/
 
 function PaginationMain(props: any) {
 

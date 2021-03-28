@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap'
 
 function SpeciesModal(props: any) {
   if(props.species == null){
-    return(<a>BROKEN</a>)
+    return(<a></a>)
   }
   return (
     <Modal

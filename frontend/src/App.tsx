@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css'; 
 import NavbarMain from './components/Navbar/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-//import axios from 'axios';
 import Home from './pages/home/Home';
 import About from './pages/about/About';
 import Species from './pages/Species';
@@ -13,11 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
 
 function App() {
-
-  // const [name, setName] = useState("new");
-  // axios.get("/api/name").then((response) => {
-  //   setName(response.data.name);
-  // });
 
   return (
     <div className="App">

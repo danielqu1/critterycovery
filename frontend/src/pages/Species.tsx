@@ -77,10 +77,9 @@ function Species() {
 
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
-        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></a></Col>);
+        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}>
+            <SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></a></Col>);
     }
-
-    
 
     return(
         <div>
