@@ -205,7 +205,7 @@ def get_country_alpha3(alpha3_code):
 	response = country_schema.dump(country)
 	return jsonify({"country" : response})
 
-# get habitats for a single country by name 
+# get habitats for a single country by name
 @app.route("/api/countries/habitats/alpha3_code=<alpha3_code>", methods=["GET"])
 def get_country_habitats(alpha3_code):
 	habitats = habitats_table.query.filter_by(countries=alpha3_code).all()
@@ -215,6 +215,17 @@ def get_country_habitats(alpha3_code):
 		return {}
 	response = habitats_schema.dump(habitats)
 	return jsonify({"habitats" : response})
+
+# get species for a single country by name 
+@app.route("/api/countries/species/alpha2_code=<alpha2_code>", methods=["GET"])
+def get_country_species(alpha2_code):
+	species = countries_per_species.query.filter_by(alpha2_code=alpha2_code).all()
+	if species is None:
+		print("country ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = species_schema.dump(species)
+	return jsonify({"species" : response})
 
 # get all habitats
 @app.route("/api/habitats")
