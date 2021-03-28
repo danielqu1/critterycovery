@@ -118,6 +118,14 @@ class SpeciesSchema(ma.Schema):
 	marine = fields.Boolean(required=False)
 	freshwater = fields.Boolean(required=False)
 	terrestrial = fields.Boolean(required=False)
+	taxonomic_notes = fields.String(required=False)
+	rationale = fields.String(required=False)
+	geographic_range = fields.String(required=False)
+	population = fields.String(required=False)
+	text_habitat = fields.String(required=False)
+	threats = fields.String(required=False)
+	conservation_measures = fields.String(required=False)
+	image_link = fields.String(required=False)
 
 
 class HabitatSchema(ma.Schema):
