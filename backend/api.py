@@ -300,7 +300,13 @@ def get_species_countries(name):
 		print("How to make error page?")
 		return {}
 	response = countries_schema.dump(alpha2_code)
-	return jsonify({"countries" : response})
+	country_names = []
+	for d in response:
+		d_temp = {}
+		country = country_schema.dump(countries_table.query.filter_by(alpha2_code=d["alpha2_code"]).first())
+		d_temp["country"] = country["name"]
+		country_names.append(d_temp)
+	return jsonify({"countries" : country_names})
 
 
 if __name__ == "__main__":
