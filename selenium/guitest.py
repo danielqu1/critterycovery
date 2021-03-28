@@ -12,8 +12,8 @@ from selenium.webdriver.chrome.options import Options		# configure options when 
 DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 # right now, don't use the linux one; does not seem to work'
 
-# URL = "https://critterycovery.me"
-URL = "localhost:3000/"						# debug ONLY; needs to have frontend (yarn start) open
+URL = "https://critterycovery.me"
+#URL = "localhost:3000"						# debug ONLY; needs to have frontend (yarn start) open
 
 class GuiTests(unittest.TestCase):
 	
@@ -31,18 +31,36 @@ class GuiTests(unittest.TestCase):
 
 	# reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests 
 
-	def test_dummy(self):
+	def stest_dummy(self):
 		driver = self.driver
 		driver.get("http://www.python.org")				# go to this website
 		
 		self.assertIn("Python", driver.title)
 
-	def test_main_page_0(self):
+	def stest_main_page_0(self):
 		driver = self.driver
 		driver.get(URL)
 
-		result = driver.find_elements_by_class_name("card-body")	# get all instances of HTML with class card-body
-		self.assertEqual(len(result), 3)							# we have 3 cards on main page
+		print("title = " + driver.title)
+
+		result = driver.find_elements_by_xpath("/html/body/div/div/body/div[2]/div/a[1]/div/div/div")[0].text	# get all instances of HTML with class card-body
+		
+		print("result =", result)
+		
+		self.assertEqual(len(result), "Species")							# we have 3 cards on main page
+
+		# driver.find_elements_by_xpath("/html/body/div/div/body/div[2]/div/a[1]/div/div/div")
+
+	def test_about_page_0(self):
+		driver = self.driver
+
+		driver.get(URL + "/about")
+
+		print("title =" + driver.title) # critterycovery
+
+		result = driver.find_elements_by_xpath("/html/body/div/div/div/div/h1")[0].text
+
+		self.assertEqual(result, "General Description:")
 
 
 	def tearDown(self):						# part of unittest library; called after every test
