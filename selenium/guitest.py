@@ -12,11 +12,11 @@ from selenium.webdriver.chrome.options import Options		# configure options when 
 DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 # right now, don't use the linux one; does not seem to work'
 
-DEBUG = True
+DEV = True		# if True, make sure you have frontend started with "yarn start"
 
 URL = "https://critterycovery.me"
 
-if DEBUG:
+if DEV:
 	URL = "http://127.0.0.1:3000"						# debug ONLY; NEEDS http://, not https ; i don't think can have "localhost"
 
 class GuiTests(unittest.TestCase):
@@ -26,31 +26,24 @@ class GuiTests(unittest.TestCase):
 		# arguments found here: https://peter.sh/experiments/chromium-command-line-switches/#no-sandbox
 
 		chrome_options = Options()
-		#chrome_options.add_argument("--headless")		# no GUI / browser to show up when testing
-		#chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])	# get rid of console message "DevTools listening on ws://127.0.0.1:53975/devtools/browser..."
+		chrome_options.add_argument("--headless")		# no GUI / browser to show up when testing
+		chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])	# get rid of console message "DevTools listening on ws://127.0.0.1:53975/devtools/browser..."
 		# chrome_options.add_argument("--no-sandbox")	# don't think we need this
-
 
 		self.driver = webdriver.Chrome(executable_path=DRIVER_PATH, options=chrome_options)
 
 	# reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests 
 
-	def stest_dummy(self):
-		driver = self.driver
-		driver.get("http://www.python.org")				# go to this website
-		
-		self.assertIn("Python", driver.title)
-
 	def test_main_page_0(self):
 		driver = self.driver
-		driver.get(URL)
+		driver.get(URL)							# simulate going to this website
 
-		print("title = " + driver.title)		# critterycovery
+		# print("title = " + driver.title)		# critterycovery
 
 		# just follow the HTML tags. If multiple, use [ ] brackes (1-indexed tho)
-		xpath = "/html/body/div/div/body/div[2]/div[3]/div/div[1]/a/div/div/div"
+		xpath = "/html/body/div/div/body/div[2]/div[3]/div/div[1]/a/div/div/div" 	# change last div[1] to div[2] or div[3] to get "Habitats" / "Countries"
 
-		if DEBUG:
+		if DEV:
 			xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"
 
 		result = driver.find_elements_by_xpath(xpath)[0]	# traverse path in HTML, get first cuz "find_elements"
@@ -64,7 +57,12 @@ class GuiTests(unittest.TestCase):
 
 		# print("title =" + driver.title) # critterycovery
 
-		result = driver.find_elements_by_xpath("/html/body/div/div/div/div/h1")[0].text
+		xpath = "/html/body/div/div/div/div/h1"
+
+		if DEV:
+			xpath = "/html/body/div/div/body/div[1]/div[1]/h1"
+
+		result = driver.find_elements_by_xpath(xpath)[0].text
 
 		self.assertEqual(result, "General Description:")
 
