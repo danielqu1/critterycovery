@@ -54,6 +54,14 @@ class species_table(db.Model):
 	marine = db.Column(db.Boolean)
 	freshwater = db.Column(db.Boolean)
 	terrestrial = db.Column(db.Boolean)
+	taxonomic_notes = db.Column(db.Unicode)
+	rationale = db.Column(db.Unicode)
+	geographic_range = db.Column(db.Unicode)
+	population = db.Column(db.Unicode)
+	text_habitat = db.Column(db.Unicode)
+	threats = db.Column(db.Unicode)
+	conservation_measures = db.Column(db.Unicode)
+	image_link = db.Column(db.Unicode)
 
 # model of Habitat for SQLAlchemy
 class habitats_table(db.Model):
