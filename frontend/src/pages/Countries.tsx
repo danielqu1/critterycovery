@@ -33,6 +33,17 @@ function Countries(props : any) {
     let history = useHistory();
 
     React.useEffect(() => {
+        return () => {
+            if (history.action === "POP") {
+                setModalShow(false);
+            }
+            else if (history.action === "PUSH") {
+                setModalShow(true);
+            }
+        };
+    }, [history.action])
+
+    React.useEffect(() => {
             axios.get("/api/countries").then((response) => {
                 setCountries(response.data.countries);
                 if(id != null){
@@ -43,7 +54,7 @@ function Countries(props : any) {
                     })
                 }
                 setLoading(false);    
-        })}, [id]);
+        })}, []);
     
     
     if (isLoading) {
@@ -51,6 +62,7 @@ function Countries(props : any) {
     }
 
     function update(place : country) {
+        history.push(`/countries/${place.name}`)
         setCountry(place)
         setModalShow(true)
     }
