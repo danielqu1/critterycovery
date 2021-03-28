@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css'; 
-import Navbar_main from './components/Navbar/Navbar'; 
+import NavbarMain from './components/Navbar/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 //import axios from 'axios';
 import Home from './pages/home/Home';
@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Router> 
-        <Navbar_main /> 
+        <NavbarMain /> 
         <ScrollToTopBtn />
         <Switch> 
           <Route path='/' exact component={Home} /> 

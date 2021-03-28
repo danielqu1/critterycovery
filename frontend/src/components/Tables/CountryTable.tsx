@@ -1,5 +1,4 @@
 import React from 'react'; 
-import {Modal, Button} from 'react-bootstrap'
 import BootstrapTable from 'react-bootstrap-table-next';
 import { useHistory } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ function CountryTable(props : any){
         text: 'Population'
       }, {
         dataField: 'capital',
-        text: 'capital'
+        text: 'Capital'
       }, {
         dataField: 'region',
         text: 'Region'

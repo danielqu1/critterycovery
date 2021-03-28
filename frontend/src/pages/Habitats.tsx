@@ -1,14 +1,13 @@
 import React from 'react';
-import { Pagination, Button, ButtonGroup, Container, Table, Row, Col } from 'react-bootstrap';
-import BootstrapTable from 'react-bootstrap-table-next';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import { Container, Row } from 'react-bootstrap';
+//import BootstrapTable from 'react-bootstrap-table-next';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
-import Pagination_main from '../components/Pagination/Pagination'
-import jaguar from './speciesPhotos/jaguar.jpg';
-import axios from 'axios'
+import PaginationMain from '../components/Pagination/Pagination';
+import axios from 'axios';
 
-interface habitat{
+interface habitat {
     id: number;
     name: string;
     marine: boolean;
@@ -80,14 +79,14 @@ function Habitats(props : any) {
                         startingCard={startingCard}
                         update={update}/>
                 </Row>
-                <Pagination_main 
+                <PaginationMain 
                     instancesPerPage= {maxCardsShown}
                     totalInstances= {habitats.length}
                     startingInstance= {startingCard}
                     offsetPagesShownFromCurrent= {offset}
                     setStartingInstance= {setStart}
                     setInstancesPerPage= {setCardsShown}
-                ></Pagination_main>
+                ></PaginationMain>
             </Container>
         </div>
         

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
-import Pagination_main from '../components/Pagination/Pagination'
+import PaginationMain from '../components/Pagination/Pagination';
 import jaguar from './speciesPhotos/jaguar.jpg';
-import axios from 'axios'
+import axios from 'axios';
 
 interface species{
     common_name: string;
@@ -37,6 +37,17 @@ function Species() {
     let history = useHistory();
 
     React.useEffect(() => {
+        return () => {
+            if (history.action === "POP") {
+                setModalShow(false);
+            }
+            else if (history.action === "PUSH") {
+                setModalShow(true);
+            }
+        };
+    }, [history.location.pathname])
+
+    React.useEffect(() => {
             axios.get("/api/species").then((response) => {
                 setAnimals(response.data.species);
                 if(id != null){
@@ -55,6 +66,7 @@ function Species() {
     }
 
     function update(animal : species) {
+        history.push(`/species/${animal.scientific_name}`)
         setSpecies(animal)
         setModalShow(true)
     }
@@ -66,12 +78,7 @@ function Species() {
 
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
-        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><Link
-        to={{
-          pathname: `/species/${animals[i].scientific_name}`,
-          state: { background: location }
-        }}
-      ><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></Link></a></Col>);
+        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}><SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></a></Col>);
     }
 
     
@@ -91,14 +98,14 @@ function Species() {
                 <Row xs={1} sm={2} md={3} lg={4} xl={5}>
                     {speciesCards}
                 </Row>
-                <Pagination_main 
+                <PaginationMain 
                     instancesPerPage= {maxCardsShown}
                     totalInstances= {animals.length}
                     startingInstance= {startingCard}
                     offsetPagesShownFromCurrent= {offset}
                     setStartingInstance= {setStart}
                     setInstancesPerPage= {setCardsShown}
-                ></Pagination_main>
+                ></PaginationMain>
             </Container>
         </div>
         
