@@ -36,6 +36,14 @@ class GuiTests(unittest.TestCase):
 
 	def test_main_page_0(self):
 		driver = self.driver
+		driver.get(URL)
+
+		result = driver.find_elements_by_class_name('card')		# there are three cards
+
+		self.assertEqual(len(result), 3)
+
+	def test_main_page_1(self):
+		driver = self.driver
 		driver.get(URL)							# simulate going to this website
 
 		# print("title = " + driver.title)		# critterycovery
@@ -48,7 +56,23 @@ class GuiTests(unittest.TestCase):
 
 		result = driver.find_elements_by_xpath(xpath)[0]	# traverse path in HTML, get first cuz "find_elements"
 		
-		self.assertEqual(result.text, "Species")							# we have 3 cards on main page
+		self.assertEqual(result.text, "Species")
+
+	def test_main_page_2(self):
+		driver = self.driver
+		driver.get(URL)							# simulate going to this website
+
+		# print("title = " + driver.title)		# critterycovery
+
+		# just follow the HTML tags. If multiple, use [ ] brackes (1-indexed tho)
+		xpath = "/html/body/div/div/body/div[2]/div[3]/div/div[1]/a/div/div/div" 	# change last div[1] to div[2] or div[3] to get "Habitats" / "Countries"
+
+		if DEV:
+			xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"
+
+		driver.find_elements_by_xpath(xpath)[0].click()		# click on Species
+		
+		self.assertEqual(driver.current_url, URL + "/species")		
 
 	def test_about_page_0(self):
 		driver = self.driver
@@ -62,13 +86,14 @@ class GuiTests(unittest.TestCase):
 		if DEV:
 			xpath = "/html/body/div/div/body/div[1]/div[1]/h1"
 
-		result = driver.find_elements_by_xpath(xpath)[0].text
+		result = driver.find_elements_by_xpath(xpath)[0]	# get first ([0]) because 
 
-		self.assertEqual(result, "General Description:")
+		self.assertEqual(result.text, "General Description:")
 
 
 	def tearDown(self):						# part of unittest library; called after every test
 		self.driver.close()					# from example 
+		self.driver.quit()
 		
 if __name__ == '__main__':
 	unittest.main()			# run all methods that begin with "test"
