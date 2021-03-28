@@ -1,7 +1,8 @@
 import React from 'react';
-import { Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import { Pagination, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
+//import { useParams, useLocation, Link } from 'react-router-dom';
 
+/*
 interface PaginationProps {
     instancesPerPage: number,
     totalInstances: number,
@@ -9,7 +10,8 @@ interface PaginationProps {
     offsetPagesShownFromCurrent: number,
     setStartingInstance: Function,
     setInstancesPerPage: Function
-  }
+}
+*/
 
 function Pagination_main(props: any) {
 

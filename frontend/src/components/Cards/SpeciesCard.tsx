@@ -1,4 +1,4 @@
-import { Card, Nav } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 function SpeciesCard(props: any) {
     return(

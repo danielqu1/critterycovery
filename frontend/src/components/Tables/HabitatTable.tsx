@@ -1,5 +1,4 @@
-import React from 'react'; 
-import {Modal, Button} from 'react-bootstrap'
+import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { useHistory } from 'react-router-dom';
 

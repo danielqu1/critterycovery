@@ -1,6 +1,6 @@
-﻿import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { Container, Row } from 'react-bootstrap';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import Pagination_main from '../components/Pagination/Pagination'
