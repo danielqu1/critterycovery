@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import PaginationMain from '../components/Pagination/Pagination'
@@ -30,7 +30,6 @@ function Countries(props : any) {
     const [country, setCountry] = React.useState(countries[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
-    let location = useLocation();
     let history = useHistory();
 
     React.useEffect(() => {
@@ -44,7 +43,7 @@ function Countries(props : any) {
                     })
                 }
                 setLoading(false);    
-        })}, []);
+        })}, [id]);
     
     
     if (isLoading) {

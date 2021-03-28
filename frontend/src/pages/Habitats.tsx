@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-//import BootstrapTable from 'react-bootstrap-table-next';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import PaginationMain from '../components/Pagination/Pagination';
@@ -29,7 +28,6 @@ function Habitats(props : any) {
     const [habitat, setHabitat] = React.useState(habitats[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
-    let location = useLocation();
     let history = useHistory();
 
     React.useEffect(() => {
@@ -43,7 +41,7 @@ function Habitats(props : any) {
                     })
                 }
                 setLoading(false);    
-        })}, []);
+        })}, [id]);
     
     
     if (isLoading) {

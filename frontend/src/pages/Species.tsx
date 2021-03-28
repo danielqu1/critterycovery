@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import PaginationMain from '../components/Pagination/Pagination';
@@ -33,7 +33,6 @@ function Species() {
     const [species, setSpecies] = React.useState(animals[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
-    let location = useLocation();
     let history = useHistory();
 
     React.useEffect(() => {
@@ -45,7 +44,7 @@ function Species() {
                 setModalShow(true);
             }
         };
-    }, [history.location.pathname])
+    }, [history.action])
 
     React.useEffect(() => {
             axios.get("/api/species").then((response) => {
@@ -58,7 +57,7 @@ function Species() {
                     })
                 }
                 setLoading(false);    
-        })}, []);
+        })}, [id]);
     
     
     if (isLoading) {
