@@ -38,6 +38,7 @@ class countries_table(db.Model):
 	area = db.Column(db.Float)
 	gini_index = db.Column(db.Integer)
 	flag = db.Column(db.Unicode) # it's a link, is it a string?
+	embedded_map = db.Column(db.Unicode)
 
 # model of Species for SQLAlchemy
 class species_table(db.Model):
@@ -99,6 +100,7 @@ class CountrySchema(ma.Schema):
 	area = fields.Float(required=False)
 	gini_index = fields.Integer(required=False)
 	flag = fields.String(required=False) # it's a link, is it a string?
+	embedded_map = fields.String(required=False)
 
 
 class SpeciesSchema(ma.Schema):

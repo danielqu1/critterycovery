@@ -6,13 +6,43 @@ from flask_sqlalchemy import SQLAlchemy
 db_user = "postgres"
 db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
-engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
+# engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 
 # engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
+
+def add_map_source_to_countries(engine):
+    countries_link = "https://restcountries.eu/rest/v2/all"
+    countries_response = requests.get(countries_link).json()
+    map_request = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q="
+    links_array = []
+    for i in countries_response:
+        d = {}
+        d["link"] = map_request + i["name"]
+        links_array.append(d)
+
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE countries_table ADD embedded_map_link varchar"))
+
+        # conn.execute(
+        #     text("INSERT INTO countries_table (embedded_map_link) " +
+        #                 "VALUES (:link)"), 
+        #     links_array
+        # )
+        conn.commit()
+
+        result = conn.execute(text("SELECT * FROM countries_table"))
+        i = 0
+        for row in result:
+            i += 1
+            # print(row)
+
+        print(i)
+        
 
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
+    map_request = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q="
     countries_array = []
     for i in countries_response:
         d = {}
@@ -33,12 +63,13 @@ def create_countries_table(engine):
         d["area"] = i["area"]
         d["gini_index"] = i["gini"]
         d["flag"] = i["flag"]
+        d["embedded_map_link"] = map_request + i["name"]
         countries_array.append(d)
 
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE countries_table (name varchar, alpha2_code varchar, alpha3_code varchar, " +
                         "total_pop int, capital varchar, region varchar, subregion varchar, latitude float, " +
-                        "longitude float, area float, gini_index int, flag varchar)"))
+                        "longitude float, area float, gini_index int, flag varchar, embedded_map_link varchar)"))
         conn.execute(
             text("INSERT INTO countries_table (" + string_helper(countries_array[0], False) + ") " +
                         "VALUES (" + string_helper(countries_array[0], True) + ")"), 
@@ -197,6 +228,6 @@ def string_helper(d: dict, b: bool):
             result = result + ":"
         result = result + key + ", "
     result = result[:-2]
-    return result
+    return result 
 
-# create_species_table(engine)  # keep this commented out 
+# create_countries_table(engine)
