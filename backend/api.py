@@ -142,11 +142,11 @@ country_schema = CountrySchema()
 countries_schema = CountrySchema(many=True)
 
 specie_schema = SpeciesSchema()
-species_schema = SpeciesSchema(many=True)
+species_names_schema = SpeciesSchema(many=True)
 
 habitat_schema = HabitatSchema()
 habitats_schema = HabitatSchema(many=True)
-habitats_names = HabitatSchema(only=["name"], many=True)
+habitats_names_schema = HabitatSchema(only=["name"], many=True)
 
 country_species_link_schema = CountrySpeciesLinkSchema()
 countries_species_link_schema = CountrySpeciesLinkSchema(many=True)
@@ -164,6 +164,9 @@ def name():
 @app.route("/api/gitlabstats")
 def gitlabstats():
 	return stats()
+
+
+# countries endpoints
 
 # get all countries
 @app.route("/api/countries")
@@ -216,7 +219,7 @@ def get_country_habitats(name):
 		print("country ", name, " does not exist")
 		print("How to make error page?")
 		return {}
-	response = habitats_names.dump(habitats)
+	response = habitats_names_schema.dump(habitats)
 	return jsonify({"habitats" : response})
 
 # get species for a single country by name 
@@ -231,6 +234,9 @@ def get_country_species(name):
 		return {}
 	response = species_schema.dump(species)
 	return jsonify({"species" : response})
+
+
+# habitats endpoints
 
 # get all habitats
 @app.route("/api/habitats")
@@ -250,6 +256,9 @@ def get_habitat(name):
 	response = habitat_schema.dump(habitat)
 	return jsonify({"habitat" : response})
 
+
+# species endpoints
+
 # get all species
 @app.route("/api/species")
 def get_species():
@@ -267,6 +276,17 @@ def get_specie(name):
 		return {}
 	response = specie_schema.dump(specie)
 	return jsonify({"species" : response})
+
+# get country codes for a single species by name 
+@app.route("/api/species/countries/name=<name>", methods=["GET"])
+def get_species_countries(name):
+	alpha2_code = countries_per_species.query.filter_by(scientific_name=name).all()
+	if alpha2_code is None:
+		print("species ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = countries_schema.dump(alpha2_code)
+	return jsonify({"countries" : response})
 
 
 if __name__ == "__main__":
