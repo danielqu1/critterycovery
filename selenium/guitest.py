@@ -72,7 +72,20 @@ class GuiTests(unittest.TestCase):
 
 		driver.find_elements_by_xpath(xpath)[0].click()		# click on Species
 		
-		self.assertEqual(driver.current_url, URL + "/species")		
+		self.assertEqual(driver.current_url, URL + "/species")
+
+	def test_navbar_0(self):
+		driver = self.driver
+		driver.get(URL)
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")	
 
 	def test_about_page_0(self):
 		driver = self.driver
@@ -92,13 +105,8 @@ class GuiTests(unittest.TestCase):
 
 	def test_about_page_1(self):
 		driver = self.driver
-
 		driver.get(URL + "/about")
-
-		# print("title =" + driver.title) # critterycovery
-
 		xpath = "/html/body/div/div/div[2]/div/div[3]/a[1]"
-
 		if DEV:
 			xpath = "/html/body/div/div/body/div[2]/a[1]"
 
