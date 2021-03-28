@@ -146,6 +146,7 @@ species_schema = SpeciesSchema(many=True)
 
 habitat_schema = HabitatSchema()
 habitats_schema = HabitatSchema(many=True)
+habitats_names = HabitatSchema(only=["name"], many=True)
 
 country_species_link_schema = CountrySpeciesLinkSchema()
 countries_species_link_schema = CountrySpeciesLinkSchema(many=True)
@@ -215,7 +216,7 @@ def get_country_habitats(name):
 		print("country ", name, " does not exist")
 		print("How to make error page?")
 		return {}
-	response = habitats_schema.dump(habitats)
+	response = habitats_names.dump(habitats)
 	return jsonify({"habitats" : response})
 
 # get species for a single country by name 
