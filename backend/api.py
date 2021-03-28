@@ -205,6 +205,17 @@ def get_country_alpha3(alpha3_code):
 	response = country_schema.dump(country)
 	return jsonify({"country" : response})
 
+# get habitats for a single country by name 
+@app.route("/api/countries/habitats/alpha3_code=<alpha3_code>", methods=["GET"])
+def get_country_habitats(alpha3_code):
+	habitats = habitats_table.query.filter_by(countries=alpha3_code).all()
+	if habitats is None:
+		print("country ", name, " does not exist")
+		print("How to make error page?")
+		return {}
+	response = habitats_schema.dump(habitats)
+	return jsonify({"habitats" : response})
+
 # get all habitats
 @app.route("/api/habitats")
 def get_habitats():
