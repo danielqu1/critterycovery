@@ -1,7 +1,7 @@
 import React from 'react'; 
-import {Modal, Button, Image} from 'react-bootstrap'
+import {Modal, Button, Image,} from 'react-bootstrap'
 
-function SpeciesModal(props: any) {
+function SpeciesModal(props : any) {
   if(props.species == null){
     return(<a></a>)
   }
@@ -26,7 +26,7 @@ function SpeciesModal(props: any) {
         Order: {props.species._order}<br/>
         Family: {props.species.family}<br/>
         Genus: {props.species.genus}<br/>
-        Taxonomic Notes: <br/>{props.species.taxonomic_notes}<br/>
+        Taxonomic Notes: <br/><div dangerouslySetInnerHTML={{ __html: props.species.taxonomic_notes }}></div><br/>
         Subspecies: {props.species.subspecies}<br/>
         Subpopulations: {props.species.subpopulations}<br/>
         Population Trend: {props.species.population_trend}<br/>
@@ -34,12 +34,12 @@ function SpeciesModal(props: any) {
         Freshwater: {props.species.freshwater.toString()}<br/>
         Terrestrial: {props.species.terrestrial.toString()}<br/>
 
-        Rationale: <html>{props.species.rationale}</html><br/>
-        Geographic Range: {props.species.geographic_range}<br/>
-        Population: {props.species.population}<br/>
-        Habitat Desc: {props.species.habitat}<br/>
-        Threats: {props.species.threats}<br/>
-        Conservation Measures: {props.species.conservation_measures}<br/>
+        Rationale: <br/><div dangerouslySetInnerHTML={{ __html: props.species.rationale }}></div><br/>
+        Geographic Range: <br/><div dangerouslySetInnerHTML={{ __html: props.species.geographic_range }}></div><br/>
+        Population: <br/><div dangerouslySetInnerHTML={{ __html: props.species.population }}></div><br/>
+        Habitat Desc: <br/><div dangerouslySetInnerHTML={{ __html: props.species.habitat }}></div><br/>
+        Threats: <br/><div dangerouslySetInnerHTML={{ __html: props.species.threats }}></div><br/>
+        Conservation Measures: <br/><div dangerouslySetInnerHTML={{ __html: props.species.conservation_measures }}></div><br/>
 
       </Modal.Body>
       <Modal.Footer>

@@ -24,7 +24,6 @@ function CountryTable(props : any){
     const rowEvents = {
         onClick: (e: any, row: any, rowIndex: number) => {
             props.update(props.countries[rowIndex + props.startingCard]);
-            history.push(`/countries/${props.countries[rowIndex + props.startingCard].name}`)
         },
     };
     

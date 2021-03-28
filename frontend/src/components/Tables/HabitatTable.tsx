@@ -24,7 +24,6 @@ function HabitatTable(props : any){
     const rowEvents = {
         onClick: (e: any, row: any, rowIndex: number) => {
             props.update(props.habitats[rowIndex + props.startingCard]);
-            history.push(`/habitats/${props.habitats[rowIndex + props.startingCard].name}`)
         },
     };
     

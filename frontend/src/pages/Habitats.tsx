@@ -31,6 +31,17 @@ function Habitats(props : any) {
     let history = useHistory();
 
     React.useEffect(() => {
+        return () => {
+            if (history.action === "POP") {
+                setModalShow(false);
+            }
+            else if (history.action === "PUSH") {
+                setModalShow(true);
+            }
+        };
+    }, [history.action])
+    
+    React.useEffect(() => {
             axios.get("/api/habitats").then((response) => {
                 setHabitats(response.data.habitats);
                 if(id != null){
@@ -41,7 +52,7 @@ function Habitats(props : any) {
                     })
                 }
                 setLoading(false);    
-        })}, [id]);
+        })}, []);
     
     
     if (isLoading) {
@@ -49,6 +60,7 @@ function Habitats(props : any) {
     }
 
     function update(place : habitat) {
+        history.push(`/habitats/${place.name}`)
         setHabitat(place)
         setModalShow(true)
     }

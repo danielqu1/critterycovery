@@ -64,7 +64,7 @@ function Species() {
                     })
                 }
                 setLoading(false);    
-        })}, [id]);
+        })}, []);
     
     
     if (isLoading) {
