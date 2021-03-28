@@ -11,7 +11,7 @@ function CountryTable(props : any){
         text: 'Population'
       }, {
         dataField: 'capital',
-        text: 'capital'
+        text: 'Capital'
       }, {
         dataField: 'region',
         text: 'Region'

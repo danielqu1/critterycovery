@@ -29,7 +29,7 @@ function CountryModal(props: any) {
         Longitude: {props.country.longitude}<br/>
         Area: {props.country.area}<br/>
         Gini Index: {props.country.gini_index}<br/>
-        <iframe
+        <iframe title="Map of Country"
           width="600"
           height="450"
           style={{border: 0}}

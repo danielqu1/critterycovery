@@ -13,7 +13,7 @@ interface PaginationProps {
 }
 */
 
-function Pagination_main(props: any) {
+function PaginationMain(props: any) {
 
     const pageButtons = [];
     const totalPages = Math.ceil(props.totalInstances / props.instancesPerPage);
@@ -64,4 +64,4 @@ function Pagination_main(props: any) {
     );
 };
 
-export default Pagination_main;
+export default PaginationMain;

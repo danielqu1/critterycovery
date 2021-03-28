@@ -1,11 +1,11 @@
 import React from 'react';
-import { Pagination, Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
-import Pagination_main from '../components/Pagination/Pagination'
+import PaginationMain from '../components/Pagination/Pagination';
 import jaguar from './speciesPhotos/jaguar.jpg';
-import axios from 'axios'
+import axios from 'axios';
 
 interface species{
     common_name: string;
@@ -91,14 +91,14 @@ function Species() {
                 <Row xs={1} sm={2} md={3} lg={4} xl={5}>
                     {speciesCards}
                 </Row>
-                <Pagination_main 
+                <PaginationMain 
                     instancesPerPage= {maxCardsShown}
                     totalInstances= {animals.length}
                     startingInstance= {startingCard}
                     offsetPagesShownFromCurrent= {offset}
                     setStartingInstance= {setStart}
                     setInstancesPerPage= {setCardsShown}
-                ></Pagination_main>
+                ></PaginationMain>
             </Container>
         </div>
         
