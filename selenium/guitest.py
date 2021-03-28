@@ -5,14 +5,15 @@ from selenium.webdriver.common.keys import Keys
 # followed example at https://selenium-python.readthedocs.io/getting-started.html
 # api at https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.chrome.webdriver
 
-DRIVER_PATH = "chromedriver.exe"
+DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
+# right now, don't use the linux one; does not seem to work'
 
 class GuiTests(unittest.TestCase):
 	
 	def setUp(self):
 		# part of unittest library; called before every test 
 		print("SETUP")
-		self.driver = webdriver.Chrome()
+		self.driver = webdriver.Chrome(executable_path=DRIVER_PATH)
 
 	def test_dummy(self):
 		print("start dummy")
