@@ -19,7 +19,7 @@ class TestBackend(unittest.TestCase):
 	def test_get_all_species(self):
 		# r = requests.get('https://critterycovery.me/api/species').json()
 		r = requests.get('http://0.0.0.0/api/species').json() # this is weird but it works lol
-		self.assertEqual(len(r["species"]), 536)
+		self.assertEqual(len(r["species"]), 498)
 
 
 
