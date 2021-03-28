@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, Image} from 'react-bootstrap'
 
 function SpeciesModal(props: any) {
   if(props.species == null){
@@ -18,6 +18,7 @@ function SpeciesModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <Image src={props.species.image_link} rounded fluid style={{width:'50%'}}/><br/>
         Scientific Name: {props.species.scientific_name}<br/>
         Kingdom: {props.species.kingdom}<br/>
         Phylum: {props.species.phylum}<br/>
@@ -25,12 +26,21 @@ function SpeciesModal(props: any) {
         Order: {props.species._order}<br/>
         Family: {props.species.family}<br/>
         Genus: {props.species.genus}<br/>
+        Taxonomic Notes: <br/>{props.species.taxonomic_notes}<br/>
         Subspecies: {props.species.subspecies}<br/>
         Subpopulations: {props.species.subpopulations}<br/>
         Population Trend: {props.species.population_trend}<br/>
         Marine: {props.species.marine.toString()}<br/>
         Freshwater: {props.species.freshwater.toString()}<br/>
         Terrestrial: {props.species.terrestrial.toString()}<br/>
+
+        Rationale: <html>{props.species.rationale}</html><br/>
+        Geographic Range: {props.species.geographic_range}<br/>
+        Population: {props.species.population}<br/>
+        Habitat Desc: {props.species.habitat}<br/>
+        Threats: {props.species.threats}<br/>
+        Conservation Measures: {props.species.conservation_measures}<br/>
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

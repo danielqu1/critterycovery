@@ -4,7 +4,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import PaginationMain from '../components/Pagination/Pagination';
-import jaguar from './speciesPhotos/jaguar.jpg';
 import axios from 'axios';
 
 interface species{
@@ -22,6 +21,14 @@ interface species{
     marine: boolean;
     freshwater: boolean;
     terrestrial: boolean;
+	taxonomic_notes: string;
+	rationale: string;
+	geographic_range: string;
+	population: number;
+	text_habitat: string;
+	threats: string;
+	conservation_measures: string;
+	image_link: string;
 }
 
 function Species() {
@@ -78,7 +85,7 @@ function Species() {
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
         speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}>
-            <SpeciesCard animal={animals[i]} photo={jaguar}></SpeciesCard></a></Col>);
+            <SpeciesCard animal={animals[i]} photo={animals[i].image_link}></SpeciesCard></a></Col>);
     }
 
     return(
