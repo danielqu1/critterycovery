@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Modals Country Modal page 1`] = `ShallowWrapper {}`;
+
+exports[`Modals Habitat Modal page 1`] = `ShallowWrapper {}`;
+
+exports[`Modals Species Modal page 1`] = `ShallowWrapper {}`;
+
+exports[`Pages Error page 1`] = `ShallowWrapper {}`;
+
+exports[`Pages Home page 1`] = `ShallowWrapper {}`;
+
 exports[`Render views Country Modal page 1`] = `ShallowWrapper {}`;
 
 exports[`Render views Error page 1`] = `ShallowWrapper {}`;
