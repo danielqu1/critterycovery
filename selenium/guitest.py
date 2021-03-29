@@ -1,7 +1,11 @@
 import unittest												# library to make many tests
-from selenium import webdriver								# webdriver to actually connect to Chrome / website
-from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait							
+from selenium.webdriver.common.keys import Keys				# webdriver to actually connect to Chrome / website
 from selenium.webdriver.chrome.options import Options		# configure options when accessing chrome, like --headless
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
 
 # followed example at https://selenium-python.readthedocs.io/getting-started.html
 # api at https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.chrome.webdriver
@@ -99,24 +103,7 @@ class GuiTests(unittest.TestCase):
 
 		driver.find_elements_by_xpath(xpath)[0].click()
 
-		self.assertEqual(driver.current_url, URL + "/")			
-
-	
-	"""
-	def test_navbar_2(self):
-		driver = self.driver
-		driver.get(URL)
-
-		xpath = "/html/body/div/div/nav/a"
-
-		if DEV:
-			xpath = "/html/body/div/div/nav/div[1]/div/a"
-
-		driver.find_elements_by_xpath(xpath)[0].click()
-
-		self.assertEqual(driver.current_url, "Habitats")
-	
-	"""
+		self.assertEqual(driver.current_url, URL + "/")		
 	
 
 	def test_loading(self):
@@ -163,7 +150,36 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(driver.current_url, "https://gitlab.com/cs373-group16/critterycovery") 
 	
+	
+	"""
+	def test_navbar_2(self):
+		driver = self.driver
+		driver.get(URL)
 
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/div[1]/div/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, "Habitats")
+	
+	"""
+
+	def test_species(self):
+		driver = self.driver
+		driver.get(URL + "/species")
+
+		xpath = "/html/body/div/div/div/div/h1"
+
+		if DEV:
+			xpath = "/html/body/div/div/div[2]/div/div[2]/div[6]/a/div/div/div"
+
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+
+		self.assertEqual(element.text, "Asiatic Cheetah")
 
 	def tearDown(self):						# part of unittest library; called after every test
 		self.driver.close()					# from example 
