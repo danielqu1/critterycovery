@@ -35,6 +35,7 @@ William Crawford
 
 ### Time Completion (hours):
 Phase 1:
+
 Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 15 | 24
@@ -45,6 +46,7 @@ Brian Wang | 15 | 21
 
 --- 
 Phase 2: 
+
 Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 40 | 50

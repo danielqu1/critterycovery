@@ -5,7 +5,7 @@ def stats():
 
     branches = ["master", "dev"]
 
-    data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 0}}
+    data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 22}}
 
     for branch in branches:
 
@@ -61,5 +61,11 @@ def stats():
                             "issues": 1,
                             "unittests": 0,
                         }
+
+    for person in data:
+        data[person]["unittests"] = 4
+
+    data["br"]["unittests"] = 5
+    data["total"]["unittests"] = 21
 
     return {"stats": list(data.values())}
