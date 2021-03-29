@@ -277,6 +277,8 @@ def update_test_db(engine):
         for k in d:
             conn.execute(text("update temp set number = " + str(d[k]) + " where id = " + str(k)))
 
+        conn.execute(text("UPDATE temp SET name = 'steph' where name = 'Lebron'"))
+
         conn.commit()
 
         result = conn.execute(text("SELECT * FROM temp"))
@@ -301,3 +303,4 @@ def test_test_db():
     print()
     update_test_db(engine)
         
+# test_test_db()

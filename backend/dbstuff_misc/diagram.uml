@@ -44,6 +44,8 @@ id: int
 name: varchar
 marine: boolean
 reported_marine_area: float
+reported_terrestrial_area: float
+countries: varchar
 iucn_category: int
 designation_name: varchar
 designation_id: int
