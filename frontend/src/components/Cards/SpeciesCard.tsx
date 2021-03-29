@@ -1,9 +1,12 @@
-import { Card } from 'react-bootstrap';
+import { Card, ResponsiveEmbed } from 'react-bootstrap';
 
 function SpeciesCard(props: any) {
     return(
         <Card bg="white" style={{width: '100%'}}>
-            <Card.Img variant="top" src={props.photo}/>
+            {/*  */}
+            <ResponsiveEmbed aspectRatio="1by1">
+                <Card.Img variant="top" src={props.photo}/>
+            </ResponsiveEmbed>
             <Card.Body>
                 <Card.Title>{props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}</Card.Title>
                 <Card.Text>
