@@ -38,7 +38,7 @@ class GuiTests(unittest.TestCase):
 
 	# reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests 
 
-	"""
+	
 	def test_main_page_0(self):
 		driver = self.driver
 		driver.get(URL)
@@ -165,20 +165,26 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(element.text, "Asiatic Cheetah")
 	
-	"""
+	
 	def test_species_1(self):
 		driver = self.driver
 		driver.get(URL + "/species")
 
 		xpath = "/html/body/div/div/div/div/h1"
-
 		if DEV:
 			xpath = "/html/body/div/div/div[2]/div/div[2]/div[10]/a/div/div/p"
-
 		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
     	
-
 		self.assertEqual(element.text, "Kingdom: ANIMALIA\nPhylum: CNIDARIA\nClass: ANTHOZOA\nOrder: SCLERACTINIA\nFamily: ACROPORIDAE")
+	
+	def test_habitats_0(self):
+		driver = self.driver
+		driver.get(URL + "/habitats")
+
+		xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[4]/td[1]"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+		self.assertEqual(element.text, "Pike")
 	
 
 	def tearDown(self):						# part of unittest library; called after every test
