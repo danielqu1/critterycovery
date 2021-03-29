@@ -186,6 +186,134 @@ paths:
                     }
                   }
 
+  /countries/habitats/name=<name>:
+    get:
+      summary: 'Search for all habitats within a country by country name'
+      operationId: getHabitat
+      tags:
+          - country 
+      parameters:
+          - name: name
+            in: path
+            description: Name of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search with country name as "China"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Habitat' 
+              example:
+                  {
+                    "habitats": [
+                        {
+                            "name": "Mount Huangshan"
+                        }, 
+                        {
+                            "name": "Changbaishan"
+                        }, 
+                        {
+                            "name": "Inner Mongolia Grand Khingan Hanma Wetlands"
+                        }, 
+                        {
+                            "name": "Wulingyuan Scenic and Historic Interest Area"
+                        }
+                    ]
+                  }
+
+  /countries/species/name=<name>:
+    get:
+      summary: 'Search for all endangered species within a country by country name'
+      operationId: getSpecies
+      tags:
+          - country 
+      parameters:
+          - name: name
+            in: path
+            description: Name of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search with country name as "China"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Species' 
+              example:
+                  {
+                    "species": [
+                        {
+                            "scientific_name": "Acipenser schrenckii"
+                        }, 
+                        {
+                            "scientific_name": "Aythya baeri"
+                        }, 
+                        {
+                            "scientific_name": "Bufo luchunnicus"
+                        }, 
+                        {
+                            "scientific_name": "Cuora galbinifrons"
+                        }, 
+                        {
+                            "scientific_name": "Cyprinus ilishaestomus"
+                        }, 
+                        {
+                            "scientific_name": "Emberiza aureola"
+                        }, 
+                        {
+                            "scientific_name": "Gyps bengalensis"
+                        }, 
+                        {
+                            "scientific_name": "Indotestudo elongata"
+                        }, 
+                        {
+                            "scientific_name": "Margarya yangtsunghaiensis"
+                        }, 
+                        {
+                            "scientific_name": "Megophrys sangzhiensis"
+                        }, 
+                        {
+                            "scientific_name": "Nomascus nasutus"
+                        }, 
+                        {
+                            "scientific_name": "Pangasius sanitwongsei"
+                        }, 
+                        {
+                            "scientific_name": "Ptychidio jordani"
+                        }, 
+                        {
+                            "scientific_name": "Rafetus swinhoei"
+                        }, 
+                        {
+                            "scientific_name": "Rhinopithecus strykeri"
+                        }, 
+                        {
+                            "scientific_name": "Sarcogyps calvus"
+                        }, 
+                        {
+                            "scientific_name": "Schizothorax grahami"
+                        }, 
+                        {
+                            "scientific_name": "Sinocyclocheilus yangzongensis"
+                        }, 
+                        {
+                            "scientific_name": "Squatina japonica"
+                        }, 
+                        {
+                            "scientific_name": "Tylototriton anhuiensis"
+                        }
+                    ]
+                }
+
   /habitats:
     get:
       summary: 'Returns all habitats'
@@ -417,6 +545,37 @@ paths:
                     "text_habitat": "This species has been recorded in tropical moist lowland forest.", 
                     "threats": "<p>This species is<span lang=\"EN-US\"> threatened by destruction and modification of native lowland forest. Therefore it is not surprising that the species has probably been extirpated from the highly modified island of Peleliu, whose forest was burned in World War II with flamethrowers (Hinz 1995, Crombie and Pregill 1999). Disruption of the ground, rocks and leaf litter may be of particular significance to this and other endodontid species. Endodontoid land snails are among the most threatened land snails on Pacific Islands in the few places where they still exist (Solem 1983), and therefore the fact that this species is still extant is important. This species is in need of conservation attention.</p>"
                   }
+                }
+
+  /species/countries/name=<name>:
+    get:
+      summary: 'Get a list of countries with documented population of a species by scientific name'
+      operationId: getCountry
+      tags:
+          - species 
+      parameters:
+          - name: name
+            in: path
+            description: Scientific name of the species
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search for species "Aaadonta irregularis"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Country'
+              example:
+                {
+                    "countries": [
+                        {
+                            "country": "Palau"
+                        }
+                    ]
                 }
 
 components:
