@@ -83,6 +83,7 @@ def create_habitats_table(engine):
     habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
     habitats_token = "?token=c92c5b78feaa4845c2d9eca6ea90cc61"
     habitats_pages = "&per_page=50&page="
+    map_request = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q="
     habitats_array = []
     for page_num in range(1, 11):  # change this later for more pages
         habitats_link = habitats_link_base + habitats_token + habitats_pages + str(page_num) 
@@ -99,12 +100,16 @@ def create_habitats_table(engine):
             d["designation_name"] = i["designation"]["name"]
             d["designation_id"] = i["designation"]["id"]
             d["link"] = i["links"]["protected_planet"]
+            # image link - just kept it species because didnt wanna change method name lol
+            d["image_link"] = get_species_image(i["name"])
+            d["embedded_map_link"] = map_request + i["countries"][0]["name"]
             habitats_array.append(d)
 
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE habitats_table (id int, name varchar, marine boolean, " + 
                         "reported_marine_area float, reported_terrestrial_area float, countries varchar, " + 
-                        "iucn_category int, designation_name varchar, designation_id int, link varchar)"))
+                        "iucn_category int, designation_name varchar, designation_id int, link varchar, " +
+                        "image_link varchar, embedded_map_link varchar)"))
         conn.execute(
             text("INSERT INTO habitats_table (" + string_helper(habitats_array[0], False) + ") " +
                         "VALUES (" + string_helper(habitats_array[0], True) + ")"), 
@@ -272,6 +277,8 @@ def update_test_db(engine):
         for k in d:
             conn.execute(text("update temp set number = " + str(d[k]) + " where id = " + str(k)))
 
+        conn.execute(text("UPDATE temp SET name = 'steph' where name = 'Lebron'"))
+
         conn.commit()
 
         result = conn.execute(text("SELECT * FROM temp"))
@@ -296,3 +303,4 @@ def test_test_db():
     print()
     update_test_db(engine)
         
+# test_test_db()
