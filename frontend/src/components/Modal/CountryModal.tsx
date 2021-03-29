@@ -76,7 +76,7 @@ function CountryModal(props: any) {
           style={{border: 0}}
           loading="lazy"
           allowFullScreen
-          src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyCEuQ1QfuLRbXpgy16yPdz44kWYTrHHKlc&q=country+"+props.country.name}>
+          src={props.country.embedded_map_link}>
         </iframe> <br/>
 
         Species: <br/> {speciesLinks} <br/>

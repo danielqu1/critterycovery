@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Modal, Button} from 'react-bootstrap'
+import {Modal, Button, Image} from 'react-bootstrap'
 import axios from 'axios'
 
 interface species{
@@ -60,6 +60,7 @@ function HabitatModal(props: any) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <Image src={props.habitat.image_link} rounded fluid style={{width:'50%'}}/><br/>
         ID: {props.habitat.id.toString()}<br/>
         Marine: {props.habitat.marine.toString()}<br/>
         Water Area: {props.habitat.reported_marine_area.toString()}<br/>
@@ -67,6 +68,14 @@ function HabitatModal(props: any) {
         icun Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
         Designation: {props.habitat.designation_name}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
+        <iframe title="Map of Country"
+          width="600"
+          height="450"
+          style={{border: 0}}
+          loading="lazy"
+          allowFullScreen
+          src={props.habitat.embedded_map_link}>
+        </iframe> <br/>
         Country: <br/>{countryLink}<br/>
         Species: <br/>{speciesLinks}<br/>
       </Modal.Body>
