@@ -1,10 +1,51 @@
 import React from 'react'; 
 import {Modal, Button, Image} from 'react-bootstrap'
+import axios from 'axios'
+
+interface species{
+  scientific_name: string;
+}
+
+interface habitats{
+  name: string;
+}
 
 function CountryModal(props: any) {
+  const [species, setSpecies] = React.useState(new Array<species>());
+  const [habitats, setHabitats] = React.useState(new Array<habitats>());
+  React.useEffect(() => {
+    setSpecies(new Array<species>())
+    if(props.country != null){
+      axios.get('/api/countries/species/name='+props.country.name).then((response) => {
+        setSpecies(response.data.species);
+      })
+    }
+  }, [props.country]);
+
+  React.useEffect(() => {
+    setHabitats(new Array<habitats>())
+    if(props.country != null){
+        axios.get('/api/countries/habitats/alpha3_code='+props.country.alpha3_code).then((response) => {
+          setHabitats(response.data.habitats);
+        })
+    }
+  }, [props.country]);
+
   if(props.country == null){
     return(<a></a>)
   }
+
+  const speciesLinks = [];
+  for (let i = 0; i < species.length; i++) {
+    speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
+  }
+  speciesLinks.push(<br/>)
+
+  const habitatLinks = [];
+  for (let i = 0; i < habitats.length; i++) {
+    habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
+  }
+  habitatLinks.push(<br/>)
   return (
     <Modal
       {...props}
@@ -36,7 +77,10 @@ function CountryModal(props: any) {
           loading="lazy"
           allowFullScreen
           src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyCEuQ1QfuLRbXpgy16yPdz44kWYTrHHKlc&q=country+"+props.country.name}>
-        </iframe>
+        </iframe> <br/>
+
+        Species: <br/> {speciesLinks} <br/>
+        Habitats: <br/> {habitatLinks} <br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

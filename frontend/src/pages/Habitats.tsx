@@ -60,7 +60,9 @@ function Habitats(props : any) {
     }
 
     function update(place : habitat) {
-        history.push(`/habitats/${place.name}`)
+        if(history.location.pathname != `/habitats/${place.name}`){
+            history.push(`/habitats/${place.name}`)
+        }
         setHabitat(place)
         setModalShow(true)
     }

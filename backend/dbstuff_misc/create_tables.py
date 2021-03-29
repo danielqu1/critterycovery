@@ -8,7 +8,7 @@ db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
 # engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 
-# engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
+engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
 def add_map_source_to_countries(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
@@ -37,8 +37,7 @@ def add_map_source_to_countries(engine):
             # print(row)
 
         print(i)
-        
-
+    
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
@@ -84,6 +83,7 @@ def create_habitats_table(engine):
     habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
     habitats_token = "?token=c92c5b78feaa4845c2d9eca6ea90cc61"
     habitats_pages = "&per_page=50&page="
+    map_request = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q="
     habitats_array = []
     for page_num in range(1, 11):  # change this later for more pages
         habitats_link = habitats_link_base + habitats_token + habitats_pages + str(page_num) 
@@ -100,12 +100,16 @@ def create_habitats_table(engine):
             d["designation_name"] = i["designation"]["name"]
             d["designation_id"] = i["designation"]["id"]
             d["link"] = i["links"]["protected_planet"]
+            # image link - just kept it species because didnt wanna change method name lol
+            d["image_link"] = get_species_image(i["name"])
+            d["embedded_map_link"] = map_request + i["countries"][0]["name"]
             habitats_array.append(d)
 
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE habitats_table (id int, name varchar, marine boolean, " + 
                         "reported_marine_area float, reported_terrestrial_area float, countries varchar, " + 
-                        "iucn_category int, designation_name varchar, designation_id int, link varchar)"))
+                        "iucn_category int, designation_name varchar, designation_id int, link varchar, " +
+                        "image_link varchar, embedded_map_link varchar)"))
         conn.execute(
             text("INSERT INTO habitats_table (" + string_helper(habitats_array[0], False) + ") " +
                         "VALUES (" + string_helper(habitats_array[0], True) + ")"), 
@@ -230,4 +234,70 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result 
 
-# create_countries_table(engine)
+def create_test_db(engine):
+    l = []
+    d = {}
+    d["id"] = 1
+    d["name"] = "Shaharyar"
+    l.append(d)
+    d = {}
+    d["id"] = 2
+    d["name"] = "Lebron"
+    l.append(d)
+    with engine.connect() as conn:
+        conn.execute(text("CREATE TABLE temp (id int, name varchar)"))
+        conn.execute(
+            text("INSERT INTO temp (" + string_helper(l[0], False) + ") " +
+                        "VALUES (" + string_helper(l[0], True) + ")"), 
+            l
+        )
+        conn.commit()
+        result = conn.execute(text("SELECT * FROM temp"))
+        for row in result:
+            print(row)
+
+def update_test_db(engine):
+    l = []
+    d = {}
+    d["number"] = 7
+    l.append(d)
+    d = {}
+    d["number"] = 23
+    l.append(d)
+
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE temp ADD number int"))
+        # conn.execute(
+        #     text("INSERT INTO temp (number) " +
+        #                 "VALUES (:number)"), 
+        #     l
+        # )
+        # conn.execute(text("UPDATE temp SET number = VALUES(:number)"), l)
+        d = {1: 15, 2: 24}
+        for k in d:
+            conn.execute(text("update temp set number = " + str(d[k]) + " where id = " + str(k)))
+
+        conn.commit()
+
+        result = conn.execute(text("SELECT * FROM temp"))
+        i = 0
+        for row in result:
+            i += 1
+            print(row)
+        print()
+        print(str(i) + " rows")
+
+def test_test_db():
+    print()
+    print("-----------------------")
+    print("      CREATING DB      ")
+    print("-----------------------")
+    print()
+    create_test_db(engine)
+    print()
+    print("-----------------------")
+    print("  ADDING COLUMN TO DB  ")
+    print("-----------------------")
+    print()
+    update_test_db(engine)
+        

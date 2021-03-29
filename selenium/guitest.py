@@ -1,7 +1,11 @@
 import unittest												# library to make many tests
-from selenium import webdriver								# webdriver to actually connect to Chrome / website
-from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait							
+from selenium.webdriver.common.keys import Keys				# webdriver to actually connect to Chrome / website
 from selenium.webdriver.chrome.options import Options		# configure options when accessing chrome, like --headless
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
 
 # followed example at https://selenium-python.readthedocs.io/getting-started.html
 # api at https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.chrome.webdriver
@@ -34,6 +38,7 @@ class GuiTests(unittest.TestCase):
 
 	# reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests 
 
+	
 	def test_main_page_0(self):
 		driver = self.driver
 		driver.get(URL)
@@ -72,8 +77,52 @@ class GuiTests(unittest.TestCase):
 
 		driver.find_elements_by_xpath(xpath)[0].click()		# click on Species
 		
-		self.assertEqual(driver.current_url, URL + "/species")		
+		self.assertEqual(driver.current_url, URL + "/species")
 
+	def test_navbar_0(self):
+		driver = self.driver
+		driver.get(URL)
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")	
+
+	def test_navbar_1(self):
+		driver = self.driver
+		driver.get(URL + "/countries")
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")		
+	
+
+	def test_loading(self):
+		driver = self.driver
+
+		driver.get(URL + "/species")
+
+		# print("title =" + driver.title) # critterycovery
+
+		xpath = "/html/body/div/div/div/div/h1"
+
+		if DEV:
+			xpath = "/html/body/div/div/div[2]"
+
+		result = driver.find_elements_by_xpath(xpath)[0]	# get first ([0]) because 
+
+		self.assertEqual(result.text, "Loading...")
+
+	
 	def test_about_page_0(self):
 		driver = self.driver
 
@@ -92,20 +141,51 @@ class GuiTests(unittest.TestCase):
 
 	def test_about_page_1(self):
 		driver = self.driver
-
 		driver.get(URL + "/about")
-
-		# print("title =" + driver.title) # critterycovery
-
 		xpath = "/html/body/div/div/div[2]/div/div[3]/a[1]"
-
 		if DEV:
 			xpath = "/html/body/div/div/body/div[2]/a[1]"
 
 		driver.find_elements_by_xpath(xpath)[0].click()
 
 		self.assertEqual(driver.current_url, "https://gitlab.com/cs373-group16/critterycovery")
+		
 
+	def test_species_0(self):
+		driver = self.driver
+		driver.get(URL + "/species")
+
+		xpath = "/html/body/div/div/div/div/h1"
+
+		if DEV:
+			xpath = "/html/body/div/div/div[2]/div/div[2]/div[6]/a/div/div/div"
+
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+
+		self.assertEqual(element.text, "Asiatic Cheetah")
+	
+	
+	def test_species_1(self):
+		driver = self.driver
+		driver.get(URL + "/species")
+
+		xpath = "/html/body/div/div/div/div/h1"
+		if DEV:
+			xpath = "/html/body/div/div/div[2]/div/div[2]/div[10]/a/div/div/p"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+		self.assertEqual(element.text, "Kingdom: ANIMALIA\nPhylum: CNIDARIA\nClass: ANTHOZOA\nOrder: SCLERACTINIA\nFamily: ACROPORIDAE")
+	
+	def test_habitats_0(self):
+		driver = self.driver
+		driver.get(URL + "/habitats")
+
+		xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[4]/td[1]"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+		self.assertEqual(element.text, "Pike")
+	
 
 	def tearDown(self):						# part of unittest library; called after every test
 		self.driver.close()					# from example 

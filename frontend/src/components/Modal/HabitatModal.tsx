@@ -1,10 +1,52 @@
 import React from 'react'; 
 import {Modal, Button} from 'react-bootstrap'
+import axios from 'axios'
+
+interface species{
+  scientific_name: string;
+}
+
+interface country{
+  name: string;
+  alpha3_code: string;
+}
 
 function HabitatModal(props: any) {
+  const country_default : country = {name: 'United States of America', alpha3_code: 'USA'}
+  const [species, setSpecies] = React.useState(new Array<species>());
+  const [country, setCountry] = React.useState(country_default);
+
+  React.useEffect(() => {
+    if(props.habitat != null){
+      axios.get('/api/countries/alpha3_code='+props.habitat.countries).then((response) => {
+        setCountry(response.data.country);
+      })
+    }
+  }, [props.habitat]);
+
+  React.useEffect(() => {
+    setSpecies(new Array<species>())
+    if(props.habitat != null){
+      axios.get('/api/countries/species/name='+country.name).then((response) => {
+        setSpecies(response.data.species);
+      })
+    }
+  }, [country]);
+
   if(props.habitat == null){
     return(<a></a>)
   }
+  const speciesLinks = [];
+  for (let i = 0; i < species.length; i++) {
+    speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
+  }
+  speciesLinks.push(<br/>)
+
+  let countryLink = <a></a>;
+  if(country != null){
+    countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
+  }
+
   return (
     <Modal
       {...props}
@@ -22,10 +64,11 @@ function HabitatModal(props: any) {
         Marine: {props.habitat.marine.toString()}<br/>
         Water Area: {props.habitat.reported_marine_area.toString()}<br/>
         Land Area: {props.habitat.reported_terrestrial_area.toString()}<br/>
-        Countries: {props.habitat.countries}<br/>
         icun Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
         Designation: {props.habitat.designation_name}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
+        Country: <br/>{countryLink}<br/>
+        Species: <br/>{speciesLinks}<br/>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

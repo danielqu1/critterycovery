@@ -49,7 +49,7 @@ function Countries(props : any) {
                 if(id != null){
                     axios.get("/api/countries/name=" + id).then((response) => {
                         if(response.data != null){
-                            update(response.data.countries);
+                            update(response.data.country);
                         } 
                     })
                 }
@@ -62,7 +62,9 @@ function Countries(props : any) {
     }
 
     function update(place : country) {
-        history.push(`/countries/${place.name}`)
+        if(history.location.pathname != `/countries/${place.name}`){
+            history.push(`/countries/${place.name}`)
+        }
         setCountry(place)
         setModalShow(true)
     }
