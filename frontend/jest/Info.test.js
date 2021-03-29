@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 import "@testing-library/jest-dom/extend-expect"
 
-//import About from "../src/pages/about/About.tsx";
+//import About from "../src/pages/about/About.tsx";     // Jest complains about interface in About.tsx
 import About from "../src/pages/Error.tsx";
 
 configure({ adapter: new Adapter() });
