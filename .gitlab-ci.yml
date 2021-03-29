@@ -4,6 +4,7 @@ before_script:
   - printenv | sort
 
 backend:
+  image: groverhood/backend
   script:
-    - python3 backend/api.py
+#    - python3 backend/api.py
     - python3 backend/python_tests.py 
