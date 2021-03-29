@@ -186,7 +186,7 @@ paths:
                     }
                   }
 
-  /habitat:
+  /habitats:
     get:
       summary: 'Returns all habitats'
       responses:
@@ -199,19 +199,62 @@ paths:
                 items:
                   $ref: '#/components/schemas/Habitat'
               example: 
-                  [
-                    {Shrub & Herb Vegetation: CLASS},
-                    {Tropical Forest & Woodland: SUBCLASS},
-                    {Desert & Semi-Desert: CLASS}
-                  ]
-  /habitat/{habitat}:
+                  {
+                    "habitats": [
+                        {
+                            "countries": "GBR", 
+                            "designation_id": 461, 
+                            "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                            "id": 136036, 
+                            "image_link": "x-raw-image:///67b525ae50b3646edf9c3b9a1a82e79b06c9c1c1e90735bee20cbe4126f64c52", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/136036", 
+                            "marine": false, 
+                            "name": "Easter Ness Forest", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 4.7124
+                        }, 
+                        {
+                            "countries": "DEU", 
+                            "designation_id": 3, 
+                            "designation_name": "Nature Reserve", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Germany", 
+                            "id": 165595, 
+                            "image_link": "https://c8.alamy.com/comp/CRBD3B/aerial-view-sommerrain-quarter-former-mahle-workers-housing-estate-CRBD3B.jpg", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/165595", 
+                            "marine": false, 
+                            "name": "Sommerrain", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 0.02
+                        }, 
+                        {
+                            "countries": "GBR", 
+                            "designation_id": 461, 
+                            "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                            "id": 136225, 
+                            "image_link": "https://s0.geograph.org.uk/geophotos/05/94/22/5942282_7528963b.jpg", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/136225", 
+                            "marine": true, 
+                            "name": "Fremington Quay Cliffs", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 0.1233
+                        }
+                    ]
+                  }
+
+
+  /habitats/name=<name>:
     get:
-      summary: 'Returns details about a particular habitat'
+      summary: 'Search for a habitat by name'
       operationId: getHabitat
       tags:
           - habitat 
       parameters:
-          - name: habitat
+          - name: name
             in: path
             description: Habitat name
             required: true
@@ -225,11 +268,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/Habitat'   
               example:
-                scientificName: Tropical Forest & Woodland Subclass
-                commonName: Tropical Forest & Woodland
-                ecosystemType: SUBCLASS
-                parentName: Forest & Woodland
-                stateID: FL
+                {
+                    "habitat": {
+                        "countries": "GBR", 
+                        "designation_id": 461, 
+                        "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                        "id": 136036, 
+                        "image_link": "x-raw-image:///67b525ae50b3646edf9c3b9a1a82e79b06c9c1c1e90735bee20cbe4126f64c52", 
+                        "iucn_category": 5, 
+                        "link": "http://protectedplanet.net/136036", 
+                        "marine": false, 
+                        "name": "Easter Ness Forest", 
+                        "reported_marine_area": 0.0, 
+                        "reported_terrestrial_area": 4.7124
+                    }
+                }
 
   /species:
     get:
