@@ -163,10 +163,10 @@ paths:
                         }
                     ]
                 }
-                
+
   /countries/name=<name>:
     get:
-      summary: 'Search for country by name'
+      summary: 'Search for a country by name'
       operationId: getCountry
       tags:
           - country 
@@ -179,7 +179,85 @@ paths:
               type: string
       responses:
         '200':
-          description: Search for a country by name
+          description: JSON object for a country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country' 
+              example:
+                  {
+                    "country": {
+                        "alpha2_code": "ES", 
+                        "alpha3_code": "ESP", 
+                        "area": 505992.0, 
+                        "capital": "Madrid", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Spain", 
+                        "flag": "https://restcountries.eu/data/esp.svg", 
+                        "gini_index": 35, 
+                        "latitude": 40.0, 
+                        "longitude": -4.0, 
+                        "name": "Spain", 
+                        "region": "Europe", 
+                        "subregion": "Southern Europe", 
+                        "total_pop": 46438422
+                    }
+                  }
+
+  /countries/alpha2_code=<alpha2_code>:
+    get:
+      summary: 'Search for a country by ISO 2 code'
+      operationId: getCountry
+      tags:
+          - country 
+      parameters:
+          - name: alpha2_code
+            in: path
+            description: ISO 2 of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: JSON object for a country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country' 
+              example:
+                  {
+                    "country": {
+                        "alpha2_code": "ES", 
+                        "alpha3_code": "ESP", 
+                        "area": 505992.0, 
+                        "capital": "Madrid", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Spain", 
+                        "flag": "https://restcountries.eu/data/esp.svg", 
+                        "gini_index": 35, 
+                        "latitude": 40.0, 
+                        "longitude": -4.0, 
+                        "name": "Spain", 
+                        "region": "Europe", 
+                        "subregion": "Southern Europe", 
+                        "total_pop": 46438422
+                    }
+                  }
+
+  /countries/alpha3_code=<alpha3_code>:
+    get:
+      summary: 'Search for a country by ISO 3 code'
+      operationId: getCountry
+      tags:
+          - country 
+      parameters:
+          - name: alpha3_code
+            in: path
+            description: ISO 3 of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: JSON object for a country
           content:
             application/json:
               schema:
