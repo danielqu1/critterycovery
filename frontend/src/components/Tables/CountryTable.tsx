@@ -1,24 +1,30 @@
 import React from 'react'; 
 import BootstrapTable from 'react-bootstrap-table-next';
 import { useHistory } from 'react-router-dom';
+import { Image } from 'react-bootstrap'
 
 function CountryTable(props : any){
     const columns = [{
-        dataField: 'name',
-        text: 'Name'
-      }, {
-        dataField: 'total_pop',
-        text: 'Population'
-      }, {
-        dataField: 'capital',
-        text: 'Capital'
-      }, {
-        dataField: 'region',
-        text: 'Region'
-      }, {
-        dataField: 'area',
-        text: 'Land Area'
-      }];
+      dataField: 'flag',
+      text: 'Image',
+      formatter: imageFormatter,
+      style: { width: '10%'},
+    }, {
+      dataField: 'name',
+      text: 'Name'
+    }, {
+      dataField: 'total_pop',
+      text: 'Population'
+    }, {
+      dataField: 'capital',
+      text: 'Capital'
+    }, {
+      dataField: 'region',
+      text: 'Region'
+    }, {
+      dataField: 'area',
+      text: 'Land Area'
+    }];
 
     let history = useHistory();
     const rowEvents = {
@@ -27,6 +33,12 @@ function CountryTable(props : any){
         },
     };
     
+    function imageFormatter(cell : any, row : any, rowIndex: number) {
+      return (
+        <Image src={row.flag} rounded fluid style={{width:'100%'}}/>
+      );
+    }
+
     return(
         <BootstrapTable 
             keyField='name' 

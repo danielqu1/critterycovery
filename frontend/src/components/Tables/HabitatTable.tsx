@@ -1,9 +1,15 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
+import { Image } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 
 function HabitatTable(props : any){
     const columns = [{
+        dataField: 'image_link',
+        text: 'Image',
+        formatter: imageFormatter,
+        style: { width: '10%'},
+      }, {
         dataField: 'name',
         text: 'Name'
       }, {
@@ -26,9 +32,15 @@ function HabitatTable(props : any){
             props.update(props.habitats[rowIndex + props.startingCard]);
         },
     };
+
+    function imageFormatter(cell : any, row : any, rowIndex: number) {
+      return (
+        <Image src={row.image_link} rounded fluid style={{width:'100%'}}/>
+      );
+    }
     
     return(
-        <BootstrapTable 
+        <BootstrapTable striped
             keyField='name' 
             data={ props.habitats.slice(props.startingCard, props.startingCard+props.maxCardsShown) } 
             columns={ columns } 

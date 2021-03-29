@@ -47,6 +47,7 @@ function Habitats(props : any) {
                 if(id != null){
                     axios.get("/api/habitats/name=" + id).then((response) => {
                         if(response.data != null){
+                            history.push('/habitats');
                             update(response.data.habitat);
                         } 
                     })

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, CardColumns } from 'react-bootstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
@@ -59,6 +59,7 @@ function Species() {
                 if(id != null){
                     axios.get("/api/species/name=" + id).then((response) => {
                         if(response.data != null){
+                            history.push('/species');
                             update(response.data.species);
                         } 
                     })
@@ -102,8 +103,10 @@ function Species() {
                 <Row>
                     <h1>{animals.length} Species. {maxCardsShown} per page</h1>
                 </Row>
-                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
-                    {speciesCards}
+                <Row >
+                    <CardColumns className="justify-content-md-center">
+                        {speciesCards}
+                    </CardColumns>
                 </Row>
                 <PaginationMain 
                     instancesPerPage= {maxCardsShown}

@@ -49,6 +49,7 @@ function Countries(props : any) {
                 if(id != null){
                     axios.get("/api/countries/name=" + id).then((response) => {
                         if(response.data != null){
+                            history.push('/countries')
                             update(response.data.country);
                         } 
                     })
