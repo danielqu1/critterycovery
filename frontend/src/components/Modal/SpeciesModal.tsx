@@ -1,10 +1,57 @@
 import React from 'react'; 
 import {Modal, Button, Image,} from 'react-bootstrap'
+import axios from 'axios'
+
+interface countries{
+  country: string;
+  alpha3_code: string;
+}
+
+interface habitats{
+  name: string;
+}
+
 
 function SpeciesModal(props : any) {
+  const [countries, setCountries] = React.useState(new Array<countries>());
+  const [habitats, setHabitats] = React.useState(new Array<habitats>());
+  React.useEffect(() => {
+    setCountries(new Array<countries>())
+    if(props.species != null){
+      axios.get('/api/species/countries/name='+props.species.scientific_name).then((response) => {
+        setCountries(response.data.countries);
+      })
+    }
+  }, [props.species]);
+
+  React.useEffect(() => {
+    setHabitats(new Array<habitats>())
+    if(countries != null){
+      for (let i = 0; i < countries.length; i++) {
+        axios.get('/api/countries/habitats/alpha3_code='+countries[i].alpha3_code).then((response) => {
+          setHabitats(habitats.concat(response.data.habitats));
+        })
+      }
+    }
+  }, [countries]);
+  
   if(props.species == null){
     return(<a></a>)
   }
+
+  const countryLinks = [];
+  for (let i = 0; i < countries.length; i++) {
+    countryLinks.push(<a style={{ cursor: 'pointer' }} href={'/countries/'+countries[i].country}>{countries[i].country+' '}</a>);
+  }
+  countryLinks.push(<br/>)
+
+  const habitatLinks = [];
+  for (let i = 0; i < habitats.length; i++) {
+    habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
+  }
+  habitatLinks.push(<br/>)
+  
+
   return (
     <Modal
       {...props}
@@ -27,6 +74,9 @@ function SpeciesModal(props : any) {
         Family: {props.species.family}<br/>
         Genus: {props.species.genus}<br/>
         Taxonomic Notes: <br/><div dangerouslySetInnerHTML={{ __html: props.species.taxonomic_notes }}></div><br/>
+
+        Countries: <br/> {countryLinks} <br/>
+        Habitats: <br/> {habitatLinks} <br/>
         Subspecies: {props.species.subspecies}<br/>
         Subpopulations: {props.species.subpopulations}<br/>
         Population Trend: {props.species.population_trend}<br/>

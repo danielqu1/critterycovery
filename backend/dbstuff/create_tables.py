@@ -8,7 +8,7 @@ db_password = "pleaseWork"
 db_name = "104.197.145.153/postgres"
 # engine = create_engine(f"postgresql://{db_user}:{db_password}@{db_name}", echo=False, future=True)
 
-# engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
+engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
 def add_map_source_to_countries(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
@@ -37,8 +37,7 @@ def add_map_source_to_countries(engine):
             # print(row)
 
         print(i)
-        
-
+    
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
@@ -230,4 +229,70 @@ def string_helper(d: dict, b: bool):
     result = result[:-2]
     return result 
 
-# create_countries_table(engine)
+def create_test_db(engine):
+    l = []
+    d = {}
+    d["id"] = 1
+    d["name"] = "Shaharyar"
+    l.append(d)
+    d = {}
+    d["id"] = 2
+    d["name"] = "Lebron"
+    l.append(d)
+    with engine.connect() as conn:
+        conn.execute(text("CREATE TABLE temp (id int, name varchar)"))
+        conn.execute(
+            text("INSERT INTO temp (" + string_helper(l[0], False) + ") " +
+                        "VALUES (" + string_helper(l[0], True) + ")"), 
+            l
+        )
+        conn.commit()
+        result = conn.execute(text("SELECT * FROM temp"))
+        for row in result:
+            print(row)
+
+def update_test_db(engine):
+    l = []
+    d = {}
+    d["number"] = 7
+    l.append(d)
+    d = {}
+    d["number"] = 23
+    l.append(d)
+
+    with engine.connect() as conn:
+        conn.execute(text("ALTER TABLE temp ADD number int"))
+        # conn.execute(
+        #     text("INSERT INTO temp (number) " +
+        #                 "VALUES (:number)"), 
+        #     l
+        # )
+        # conn.execute(text("UPDATE temp SET number = VALUES(:number)"), l)
+        d = {1: 15, 2: 24}
+        for k in d:
+            conn.execute(text("update temp set number = " + str(d[k]) + " where id = " + str(k)))
+
+        conn.commit()
+
+        result = conn.execute(text("SELECT * FROM temp"))
+        i = 0
+        for row in result:
+            i += 1
+            print(row)
+        print()
+        print(str(i) + " rows")
+
+def test_test_db():
+    print()
+    print("-----------------------")
+    print("      CREATING DB      ")
+    print("-----------------------")
+    print()
+    create_test_db(engine)
+    print()
+    print("-----------------------")
+    print("  ADDING COLUMN TO DB  ")
+    print("-----------------------")
+    print()
+    update_test_db(engine)
+        

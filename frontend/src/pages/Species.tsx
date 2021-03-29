@@ -72,7 +72,9 @@ function Species() {
     }
 
     function update(animal : species) {
-        history.push(`/species/${animal.scientific_name}`)
+        if(history.location.pathname != `/species/${animal.scientific_name}`){
+            history.push(`/species/${animal.scientific_name}`)
+        }
         setSpecies(animal)
         setModalShow(true)
     }
