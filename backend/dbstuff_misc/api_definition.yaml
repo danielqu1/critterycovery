@@ -82,6 +82,7 @@ paths:
             required: true
             schema:
               type: string
+            example: Spain
       responses:
         '200':
           description: JSON object for a country
@@ -121,6 +122,7 @@ paths:
             required: true
             schema:
               type: string
+            example: ES
       responses:
         '200':
           description: JSON object for a country
@@ -160,6 +162,7 @@ paths:
             required: true
             schema:
               type: string
+            example: ESP
       responses:
         '200':
           description: JSON object for a country
@@ -199,6 +202,7 @@ paths:
             required: true
             schema:
               type: string
+            example: China
       responses:
         '200':
           description: Search with country name as "China"
@@ -239,6 +243,7 @@ paths:
             required: true
             schema:
               type: string
+            example: China
       responses:
         '200':
           description: Search with country name as "China"
@@ -388,6 +393,7 @@ paths:
             required: true
             schema:
               type: string
+            example: Easter Ness Forest
       responses:
         '200':
           description: Habitat details 
@@ -513,6 +519,7 @@ paths:
             required: true
             schema:
               type: string
+            example: Aaadonta irregularis
       responses:
         '200':
           description: JSON object for the species
@@ -560,6 +567,7 @@ paths:
             required: true
             schema:
               type: string
+            example: Aaadonta irregularis
       responses:
         '200':
           description: Search for species "Aaadonta irregularis"
@@ -699,3 +707,4 @@ components:
           format: int32
         message:
           type: string
+          
