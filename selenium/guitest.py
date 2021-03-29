@@ -34,6 +34,7 @@ class GuiTests(unittest.TestCase):
 
 	# reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests 
 
+	
 	def test_main_page_0(self):
 		driver = self.driver
 		driver.get(URL)
@@ -72,8 +73,69 @@ class GuiTests(unittest.TestCase):
 
 		driver.find_elements_by_xpath(xpath)[0].click()		# click on Species
 		
-		self.assertEqual(driver.current_url, URL + "/species")		
+		self.assertEqual(driver.current_url, URL + "/species")
 
+	def test_navbar_0(self):
+		driver = self.driver
+		driver.get(URL)
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")	
+
+	def test_navbar_1(self):
+		driver = self.driver
+		driver.get(URL + "/countries")
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, URL + "/")			
+
+	
+	"""
+	def test_navbar_2(self):
+		driver = self.driver
+		driver.get(URL)
+
+		xpath = "/html/body/div/div/nav/a"
+
+		if DEV:
+			xpath = "/html/body/div/div/nav/div[1]/div/a"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, "Habitats")
+	
+	"""
+	
+
+	def test_loading(self):
+		driver = self.driver
+
+		driver.get(URL + "/species")
+
+		# print("title =" + driver.title) # critterycovery
+
+		xpath = "/html/body/div/div/div/div/h1"
+
+		if DEV:
+			xpath = "/html/body/div/div/div[2]"
+
+		result = driver.find_elements_by_xpath(xpath)[0]	# get first ([0]) because 
+
+		self.assertEqual(result.text, "Loading...")
+
+	
 	def test_about_page_0(self):
 		driver = self.driver
 
@@ -89,6 +151,18 @@ class GuiTests(unittest.TestCase):
 		result = driver.find_elements_by_xpath(xpath)[0]	# get first ([0]) because 
 
 		self.assertEqual(result.text, "General Description:")
+
+	def test_about_page_1(self):
+		driver = self.driver
+		driver.get(URL + "/about")
+		xpath = "/html/body/div/div/div[2]/div/div[3]/a[1]"
+		if DEV:
+			xpath = "/html/body/div/div/body/div[2]/a[1]"
+
+		driver.find_elements_by_xpath(xpath)[0].click()
+
+		self.assertEqual(driver.current_url, "https://gitlab.com/cs373-group16/critterycovery") 
+	
 
 
 	def tearDown(self):						# part of unittest library; called after every test
