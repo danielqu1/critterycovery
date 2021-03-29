@@ -1,0 +1,8 @@
+before_script:
+  - date
+  - uname -a
+  - printenv | sort
+
+backend:
+  script:
+    - python3 backend/python_tests.py
