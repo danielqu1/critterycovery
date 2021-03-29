@@ -179,54 +179,81 @@ paths:
 #                $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Species:
-      type: object
-      required:
-        - scientificName
-        - commonName
-      properties:
-          scientificName:
-            type: string
-          commonName:
-            type: string
-          stateID:
-            type: array
-          habitat:
-            type: string
-          status:
-            type: string
-          rank:
-            type: string
-          kingdom:
-            type: string
-          phylum:
-            type: string
-          taxclass:
-            type: string
-          taxorder:
-            type: string
-          family:
-            type: string
-          genus:
-            type: string
-          taxonomicComments:
-            type: string
     Habitat:
       type: object
       required:
-        - scientificName
-        - commonName
-        - ecosystemType
+        - name
       properties:
-          scientificName:
+        id: 
+            type: integer
+        name: 
             type: string
-          commonName:
+        marine: 
+            type: boolean
+        reported_marine_area: 
+            type: number
+        reported_terrestrial_area: 
+            type: number
+        countries: 
             type: string
-          ecosystemType:
+        iucn_category: 
+            type: integer
+        designation_name: 
             type: string
-          parentName:
+        designation_id: 
+            type: integer
+        link: 
             type: string
-          stateID:
+        image_link: 
+            type: string
+        embedded_map_link: 
+            type: string
+    Species:
+      type: object
+      required:
+        - scientific_name
+      properties:
+        scientific_name: 
+            type: string
+        subspecies: 
+            type: string
+        kingdom: 
+            type: string
+        phylum: 
+            type: string
+        _class: 
+            type: string
+        _order: 
+            type: string
+        family: 
+            type: string
+        genus: 
+            type: string
+        common_name: 
+            type: string
+        population_trend: 
+            type: string
+        marine: 
+            type: boolean
+        freshwater: 
+            type: boolean
+        terrestrial: 
+            type: boolean
+        taxonomic_notes: 
+            type: string
+        rationale: 
+            type: string
+        geographic_range: 
+            type: string
+        population: 
+            type: string
+        text_habitat: 
+            type: string
+        threats: 
+            type: string
+        conservation_measures: 
+            type: string
+        image_link: 
             type: string
     Country:
       type: object
@@ -259,19 +286,7 @@ components:
             type: string
         embedded_map_link: 
             type: string
-#    User:
-#      type: object
-#      required:
-#        - id
-#        - name
-#      properties:
-#        id:
-#          type: integer
-#          format: int64
-#        name:
-#          type: string
-#        tag:
-#          type: string
+
     Error:
       type: object
       required:
