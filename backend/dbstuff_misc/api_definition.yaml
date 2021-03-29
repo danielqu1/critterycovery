@@ -186,7 +186,135 @@ paths:
                     }
                   }
 
-  /habitat:
+  /countries/habitats/name=<name>:
+    get:
+      summary: 'Search for all habitats within a country by country name'
+      operationId: getHabitat
+      tags:
+          - country 
+      parameters:
+          - name: name
+            in: path
+            description: Name of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search with country name as "China"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Habitat' 
+              example:
+                  {
+                    "habitats": [
+                        {
+                            "name": "Mount Huangshan"
+                        }, 
+                        {
+                            "name": "Changbaishan"
+                        }, 
+                        {
+                            "name": "Inner Mongolia Grand Khingan Hanma Wetlands"
+                        }, 
+                        {
+                            "name": "Wulingyuan Scenic and Historic Interest Area"
+                        }
+                    ]
+                  }
+
+  /countries/species/name=<name>:
+    get:
+      summary: 'Search for all endangered species within a country by country name'
+      operationId: getSpecies
+      tags:
+          - country 
+      parameters:
+          - name: name
+            in: path
+            description: Name of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search with country name as "China"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Species' 
+              example:
+                  {
+                    "species": [
+                        {
+                            "scientific_name": "Acipenser schrenckii"
+                        }, 
+                        {
+                            "scientific_name": "Aythya baeri"
+                        }, 
+                        {
+                            "scientific_name": "Bufo luchunnicus"
+                        }, 
+                        {
+                            "scientific_name": "Cuora galbinifrons"
+                        }, 
+                        {
+                            "scientific_name": "Cyprinus ilishaestomus"
+                        }, 
+                        {
+                            "scientific_name": "Emberiza aureola"
+                        }, 
+                        {
+                            "scientific_name": "Gyps bengalensis"
+                        }, 
+                        {
+                            "scientific_name": "Indotestudo elongata"
+                        }, 
+                        {
+                            "scientific_name": "Margarya yangtsunghaiensis"
+                        }, 
+                        {
+                            "scientific_name": "Megophrys sangzhiensis"
+                        }, 
+                        {
+                            "scientific_name": "Nomascus nasutus"
+                        }, 
+                        {
+                            "scientific_name": "Pangasius sanitwongsei"
+                        }, 
+                        {
+                            "scientific_name": "Ptychidio jordani"
+                        }, 
+                        {
+                            "scientific_name": "Rafetus swinhoei"
+                        }, 
+                        {
+                            "scientific_name": "Rhinopithecus strykeri"
+                        }, 
+                        {
+                            "scientific_name": "Sarcogyps calvus"
+                        }, 
+                        {
+                            "scientific_name": "Schizothorax grahami"
+                        }, 
+                        {
+                            "scientific_name": "Sinocyclocheilus yangzongensis"
+                        }, 
+                        {
+                            "scientific_name": "Squatina japonica"
+                        }, 
+                        {
+                            "scientific_name": "Tylototriton anhuiensis"
+                        }
+                    ]
+                }
+
+  /habitats:
     get:
       summary: 'Returns all habitats'
       responses:
@@ -199,19 +327,62 @@ paths:
                 items:
                   $ref: '#/components/schemas/Habitat'
               example: 
-                  [
-                    {Shrub & Herb Vegetation: CLASS},
-                    {Tropical Forest & Woodland: SUBCLASS},
-                    {Desert & Semi-Desert: CLASS}
-                  ]
-  /habitat/{habitat}:
+                  {
+                    "habitats": [
+                        {
+                            "countries": "GBR", 
+                            "designation_id": 461, 
+                            "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                            "id": 136036, 
+                            "image_link": "x-raw-image:///67b525ae50b3646edf9c3b9a1a82e79b06c9c1c1e90735bee20cbe4126f64c52", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/136036", 
+                            "marine": false, 
+                            "name": "Easter Ness Forest", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 4.7124
+                        }, 
+                        {
+                            "countries": "DEU", 
+                            "designation_id": 3, 
+                            "designation_name": "Nature Reserve", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Germany", 
+                            "id": 165595, 
+                            "image_link": "https://c8.alamy.com/comp/CRBD3B/aerial-view-sommerrain-quarter-former-mahle-workers-housing-estate-CRBD3B.jpg", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/165595", 
+                            "marine": false, 
+                            "name": "Sommerrain", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 0.02
+                        }, 
+                        {
+                            "countries": "GBR", 
+                            "designation_id": 461, 
+                            "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                            "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                            "id": 136225, 
+                            "image_link": "https://s0.geograph.org.uk/geophotos/05/94/22/5942282_7528963b.jpg", 
+                            "iucn_category": 5, 
+                            "link": "http://protectedplanet.net/136225", 
+                            "marine": true, 
+                            "name": "Fremington Quay Cliffs", 
+                            "reported_marine_area": 0.0, 
+                            "reported_terrestrial_area": 0.1233
+                        }
+                    ]
+                  }
+
+
+  /habitats/name=<name>:
     get:
-      summary: 'Returns details about a particular habitat'
+      summary: 'Search for a habitat by name'
       operationId: getHabitat
       tags:
           - habitat 
       parameters:
-          - name: habitat
+          - name: name
             in: path
             description: Habitat name
             required: true
@@ -225,11 +396,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/Habitat'   
               example:
-                scientificName: Tropical Forest & Woodland Subclass
-                commonName: Tropical Forest & Woodland
-                ecosystemType: SUBCLASS
-                parentName: Forest & Woodland
-                stateID: FL
+                {
+                    "habitat": {
+                        "countries": "GBR", 
+                        "designation_id": 461, 
+                        "designation_name": "Site Of Special Scientific Interest (Gb)", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=United Kingdom of Great Britain and Northern Ireland", 
+                        "id": 136036, 
+                        "image_link": "x-raw-image:///67b525ae50b3646edf9c3b9a1a82e79b06c9c1c1e90735bee20cbe4126f64c52", 
+                        "iucn_category": 5, 
+                        "link": "http://protectedplanet.net/136036", 
+                        "marine": false, 
+                        "name": "Easter Ness Forest", 
+                        "reported_marine_area": 0.0, 
+                        "reported_terrestrial_area": 4.7124
+                    }
+                }
 
   /species:
     get:
@@ -363,6 +545,37 @@ paths:
                     "text_habitat": "This species has been recorded in tropical moist lowland forest.", 
                     "threats": "<p>This species is<span lang=\"EN-US\"> threatened by destruction and modification of native lowland forest. Therefore it is not surprising that the species has probably been extirpated from the highly modified island of Peleliu, whose forest was burned in World War II with flamethrowers (Hinz 1995, Crombie and Pregill 1999). Disruption of the ground, rocks and leaf litter may be of particular significance to this and other endodontid species. Endodontoid land snails are among the most threatened land snails on Pacific Islands in the few places where they still exist (Solem 1983), and therefore the fact that this species is still extant is important. This species is in need of conservation attention.</p>"
                   }
+                }
+
+  /species/countries/name=<name>:
+    get:
+      summary: 'Get a list of countries with documented population of a species by scientific name'
+      operationId: getCountry
+      tags:
+          - species 
+      parameters:
+          - name: name
+            in: path
+            description: Scientific name of the species
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search for species "Aaadonta irregularis"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/Country'
+              example:
+                {
+                    "countries": [
+                        {
+                            "country": "Palau"
+                        }
+                    ]
                 }
 
 components:

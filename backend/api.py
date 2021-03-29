@@ -296,7 +296,7 @@ def get_specie(name):
 	response = specie_schema.dump(specie)
 	return jsonify({"species" : response})
 
-# get country codes for a single species by name 
+# get country names for a single species by name 
 @app.route("/api/species/countries/name=<name>", methods=["GET"])
 def get_species_countries(name):
 	alpha2_code = countries_per_species.query.filter_by(scientific_name=name).all()
