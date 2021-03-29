@@ -7,4 +7,18 @@ backend:
   image: groverhood/backend
   script:
 #    - python3 backend/api.py
-    - python3 backend/python_tests.py 
+    - python3 backend/python_tests.py
+
+frontend:
+  image: mcgenius/pp_mocha
+  script:
+    - cd frontend
+    - yarn install
+    - cd jest
+    - yarn test
+
+selenium:
+  image: groverhood/selenium-testing
+  script: 
+    - python3 tests/selenium/guitest.py
+

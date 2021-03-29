@@ -20,7 +20,7 @@ from selenium.webdriver.common.by import By
 DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 # right now, don't use the linux one; does not seem to work'
 
-DEV = True  # if True, make sure you have frontend started with "yarn start"
+DEV = False  # if True, make sure you have frontend started with "yarn start"
 
 URL = "https://critterycovery.me"
 
