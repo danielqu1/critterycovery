@@ -26,7 +26,7 @@ function Countries(props : any) {
     const {id} = useParams<{ id: string }>();
     const [countries, setCountries] = React.useState(new Array<country>());
     const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(id != null);
+    const [modalShow, setModalShow] = React.useState(false);
     const [country, setCountry] = React.useState(countries[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
@@ -49,8 +49,8 @@ function Countries(props : any) {
                 if(id != null){
                     axios.get("/api/countries/name=" + id).then((response) => {
                         if(response.data != null){
-                            history.push('/countries')
-                            update(response.data.country);
+                            setCountry(response.data.country)
+                            setModalShow(true)
                         } 
                     })
                 }
@@ -63,16 +63,14 @@ function Countries(props : any) {
     }
 
     function update(place : country) {
-        if(history.location.pathname != `/countries/${place.name}`){
-            history.push(`/countries/${place.name}`)
-        }
+        history.push(`/countries/${place.name}`)
         setCountry(place)
         setModalShow(true)
     }
 
     function closeModal(){
-        history.goBack()
-        setModalShow(false)
+        setModalShow(false);
+        history.push('/countries');
     }
     
     return(

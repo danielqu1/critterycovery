@@ -9,11 +9,3 @@ exports[`Modals Species Modal page 1`] = `ShallowWrapper {}`;
 exports[`Pages Error page 1`] = `ShallowWrapper {}`;
 
 exports[`Pages Home page 1`] = `ShallowWrapper {}`;
-
-exports[`Render views Country Modal page 1`] = `ShallowWrapper {}`;
-
-exports[`Render views Error page 1`] = `ShallowWrapper {}`;
-
-exports[`Render views Habitat Modal page 1`] = `ShallowWrapper {}`;
-
-exports[`Render views Species Modal page 1`] = `ShallowWrapper {}`;

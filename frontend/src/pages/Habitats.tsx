@@ -24,7 +24,7 @@ function Habitats(props : any) {
     const {id} = useParams<{ id: string }>();
     const [habitats, setHabitats] = React.useState(new Array<habitat>());
     const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(id != null);
+    const [modalShow, setModalShow] = React.useState(false);
     const [habitat, setHabitat] = React.useState(habitats[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
@@ -47,8 +47,8 @@ function Habitats(props : any) {
                 if(id != null){
                     axios.get("/api/habitats/name=" + id).then((response) => {
                         if(response.data != null){
-                            history.push('/habitats');
-                            update(response.data.habitat);
+                            setHabitat(response.data.habitat)
+                            setModalShow(true)
                         } 
                     })
                 }
@@ -61,16 +61,14 @@ function Habitats(props : any) {
     }
 
     function update(place : habitat) {
-        if(history.location.pathname != `/habitats/${place.name}`){
-            history.push(`/habitats/${place.name}`)
-        }
+        history.push(`/habitats/${place.name}`)
         setHabitat(place)
         setModalShow(true)
     }
 
     function closeModal(){
-        history.goBack()
-        setModalShow(false)
+        setModalShow(false);
+        history.push('/habitats');
     }
     
     return(
