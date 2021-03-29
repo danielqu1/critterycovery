@@ -36,7 +36,7 @@ function Species() {
     const {id} = useParams<{ id: string }>();
     const [animals, setAnimals] = React.useState(new Array<species>());
     const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(id != null);
+    const [modalShow, setModalShow] = React.useState(false);
     const [species, setSpecies] = React.useState(animals[0])
     const [startingCard, setStart] = React.useState(0)
     const [maxCardsShown, setCardsShown] = React.useState(10)
@@ -59,8 +59,8 @@ function Species() {
                 if(id != null){
                     axios.get("/api/species/name=" + id).then((response) => {
                         if(response.data != null){
-                            history.push('/species');
-                            update(response.data.species);
+                            setSpecies(response.data.species)
+                            setModalShow(true)
                         } 
                     })
                 }
@@ -73,16 +73,14 @@ function Species() {
     }
 
     function update(animal : species) {
-        if(history.location.pathname != `/species/${animal.scientific_name}`){
-            history.push(`/species/${animal.scientific_name}`)
-        }
+        history.push(`/species/${animal.scientific_name}`)
         setSpecies(animal)
         setModalShow(true)
     }
 
     function closeModal(){
-        history.goBack()
-        setModalShow(false)
+        setModalShow(false);
+        history.push('/species');
     }
 
     const speciesCards = [];
