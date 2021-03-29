@@ -10,6 +10,7 @@ db_name = "104.197.145.153/postgres"
 
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=False, future=True)
 
+
 def add_map_source_to_countries(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
@@ -25,7 +26,7 @@ def add_map_source_to_countries(engine):
 
         # conn.execute(
         #     text("INSERT INTO countries_table (embedded_map_link) " +
-        #                 "VALUES (:link)"), 
+        #                 "VALUES (:link)"),
         #     links_array
         # )
         conn.commit()
@@ -37,7 +38,8 @@ def add_map_source_to_countries(engine):
             # print(row)
 
         print(i)
-    
+
+
 def create_countries_table(engine):
     countries_link = "https://restcountries.eu/rest/v2/all"
     countries_response = requests.get(countries_link).json()
@@ -66,18 +68,29 @@ def create_countries_table(engine):
         countries_array.append(d)
 
     with engine.connect() as conn:
-        conn.execute(text("CREATE TABLE countries_table (name varchar, alpha2_code varchar, alpha3_code varchar, " +
-                        "total_pop int, capital varchar, region varchar, subregion varchar, latitude float, " +
-                        "longitude float, area float, gini_index int, flag varchar, embedded_map_link varchar)"))
         conn.execute(
-            text("INSERT INTO countries_table (" + string_helper(countries_array[0], False) + ") " +
-                        "VALUES (" + string_helper(countries_array[0], True) + ")"), 
-            countries_array
+            text(
+                "CREATE TABLE countries_table (name varchar, alpha2_code varchar, alpha3_code varchar, "
+                + "total_pop int, capital varchar, region varchar, subregion varchar, latitude float, "
+                + "longitude float, area float, gini_index int, flag varchar, embedded_map_link varchar)"
+            )
+        )
+        conn.execute(
+            text(
+                "INSERT INTO countries_table ("
+                + string_helper(countries_array[0], False)
+                + ") "
+                + "VALUES ("
+                + string_helper(countries_array[0], True)
+                + ")"
+            ),
+            countries_array,
         )
         conn.commit()
         result = conn.execute(text("SELECT * FROM countries_table"))
         for row in result:
             print(row)
+
 
 def create_habitats_table(engine):
     habitats_link_base = "http://api.protectedplanet.net/v3/protected_areas"
@@ -86,7 +99,9 @@ def create_habitats_table(engine):
     map_request = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q="
     habitats_array = []
     for page_num in range(1, 11):  # change this later for more pages
-        habitats_link = habitats_link_base + habitats_token + habitats_pages + str(page_num) 
+        habitats_link = (
+            habitats_link_base + habitats_token + habitats_pages + str(page_num)
+        )
         habitats_response = requests.get(habitats_link).json()["protected_areas"]
         for i in habitats_response:
             d = {}
@@ -95,7 +110,7 @@ def create_habitats_table(engine):
             d["marine"] = i["marine"]
             d["reported_marine_area"] = i["reported_marine_area"]
             d["reported_terrestrial_area"] = i["reported_area"]
-            d["countries"] =  i["countries"][0]["iso_3"]
+            d["countries"] = i["countries"][0]["iso_3"]
             d["iucn_category"] = i["iucn_category"]["id"]
             d["designation_name"] = i["designation"]["name"]
             d["designation_id"] = i["designation"]["id"]
@@ -106,23 +121,36 @@ def create_habitats_table(engine):
             habitats_array.append(d)
 
     with engine.connect() as conn:
-        conn.execute(text("CREATE TABLE habitats_table (id int, name varchar, marine boolean, " + 
-                        "reported_marine_area float, reported_terrestrial_area float, countries varchar, " + 
-                        "iucn_category int, designation_name varchar, designation_id int, link varchar, " +
-                        "image_link varchar, embedded_map_link varchar)"))
         conn.execute(
-            text("INSERT INTO habitats_table (" + string_helper(habitats_array[0], False) + ") " +
-                        "VALUES (" + string_helper(habitats_array[0], True) + ")"), 
-            habitats_array
+            text(
+                "CREATE TABLE habitats_table (id int, name varchar, marine boolean, "
+                + "reported_marine_area float, reported_terrestrial_area float, countries varchar, "
+                + "iucn_category int, designation_name varchar, designation_id int, link varchar, "
+                + "image_link varchar, embedded_map_link varchar)"
+            )
+        )
+        conn.execute(
+            text(
+                "INSERT INTO habitats_table ("
+                + string_helper(habitats_array[0], False)
+                + ") "
+                + "VALUES ("
+                + string_helper(habitats_array[0], True)
+                + ")"
+            ),
+            habitats_array,
         )
         conn.commit()
         # result = conn.execute(text("SELECT * FROM habitats_table"))
         # for row in result:
         #     print(row)
 
+
 def create_species_table(engine):
     iucn_link_base = "https://apiv3.iucnredlist.org/api/v3/species/"
-    iucn_token = "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
+    iucn_token = (
+        "?token=6926163f47db8665a1a736b0c241af81bf13923ee884fb35e5818d23df9f8755"
+    )
     iucn_link = iucn_link_base + "category/CR" + iucn_token
     species_response = requests.get(iucn_link).json()["result"]
     species_array = []
@@ -138,9 +166,13 @@ def create_species_table(engine):
         d = {}
         d["scientific_name"] = i["scientific_name"]
         d["subspecies"] = i["subspecies"]
-        countries_endpoint = iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
+        countries_endpoint = (
+            iucn_link_base + "countries/name/" + i["scientific_name"] + iucn_token
+        )
         specifics_endpoint = iucn_link_base + i["scientific_name"] + iucn_token
-        text_endpoint = iucn_link_base + "narrative/" + i["scientific_name"] + iucn_token
+        text_endpoint = (
+            iucn_link_base + "narrative/" + i["scientific_name"] + iucn_token
+        )
         try:
             specifics_response = requests.get(specifics_endpoint).json()["result"][0]
         except:
@@ -185,36 +217,54 @@ def create_species_table(engine):
         # break # DO NOT REMOVE THIS!!!!!!!!!! (only after connecting to db)
 
     with engine.connect() as conn:
-        conn.execute(text("CREATE TABLE species_table_2 (scientific_name varchar, subspecies varchar, " +
-                        "kingdom varchar, phylum varchar, " +
-                        "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, " +
-                        "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean, " +
-                        "taxonomic_notes text, rationale text, geographic_range text, population text, " +
-                        "text_habitat text, threats text, conservation_measures text, image_link varchar)"))
         conn.execute(
-            text("INSERT INTO species_table_2 (" + string_helper(species_array[0], False) + ") " +
-                        "VALUES (" + string_helper(species_array[0], True) + ")"), 
-            species_array
+            text(
+                "CREATE TABLE species_table_2 (scientific_name varchar, subspecies varchar, "
+                + "kingdom varchar, phylum varchar, "
+                + "_class varchar, _order varchar, family varchar, genus varchar, common_name varchar, "
+                + "population_trend varchar, marine boolean, freshwater boolean, terrestrial boolean, "
+                + "taxonomic_notes text, rationale text, geographic_range text, population text, "
+                + "text_habitat text, threats text, conservation_measures text, image_link varchar)"
+            )
+        )
+        conn.execute(
+            text(
+                "INSERT INTO species_table_2 ("
+                + string_helper(species_array[0], False)
+                + ") "
+                + "VALUES ("
+                + string_helper(species_array[0], True)
+                + ")"
+            ),
+            species_array,
         )
         conn.commit()
         # result = conn.execute(text("SELECT * FROM species_table_2"))
         # for row in result:
         #     print(row)
         # print("STARTING COUNTRIES_PER_SPECIES TABLE")
-        conn.execute(text("CREATE TABLE countries_per_species_2 (id int, scientific_name varchar, alpha2_code varchar)"))
         conn.execute(
-            text("INSERT INTO countries_per_species_2 (id, scientific_name, alpha2_code) " +
-                        "VALUES (:id, :scientific_name, :alpha2_code)"), 
-            countries_per_species
+            text(
+                "CREATE TABLE countries_per_species_2 (id int, scientific_name varchar, alpha2_code varchar)"
+            )
+        )
+        conn.execute(
+            text(
+                "INSERT INTO countries_per_species_2 (id, scientific_name, alpha2_code) "
+                + "VALUES (:id, :scientific_name, :alpha2_code)"
+            ),
+            countries_per_species,
         )
         conn.commit()
         # result = conn.execute(text("SELECT * FROM countries_per_species_2"))
         # for row in result:
         #     print(row)
 
+
 image_link1 = "https://www.googleapis.com/customsearch/v1?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&cx=23d27d9bd3761439e&q="
 image_link2 = "&searchType=image&num=1"
 fake_img = "https://www.wiki.sc4devotion.com/images/6/62/Wiki_no_image.png"
+
 
 def get_species_image(name: str):
     img_endpoint = image_link1 + name + image_link2
@@ -225,6 +275,7 @@ def get_species_image(name: str):
         ret = fake_img
     return ret
 
+
 def string_helper(d: dict, b: bool):
     result = ""
     for key in d:
@@ -232,7 +283,8 @@ def string_helper(d: dict, b: bool):
             result = result + ":"
         result = result + key + ", "
     result = result[:-2]
-    return result 
+    return result
+
 
 def create_test_db(engine):
     l = []
@@ -247,14 +299,21 @@ def create_test_db(engine):
     with engine.connect() as conn:
         conn.execute(text("CREATE TABLE temp (id int, name varchar)"))
         conn.execute(
-            text("INSERT INTO temp (" + string_helper(l[0], False) + ") " +
-                        "VALUES (" + string_helper(l[0], True) + ")"), 
-            l
+            text(
+                "INSERT INTO temp ("
+                + string_helper(l[0], False)
+                + ") "
+                + "VALUES ("
+                + string_helper(l[0], True)
+                + ")"
+            ),
+            l,
         )
         conn.commit()
         result = conn.execute(text("SELECT * FROM temp"))
         for row in result:
             print(row)
+
 
 def update_test_db(engine):
     l = []
@@ -269,13 +328,15 @@ def update_test_db(engine):
         conn.execute(text("ALTER TABLE temp ADD number int"))
         # conn.execute(
         #     text("INSERT INTO temp (number) " +
-        #                 "VALUES (:number)"), 
+        #                 "VALUES (:number)"),
         #     l
         # )
         # conn.execute(text("UPDATE temp SET number = VALUES(:number)"), l)
         d = {1: 15, 2: 24}
         for k in d:
-            conn.execute(text("update temp set number = " + str(d[k]) + " where id = " + str(k)))
+            conn.execute(
+                text("update temp set number = " + str(d[k]) + " where id = " + str(k))
+            )
 
         conn.execute(text("UPDATE temp SET name = 'steph' where name = 'Lebron'"))
 
@@ -288,6 +349,7 @@ def update_test_db(engine):
             print(row)
         print()
         print(str(i) + " rows")
+
 
 def test_test_db():
     print()
@@ -302,5 +364,6 @@ def test_test_db():
     print("-----------------------")
     print()
     update_test_db(engine)
-        
+
+
 # test_test_db()

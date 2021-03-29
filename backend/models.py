@@ -1,4 +1,4 @@
-from api import db				# api.py
+from api import db  # api.py
 
 # model of Country for SQLAlchemy
 class Country(db.Model):
@@ -14,7 +14,8 @@ class Country(db.Model):
     longitude = db.Column(db.Float)
     area = db.Column(db.Integer)
     gini_index = db.Column(db.Float)
-    flag = db.Column(db.Unicode) # it's a link, is it a string?
+    flag = db.Column(db.Unicode)  # it's a link, is it a string?
+
 
 # model of Species for SQLAlchemy
 class Species(db.Model):
@@ -33,11 +34,12 @@ class Species(db.Model):
     freshwater = db.Column(db.Boolean)
     terrestrial = db.Column(db.Boolean)
 
+
 # model of Habitat for SQLAlchemy
 class Habitat(db.Model):
     id = cd.Column(db.Integer)
     name = db.Column(db.Unicode)
-    marine = db.Column(db.Boolean) 
+    marine = db.Column(db.Boolean)
     reported_marine_area = db.Column(db.Float)
     reported_terrestrial_area = db.Column(db.Float)
     # countries = smthn - array
