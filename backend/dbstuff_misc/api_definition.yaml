@@ -5,184 +5,7 @@ info:
 servers:
   - url: 'https://critterycovery.me/api'
 paths:
-  /species:
-    get:
-      summary: 'Returns all species'
-      responses:
-        '200':
-          description: JSON array of species names
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Species'
-              example: 
-                  {
-                    "species": [
-                        {
-                            "_class": "MAMMALIA", 
-                            "_order": "CARNIVORA", 
-                            "common_name": "Asiatic Cheetah", 
-                            "conservation_measures": null, 
-                            "family": "FELIDAE", 
-                            "freshwater": false, 
-                            "genus": "Acinonyx", 
-                            "geographic_range": null, 
-                            "image_link": "https://www.researchgate.net/profile/Sam-Williams-8/publication/321599654/figure/fig1/AS:568809691463680@1512626206107/An-Asiatic-cheetah-Acinonyx-jubatus-ssp-venaticus-just-43-are-left-in-IranCredit.png", 
-                            "kingdom": "ANIMALIA", 
-                            "marine": false, 
-                            "phylum": "CHORDATA", 
-                            "population": null, 
-                            "population_trend": "Stable", 
-                            "rationale": "With a historic distribution across southwest and central Asia to India (Nowell and Jackson 1996, Mallon 2007), the Asiatic Cheetah is now only known to occur with certainty in Iran.  The population is very small. For the Red List, population is defined as the number of \u201cmature individuals known or inferred to be capable of reproduction.\u201d  This was interpreted for cats as the effective population size, or number of animals estimated to be passing on their genes through successful raising and recruitment of offspring (Nowell <em>et al</em>., 2007).  Effective population size for cheetahs (females in Tanzania's Serengeti National Park) was estimated at 44% of the census population (incorporating variability in lifetime reproductive success: Kelly 2001).  The census population of cheetahs in Iran is estimated at 60-100 (Hunter <em>et al</em>., 2007), with less than half likely to consist of mature breeding individuals.<br/><br/>Although the population currently appears stable (Hunter <em>et al</em>. 2007), it has declined in recent decades.  There were said to be over 200 Cheetahs in Iran in the mid-1970s (E. Ferouz, pers. comm. 1974), although some experts consider this figure an over-estimate (P. Joslin, pers. comm.) (Nowell and Jackson 1996).", 
-                            "scientific_name": "Acinonyx jubatus ssp. venaticus", 
-                            "subspecies": "venaticus", 
-                            "taxonomic_notes": "The subspecies <i>A. j. venaticus</i>, commonly called the Asiatic Cheetah, is considered by Nowell and Jackson (1996) to survive only in Iran.  They place the eastern limit of its range in Arabia.  However, the review by Krausman and Morales (2005) included cheetahs from the northern Sahara in venaticus.  The type locality of <i>A. j. venaticus</i> (=<i>Felis venatica</i> [Griffith, 1821]) is unknown (Krausman and Morales 2005).  At a November 2006 meeting of the North African Region Cheetah Action Group (NARCAG), Belchabir (2007) recommended genetic studies to clarify whether the cheetahs of Algeria (which probably has the largest Saharan cheetah population) should be classified as <i>A. j. hecki</i> or <i>A. j. venaticus</i>. Presently <i>A. j. venaticus</i> is considered restricted to Asia.", 
-                            "terrestrial": true, 
-                            "text_habitat": null, 
-                            "threats": null
-                        }, 
-                        {
-                            "_class": "ACTINOPTERYGII", 
-                            "_order": "ACIPENSERIFORMES", 
-                            "common_name": "Amur Sturgeon", 
-                            "conservation_measures": "The majority of 'conservation' measures historically were directed to control local and national fisheries. Commercial sturgeon fishing was prohibited in the Soviet Union during the periods 1923-1930, 1958-1976 and from 1984 to the present (Vaisman and Fomenko 2007).&#160; The Amur Sturgeon was listed in Appendix II of the Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) in 1998.", 
-                            "family": "ACIPENSERIDAE", 
-                            "freshwater": true, 
-                            "genus": "Acipenser", 
-                            "geographic_range": "This species inhabits the entire Amur River basin from the estuary to the river's upper reaches. It occurs in tributaries - the Shilka, Onon, Argun, Nerch, Sungari, Nonni and Ussuri Rivers (Krykhtin and Svirskii 1997) - and extremely rarely occurs in Lake Khanka (Krykhtin and Svirskii 1997).", 
-                            "image_link": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Japanese_Sturgeon_%28Acipenser_schrenckii%29.jpg", 
-                            "kingdom": "ANIMALIA", 
-                            "marine": false, 
-                            "phylum": "CHORDATA", 
-                            "population": "Currently, complete population data based on results of direct counts and fishery statistics do not exist for this species. A decline of catches has been observed since the end of the 19th century (Vaisman and Fomenko 2007). Russian catches of the Amur Sturgeon in the Amur River Basin declined from 607 tonnes in 1891 to about 14 tonnes in 2006 (Krykhtin and Svirskii 1997, Vaisman and Fomenko 2007).", 
-                            "population_trend": "Decreasing", 
-                            "rationale": "A decline in catch has been observed since the end of the 19th century (Vaisman and Fomenko 2007).&#160; Based on an estimated approximate linear decline and constant, continuing fishing pressure, this species is estimated to have undergone a population decline of&#160; &gt;95% over a three generation period of ~50 years (Ruban pers. comm). Therefore, this species has been assessed as Critically Endangered based on suspected population declines due to high fishing pressure.", 
-                            "scientific_name": "Acipenser schrenckii", 
-                            "subspecies": null, 
-                            "taxonomic_notes": "The Amur Sturgeon is represented in the Amur River basin by two morphs: brown \nand grey. However, the relationship between these morphs has not been examined \nmorphologically, genetically, or ecologically. Amur Sturgeon form local stocks, \nand it appears that an entire life cycle of each stock occurs in constrained \nsegments of the Amur River, with the fish found in the lower reach of the Amur \nRiver utilizing the estuarine waters. Brown morphs are rare and restricted to \nthe middle and lower reaches of the Amur River. They are rare and grow more \nslowly than do the grey ones. There are a few small local concentrations of \nbrown morph. While the distribution of grey ones are found in the estuary, \nmiddle and lower reaches of Amur River, and the Zeya-Bureya lowlands, which is \nbelieved to be on the brink of extinction. The grey morph\u2019s mainstem populations \nseem to constitute a single stock dependent on each other for viability, the \nZeya-Bureya lowlands populations appear to be independent of these \npopulations (Shmigirilov 2007). Meanwhile, in the upper middle Amur River, \nbetween Heihe and Qingdeli, fish of the same age are larger than stocks in the \nlower middle reach, and the spawning individuals in the lower middle reach are \nolder than those in the upper middle reach (Zhuang 2002).", 
-                            "terrestrial": false, 
-                            "text_habitat": "Habitat: All types of benthic habitats (on or near the bottom) in large rivers and lakes.<br/><br/>Biology: Freshwater. The Amur Sturgeon spawns in lower reaches of the Amur River in strong-current habitats in the main stream of the river, on gravel or sandy-gravel bottom. Spawning peaks from the end of May to July. Adults spawn many times during their life cycle. Spawning periodicity is 4-5 years in females and 3-4 years in males. The generation length of the species ranges from 12 to more than 45 years (Krykhtin and Svirskii 1997; Berg 1948), with an estimated average 3 generation period of ~50 years.", 
-                            "threats": "The causes of the population declines are still overfishing, both legal and poaching (Vaisman and Fomenko 2007).<br/><br/>Recently, environmental pollution in the Amur River basin threatens the habitat and reproduction of this species (Shmigirilov <span style=\"font-style: italic;\">et al</span>. 2007, Chen 2007)."
-                        }, 
-                        {
-                            "_class": "AVES", 
-                            "_order": "PASSERIFORMES", 
-                            "common_name": "Grey-backed Myna", 
-                            "conservation_measures": "<strong>Conservation and Research Actions Underway</strong><br/>The species has been nominally protected under Indonesian law since 1979. It occurs in at least two protected areas, Baluran National Park and Alas Purwo National Park, Java (Eaton <em>et al. </em>2015). &#160;<br/><br/><p></p><strong>Conservation and Research Actions Proposed</strong><br/>Conduct intensive research into the year-round ecology of the species to clarify its requirements, and the role of trapping and pesticides in causing declines. Promote widespread, strict and effective enforcement of capture and trade regulations (including CITES listing [Shepherd <em>et al</em>. 2015]), focusing activities on protected areas and bird markets. Implement awareness raising activities to discourage people from purchasing protected wildlife (Shepherd <em>et al</em>. 2015). Control use of agricultural pesticides (if these are found to be a significant constraint), especially in key areas for the species. Develop the programme of captive breeding currently focused on <em>A. melanopterus </em>to include the present species (Collar and Butchart 2013) and increase security measures at breeding centres to prevent further incidences of theft (Shepherd <em>et al</em>. 2015).<br/><p></p>", 
-                            "family": "STURNIDAE", 
-                            "freshwater": false, 
-                            "genus": "Acridotheres", 
-                            "geographic_range": "The species is endemic to Java,&#160;<strong>Indonesia</strong>.<strong>&#160;</strong>It&#160;has undergone a widespread rapid decline since at least the 1960s, when it was common in the plains of East Java, to the east of Gunung Bromo. Now rare and very localised, recent records have come only from Alas Purwo and Baluran National Parks, but a few may also persist in Meru Betiri National Park (Eaton <em>et al. </em>2015). At Baluran NP the population may be increasing, with possibly more than 50 individuals and birds moving out of exclusively savannah areas (Marsden 2017).<p></p>", 
-                            "image_link": "https://www.researchgate.net/profile/Zlatozar-Boev/publication/330321147/figure/fig3/AS:713879445307396@1547213531950/Grey-backed-myna-Acridotheres-tricolor-RNHMP-787-Photograph-Ognyan-Todorov.png", 
-                            "kingdom": "ANIMALIA", 
-                            "marine": false, 
-                            "phylum": "CHORDATA", 
-                            "population": "The population is estimated to number fewer than 250 mature individuals in the wild, based on an assessment of recent records pertaining to this species (eBird 2016, S, Mahood <em>in litt. </em>2009, Eaton <em>et al. </em>2015). At Baluran NP there may now be more than 50 individuals (Marsden 2017), with a recent count of 37 reported (Robson 2016). At Alas Purwo the maximum recent count of individuals is 25 (Eaton <em>et al. </em>2015). Additional birds may be present in Meru Betiri, but no recent records have been reported (Eaton <em>et al. </em>2015).&#160;Thorough surveys of the remaining populations may reveal that the population is larger than estimated from the limited data available, though the population is clearly very small.", 
-                            "population_trend": "Decreasing", 
-                            "rationale": "<em>Acridotheres tricolor</em>&#160;has been reduced to very low numbers as a result of exploitation for the bird trade. The paucity of records in the field and the increasing rarity of individuals in the cage-bird trade suggest that is suffering an ongoing population decline, to the point where the population is now believed to number fewer than 250 mature individuals. As such, this species qualifies as Critically Endangered, and urgent conservation action is required to halt its unsustainable exploitation for trade. <p></p>", 
-                            "scientific_name": "Acridotheres tricolor", 
-                            "subspecies": null, 
-                            "taxonomic_notes": "<p><em>Acridotheres melanopterus, A. tricolor </em>and<em> A. tertius </em>(del Hoyo and Collar 2016) were previously lumped as <em>Sturnus melanopterus</em> following Sibley &amp; Monroe (1990, 1993).</p>", 
-                            "terrestrial": true, 
-                            "text_habitat": "Small flocks forage on the ground in a variety of habitats, particularly agricultural and livestock-grazed areas, chiefly in the extreme lowlands, although occasionally up to c. 2,400&#160;m in East Java. Some recent records have been in association with Banteng. It also inhabits primary and secondary monsoon forest, including teak forest (where it was locally abundant), forest edge and open woodland, uncultivated bushy valleys, and even (formerly at least) urban suburbs.<p></p>", 
-                            "threats": "Capture for trade is the primary threat, and the main cause of its decline. This species is one of the most popular cage-birds on Java, an island famed for its huge bird markets and very high cage-bird ownership. Surveys conducted in July 2014 in three shops in Jakarta found the average unbartered price for the&#160;<em>A. melanopterus</em>&#160;group of species per bird was US$220, the high price indicating the species' scarcity in the wild (Shepherd&#160;<em>et al</em>. 2015).&#160;Three <em>A. tricolor</em> were observed for sale in a survey of the bird market in Bandung in September 2016, taken to be an indication of ongoing capture from the wild. Many <em>A. melanopterus </em>are now being captive bred to supply demand since the almost total collapse of the population of that species (Collar <em>et al. </em>2012, Eaton <em>et al. </em>2015), but <em>A. tricolor </em>does not appear to be as desirable.&#160;<span id=\"result_box\" class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">Genetic integrity has been lost due to the widespread mixing of the the three subspecies when birds escape (Muchtar and Nurwatha 2001, Collar&#160;<em>et al.&#160;</em>2012), but the observation of an&#160;<em>A. tricolor&#160;</em>x&#160;<em>A. melanopterus&#160;</em>hybrid during the 2016 Bandung survey (S. Chng&#160;<em>in litt.&#160;</em>2016) raises concerns that this may be a deliberate strategy by some private breeders, given that higher prices appear to be paid for birds with white mantles (Shepherd <em>et al. </em>2015).&#160;In June 2014, three captive bred individuals were among nearly 160 threatened birds stolen from <span id=\"result_box\" class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">the Cikananga Conservation Breeding Centre near Sukabumi (Kullmann 2014, Tritto and Sozer 2014), and it appears that there is a greater desire for the&#160;<em>A. melanopterus</em>&#160;phenotype in the market.&#160;<span class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">It has also been suggested that excessive use of pesticides may present a significant threat, as the species habitually forages in open agricultural areas.&#160;<p></p></span></span></span>"
-                        }
-                    ]
-                  }
 
-  /species/name=<name>:
-    get:
-      summary: 'Search for species by scientific name'
-      operationId: getSpecies 
-      tags:
-          - species 
-      parameters:
-          - name: name
-            in: path
-            description: Scientific name of the species
-            required: true
-            schema:
-              type: string
-      responses:
-        '200':
-          description: JSON object for the species
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Species'
-              example:
-                {
-                  "species" : {
-                    "_class": "GASTROPODA", 
-                    "_order": "STYLOMMATOPHORA", 
-                    "common_name": null, 
-                    "conservation_measures": "<p>Field work to define the current distribution of this species as well as research on its population status and trends, identification and protection of priority sites for species conservation such as key biodiversity areas (including threatened land snails) and reducing the impacts of human activities, especially on the small islands of the archipelago, is urgently needed. The Palau Conservation Society has been supportive of recent land snail survey work in Palau.</p>", 
-                    "family": "ENDODONTIDAE", 
-                    "freshwater": false, 
-                    "genus": "Aaadonta", 
-                    "geographic_range": "<p><span lang=\"EN-US\">The type locality for this species is <span lang=\"EN-US\">Peleliu (Beliliou) is<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">land in Palau. The historical geographic range of of the species is estimated to be less than 12 km<sup>2</sup>. The species was probably historically more abundant prior to its collection at several localities in 1936. Indeed, substantial change had already occurred on that island by that time. The present area of occupancy of this species is estimated at less than 0.5 km<sup>2</sup>, since only two live specimens have been found recently (2007) at a single locality on the very small island of Omekang <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">(Rundell 2007, unpublished data)<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">.<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p><p><br/><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span></span></span></span></span></span></span></span></span></p><p><br/></p><p><br/><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></p><p><span lang=\"EN-US\"><span lang=\"EN-US\"><br/></span></p><p>  </p>", 
-                    "image_link": "https://alchetron.com/cdn/aaadonta-irregularis-fe382a00-c65f-4cc2-9526-0719e778692-resize-750.jpeg", 
-                    "kingdom": "ANIMALIA", 
-                    "marine": false, 
-                    "phylum": "MOLLUSCA", 
-                    "population": "<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">The type locality for this species is <span lang=\"EN-US\">Peleliu (Beliliou) is<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">land in Palau, <span lang=\"EN-US\"><span lang=\"EN-US\">where  type material was collected in the late 19th century and seven  specimens were  collected at multiple localities in 1936 by Y. Kondo  (Solem 1976).<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> However, no specimens were found during surveys of <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">Peleliu<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> in 2003 (Rundell  2003, unpublished data, Rundell 2005 and 2010). <span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">A decline in the population of this species is inferred from the known decline of the extent and quality of its habitat.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>", 
-                    "population_trend": "Decreasing", 
-                    "rationale": "<p>This is<span lang=\"EN-US\"> a minute ground-dwelling snail endemic to Palau. <span lang=\"EN-US\">The species was previously known only from Peleliu<span lang=\"EN-US\"><span lang=\"EN-US\">, where type material was collected in the late 19th century and seven specimens were collected at multiple localities in 1936. <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> <span lang=\"EN-US\">However, no specimens were found on this island during surveys in 2003. The only recent collections of this species are two live shells that were found at a single locality (1 location) on Omekang island in 2007. <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">The species is assessed as Critically Endangered<span lang=\"EN-US\">, based on the limited area of occupancy, the single location, the very small number of specimens that have been recently found (despite surveys of available native habitat) and the known decline in the area and quality of its habitat. <br/></span></span></span></span></span></span></p>", 
-                    "scientific_name": "Aaadonta irregularis", 
-                    "subspecies": null, 
-                    "taxonomic_notes": null, 
-                    "terrestrial": true, 
-                    "text_habitat": "This species has been recorded in tropical moist lowland forest.", 
-                    "threats": "<p>This species is<span lang=\"EN-US\"> threatened by destruction and modification of native lowland forest. Therefore it is not surprising that the species has probably been extirpated from the highly modified island of Peleliu, whose forest was burned in World War II with flamethrowers (Hinz 1995, Crombie and Pregill 1999). Disruption of the ground, rocks and leaf litter may be of particular significance to this and other endodontid species. Endodontoid land snails are among the most threatened land snails on Pacific Islands in the few places where they still exist (Solem 1983), and therefore the fact that this species is still extant is important. This species is in need of conservation attention.</p>"
-                  }
-                }
-  /habitat:
-    get:
-      summary: 'Returns all habitats'
-      responses:
-        '200':
-          description: JSON array of habitat names
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Habitat'
-              example: 
-                  [
-                    {Shrub & Herb Vegetation: CLASS},
-                    {Tropical Forest & Woodland: SUBCLASS},
-                    {Desert & Semi-Desert: CLASS}
-                  ]
-  /habitat/{habitat}:
-    get:
-      summary: 'Returns details about a particular habitat'
-      operationId: getHabitat
-      tags:
-          - habitat 
-      parameters:
-          - name: habitat
-            in: path
-            description: Habitat name
-            required: true
-            schema:
-              type: string
-      responses:
-        '200':
-          description: Habitat details 
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Habitat'   
-              example:
-                scientificName: Tropical Forest & Woodland Subclass
-                commonName: Tropical Forest & Woodland
-                ecosystemType: SUBCLASS
-                parentName: Forest & Woodland
-                stateID: FL
-                
   /countries:
     get:
       summary: 'Returns all countries'
@@ -362,6 +185,185 @@ paths:
                         "total_pop": 46438422
                     }
                   }
+
+  /habitat:
+    get:
+      summary: 'Returns all habitats'
+      responses:
+        '200':
+          description: JSON array of habitat names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Habitat'
+              example: 
+                  [
+                    {Shrub & Herb Vegetation: CLASS},
+                    {Tropical Forest & Woodland: SUBCLASS},
+                    {Desert & Semi-Desert: CLASS}
+                  ]
+  /habitat/{habitat}:
+    get:
+      summary: 'Returns details about a particular habitat'
+      operationId: getHabitat
+      tags:
+          - habitat 
+      parameters:
+          - name: habitat
+            in: path
+            description: Habitat name
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Habitat details 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Habitat'   
+              example:
+                scientificName: Tropical Forest & Woodland Subclass
+                commonName: Tropical Forest & Woodland
+                ecosystemType: SUBCLASS
+                parentName: Forest & Woodland
+                stateID: FL
+
+  /species:
+    get:
+      summary: 'Returns all species'
+      responses:
+        '200':
+          description: JSON array of species names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Species'
+              example: 
+                  {
+                    "species": [
+                        {
+                            "_class": "MAMMALIA", 
+                            "_order": "CARNIVORA", 
+                            "common_name": "Asiatic Cheetah", 
+                            "conservation_measures": null, 
+                            "family": "FELIDAE", 
+                            "freshwater": false, 
+                            "genus": "Acinonyx", 
+                            "geographic_range": null, 
+                            "image_link": "https://www.researchgate.net/profile/Sam-Williams-8/publication/321599654/figure/fig1/AS:568809691463680@1512626206107/An-Asiatic-cheetah-Acinonyx-jubatus-ssp-venaticus-just-43-are-left-in-IranCredit.png", 
+                            "kingdom": "ANIMALIA", 
+                            "marine": false, 
+                            "phylum": "CHORDATA", 
+                            "population": null, 
+                            "population_trend": "Stable", 
+                            "rationale": "With a historic distribution across southwest and central Asia to India (Nowell and Jackson 1996, Mallon 2007), the Asiatic Cheetah is now only known to occur with certainty in Iran.  The population is very small. For the Red List, population is defined as the number of \u201cmature individuals known or inferred to be capable of reproduction.\u201d  This was interpreted for cats as the effective population size, or number of animals estimated to be passing on their genes through successful raising and recruitment of offspring (Nowell <em>et al</em>., 2007).  Effective population size for cheetahs (females in Tanzania's Serengeti National Park) was estimated at 44% of the census population (incorporating variability in lifetime reproductive success: Kelly 2001).  The census population of cheetahs in Iran is estimated at 60-100 (Hunter <em>et al</em>., 2007), with less than half likely to consist of mature breeding individuals.<br/><br/>Although the population currently appears stable (Hunter <em>et al</em>. 2007), it has declined in recent decades.  There were said to be over 200 Cheetahs in Iran in the mid-1970s (E. Ferouz, pers. comm. 1974), although some experts consider this figure an over-estimate (P. Joslin, pers. comm.) (Nowell and Jackson 1996).", 
+                            "scientific_name": "Acinonyx jubatus ssp. venaticus", 
+                            "subspecies": "venaticus", 
+                            "taxonomic_notes": "The subspecies <i>A. j. venaticus</i>, commonly called the Asiatic Cheetah, is considered by Nowell and Jackson (1996) to survive only in Iran.  They place the eastern limit of its range in Arabia.  However, the review by Krausman and Morales (2005) included cheetahs from the northern Sahara in venaticus.  The type locality of <i>A. j. venaticus</i> (=<i>Felis venatica</i> [Griffith, 1821]) is unknown (Krausman and Morales 2005).  At a November 2006 meeting of the North African Region Cheetah Action Group (NARCAG), Belchabir (2007) recommended genetic studies to clarify whether the cheetahs of Algeria (which probably has the largest Saharan cheetah population) should be classified as <i>A. j. hecki</i> or <i>A. j. venaticus</i>. Presently <i>A. j. venaticus</i> is considered restricted to Asia.", 
+                            "terrestrial": true, 
+                            "text_habitat": null, 
+                            "threats": null
+                        }, 
+                        {
+                            "_class": "ACTINOPTERYGII", 
+                            "_order": "ACIPENSERIFORMES", 
+                            "common_name": "Amur Sturgeon", 
+                            "conservation_measures": "The majority of 'conservation' measures historically were directed to control local and national fisheries. Commercial sturgeon fishing was prohibited in the Soviet Union during the periods 1923-1930, 1958-1976 and from 1984 to the present (Vaisman and Fomenko 2007).&#160; The Amur Sturgeon was listed in Appendix II of the Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) in 1998.", 
+                            "family": "ACIPENSERIDAE", 
+                            "freshwater": true, 
+                            "genus": "Acipenser", 
+                            "geographic_range": "This species inhabits the entire Amur River basin from the estuary to the river's upper reaches. It occurs in tributaries - the Shilka, Onon, Argun, Nerch, Sungari, Nonni and Ussuri Rivers (Krykhtin and Svirskii 1997) - and extremely rarely occurs in Lake Khanka (Krykhtin and Svirskii 1997).", 
+                            "image_link": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Japanese_Sturgeon_%28Acipenser_schrenckii%29.jpg", 
+                            "kingdom": "ANIMALIA", 
+                            "marine": false, 
+                            "phylum": "CHORDATA", 
+                            "population": "Currently, complete population data based on results of direct counts and fishery statistics do not exist for this species. A decline of catches has been observed since the end of the 19th century (Vaisman and Fomenko 2007). Russian catches of the Amur Sturgeon in the Amur River Basin declined from 607 tonnes in 1891 to about 14 tonnes in 2006 (Krykhtin and Svirskii 1997, Vaisman and Fomenko 2007).", 
+                            "population_trend": "Decreasing", 
+                            "rationale": "A decline in catch has been observed since the end of the 19th century (Vaisman and Fomenko 2007).&#160; Based on an estimated approximate linear decline and constant, continuing fishing pressure, this species is estimated to have undergone a population decline of&#160; &gt;95% over a three generation period of ~50 years (Ruban pers. comm). Therefore, this species has been assessed as Critically Endangered based on suspected population declines due to high fishing pressure.", 
+                            "scientific_name": "Acipenser schrenckii", 
+                            "subspecies": null, 
+                            "taxonomic_notes": "The Amur Sturgeon is represented in the Amur River basin by two morphs: brown \nand grey. However, the relationship between these morphs has not been examined \nmorphologically, genetically, or ecologically. Amur Sturgeon form local stocks, \nand it appears that an entire life cycle of each stock occurs in constrained \nsegments of the Amur River, with the fish found in the lower reach of the Amur \nRiver utilizing the estuarine waters. Brown morphs are rare and restricted to \nthe middle and lower reaches of the Amur River. They are rare and grow more \nslowly than do the grey ones. There are a few small local concentrations of \nbrown morph. While the distribution of grey ones are found in the estuary, \nmiddle and lower reaches of Amur River, and the Zeya-Bureya lowlands, which is \nbelieved to be on the brink of extinction. The grey morph\u2019s mainstem populations \nseem to constitute a single stock dependent on each other for viability, the \nZeya-Bureya lowlands populations appear to be independent of these \npopulations (Shmigirilov 2007). Meanwhile, in the upper middle Amur River, \nbetween Heihe and Qingdeli, fish of the same age are larger than stocks in the \nlower middle reach, and the spawning individuals in the lower middle reach are \nolder than those in the upper middle reach (Zhuang 2002).", 
+                            "terrestrial": false, 
+                            "text_habitat": "Habitat: All types of benthic habitats (on or near the bottom) in large rivers and lakes.<br/><br/>Biology: Freshwater. The Amur Sturgeon spawns in lower reaches of the Amur River in strong-current habitats in the main stream of the river, on gravel or sandy-gravel bottom. Spawning peaks from the end of May to July. Adults spawn many times during their life cycle. Spawning periodicity is 4-5 years in females and 3-4 years in males. The generation length of the species ranges from 12 to more than 45 years (Krykhtin and Svirskii 1997; Berg 1948), with an estimated average 3 generation period of ~50 years.", 
+                            "threats": "The causes of the population declines are still overfishing, both legal and poaching (Vaisman and Fomenko 2007).<br/><br/>Recently, environmental pollution in the Amur River basin threatens the habitat and reproduction of this species (Shmigirilov <span style=\"font-style: italic;\">et al</span>. 2007, Chen 2007)."
+                        }, 
+                        {
+                            "_class": "AVES", 
+                            "_order": "PASSERIFORMES", 
+                            "common_name": "Grey-backed Myna", 
+                            "conservation_measures": "<strong>Conservation and Research Actions Underway</strong><br/>The species has been nominally protected under Indonesian law since 1979. It occurs in at least two protected areas, Baluran National Park and Alas Purwo National Park, Java (Eaton <em>et al. </em>2015). &#160;<br/><br/><p></p><strong>Conservation and Research Actions Proposed</strong><br/>Conduct intensive research into the year-round ecology of the species to clarify its requirements, and the role of trapping and pesticides in causing declines. Promote widespread, strict and effective enforcement of capture and trade regulations (including CITES listing [Shepherd <em>et al</em>. 2015]), focusing activities on protected areas and bird markets. Implement awareness raising activities to discourage people from purchasing protected wildlife (Shepherd <em>et al</em>. 2015). Control use of agricultural pesticides (if these are found to be a significant constraint), especially in key areas for the species. Develop the programme of captive breeding currently focused on <em>A. melanopterus </em>to include the present species (Collar and Butchart 2013) and increase security measures at breeding centres to prevent further incidences of theft (Shepherd <em>et al</em>. 2015).<br/><p></p>", 
+                            "family": "STURNIDAE", 
+                            "freshwater": false, 
+                            "genus": "Acridotheres", 
+                            "geographic_range": "The species is endemic to Java,&#160;<strong>Indonesia</strong>.<strong>&#160;</strong>It&#160;has undergone a widespread rapid decline since at least the 1960s, when it was common in the plains of East Java, to the east of Gunung Bromo. Now rare and very localised, recent records have come only from Alas Purwo and Baluran National Parks, but a few may also persist in Meru Betiri National Park (Eaton <em>et al. </em>2015). At Baluran NP the population may be increasing, with possibly more than 50 individuals and birds moving out of exclusively savannah areas (Marsden 2017).<p></p>", 
+                            "image_link": "https://www.researchgate.net/profile/Zlatozar-Boev/publication/330321147/figure/fig3/AS:713879445307396@1547213531950/Grey-backed-myna-Acridotheres-tricolor-RNHMP-787-Photograph-Ognyan-Todorov.png", 
+                            "kingdom": "ANIMALIA", 
+                            "marine": false, 
+                            "phylum": "CHORDATA", 
+                            "population": "The population is estimated to number fewer than 250 mature individuals in the wild, based on an assessment of recent records pertaining to this species (eBird 2016, S, Mahood <em>in litt. </em>2009, Eaton <em>et al. </em>2015). At Baluran NP there may now be more than 50 individuals (Marsden 2017), with a recent count of 37 reported (Robson 2016). At Alas Purwo the maximum recent count of individuals is 25 (Eaton <em>et al. </em>2015). Additional birds may be present in Meru Betiri, but no recent records have been reported (Eaton <em>et al. </em>2015).&#160;Thorough surveys of the remaining populations may reveal that the population is larger than estimated from the limited data available, though the population is clearly very small.", 
+                            "population_trend": "Decreasing", 
+                            "rationale": "<em>Acridotheres tricolor</em>&#160;has been reduced to very low numbers as a result of exploitation for the bird trade. The paucity of records in the field and the increasing rarity of individuals in the cage-bird trade suggest that is suffering an ongoing population decline, to the point where the population is now believed to number fewer than 250 mature individuals. As such, this species qualifies as Critically Endangered, and urgent conservation action is required to halt its unsustainable exploitation for trade. <p></p>", 
+                            "scientific_name": "Acridotheres tricolor", 
+                            "subspecies": null, 
+                            "taxonomic_notes": "<p><em>Acridotheres melanopterus, A. tricolor </em>and<em> A. tertius </em>(del Hoyo and Collar 2016) were previously lumped as <em>Sturnus melanopterus</em> following Sibley &amp; Monroe (1990, 1993).</p>", 
+                            "terrestrial": true, 
+                            "text_habitat": "Small flocks forage on the ground in a variety of habitats, particularly agricultural and livestock-grazed areas, chiefly in the extreme lowlands, although occasionally up to c. 2,400&#160;m in East Java. Some recent records have been in association with Banteng. It also inhabits primary and secondary monsoon forest, including teak forest (where it was locally abundant), forest edge and open woodland, uncultivated bushy valleys, and even (formerly at least) urban suburbs.<p></p>", 
+                            "threats": "Capture for trade is the primary threat, and the main cause of its decline. This species is one of the most popular cage-birds on Java, an island famed for its huge bird markets and very high cage-bird ownership. Surveys conducted in July 2014 in three shops in Jakarta found the average unbartered price for the&#160;<em>A. melanopterus</em>&#160;group of species per bird was US$220, the high price indicating the species' scarcity in the wild (Shepherd&#160;<em>et al</em>. 2015).&#160;Three <em>A. tricolor</em> were observed for sale in a survey of the bird market in Bandung in September 2016, taken to be an indication of ongoing capture from the wild. Many <em>A. melanopterus </em>are now being captive bred to supply demand since the almost total collapse of the population of that species (Collar <em>et al. </em>2012, Eaton <em>et al. </em>2015), but <em>A. tricolor </em>does not appear to be as desirable.&#160;<span id=\"result_box\" class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">Genetic integrity has been lost due to the widespread mixing of the the three subspecies when birds escape (Muchtar and Nurwatha 2001, Collar&#160;<em>et al.&#160;</em>2012), but the observation of an&#160;<em>A. tricolor&#160;</em>x&#160;<em>A. melanopterus&#160;</em>hybrid during the 2016 Bandung survey (S. Chng&#160;<em>in litt.&#160;</em>2016) raises concerns that this may be a deliberate strategy by some private breeders, given that higher prices appear to be paid for birds with white mantles (Shepherd <em>et al. </em>2015).&#160;In June 2014, three captive bred individuals were among nearly 160 threatened birds stolen from <span id=\"result_box\" class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">the Cikananga Conservation Breeding Centre near Sukabumi (Kullmann 2014, Tritto and Sozer 2014), and it appears that there is a greater desire for the&#160;<em>A. melanopterus</em>&#160;phenotype in the market.&#160;<span class=\"\" lang=\"en\"><span title=\"Das j\u00fcngste Opfer ist das Cikananga Conservation Breeding Center (CCBC) in der N\u00e4he von Sukabumi im Westen Javas.\">It has also been suggested that excessive use of pesticides may present a significant threat, as the species habitually forages in open agricultural areas.&#160;<p></p></span></span></span>"
+                        }
+                    ]
+                  }
+
+  /species/name=<name>:
+    get:
+      summary: 'Search for species by scientific name'
+      operationId: getSpecies 
+      tags:
+          - species 
+      parameters:
+          - name: name
+            in: path
+            description: Scientific name of the species
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: JSON object for the species
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Species'
+              example:
+                {
+                  "species" : {
+                    "_class": "GASTROPODA", 
+                    "_order": "STYLOMMATOPHORA", 
+                    "common_name": null, 
+                    "conservation_measures": "<p>Field work to define the current distribution of this species as well as research on its population status and trends, identification and protection of priority sites for species conservation such as key biodiversity areas (including threatened land snails) and reducing the impacts of human activities, especially on the small islands of the archipelago, is urgently needed. The Palau Conservation Society has been supportive of recent land snail survey work in Palau.</p>", 
+                    "family": "ENDODONTIDAE", 
+                    "freshwater": false, 
+                    "genus": "Aaadonta", 
+                    "geographic_range": "<p><span lang=\"EN-US\">The type locality for this species is <span lang=\"EN-US\">Peleliu (Beliliou) is<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">land in Palau. The historical geographic range of of the species is estimated to be less than 12 km<sup>2</sup>. The species was probably historically more abundant prior to its collection at several localities in 1936. Indeed, substantial change had already occurred on that island by that time. The present area of occupancy of this species is estimated at less than 0.5 km<sup>2</sup>, since only two live specimens have been found recently (2007) at a single locality on the very small island of Omekang <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">(Rundell 2007, unpublished data)<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">.<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p><p><br/><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span></span></span></span></span></span></span></span></span></p><p><br/></p><p><br/><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"></span></p><p><span lang=\"EN-US\"><span lang=\"EN-US\"><br/></span></p><p>  </p>", 
+                    "image_link": "https://alchetron.com/cdn/aaadonta-irregularis-fe382a00-c65f-4cc2-9526-0719e778692-resize-750.jpeg", 
+                    "kingdom": "ANIMALIA", 
+                    "marine": false, 
+                    "phylum": "MOLLUSCA", 
+                    "population": "<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">The type locality for this species is <span lang=\"EN-US\">Peleliu (Beliliou) is<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">land in Palau, <span lang=\"EN-US\"><span lang=\"EN-US\">where  type material was collected in the late 19th century and seven  specimens were  collected at multiple localities in 1936 by Y. Kondo  (Solem 1976).<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> However, no specimens were found during surveys of <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">Peleliu<span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> in 2003 (Rundell  2003, unpublished data, Rundell 2005 and 2010). <span lang=\"EN-US\"><span lang=\"EN-US\"></span></span></span></span><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">A decline in the population of this species is inferred from the known decline of the extent and quality of its habitat.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>", 
+                    "population_trend": "Decreasing", 
+                    "rationale": "<p>This is<span lang=\"EN-US\"> a minute ground-dwelling snail endemic to Palau. <span lang=\"EN-US\">The species was previously known only from Peleliu<span lang=\"EN-US\"><span lang=\"EN-US\">, where type material was collected in the late 19th century and seven specimens were collected at multiple localities in 1936. <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"> <span lang=\"EN-US\">However, no specimens were found on this island during surveys in 2003. The only recent collections of this species are two live shells that were found at a single locality (1 location) on Omekang island in 2007. <span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\"><span lang=\"EN-US\">The species is assessed as Critically Endangered<span lang=\"EN-US\">, based on the limited area of occupancy, the single location, the very small number of specimens that have been recently found (despite surveys of available native habitat) and the known decline in the area and quality of its habitat. <br/></span></span></span></span></span></span></p>", 
+                    "scientific_name": "Aaadonta irregularis", 
+                    "subspecies": null, 
+                    "taxonomic_notes": null, 
+                    "terrestrial": true, 
+                    "text_habitat": "This species has been recorded in tropical moist lowland forest.", 
+                    "threats": "<p>This species is<span lang=\"EN-US\"> threatened by destruction and modification of native lowland forest. Therefore it is not surprising that the species has probably been extirpated from the highly modified island of Peleliu, whose forest was burned in World War II with flamethrowers (Hinz 1995, Crombie and Pregill 1999). Disruption of the ground, rocks and leaf litter may be of particular significance to this and other endodontid species. Endodontoid land snails are among the most threatened land snails on Pacific Islands in the few places where they still exist (Solem 1983), and therefore the fact that this species is still extant is important. This species is in need of conservation attention.</p>"
+                  }
+                }
 
 components:
   schemas:
