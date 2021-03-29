@@ -114,11 +114,56 @@ paths:
                 items:
                   $ref: '#/components/schemas/Country' 
               example:
-                [
-                  {United States: US},
-                  {Canada: CA},
-                  {Australia: AU}
-                ]
+                {
+                    "countries": [
+                        {
+                        "alpha2_code": "AF", 
+                        "alpha3_code": "AFG", 
+                        "area": 652230.0, 
+                        "capital": "Kabul", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Afghanistan", 
+                        "flag": "https://restcountries.eu/data/afg.svg", 
+                        "gini_index": 28, 
+                        "latitude": 33.0, 
+                        "longitude": 65.0, 
+                        "name": "Afghanistan", 
+                        "region": "Asia", 
+                        "subregion": "Southern Asia", 
+                        "total_pop": 27657145
+                        }, 
+                        {
+                        "alpha2_code": "AX", 
+                        "alpha3_code": "ALA", 
+                        "area": 1580.0, 
+                        "capital": "Mariehamn", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=\u00c5land Islands", 
+                        "flag": "https://restcountries.eu/data/ala.svg", 
+                        "gini_index": null, 
+                        "latitude": 60.116667, 
+                        "longitude": 19.9, 
+                        "name": "\u00c5land Islands", 
+                        "region": "Europe", 
+                        "subregion": "Northern Europe", 
+                        "total_pop": 28875
+                        }, 
+                        {
+                        "alpha2_code": "AL", 
+                        "alpha3_code": "ALB", 
+                        "area": 28748.0, 
+                        "capital": "Tirana", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Albania", 
+                        "flag": "https://restcountries.eu/data/alb.svg", 
+                        "gini_index": 35, 
+                        "latitude": 41.0, 
+                        "longitude": 20.0, 
+                        "name": "Albania", 
+                        "region": "Europe", 
+                        "subregion": "Southern Europe", 
+                        "total_pop": 2886026
+                        }
+                    ]
+                }
+                
   /countries/name=<name>:
     get:
       summary: 'Search for country by name'
@@ -140,43 +185,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/Country' 
               example:
-                stateID: US
-                name: United States
-                capital: Washington DC
-                populationMillions: 328.2
-                currency: $
-#  /user:
-#    get:
-#      summary: 'Returns details about a particular species'
-#      operationId: listUser
-#      tags:
-#        - user
-#      parameters:
-#        - name: id
-#          in: query
-#          description: ID of the user
-#          required: true
-#          schema:
-#            type: integer
-#            format: int32
-#      responses:
-#        '200':
-#          description: 'Sample response: Details about a species by name'
-#          headers:
-#            x-next:
-#              description: A link to the next page of responses
-#              schema:
-#                type: string
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/User'
-#        default:
-#          description: Unexpected error
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/Error'
+                  {
+                    "country": {
+                        "alpha2_code": "ES", 
+                        "alpha3_code": "ESP", 
+                        "area": 505992.0, 
+                        "capital": "Madrid", 
+                        "embedded_map_link": "https://www.google.com/maps/embed/v1/place?key=AIzaSyBEA-sCsOy12Qca3i-jy2kF1nIRSulICNA&q=Spain", 
+                        "flag": "https://restcountries.eu/data/esp.svg", 
+                        "gini_index": 35, 
+                        "latitude": 40.0, 
+                        "longitude": -4.0, 
+                        "name": "Spain", 
+                        "region": "Europe", 
+                        "subregion": "Southern Europe", 
+                        "total_pop": 46438422
+                    }
+                  }
+
 components:
   schemas:
     Habitat:
