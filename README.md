@@ -47,11 +47,11 @@ Brian Wang | 15 | 21
 Phase 2: 
 Name | Estimated | Actual
 --------- | --------- | ---------
-William Crawford | 40 | 24
-Sahithi Golkonda | 40 | 24
-Shaharyar Lakhani | 40 | 23
-Daniel Qu | 40 | 20
-Brian Wang | 40 | 21
+William Crawford | 40 | 50
+Sahithi Golkonda | 40 | 50
+Shaharyar Lakhani | 40 | 52
+Daniel Qu | 40 | 45
+Brian Wang | 40 | 50
 
 ---
 
