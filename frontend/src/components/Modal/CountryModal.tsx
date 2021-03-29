@@ -25,7 +25,7 @@ function CountryModal(props: any) {
   React.useEffect(() => {
     setHabitats(new Array<habitats>())
     if(props.country != null){
-        axios.get('/api/countries/habitats/alpha3_code='+props.country.alpha3_code).then((response) => {
+        axios.get('/api/countries/habitats/name='+props.country.name).then((response) => {
           setHabitats(response.data.habitats);
         })
     }
