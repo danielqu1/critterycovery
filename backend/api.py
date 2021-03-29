@@ -76,6 +76,8 @@ class habitats_table(db.Model):
 	designation_name = db.Column(db.Unicode)
 	designation_id = db.Column(db.Integer)
 	link = db.Column(db.Unicode)
+	image_link = db.Column(db.Unicode)
+	embedded_map_link = db.Column(db.Unicode)
 
 # model for connection between Species and Country
 class countries_per_species(db.Model):
@@ -144,6 +146,8 @@ class HabitatSchema(ma.Schema):
 	designation_name = fields.String(required=False)
 	designation_id = fields.Integer(required=False)
 	link = fields.String(required=False)
+	image_link = fields.String(required=False)
+	embedded_map_link = fields.String(required=False)
 
 
 class CountrySpeciesLinkSchema(ma.Schema):
@@ -250,7 +254,6 @@ def get_country_species(name):
 		return {}
 	response = species_schema.dump(species)
 	return jsonify({"species" : response})
-
 
 # habitats endpoints
 
