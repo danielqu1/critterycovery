@@ -20,5 +20,6 @@ frontend:
 selenium:
   image: groverhood/selenium-testing
   script: 
-    - python3 tests/selenium/guitest.py
+    - cd tests/selenium
+    - python3 guitest.py
 
