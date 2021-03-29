@@ -2,13 +2,16 @@ import React from "react";
 import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import About from "../src/pages/about/About.tsx";
+import "@testing-library/jest-dom/extend-expect"
+
+//import About from "../src/pages/about/About.tsx";
+import About from "../src/pages/Error.tsx";
 
 configure({ adapter: new Adapter() });
 
 describe("Render views", () => {
-    test("About page", () => {
-        const aboutTest = shallow(<About />)
+    test("Error page", () => {
+        const aboutTest = shallow(<Error />)
         expect(aboutTest).toMatchSnapshot()
     })
 })
