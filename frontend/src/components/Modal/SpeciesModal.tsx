@@ -28,7 +28,7 @@ function SpeciesModal(props : any) {
     setHabitats(new Array<habitats>())
     if(countries != null){
       for (let i = 0; i < countries.length; i++) {
-        axios.get('/api/countries/habitats/alpha3_code='+countries[i].alpha3_code).then((response) => {
+        axios.get('/api/countries/habitats/name='+countries[i].country).then((response) => {
           setHabitats(habitats.concat(response.data.habitats));
         })
       }
