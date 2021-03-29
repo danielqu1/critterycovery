@@ -196,7 +196,7 @@ class GuiTests(unittest.TestCase):
         driver = self.driver
         driver.get(URL + "/habitats")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[4]/td[1]"
+        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[4]/td[2]"
         element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
@@ -207,7 +207,7 @@ class GuiTests(unittest.TestCase):
         driver = self.driver
         driver.get(URL + "/habitats")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[9]/td[3]"
+        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[9]/td[4]"
         element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
@@ -224,7 +224,7 @@ class GuiTests(unittest.TestCase):
         )  # page 3 of habitats
         driver.find_elements_by_xpath(xpath_paginate)[0].click()
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[3]/td[1]"
+        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[3]/td[2]"
         element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )

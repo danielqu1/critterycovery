@@ -103,10 +103,8 @@ function Species() {
                 <Row>
                     <h1>{animals.length} Species. {maxCardsShown} per page</h1>
                 </Row>
-                <Row >
-                    <CardColumns className="justify-content-md-center">
-                        {speciesCards}
-                    </CardColumns>
+                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
+                    {speciesCards}
                 </Row>
                 <PaginationMain 
                     instancesPerPage= {maxCardsShown}
