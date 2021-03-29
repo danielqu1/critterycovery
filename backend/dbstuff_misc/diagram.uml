@@ -52,7 +52,14 @@ image_link: varchar
 embedded_map_link: varchar
 }
 
-countries "many" -- "many" species
+class countries_per_species {
+id: int
+scientific_name: varchar
+alpha2_code: varchar
+}
+
+species "1" -- "many" countries_per_species
+countries "many" -- "many" countries_per_species
 countries "1" -- "many" habitats
 species "many" -- "many" habitats
 @enduml
