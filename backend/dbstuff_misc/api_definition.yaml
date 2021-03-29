@@ -1,0 +1,285 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: critterycovery API
+servers:
+  - url: 'https://critterycovery.me/api'
+paths:
+  /species:
+    get:
+      summary: 'Returns all species'
+      responses:
+        '200':
+          description: JSON array of species names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Species'
+              example: 
+                  [
+                    {Alabama beach mouse: Peromyscus polionotus ammobates},
+                    {American alligator: Alligator mississippiensis},
+                    {Atlantic puffin: Fratercula arctica}
+                  ]
+  /species/{scientificName}:
+    get:
+      summary: 'Returns details about a particular species'
+      operationId: getSpecies 
+      tags:
+          - species 
+      parameters:
+          - name: scientificName
+            in: path
+            description: Scientific name of the species
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Species details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Species'
+              example:
+                scientificName: Peromyscus polionotus ammobates
+                commonName: Alabama beach mouse
+                stateID: AL
+                habitat: Shrub & Herb Vegetation
+                status: Listed
+                rank: T1
+                kingdom: Animalia
+                phylum: Craniata
+                taxclass: Mammalia
+                taxorder: Rodentia
+                family: Cricetidae
+                genus: Peromyscus
+  /habitat:
+    get:
+      summary: 'Returns all habitats'
+      responses:
+        '200':
+          description: JSON array of habitat names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Habitat'
+              example: 
+                  [
+                    {Shrub & Herb Vegetation: CLASS},
+                    {Tropical Forest & Woodland: SUBCLASS},
+                    {Desert & Semi-Desert: CLASS}
+                  ]
+  /habitat/{habitat}:
+    get:
+      summary: 'Returns details about a particular habitat'
+      operationId: getHabitat
+      tags:
+          - habitat 
+      parameters:
+          - name: habitat
+            in: path
+            description: Habitat name
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Habitat details 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Habitat'   
+              example:
+                scientificName: Tropical Forest & Woodland Subclass
+                commonName: Tropical Forest & Woodland
+                ecosystemType: SUBCLASS
+                parentName: Forest & Woodland
+                stateID: FL
+                
+  /countries:
+    get:
+      summary: 'Returns all countries'
+      responses:
+        '200':
+          description: JSON array of country names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country' 
+              example:
+                [
+                  {United States: US},
+                  {Canada: CA},
+                  {Australia: AU}
+                ]
+  /countries/name=<name>:
+    get:
+      summary: 'Search for country by name'
+      operationId: getCountry
+      tags:
+          - country 
+      parameters:
+          - name: name
+            in: path
+            description: Name of country
+            required: true
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Search for a country by name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country' 
+              example:
+                stateID: US
+                name: United States
+                capital: Washington DC
+                populationMillions: 328.2
+                currency: $
+#  /user:
+#    get:
+#      summary: 'Returns details about a particular species'
+#      operationId: listUser
+#      tags:
+#        - user
+#      parameters:
+#        - name: id
+#          in: query
+#          description: ID of the user
+#          required: true
+#          schema:
+#            type: integer
+#            format: int32
+#      responses:
+#        '200':
+#          description: 'Sample response: Details about a species by name'
+#          headers:
+#            x-next:
+#              description: A link to the next page of responses
+#              schema:
+#                type: string
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/User'
+#        default:
+#          description: Unexpected error
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Species:
+      type: object
+      required:
+        - scientificName
+        - commonName
+      properties:
+          scientificName:
+            type: string
+          commonName:
+            type: string
+          stateID:
+            type: array
+          habitat:
+            type: string
+          status:
+            type: string
+          rank:
+            type: string
+          kingdom:
+            type: string
+          phylum:
+            type: string
+          taxclass:
+            type: string
+          taxorder:
+            type: string
+          family:
+            type: string
+          genus:
+            type: string
+          taxonomicComments:
+            type: string
+    Habitat:
+      type: object
+      required:
+        - scientificName
+        - commonName
+        - ecosystemType
+      properties:
+          scientificName:
+            type: string
+          commonName:
+            type: string
+          ecosystemType:
+            type: string
+          parentName:
+            type: string
+          stateID:
+            type: string
+    Country:
+      type: object
+      required:
+        - name
+      properties:
+        name: 
+            type: string
+        alpha2_code: 
+            type: string
+        alpha3_code: 
+            type: string
+        total_pop: 
+            type: integer
+        capital: 
+            type: string
+        region: 
+            type: string
+        subregion: 
+            type: string
+        latitude: 
+            type: number
+        longitude: 
+            type: number
+        area: 
+            type: number
+        gini_index: 
+            type: integer
+        flag: 
+            type: string
+        embedded_map_link: 
+            type: string
+#    User:
+#      type: object
+#      required:
+#        - id
+#        - name
+#      properties:
+#        id:
+#          type: integer
+#          format: int64
+#        name:
+#          type: string
+#        tag:
+#          type: string
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
