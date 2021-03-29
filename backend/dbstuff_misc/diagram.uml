@@ -1,0 +1,58 @@
+@startuml
+class countries {
+name: varchar
+alpha2_code: varchar
+alpha3_code: varchar
+total_pop: int
+capital: varchar
+region: varchar
+subregion: varchar
+latitude: float
+longitude: float
+area: float
+gini_index: int
+flag: varchar
+embedded_map_link: varchar
+}
+
+class species {
+scientific_name: varchar
+subspecies: varchar
+kingdom: varchar
+phylum: varchar
+_class: varchar
+_order: varchar
+family: varchar
+genus: varchar
+common_name: varchar
+population_trend: varchar
+marine: boolean
+freshwater: boolean
+terrestrial: boolean
+taxonomic_notes: text
+rationale: text
+geographic_range: text
+population: text
+text_habitat: text
+threats: text
+conservation_measures: text
+image_link: varchar
+}
+
+class habitats {
+id: int
+name: varchar
+marine: boolean
+reported_marine_area: float
+iucn_category: int
+designation_name: varchar
+designation_id: int
+link: varchar
+image_link: varchar
+embedded_map_link: varchar
+}
+
+countries "many" -- "many" species
+countries "1" -- "many" habitats
+species "many" -- "many" habitats
+@enduml
