@@ -16,7 +16,7 @@ from selenium.webdriver.common.by import By
 DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 # right now, don't use the linux one; does not seem to work'
 
-DEV = False		# if True, make sure you have frontend started with "yarn start"
+DEV = True		# if True, make sure you have frontend started with "yarn start"
 
 URL = "https://critterycovery.me"
 
@@ -186,6 +186,27 @@ class GuiTests(unittest.TestCase):
     	
 		self.assertEqual(element.text, "Pike")
 	
+	def test_habitats_1(self):
+		driver = self.driver
+		driver.get(URL + "/habitats")
+
+		xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[9]/td[3]"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+    	
+		self.assertEqual(element.text, "1.2108")
+
+	
+	def test_pagination_habitat(self):
+		driver = self.driver
+		driver.get(URL + "/habitats")
+
+		xpath_paginate = "/html/body/div/div/div[2]/div/div[3]/div/ul/li[5]/a"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath_paginate))) #page 3 of habitats
+		driver.find_elements_by_xpath(xpath_paginate)[0].click()
+
+		xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[3]/td[1]"
+		element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, xpath))) 
+		self.assertEqual(element.text, "Big Draft")
 
 	def tearDown(self):						# part of unittest library; called after every test
 		self.driver.close()					# from example 
