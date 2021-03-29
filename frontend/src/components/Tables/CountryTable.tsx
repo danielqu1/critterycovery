@@ -40,7 +40,7 @@ function CountryTable(props : any){
     }
 
     return(
-        <BootstrapTable 
+        <BootstrapTable striped
             keyField='name' 
             data={ props.countries.slice(props.startingCard, props.startingCard+props.maxCardsShown) } 
             columns={ columns } 
