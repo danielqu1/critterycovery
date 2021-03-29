@@ -76,4 +76,4 @@ Brian Wang | 40 | 21
 
 ---
 ### Comments 
-To run Selenium tests: python guitest.py in /selenium
+To run Selenium tests: python guitest.py in /tests/selenium
