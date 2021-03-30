@@ -3,7 +3,7 @@ import requests
 
 def stats():
 
-    branches = ["master", "dev"]
+    branches = ["master"]
 
     data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 22}}
 
