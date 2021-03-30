@@ -23,3 +23,9 @@ selenium:
     - cd tests/selenium
     - python3 guitest.py
 
+postman:
+  image:
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+    - newman run postman.json
