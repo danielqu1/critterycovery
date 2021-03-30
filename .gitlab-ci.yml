@@ -10,12 +10,12 @@ backend:
     - python3 backend/python_tests.py
 
 frontend:
-  image: mcgenius/pp_mocha
+  # image: mcgenius/pp_mocha
   script:
     - cd frontend
-    - yarn install
-    - cd jest
-    - yarn test
+    # - npm install
+    # - cd jest
+    # - npm test
 
 selenium:
   image: groverhood/selenium-testing

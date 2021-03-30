@@ -1,7 +1,7 @@
 import unittest
 import requests
 
-DEV = True
+DEV = False
 
 URL = "https://critterycovery.me"
 if DEV:
