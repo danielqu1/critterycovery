@@ -1,0 +1,25 @@
+before_script:
+  - date
+  - uname -a
+  - printenv | sort
+
+backend:
+  image: groverhood/backend
+  script:
+#    - python3 backend/api.py
+    - python3 backend/python_tests.py
+
+frontend:
+  image: mcgenius/pp_mocha
+  script:
+    - cd frontend
+    - yarn install
+    - cd jest
+    - yarn test
+
+selenium:
+  image: groverhood/selenium-testing
+  script: 
+    - cd tests/selenium
+    - python3 guitest.py
+

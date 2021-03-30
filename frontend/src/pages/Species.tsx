@@ -1,79 +1,121 @@
 import React from 'react';
-import { Table, Nav, Card, CardDeck } from 'react-bootstrap';
-import SpeciesCard from './SpeciesCard';
+import { Container, Row, Col, CardColumns } from 'react-bootstrap';
+import { useParams, useHistory } from 'react-router-dom';
+import SpeciesCard from '../components/Cards/SpeciesCard';
+import SpeciesModal from '../components/Modal/SpeciesModal';
+import PaginationMain from '../components/Pagination/Pagination';
+import axios from 'axios';
 
-import antelope from './speciesPhotos/antelope.jpg';
-import zebra from './speciesPhotos/zebra.jpg';
-import jaguar from './speciesPhotos/jaguar.jpg';
-
-type animal = {
-    name: string;
-    bodyMass: string;
-    length: string;
-    height: string;
-    num: number;
-    taxa: string;
+interface species{
+    common_name: string;
+    scientific_name: string;
+    kingdom: string;
+    phylum: string;
+    _class: string;
+    _order: string;
+    family: string;
+    genus: string;
+    subspecies: string;
+    subpopulations: string;
+    population_trend: string;
+    marine: boolean;
+    freshwater: boolean;
+    terrestrial: boolean;
+	taxonomic_notes: string;
+	rationale: string;
+	geographic_range: string;
+	population: number;
+	text_habitat: string;
+	threats: string;
+	conservation_measures: string;
+	image_link: string;
 }
 
 function Species() {
+    const offset = 3;
+    const {id} = useParams<{ id: string }>();
+    const [animals, setAnimals] = React.useState(new Array<species>());
+    const [isLoading, setLoading] = React.useState(true);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [species, setSpecies] = React.useState(animals[0])
+    const [startingCard, setStart] = React.useState(0)
+    const [maxCardsShown, setCardsShown] = React.useState(10)
+    let history = useHistory();
 
-    const animals: animal[] = [
-        {
-            name: "Antelope",
-            bodyMass: "430 lbs",
-            length: "9.7",
-            height: "4.6",
-            num: 71000,
-            taxa: "Antilocapra americana"
-        },
-        {
-            name: "Zebra",
-            bodyMass: "800 lbs",
-            length: "5.8",
-            height: "4.8",
-            num: 9000,
-            taxa: "Equus zebra Linnaeus"
-        },
-        {
-            name: "Jaguar",
-            bodyMass: "180 lbs",
-            length: "5.2",
-            height: "2.3",
-            num: 64000,
-            taxa: "Panthera onca"
-        }
-    ]
+    React.useEffect(() => {
+        return () => {
+            if (history.action === "POP") {
+                setModalShow(false);
+            }
+            else if (history.action === "PUSH") {
+                setModalShow(true);
+            }
+        };
+    }, [history.action])
+
+    React.useEffect(() => {
+            axios.get("/api/species").then((response) => {
+                setAnimals(response.data.species);
+                if(id != null){
+                    axios.get("/api/species/name=" + id).then((response) => {
+                        if(response.data != null){
+                            setSpecies(response.data.species)
+                            setModalShow(true)
+                        } 
+                    })
+                }
+                setLoading(false);    
+        })}, []);
+    
+    
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
+    }
+
+    function update(animal : species) {
+        history.push(`/species/${animal.scientific_name}`)
+        setSpecies(animal)
+        setModalShow(true)
+    }
+
+    function closeModal(){
+        setModalShow(false);
+        history.push('/species');
+    }
+
+    const speciesCards = [];
+    for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
+        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}>
+            <SpeciesCard animal={animals[i]} photo={animals[i].image_link}></SpeciesCard></a></Col>);
+    }
 
     return(
         <div>
-            <h1>Species</h1>
-            <CardDeck>
-                <SpeciesCard animal={animals[0]} photo={antelope}></SpeciesCard>
-                <SpeciesCard animal={animals[1]} photo={zebra}></SpeciesCard>
-                <SpeciesCard animal={animals[2]} photo={jaguar}></SpeciesCard>
-            </CardDeck>
+            <SpeciesModal
+                species={species}
+                show={modalShow}
+                onHide={() => closeModal()}
+            />
+
+            <Container fluid className="justify-content-md-center">
+                <Row>
+                    <h1>{animals.length} Species. {maxCardsShown} per page</h1>
+                </Row>
+                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
+                    {speciesCards}
+                </Row>
+                <PaginationMain 
+                    instancesPerPage= {maxCardsShown}
+                    totalInstances= {animals.length}
+                    startingInstance= {startingCard}
+                    offsetPagesShownFromCurrent= {offset}
+                    setStartingInstance= {setStart}
+                    setInstancesPerPage= {setCardsShown}
+                ></PaginationMain>
+            </Container>
         </div>
+        
     );
 }
 
 export default Species;
-
-
-// import React from 'react'; 
-  
-// const Species = () => { 
-//   return ( 
-//     <div 
-//       style={{ 
-//         display: 'flex', 
-//         justifyContent: 'Right', 
-//         alignItems: 'Right', 
-//         height: '100vh'
-//       }} 
-//     > 
-//       <h1>RETURN TO MONKE</h1> 
-//     </div> 
-//   ); 
-// }; 
-  
-// export default Species;

@@ -16,16 +16,26 @@ Brian Wang |bw25755 |bwang1008
 ---
 
 ### Git SHA: 
-1741647b9f276b87e1d575db6b02ba33a58e4e4d
+**Phase 1:**
+5057afd05d06c6f593e9eaf868348939b96b8790
+
+**Phase 2:**
+6fd17db0fc36eee241064f6f2836b4e4c96d7eb3 (update)
 
 ---
 
-### Project Leader: 
+### Project Leaders: 
+**Phase 1:**
 Shaharyar Lakhani
+
+**Phase 2:**
+William Crawford
 
 ---
 
 ### Time Completion (hours):
+Phase 1:
+
 Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 15 | 24
@@ -35,6 +45,17 @@ Daniel Qu | 15 | 20
 Brian Wang | 15 | 21
 
 --- 
+Phase 2: 
+
+Name | Estimated | Actual
+--------- | --------- | ---------
+William Crawford | 40 | 50
+Sahithi Golkonda | 40 | 50
+Shaharyar Lakhani | 40 | 52
+Daniel Qu | 40 | 45
+Brian Wang | 40 | 50
+
+---
 
 ### Website: 
 [critterycovery.me](https://critterycovery.me)
@@ -42,7 +63,7 @@ Brian Wang | 15 | 21
 ---
 
 ### Postman API Documentation:
-[https://documenter.getpostman.com/view/14742162/Tz5jfM1L](https://documenter.getpostman.com/view/14742162/Tz5jfM1L)
+[https://documenter.getpostman.com/view/14742162/TzCL8TrF](https://documenter.getpostman.com/view/14742162/TzCL8TrF)
 
 ---
 
@@ -56,14 +77,5 @@ Brian Wang | 15 | 21
 [https://gitlab.com/cs373-group16/critterycovery/-/pipelines](https://gitlab.com/cs373-group16/critterycovery/-/pipelines)
 
 ---
-Models
-*  Species (40,000) - name, taxonomy, organisms left, region, habitat, diet, behavior, picture
-*  Countries (~200) - name, location, population, endangered species in country, wealth
-*  Habitats (30-50) - temperature, humidity, region, locations, number of species(diversity)
----
-Three questions we will answer using this site:
-* Which habitats have the most endangered species?
-* Which regions have the most endangered species?
-* Which regions have the most diverse habitats?
-* Which species are endangered?
----
+### Comments 
+To run Selenium tests: python guitest.py in /tests/selenium

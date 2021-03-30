@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
-import PersonCard from './PersonCard'
-import { Card, CardColumns, CardDeck, CardGroup } from 'react-bootstrap';
+import PersonCard from '../../components/Cards/PersonCard'
+import { Container, Row, Col } from 'react-bootstrap';
 import shaharyar from './ourPhotos/shaharyar.jpg';
 import brian from './ourPhotos/brian.jpg';
 import daniel from './ourPhotos/daniel.jpg';
@@ -22,7 +22,7 @@ interface GitlabData {
 
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
   for (let i = 0; i < stats.length; i++) {
-    if (stats[i].name == shortened) {
+    if (stats[i].name === shortened) {
       return stats[i];
     }
   }
@@ -41,11 +41,10 @@ function About() {
 
   const [stats, setStats] = useState(new Array<PersonStats>());
 
-  axios.get<GitlabData>("/api/gitlabstats").then((response) => {
-    setStats(response.data.stats);
-    // if (stats.length > 0)
-    //   console.log(stats[0].name);
-  });
+  React.useEffect(() => {
+    axios.get<GitlabData>("/api/gitlabstats").then((response) => {
+      setStats(response.data.stats);
+  })}, []);
 
   type Person = {
     name: string;
@@ -87,7 +86,7 @@ function About() {
     },
     {
       name: "William Crawford",
-      stats: getStats(stats, "wi"),
+      stats: getStats(stats, "w"),
       aboutInfo: "William Crawford is a junior CS major at UT Austin. He is new" +
       " to web dev, but likes to do a little bit of everything. He is yet another" + 
       " startup hopeful and wants to learn something new everyday. In his free " +
@@ -98,10 +97,10 @@ function About() {
     {
       name: "Sahithi Golkonda",
       stats: getStats(stats, "sa"),
-      aboutInfo: "Sahithi Golkonda is junior UT Austin, where she is double majoring" +
+      aboutInfo: "Sahithi Golkonda is a junior at UT Austin, where she's double majoring" +
       " in CS and Math. She’s interested in web dev and AI, and is also the Academic" +
       " Officer for the Women in Computer Science organization at UT. In her free " +
-      "time, she spends time outdoors running, hiking, and rowing.",
+      "time, she enjoys running, hiking, and rowing.",
       role: "API Manager and Data Lead",
       photo: sahithi
     },
@@ -114,37 +113,30 @@ function About() {
     }
   ];
 
+  const cards = []
+  for(let i = 0; i < people.length; i++){
+    cards.push(<Col><PersonCard person={people[i]}></PersonCard></Col>)
+  }
+
   return ( 
-    <div 
-      style={{ 
-        display: 'flex', 
-        justifyContent: 'Right', 
-        alignItems: 'Right', 
-        height: '100vh'
-      }} 
-    > 
-      <div>
-        <h1>General Description:</h1>
-        <br />
-        <p>{ description }</p>
-        <h1>Data:</h1>
-        <br />
-        <p>{ compilation }</p>
-          <CardDeck>
-            <PersonCard person={people[0]}></PersonCard>
-            <PersonCard person={people[1]}></PersonCard>
-            <PersonCard person={people[2]}></PersonCard>
-          </CardDeck>
-          <CardDeck>
-            <PersonCard person={people[3]}></PersonCard>
-            <PersonCard person={people[4]}></PersonCard>
-            <PersonCard person={people[5]}></PersonCard>
-          </CardDeck>
+    <body className='body'> 
+      <Container fluid style={{width: '90%'}}>
+        <Row>
+          <h1>General Description:</h1>
+          <p>{ description }</p>
+          <h1>Data:</h1>
+          <p>{ compilation }</p>
+        </Row>
+        <Row xs={1} sm={2} md={2} lg={3} xl={4}>
+          {cards}
+        </Row>
+      </Container>      
+      
         <div className="text-center">
           <h2>View our code base here: </h2>
           <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br/>
           <h2>View our Postman API Documentation here: </h2>
-          <a href="https://documenter.getpostman.com/view/14742162/Tz5jfM1L">API Documentation</a><br/>
+          <a href="https://documenter.getpostman.com/view/14742162/TzCL8TrF">API Documentation</a><br/>
         </div>
         <div className="text-center">
           <h2>Tools used:</h2>
@@ -153,8 +145,14 @@ function About() {
           AWS EC2 and Route53: For hosting the website on the cloud<br/>
           Postman: For creating the API documentation for our own API (linked above)
         </div>
+
+      <div className="text-center">
+        <h2>APIs used:</h2>
+        <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br/>
+        <a href="https://apiv3.iucnredlist.org/">https://apiv3.iucnredlist.org/</a> Information about specific endangered species<br/>
+        <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br/>
       </div>
-    </div> 
+    </body>
   ); 
 }; 
   

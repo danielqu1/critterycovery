@@ -1,12 +1,15 @@
 body {
   background-color: #e6eeff;
   color: black;
-  padding: 0px;
+  padding: 1%, 0px, 0px, 0px;
   font-family: Arial;
   text-align: center;
   margin-top: 0;
   margin-left: 0;
   margin-right: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  
 }
 
 /* Added for to-top button*/
@@ -38,7 +41,7 @@ body {
 .font-big {
   color: tomato;
   font-size: 5vw;
-  text-shadow: 5px 1px 1px rgba(1,1,1,1);
+  
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   padding-bottom: 0;

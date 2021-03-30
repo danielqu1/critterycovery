@@ -1,151 +1,107 @@
 import React from 'react';
-import { Table, Nav } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+import { useParams, useHistory } from 'react-router-dom';
+import HabitatTable from '../components/Tables/HabitatTable';
+import HabitatModal from '../components/Modal/HabitatModal';
+import PaginationMain from '../components/Pagination/Pagination';
+import axios from 'axios';
 
-function Habitats() {
+interface habitat {
+    id: number;
+    name: string;
+    marine: boolean;
+    reported_marine_area: number;
+    reported_terrestrial_area: number;
+    countries: string;
+    iucn_category: number;
+    designation_name: string;
+    designation_id: number;
+    link: string;
+}
+
+function Habitats(props : any) {
+    const offset = 3;
+    const {id} = useParams<{ id: string }>();
+    const [habitats, setHabitats] = React.useState(new Array<habitat>());
+    const [isLoading, setLoading] = React.useState(true);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [habitat, setHabitat] = React.useState(habitats[0])
+    const [startingCard, setStart] = React.useState(0)
+    const [maxCardsShown, setCardsShown] = React.useState(10)
+    let history = useHistory();
+
+    React.useEffect(() => {
+        return () => {
+            if (history.action === "POP") {
+                setModalShow(false);
+            }
+            else if (history.action === "PUSH") {
+                setModalShow(true);
+            }
+        };
+    }, [history.action])
+    
+    React.useEffect(() => {
+            axios.get("/api/habitats").then((response) => {
+                setHabitats(response.data.habitats);
+                if(id != null){
+                    axios.get("/api/habitats/name=" + id).then((response) => {
+                        if(response.data != null){
+                            setHabitat(response.data.habitat)
+                            setModalShow(true)
+                        } 
+                    })
+                }
+                setLoading(false);    
+        })}, []);
+    
+    
+    if (isLoading) {
+        return <div className="App">Loading...</div>;
+    }
+
+    function update(place : habitat) {
+        history.push(`/habitats/${place.name}`)
+        setHabitat(place)
+        setModalShow(true)
+    }
+
+    function closeModal(){
+        setModalShow(false);
+        history.push('/habitats');
+    }
+    
     return(
         <div>
-            <h1>Habitats</h1>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                    <th>Habitat type</th>
-                    <th>Rain</th>
-                    <th>Temperature</th>
-                    <th>Sunlight per day</th>
-                    <th>Percent of Earth</th>
-                    <th>Classification Code</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td><Nav.Link href="/habitats/Desert">Desert</Nav.Link></td>
-                    <td>8.03 in</td>
-                    <td>117 degrees F</td>
-                    <td>8.32 hours</td>
-                    <td>33</td>
-                    <td>3</td>
-                    </tr>
-                    <tr>
-                    <td><Nav.Link href="/habitats/Grassland">Grassland</Nav.Link></td>
-                    <td>30 in</td>
-                    <td>60-70 degrees F</td>
-                    <td>11.86 hours</td>
-                    <td>20-40</td>
-                    <td>2.A</td>
-                    </tr>
-                    <tr>
-                    <td><Nav.Link href="/habitats/Forest">Forest</Nav.Link></td>
-                    <td>80-100 in</td>
-                    <td>50 degrees F</td>
-                    <td>12 hours</td>
-                    <td>31</td>
-                    <td>4.3</td>
-                    </tr>
-                </tbody>
-            </Table>
+            <HabitatModal
+                habitat={habitat}
+                show={modalShow}
+                onHide={() => closeModal()}
+            />
+
+            <Container fluid className="justify-content-md-center">
+                <Row>
+                    <h1>{habitats.length} Habitats. {maxCardsShown} per page</h1>
+                </Row>
+                <Row>
+                    <HabitatTable
+                        maxCardsShown={maxCardsShown}
+                        habitats={habitats}
+                        startingCard={startingCard}
+                        update={update}/>
+                </Row>
+                <PaginationMain 
+                    instancesPerPage= {maxCardsShown}
+                    totalInstances= {habitats.length}
+                    startingInstance= {startingCard}
+                    offsetPagesShownFromCurrent= {offset}
+                    setStartingInstance= {setStart}
+                    setInstancesPerPage= {setCardsShown}
+                ></PaginationMain>
+            </Container>
         </div>
+        
     );
 }
 
 export default Habitats;
-
-
-// import React from 'react';
-
-// // need all four to build a table
-// import type {ColumnDefinitionType} from "../components/Table/ColumnDefinitionType";
-// import Table from "../components/Table/Table";
-
-// // what the data looks like
-// interface Cat {
-//   name: string;
-//   age: number;
-//   gender: string;
-//   color: string;
-//   activityLevel?: string; // optional, same as string | undefined
-//   favoriteFood?: string;  // optional, same as string | undefined
-// }
-
-// // actual data (here, this is DUMMY DATA)
-// const data: Cat[] = [
-//   {
-//     name: 'Mittens',
-//     color: 'black',
-//     age: 2,
-//     gender: 'female',
-//     activityLevel: 'hight',
-//     favoriteFood: 'milk'
-//   },
-//   {
-//     name: 'Mons',
-//     color: 'grey',
-//     age: 2,
-//     gender: 'male',
-//     favoriteFood: 'old socks',
-//     activityLevel: 'medium'
-//   },
-//   {
-//     name: 'Luna',
-//     color: 'black',
-//     age: 2,
-//     gender: 'female',
-//     activityLevel: 'medium',
-//     favoriteFood: 'fish'
-//   },
-//   {
-//     name: 'Bella',
-//     color: 'grey',
-//     age: 1,
-//     gender: 'female',
-//     activityLevel: 'high',
-//     favoriteFood: 'mice'
-//   },
-//   {
-//     name: 'Oliver',
-//     color: 'orange',
-//     age: 1,
-//     gender: 'male',
-//     activityLevel: 'low',
-//     favoriteFood: 'fish'
-//   }
-// ]
-
-// // what keys to show on table, and what should be at the top of each column
-// const columns: ColumnDefinitionType<Cat, keyof Cat>[] = [
-//   {
-//     key: 'name',
-//     header: 'Name',
-//     width: 150
-//   },
-//   {
-//     key: 'age',
-//     header: 'Age in years',
-//   },
-//   {
-//     key: 'color',
-//     header: 'Color'
-//   }
-// ]
-
-
-// const Habitats = () => { 
-//   return ( 
-//     <div 
-//       style={{ 
-//         display: 'flex', 
-//         justifyContent: 'Right', 
-//         alignItems: 'Right', 
-//         height: '100vh'
-//       }} 
-//     > 
-//       <h1>Imagine not livining in a concrete jungle!</h1>
-	  
-// 	  <div>
-// 		<h2>Habitats and Ecosystems</h2>
-// 		<Table data={data} columns={columns} />
-// 	  </div>
-//     </div> 
-//   ); 
-// }; 
-  
-// export default Habitats;

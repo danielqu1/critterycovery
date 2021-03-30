@@ -1,21 +1,41 @@
 import requests
 
+
 def stats():
 
-    commitsLink = "https://gitlab.com/api/v4/projects/24707879/repository/commits"
-    issuesLink = "https://gitlab.com/api/v4/projects/24707879/issues"
-    commitsResponse = requests.get(commitsLink).json()
-    issuesResponse = requests.get(issuesLink).json()
-    
-    data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 0}}
+    branches = ["master", "dev"]
 
-    for i in commitsResponse:
-        data["total"]["commits"] += 1
-        name = i["author_name"][:2].lower()
-        if name in data:
-            data[name]["commits"] += 1
-        else:
-            data[name] = {"name": name, "commits": 1, "issues": 0, "unittests": 0}
+    data = {"total": {"name": "total", "commits": 0, "issues": 0, "unittests": 22}}
+
+    for branch in branches:
+
+        # reference: https://stackoverflow.com/questions/43733179/gitlab-api-to-get-all-commits-of-a-specific-branch
+        commitsLink = (
+            "https://gitlab.com/api/v4/projects/24707879/repository/commits?ref_name="
+            + branch
+            + "&per_page=1000"
+        )  # get from specific branch, and use max of 100 commits
+        commitsResponse = requests.get(commitsLink).json()
+
+        for i in commitsResponse:
+
+            data["total"]["commits"] += 1
+            name = i["author_name"][:2].lower()
+
+            if name[0] == "w":  # handle William's two usernames
+                name = "w"
+
+            if name in data:
+                data[name]["commits"] += 1
+            else:
+                data[name] = {"name": name, "commits": 1, "issues": 0, "unittests": 0}
+
+    issuesLink = (
+        "https://gitlab.com/api/v4/projects/24707879/issues?ref_name="
+        + branch
+        + "&per_page=1000"
+    )
+    issuesResponse = requests.get(issuesLink).json()
 
     for i in issuesResponse:
         if i["state"] == "closed":
@@ -23,12 +43,29 @@ def stats():
             """if none assigned, add for everyone"""
             if not i["assignees"]:
                 for person in data:
-                    data[person]["issues"] += 1
+                    if person != "total":
+                        data[person]["issues"] += 1
             else:
                 for person in i["assignees"]:
                     name = person["name"][:2].lower()
+
+                    if name[0] == "w":
+                        name = "w"
+
                     if name in data:
                         data[name]["issues"] += 1
                     else:
-                        data[name] = {"name": name, "commits": 0, "issues": 1, "unittests": 0}
+                        data[name] = {
+                            "name": name,
+                            "commits": 0,
+                            "issues": 1,
+                            "unittests": 0,
+                        }
+
+    for person in data:
+        data[person]["unittests"] = 4
+
+    data["br"]["unittests"] = 5
+    data["total"]["unittests"] = 21
+
     return {"stats": list(data.values())}
