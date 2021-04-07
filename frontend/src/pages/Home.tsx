@@ -1,35 +1,9 @@
-import React from 'react'; 
 import ReactPlayer from 'react-player';
-import {Container, CardDeck} from 'react-bootstrap'
-import ModelCard from '../components/Cards/ModelCard'
+import { Container, Row, Col } from 'react-bootstrap'
+import ModelDeck from '../components/CardDecks/ModelDeck'
 
 const Home = () => { 
-
-  type Models = {
-    href: string,
-    title: string,
-    image: string,
-    text: string
-  }
-
-  let model: Models[] = [
-    { href: "/species",
-      title: "Species",
-      image: "https://i.imgur.com/dyN72lq.png",
-      text: "Click here to go to species"
-    },
-    { href: "/habitats",
-      title: "Habitats",
-      image: "https://i.imgur.com/bU8w49l.jpg",
-      text: "Click here to go to habitats"
-    },
-    { href: "/countries",
-      title: "Countries",
-      image: "https://i.imgur.com/o1e9atI.jpeg",
-      text: "Click here to go to countries"
-    },
-
-  ];
+  
   return (
 
     <body className='body' style={{position:'relative', alignContent:'left'}}>
@@ -55,19 +29,24 @@ const Home = () => {
             height='calc(100vw * .5625)'
           />
         </div>
-        <div className='home-title'>
-          <p className='font-big'> Critters need Recovery</p>
-          <p className='font-medium-big'>If you love animals, you should support them</p>
-        </div>
+        <Container className='home-title' style={{padding: 20, width: '40%', zIndex:10}}>
+          <Row>
+            <Col>
+              <Container style={{background: 'rgba(255, 255, 255, 0.7)', borderRadius: '.7vw'}}>
+                <p className='font-big'> Critterycovery</p>
+                <p className='font-medium-big'>Showing animals that need help</p>
+                <p></p>
+              </Container>
+              
+            </Col>
+          </Row>
+          <Row xs={1} sm={2} md={2} lg={3}>
+            {<ModelDeck></ModelDeck>}
+          </Row>
+        </Container>
       </Container>
       
-      <Container fluid='md' style={{alignContent:'center', top: '100vh'}}>
-        <CardDeck>
-            <ModelCard models={model[0]}></ModelCard>
-            <ModelCard models={model[1]}></ModelCard>
-            <ModelCard models={model[2]}></ModelCard>
-        </CardDeck>
-      </Container>
+      
           
     </body>
   ); 
