@@ -334,5 +334,18 @@ def get_species_countries(name):
     return jsonify({"countries": country_names})
 
 
+# sorting endpoints
+
+# filter by marine species
+@app.route("/api/species/marine", methods=["GET"])
+def get_marine_species():
+    species = species_table.query.filter_by(marine=True).all()
+    if species is None:
+        print("species does not exist")
+        print("How to make error page?")
+        return {}
+    response = species_schema.dump(species)
+    return jsonify({"species": response})
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
