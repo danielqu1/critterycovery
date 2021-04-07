@@ -1,11 +1,21 @@
 import React from 'react'; 
+import logo from '../../images/logo.png';
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
   
 const NavbarMain = () => { 
   return ( 
     <>
       <Navbar sticky="top" bg="light" expand="lg">
-        <Navbar.Brand href="/">critterycovery</Navbar.Brand>
+        <Navbar.Brand href="/">
+        <img
+          src={logo}
+          width="30"
+          height="30"
+          className="d-inline-block align-top"
+          alt="CritteryCovery logo"
+        />
+        critterycovery
+       </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
