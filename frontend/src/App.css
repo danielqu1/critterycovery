@@ -32,16 +32,16 @@ body {
 
 .home-title {
   position: absolute;
-  top: calc(50vw * .5625);
+  top: calc(30vw * .5625);
   left: 0;
   margin-left: 5vw;
-  text-align: left;
+  text-align: center;
 }
 
 .font-big {
   color: tomato;
   font-size: 5vw;
-  
+  font-weight: bolder;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   padding-bottom: 0;
@@ -49,7 +49,17 @@ body {
 
 .font-medium-big {
   color: red;
-  font-size: 2.5vw
+  font-size: 2.4vw
+}
+
+.hoverable{
+  background-color: rgb(255, 255, 255, .7);
+  transition: background-color 1s;
+  color: black;
+}
+.hoverable:hover {
+  background-color: rgb(255, 99, 71, .7);
+  color: red;
 }
 
 /* Added for to-top button*/
