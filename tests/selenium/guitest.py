@@ -40,7 +40,7 @@ class GuiTests(unittest.TestCase):
         chrome_options.add_experimental_option(
             "excludeSwitches", ["enable-logging"]
         )  # get rid of console message "DevTools listening on ws://127.0.0.1:53975/devtools/browser..."
-        # chrome_options.add_argument("--no-sandbox")	# don't think we need this
+        chrome_options.add_argument("--no-sandbox")	# don't think we need this
 
         self.driver = webdriver.Chrome(
             executable_path=DRIVER_PATH, options=chrome_options
@@ -231,7 +231,7 @@ class GuiTests(unittest.TestCase):
         self.assertEqual(element.text, "Big Draft")
 
     def tearDown(self):  # part of unittest library; called after every test
-        self.driver.close()  # from example
+        # self.driver.close()  # from example
         self.driver.quit()
 
 
