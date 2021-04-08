@@ -36,7 +36,7 @@ function ModelDeck()  {
 
     const cards = []
     for(let i = 0; i < models.length; i++){
-        cards.push(<Col style={{zIndex: 11}} ><ModelCard models={models[i]}></ModelCard></Col>)
+        cards.push(<Col><ModelCard models={models[i]}></ModelCard></Col>)
     }
   return (
     <>

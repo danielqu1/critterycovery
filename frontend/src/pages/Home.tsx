@@ -6,11 +6,12 @@ const Home = () => {
   
   return (
 
-    <body className='body' style={{position:'relative', alignContent:'left'}}>
+    <body style={{position:'relative', alignContent:'left'}}>
       <Container fluid style={{padding:'0px'}}>
         <div className='home-video' style={{width:'100vw', height:'calc(100vw * .5625)', zIndex:9}}></div>
-        <div className='player-wrapper' style={{overflowX:'hidden', overflowY:'hidden'}}>
+        <div className='player-wrapper'>
           <ReactPlayer
+            style={{overflowX:'hidden', overflowY:'hidden'}}
             className='react-player'
             url={'https://www.youtu.be/8rPB4A3zDnQ?t='+ Math.floor(Math.random()*1200)}
             playing={true}
@@ -29,7 +30,7 @@ const Home = () => {
             height='calc(100vw * .5625)'
           />
         </div>
-        <Container className='home-title' style={{padding: 20, width: '40%', zIndex:10}}>
+        <Container className='home-title' style={{width: '40%', zIndex:10}}>
           <Row>
             <Col>
               <Container style={{background: 'rgba(255, 255, 255, 0.7)', borderRadius: '.7vw'}}>
@@ -40,7 +41,7 @@ const Home = () => {
               
             </Col>
           </Row>
-          <Row xs={1} sm={2} md={2} lg={3}>
+          <Row xs={3}>
             {<ModelDeck></ModelDeck>}
           </Row>
         </Container>
