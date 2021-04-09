@@ -90,14 +90,6 @@ function Habitats(props : any) {
                         startingCard={startingCard}
                         update={update}/>
                 </Row>
-                <PaginationMain 
-                    instancesPerPage= {maxCardsShown}
-                    totalInstances= {habitats.length}
-                    startingInstance= {startingCard}
-                    offsetPagesShownFromCurrent= {offset}
-                    setStartingInstance= {setStart}
-                    setInstancesPerPage= {setCardsShown}
-                ></PaginationMain>
             </Container>
         </div>
         

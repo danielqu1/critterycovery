@@ -26,6 +26,7 @@
 		"react-bootstrap": "^1.5.1",
 		"react-bootstrap-table": "^4.3.1",
 		"react-bootstrap-table-next": "^4.0.3",
+		"react-bootstrap-table2-paginator": "^2.1.2",
 		"react-dom": "^17.0.1",
 		"react-icons": "^4.2.0",
 		"react-paginate": "^7.1.2",
@@ -62,6 +63,7 @@
 	},
 	"proxy": "http://localhost:80/",
 	"devDependencies": {
+		"@types/react-bootstrap-table2-paginator": "^2.1.1",
 		"@types/react-router-dom": "^5.1.7"
 	},
 	"presets": [
