@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import PaginationMain from '../components/Pagination/Pagination'
+import Loading from './Loading';
 import axios from 'axios'
 
 interface country{
@@ -59,7 +60,7 @@ function Countries(props : any) {
     
     
     if (isLoading) {
-        return <div className="App">Loading...</div>;
+        return Loading();
     }
 
     function update(place : country) {
@@ -74,7 +75,7 @@ function Countries(props : any) {
     }
     
     return(
-        <div>
+        <Container>
             <CountryModal
                 country={country}
                 show={modalShow}
@@ -101,7 +102,7 @@ function Countries(props : any) {
                     setInstancesPerPage= {setCardsShown}
                 ></PaginationMain>
             </Container>
-        </div>
+        </Container>
         
     );
 }

@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import PaginationMain from '../components/Pagination/Pagination';
+import Loading from './Loading';
 import axios from 'axios';
 
 interface habitat {
@@ -57,7 +58,7 @@ function Habitats(props : any) {
     
     
     if (isLoading) {
-        return <div className="App">Loading...</div>;
+        return Loading();
     }
 
     function update(place : habitat) {
@@ -72,7 +73,7 @@ function Habitats(props : any) {
     }
     
     return(
-        <div>
+        <Container>
             <HabitatModal
                 habitat={habitat}
                 show={modalShow}
@@ -99,7 +100,7 @@ function Habitats(props : any) {
                     setInstancesPerPage= {setCardsShown}
                 ></PaginationMain>
             </Container>
-        </div>
+        </Container>
         
     );
 }
