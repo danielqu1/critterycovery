@@ -6,7 +6,7 @@ const Home = () => {
   
   return (
 
-    <body style={{position:'relative', alignContent:'left'}}>
+    <body style={{position:'relative', alignContent:'left', overflowX: 'hidden'}}>
       <Container fluid style={{padding:'0px'}}>
         <div className='home-video' style={{width:'100vw', height:'calc(100vw * .5625)', zIndex:9}}></div>
         <div className='player-wrapper'>

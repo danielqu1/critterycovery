@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+
 import PersonDeck from '../components/CardDecks/PersonDeck'
 import ToolDeck from '../components/CardDecks/ToolDeck'
+
+import Tools from '../data/Tools'
+import Apis from '../data/Apis'
+import AboutLinks from '../data/AboutLinks'
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -16,37 +21,52 @@ function About() {
 
 	return (
 		<body>
-			<Container fluid style={{ width: '90%' }}>
+			<Container fluid style={{ width: '70%' }}>
 				<Row>
-					<h1 className='font-medium-big'>General Description:</h1>
-					<p>{ description }</p>
+          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey', borderBottom: '.25rem dotted lightgrey'}}>
+            <h1 style={{fontWeight:'bolder'}}>About Us</h1>
+            <p style={{fontSize: '18pt'}}>{ description }</p>
+          </Container>
+					
         </Row>
-        <Row>
-					<h1>Data:</h1>
-					<p>{ compilation }</p>
-				</Row>
 				<Row xs={1} sm={2} md={2} lg={3}>
 					{<PersonDeck />}
 				</Row>
-        <Row>
-          <h1 style={{textAlign:'center'}}>Tools</h1>
+        <Row >
+          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey'}}>
+            <h1 style={{fontWeight:'bolder'}}>Tools</h1>
+          </Container>
+        
         </Row>
         <Row xs={1} sm={1} md={2} lg={3} xl={4}>
-            {<ToolDeck />}
+            {<ToolDeck tools={Tools()} />}
         </Row>
         <Row>
-          <h2>View our code base here: </h2><br />
-          <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br />
-          <h2>View our Postman API Documentation here: </h2><br />
-          <a href="https://documenter.getpostman.com/view/14742162/TzCL8TrF">API Documentation</a><br />
+          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey', borderBottom: '.25rem dotted lightgrey'}}>
+            <h1 style={{fontWeight:'bolder'}}>Data</h1>
+            <p style={{fontSize: '18pt'}}>{ compilation }</p>
+          </Container>
+				</Row>
+        <Row >
+          <Container style={{textAlign:'center', paddingTop: '2%'}}>
+            <h1 style={{fontWeight:'bolder'}}>API's</h1>
+          </Container>
         </Row>
-        <Row>
-          <h2>APIs used:</h2>
-          <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br />
-          <a href="https://apiv3.iucnredlist.org/">https://apiv3.iucnredlist.org/</a> Information about specific endangered species<br />
-          <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br />
+        <Row xs={1} sm={1} md={2} lg={3} xl={4}>
+            {<ToolDeck tools={Apis()} />}
         </Row>
-
+        <Row >
+          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey'}}>
+            <h1 style={{fontWeight:'bolder'}}>Links</h1>
+          </Container>
+        </Row>
+        <Row className="justify-content-md-center" style={{paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted lightgrey'}} xs={2}>
+          <Container >
+            <Row className="justify-content-md-center" xs={2} md={2}>
+              {<ToolDeck tools={AboutLinks()} />}
+            </Row>
+          </Container>
+        </Row>
       </Container>
     </body>
   ); 
