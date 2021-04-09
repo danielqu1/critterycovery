@@ -3,8 +3,6 @@ import axios from 'axios';
 import PersonDeck from '../components/CardDecks/PersonDeck'
 import ToolDeck from '../components/CardDecks/ToolDeck'
 
-import ToolCard from '../Cards/ToolCard'
-
 import { Container, Row, Col } from 'react-bootstrap';
 
 function About() { 
