@@ -56,7 +56,7 @@ function PersonDeck()  {
 		" this project, and is excited to use his skills from this class so" +
 		" far to potentially create a startup! His hobbies include playing basketball," +
 		" going on hikes, singing, and cooking.",
-	    role: "Project Lead: Backend Manager",
+	    role: "Backend Lead and Dev",
 		photo: shaharyar
 	},
 	{
@@ -65,7 +65,7 @@ function PersonDeck()  {
 		aboutInfo: "Brian Wang is a junior at UT Austin. He is thrilled to be in" +
 		" SWE this semester, and he can't wait to see the website up and running!" +
 		" His hobbies include reading and doing jigsaw puzzles.",
-		role: "Lead Frontend Developer",
+		role: "Test Master and Frontend Dev",
 		photo: brian
 	},
 	{
@@ -74,7 +74,7 @@ function PersonDeck()  {
 		aboutInfo: "Daniel Qu is a sophomore in the CS department at UT Austin. He is" +
 		" fairly new to web development, but is very eager to learn. He recently adopted a" +
 		" kitten named Kiki! In his free time he enjoys playing chess and Sudoku.",
-		role: "Developer and Report Manager",
+		role: "Documentation Expert and Dev",
 		photo: daniel
 	},
 	{
@@ -84,7 +84,7 @@ function PersonDeck()  {
 		" to web dev, but likes to do a little bit of everything. He is yet another" + 
 		" startup hopeful and wants to learn something new everyday. In his free " +
 		"time, he likes to swim and play building or strategy based video games.",
-		role: "Frontend Developer and Designer",
+		role: "Frontend Lead and Designer",
 		photo: will
 	},
 	{
@@ -94,7 +94,7 @@ function PersonDeck()  {
 		" in CS and Math. She’s interested in web dev and AI, and is also the Academic" +
 		" Officer for the Women in Computer Science organization at UT. In her free " +
 		"time, she enjoys running, hiking, and rowing.",
-		role: "API Manager and Data Lead",
+		role: "Data Guru and API Manager",
 		photo: sahithi
 	},
 	{
@@ -108,7 +108,7 @@ function PersonDeck()  {
 
 	const cards = []
 	for(let i = 0; i < people.length; i++){
-		cards.push(<Col><PersonCard person={people[i]}></PersonCard></Col>)
+		cards.push(<Col className="container-fluid mt-4"><PersonCard person={people[i]}></PersonCard></Col>)
     }
 
     return (
