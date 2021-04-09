@@ -1,12 +1,10 @@
 body {
-  background-color: #e6eeff;
+  background-color: #ffffff7e;
   color: black;
-  padding: 1%, 0px, 0px, 0px;
-  font-family: Arial;
+  padding: 0;
+  font-family: Arial, sans-serif;
   text-align: center;
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0;
   max-width: 100%;
   overflow-x: hidden;
   
@@ -47,6 +45,8 @@ body {
   padding-bottom: 0;
 }
 
+
+
 .font-medium-big {
   color: red;
   font-size: 2.4vw
@@ -60,6 +60,20 @@ body {
 .hoverable:hover {
   background-color: rgb(255, 99, 71, .7);
   color: red;
+}
+
+.unformat {
+  text-decoration: none;
+  padding: 0;
+  color: black;
+}
+.unformat:hover{
+  text-decoration: none;
+  color: black;
+}
+
+.cardShadow:hover{
+  box-shadow: 10px 10px grey;
 }
 
 /* Added for to-top button*/

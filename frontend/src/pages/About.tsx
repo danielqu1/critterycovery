@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios'; 
 import PersonDeck from '../components/CardDecks/PersonDeck'
 import ToolDeck from '../components/CardDecks/ToolDeck'
 
@@ -16,41 +15,41 @@ function About() {
 	" used here can come of real help to different organizations that aim to protect animals."; 
 
 	return (
-		<body className='body'>
+		<body>
 			<Container fluid style={{ width: '90%' }}>
 				<Row>
-					<h1>General Description:</h1>
+					<h1 className='font-medium-big'>General Description:</h1>
 					<p>{ description }</p>
+        </Row>
+        <Row>
 					<h1>Data:</h1>
 					<p>{ compilation }</p>
 				</Row>
 				<Row xs={1} sm={2} md={2} lg={3}>
 					{<PersonDeck />}
 				</Row>
-            </Container>
+        <Row>
+          <h1 style={{textAlign:'center'}}>Tools</h1>
+        </Row>
+        <Row xs={1} sm={1} md={2} lg={3} xl={4}>
+            {<ToolDeck />}
+        </Row>
+        <Row>
+          <h2>View our code base here: </h2><br />
+          <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br />
+          <h2>View our Postman API Documentation here: </h2><br />
+          <a href="https://documenter.getpostman.com/view/14742162/TzCL8TrF">API Documentation</a><br />
+        </Row>
+        <Row>
+          <h2>APIs used:</h2>
+          <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br />
+          <a href="https://apiv3.iucnredlist.org/">https://apiv3.iucnredlist.org/</a> Information about specific endangered species<br />
+          <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br />
+        </Row>
 
-            <Container fluid style={{ width: '90%' }}>
-                <h1>Tools</h1>
-                <Row xs={1} sm={2} md={2} lg={3}>
-                    {<ToolDeck />}
-                </Row>
-            </Container>
-
-            <div className="text-center">
-                <h2>View our code base here: </h2>
-                <a href="https://gitlab.com/cs373-group16/critterycovery">Gitlab</a><br />
-                <h2>View our Postman API Documentation here: </h2>
-                <a href="https://documenter.getpostman.com/view/14742162/TzCL8TrF">API Documentation</a><br />
-            </div>
-
-            <div className="text-center">
-                <h2>APIs used:</h2>
-                <a href="https://api.protectedplanet.net/">https://api.protectedplanet.net/</a> Information about national and state parks<br />
-                <a href="https://apiv3.iucnredlist.org/">https://apiv3.iucnredlist.org/</a> Information about specific endangered species<br />
-                <a href="https://restcountries.eu">https://restcountries.eu/</a> Information about countries<br />
-            </div>
-        </body>
-    ); 
+      </Container>
+    </body>
+  ); 
 }; 
   
 export default About;

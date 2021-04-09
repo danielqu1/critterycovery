@@ -31,7 +31,7 @@ function ToolDeck() {
 	let tools: Tool[] = [
 		{
 			name: "Amazon Web Services",
-			text: "Hosting our frontend",
+			text: "Server host",
 			img: AWSLogo,
 			link: "https://aws.amazon.com/"
 		},
@@ -55,13 +55,13 @@ function ToolDeck() {
 		},
 		{
 			name: "Google Cloud Platform",
-			text: "Hosted our backend",
+			text: "Database host",
 			img: GCPLogo,
 			link: "https://cloud.google.com/"
 		},
 		{
 			name: "GitLab",
-			text: "Repository",
+			text: "Version control",
 			img: GitLabLogo,
 			link: "http://gitlab.com/"
 		},
@@ -79,7 +79,7 @@ function ToolDeck() {
 		},
 		{
 			name: "Namecheap",
-			text: "Obtain Website URL",
+			text: "Domain host",
 			img: NamecheapLogo,
 			link: "https://www.namecheap.com/"
 		},
@@ -91,7 +91,7 @@ function ToolDeck() {
 		},
 		{
 			name: "Postman",
-			text: "API",
+			text: "Backend API",
 			img: PostmanLogo,
 			link: "https://www.postman.com/"
 		},
