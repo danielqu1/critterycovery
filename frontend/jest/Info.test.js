@@ -7,7 +7,7 @@ import "@testing-library/jest-dom/extend-expect"
 import App from "../src/App.tsx";
 import About from "../src/pages/About.tsx";
 
-// Needs babel. Needs file babel.config.js, and "jest" section in package.json
+// Needs babel. Needs file babel.config.js, and "jest" section in package.json. Also needs assertsTransformer.js (link)
 // used https://github.com/facebook/jest/issues/2663 to ultimately resolve Syntax error complaints about importing pngs:
 // having a jest.config.js file overwrites these settings, so don't have jest.config.js file
 
