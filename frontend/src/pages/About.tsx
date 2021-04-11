@@ -20,55 +20,53 @@ function About() {
 	" used here can come of real help to different organizations that aim to protect animals."; 
 
 	return (
-		<body>
-			<Container fluid style={{ width: '70%' }}>
-				<Row>
-          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey', borderBottom: '.25rem dotted lightgrey'}}>
-            <h1 style={{fontWeight:'bolder'}}>About Us</h1>
-            <p style={{fontSize: '18pt'}}>{ description }</p>
-          </Container>
-					
-        </Row>
-				<Row xs={1} sm={2} md={2} lg={3}>
-					{<PersonDeck />}
-				</Row>
-        <Row >
-          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey'}}>
-            <h1 style={{fontWeight:'bolder'}}>Tools</h1>
-          </Container>
+    <Container fluid style={{ width: '70%' }}>
+      <Row>
+        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+          <h1 style={{fontWeight:'bolder'}}>About Us</h1>
+          <p style={{fontSize: '18pt'}}>{ description }</p>
+        </Container>
         
-        </Row>
-        <Row xs={1} sm={1} md={2} lg={3} xl={4}>
-            {<ToolDeck tools={Tools()} />}
-        </Row>
-        <Row>
-          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey', borderBottom: '.25rem dotted lightgrey'}}>
-            <h1 style={{fontWeight:'bolder'}}>Data</h1>
-            <p style={{fontSize: '18pt'}}>{ compilation }</p>
-          </Container>
-				</Row>
-        <Row >
-          <Container style={{textAlign:'center', paddingTop: '2%'}}>
-            <h1 style={{fontWeight:'bolder'}}>API's</h1>
-          </Container>
-        </Row>
-        <Row xs={1} sm={1} md={2} lg={3} xl={4}>
-            {<ToolDeck tools={Apis()} />}
-        </Row>
-        <Row >
-          <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted lightgrey'}}>
-            <h1 style={{fontWeight:'bolder'}}>Links</h1>
-          </Container>
-        </Row>
-        <Row className="justify-content-md-center" style={{paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted lightgrey'}} xs={2}>
-          <Container >
-            <Row className="justify-content-md-center" xs={2} md={2}>
-              {<ToolDeck tools={AboutLinks()} />}
-            </Row>
-          </Container>
-        </Row>
-      </Container>
-    </body>
+      </Row>
+      <Row xs={1} sm={2} md={2} lg={3}>
+        {<PersonDeck />}
+      </Row>
+      <Row >
+        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
+          <h1 style={{fontWeight:'bolder'}}>Tools</h1>
+        </Container>
+      
+      </Row>
+      <Row xs={1} sm={1} md={2} lg={3} xl={4}>
+          {<ToolDeck tools={Tools()} />}
+      </Row>
+      <Row>
+        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+          <h1 style={{fontWeight:'bolder'}}>Data</h1>
+          <p style={{fontSize: '18pt'}}>{ compilation }</p>
+        </Container>
+      </Row>
+      <Row >
+        <Container style={{textAlign:'center', paddingTop: '2%'}}>
+          <h1 style={{fontWeight:'bolder'}}>API's</h1>
+        </Container>
+      </Row>
+      <Row xs={1} sm={1} md={2} lg={3} xl={4}>
+          {<ToolDeck tools={Apis()} />}
+      </Row>
+      <Row >
+        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
+          <h1 style={{fontWeight:'bolder'}}>Links</h1>
+        </Container>
+      </Row>
+      <Row className="justify-content-md-center" style={{paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey'}} xs={1} lg={2}>
+        <Container >
+          <Row className="justify-content-md-center" xs={1} md={2}>
+            {<ToolDeck tools={AboutLinks()} />}
+          </Row>
+        </Container>
+      </Row>
+    </Container>
   ); 
 }; 
   

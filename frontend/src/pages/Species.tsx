@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import SpeciesCard from '../components/Cards/SpeciesCard';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import PaginationMain from '../components/Pagination/Pagination';
+import Loading from './Loading';
 import axios from 'axios';
 
 interface species{
@@ -69,7 +70,7 @@ function Species() {
     
     
     if (isLoading) {
-        return <div className="App">Loading...</div>;
+        return Loading();
     }
 
     function update(animal : species) {
@@ -85,12 +86,13 @@ function Species() {
 
     const speciesCards = [];
     for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, animals.length); i++) {
-        speciesCards.push(<Col><a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}>
+        speciesCards.push(<Col className="container-fluid mt-4">
+            <a style={{ cursor: 'pointer' }} onClick={() => update(animals[i])}>
             <SpeciesCard animal={animals[i]} photo={animals[i].image_link}></SpeciesCard></a></Col>);
     }
 
     return(
-        <div>
+        <Container>
             <SpeciesModal
                 species={species}
                 show={modalShow}
@@ -113,7 +115,7 @@ function Species() {
                     setInstancesPerPage= {setCardsShown}
                 ></PaginationMain>
             </Container>
-        </div>
+        </Container>
         
     );
 }
