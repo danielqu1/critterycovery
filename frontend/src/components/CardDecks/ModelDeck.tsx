@@ -1,9 +1,9 @@
 import { Col } from 'react-bootstrap';
-import ModelCard from '../Cards/ModelCard'
+import ModelCard from '../Cards/ModelCard';
 
-import animal from '../../images/models/animal.png'
-import habitat from '../../images/models/habitat.png'
-import globe from '../../images/models/globe.png'
+import animal from '../../images/models/animal.png';
+import habitat from '../../images/models/habitat.png';
+import globe from '../../images/models/globe.png';
   
 type Models = {
     href: string,

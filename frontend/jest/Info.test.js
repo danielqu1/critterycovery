@@ -4,10 +4,12 @@ import Adapter from "enzyme-adapter-react-16";
 
 import "@testing-library/jest-dom/extend-expect"
 
-//import App from "../src/App.tsx"
-//import About from "../src/pages/about/About.tsx";     // Jest complains about interface in About.tsx
+import App from "../src/App.tsx";
+import About from "../src/pages/About.tsx";
 
-import Home from "../src/pages/home/Home.tsx"
+// used https://github.com/facebook/jest/issues/2663 to ultimately resolve Syntax error complaints. having a jest.config.js file overwrites these settings, so  don't have jest.config.js file
+
+import Home from "../src/pages/Home.tsx"
 import Error from "../src/pages/Error.tsx";
 import CountryModal from "../src/components/Modal/CountryModal.tsx";
 import HabitatModal from "../src/components/Modal/HabitatModal.tsx";
