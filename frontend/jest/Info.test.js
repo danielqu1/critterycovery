@@ -7,7 +7,9 @@ import "@testing-library/jest-dom/extend-expect"
 import App from "../src/App.tsx";
 import About from "../src/pages/About.tsx";
 
-// used https://github.com/facebook/jest/issues/2663 to ultimately resolve Syntax error complaints. having a jest.config.js file overwrites these settings, so  don't have jest.config.js file
+// Needs babel. Needs file babel.config.js, and "jest" section in package.json
+// used https://github.com/facebook/jest/issues/2663 to ultimately resolve Syntax error complaints about importing pngs:
+// having a jest.config.js file overwrites these settings, so don't have jest.config.js file
 
 import Home from "../src/pages/Home.tsx"
 import Error from "../src/pages/Error.tsx";
@@ -23,6 +25,11 @@ describe("Pages", () => {
         expect(homeTest).toMatchSnapshot()
     });
 
+    test("About page", () => {
+        const aboutTest = shallow(<About />)
+        expect(aboutTest).toMatchSnapshot()
+    });
+
     test("Error page", () => {
         const aboutTest = shallow(<Error />)
         expect(aboutTest).toMatchSnapshot()
@@ -32,17 +39,17 @@ describe("Pages", () => {
 describe("Modals", () => {
     
     test("Country Modal page", () => {
-        const aboutTest = shallow(<CountryModal />)
-        expect(aboutTest).toMatchSnapshot()
+        const countryTest = shallow(<CountryModal />)
+        expect(countryTest).toMatchSnapshot()
     });
 
     test("Habitat Modal page", () => {
-        const aboutTest = shallow(<HabitatModal />)
-        expect(aboutTest).toMatchSnapshot()
+        const habitatTest = shallow(<HabitatModal />)
+        expect(habitatTest).toMatchSnapshot()
     });
 
     test("Species Modal page", () => {
-        const aboutTest = shallow(<SpeciesModal />)
-        expect(aboutTest).toMatchSnapshot()
+        const speciesTest = shallow(<SpeciesModal />)
+        expect(speciesTest).toMatchSnapshot()
     });
 });
