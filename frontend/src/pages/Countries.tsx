@@ -3,7 +3,6 @@ import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
-import PaginationMain from '../components/Pagination/Pagination'
 import Loading from './Loading';
 import axios from 'axios'
 
@@ -94,14 +93,6 @@ function Countries(props: any) {
                         startingCard={startingCard}
                         update={update} />
                 </Row>
-                <PaginationMain
-                    instancesPerPage={maxCardsShown}
-                    totalInstances={countries.length}
-                    startingInstance={startingCard}
-                    offsetPagesShownFromCurrent={offset}
-                    setStartingInstance={setStart}
-                    setInstancesPerPage={setCardsShown}
-                ></PaginationMain>
             </Container>
         </Container>
 

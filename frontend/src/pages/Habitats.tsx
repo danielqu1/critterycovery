@@ -3,7 +3,6 @@ import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
-import PaginationMain from '../components/Pagination/Pagination';
 import Loading from './Loading';
 import axios from 'axios';
 
