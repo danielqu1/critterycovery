@@ -26,8 +26,6 @@ function Habitats(props : any) {
     const [isLoading, setLoading] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(false);
     const [habitat, setHabitat] = React.useState(habitats[0])
-    const [startingCard, setStart] = React.useState(0)
-    const [maxCardsShown, setCardsShown] = React.useState(10)
     let history = useHistory();
 
     React.useEffect(() => {
@@ -81,13 +79,8 @@ function Habitats(props : any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>{habitats.length} Habitats. {maxCardsShown} per page</h1>
-                </Row>
-                <Row>
                     <HabitatTable
-                        maxCardsShown={maxCardsShown}
                         habitats={habitats}
-                        startingCard={startingCard}
                         update={update}/>
                 </Row>
             </Container>

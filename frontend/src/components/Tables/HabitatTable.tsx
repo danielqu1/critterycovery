@@ -1,9 +1,13 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';   // pagination
-import { Image } from 'react-bootstrap'
+import filterFactory, { textFilter, numberFilter } from 'react-bootstrap-table2-filter';
+import ToolkitProvider, { Search, TableSearchProps} from 'react-bootstrap-table2-toolkit';
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css';
+import { Image, Container } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 
+const { SearchBar } = Search;
 // from https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html?selectedKind=Pagination&selectedStory=Custom%20Pagination&full=0&addons=1&stories=1&panelRight=0&addonPanel=storybook%2Factions%2Factions-panel
 // for pagination
 const customTotal = (from: number, to: number, size: number) => (
@@ -11,7 +15,8 @@ const customTotal = (from: number, to: number, size: number) => (
 		Showing { from} to { to} of { size} results
 	</span>
 );
-
+let terr_filter_props = {}
+let mar_filter_props = {}
 function HabitatTable(props: any) {
 	const columns = [
 		{
@@ -19,26 +24,32 @@ function HabitatTable(props: any) {
 			text: 'Image',
 			formatter: imageFormatter,
 			style: { width: '10%' },
+      searchable: false
 		}, {
 			dataField: 'name',
 			text: 'Name',
-			sort: true
+			sort: true,
+      filter: textFilter()
 		}, {
 			dataField: 'designation_name',
 			text: 'Designation',
-			sort: true
+			sort: true,
+      filter: textFilter()
 		}, {
 			dataField: 'reported_terrestrial_area',
 			text: 'Land Area',
-			sort: true
+			sort: true,
+      filter: numberFilter(terr_filter_props)
 		}, {
 			dataField: 'reported_marine_area',
 			text: 'Water Area',
-			sort: true
+			sort: true,
+      filter: numberFilter(mar_filter_props)
 		}, {
 			dataField: 'is_marine',
 			text: 'Marine',
-			sort: true
+			sort: true,
+      filter: textFilter()
 		}
 	];
 
@@ -75,7 +86,7 @@ function HabitatTable(props: any) {
 	let history = useHistory();
 	const rowEvents = {
 		onClick: (e: any, row: any, rowIndex: number) => {
-			props.update(props.habitats[rowIndex + props.startingCard]);
+			props.update(props.habitats[rowIndex]);
 		},
 	};
 
@@ -84,16 +95,46 @@ function HabitatTable(props: any) {
 			<Image src={row.image_link} rounded fluid style={{ width: '100%' }} />
 		);
 	}
-	
+  
+  let habitats = props.habitats;
 	return (
-		<BootstrapTable striped
-			keyField='name'
-			data={props.habitats}
-			columns={columns}
-			rowEvents={rowEvents}
-			pagination={paginationFactory(options)}
-			hover
-		/>
+  <ToolkitProvider
+    keyField="name"
+    data={ props.habitats }
+    columns={ columns }
+    search
+  >
+    { props => (
+      <Container>
+        <Keywords
+          text={TEXT}
+          maxKeywords={8}
+          color="mistyrose"
+        />
+        <Container id='TEXT'>
+          <h3>Input something at below input field:</h3>
+          <SearchBar
+            { ...props.searchProps }
+            className="custome-search-field"
+            style={ { color: 'white' } }
+            delay={ 100 }
+            placeholder="Search Something!!!"
+          />
+          <hr />
+          <BootstrapTable striped
+            {...props.baseProps}
+            keyField='name'
+            data={habitats}
+            columns={columns}
+            rowEvents={rowEvents}
+            pagination={paginationFactory(options)}
+            filter={ filterFactory() }
+            hover
+          />
+        </Container>
+      </Container>
+    )}
+    </ToolkitProvider>
 	);
 }
 

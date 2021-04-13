@@ -69,8 +69,8 @@ function HabitatModal(props: any) {
         Designation: {props.habitat.designation_name}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
         <iframe title="Map of Country"
-          width="600"
-          height="450"
+          width="100%"
+          height="20%"
           style={{border: 0}}
           loading="lazy"
           allowFullScreen
