@@ -20,7 +20,6 @@ interface habitat {
 }
 
 function Habitats(props : any) {
-    const offset = 3;
     const {id} = useParams<{ id: string }>();
     const [habitats, setHabitats] = React.useState(new Array<habitat>());
     const [isLoading, setLoading] = React.useState(true);
@@ -51,7 +50,8 @@ function Habitats(props : any) {
                     })
                 }
                 setLoading(false);    
-        })}, []);
+            })
+    }, []);
     
     
     if (isLoading) {
