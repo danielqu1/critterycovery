@@ -38,7 +38,9 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(r["countries"], "DEU")
 
     def test_get_one_species(self):
-
+        r = requests.get(URL + "/api/species/name=Spondylurus culebrae").json()
+        self.assertEqual(r["common_name"], "Culebra Skink")
+        self.assertEqual(r["phylum"], "CHORDATA")
 
 if __name__ == "__main__":
     unittest.main()
