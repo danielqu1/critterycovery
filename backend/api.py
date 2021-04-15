@@ -305,9 +305,9 @@ def get_specie(name):
 @app.route("/api/species/countries/name=<name>", methods=["GET"])
 def get_species_countries(name):
     alpha2_code = countries_per_species.query.filter_by(scientific_name=name).all()
-    if alpha2_code is None:
-        return json_error(name)
     response = countries_schema.dump(alpha2_code)
+    if len(response) == 0:
+        return json_error(name)
     country_names = []
     for d in response:
         d_temp = {}
