@@ -17,7 +17,7 @@ from selenium.webdriver.common.by import By
 # make sure to pip3 install -r requirements.txt  to install selenium
 # then python3 guitest.py to run the tests
 
-DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
+DRIVER_PATH = "./chromedriver_linux_gitlab"
 
 DEV = False  # if True, make sure you have frontend started with "yarn start"
 
