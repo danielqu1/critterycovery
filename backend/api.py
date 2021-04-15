@@ -5,6 +5,7 @@ from flask_marshmallow import Marshmallow
 from marshmallow import fields
 import json  # jsonify
 from gitlab import stats  # gitlab.py
+import flask
 
 app = Flask(
     __name__,
@@ -211,9 +212,7 @@ def get_countries():
 def get_country(name):
     country = countries_table.query.filter_by(name=name).first()
     if country is None:
-        print("country ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return return_json_error(name)
     response = country_schema.dump(country)
     return jsonify({"country": response})
 
@@ -346,6 +345,15 @@ def get_marine_species():
         return {}
     response = species_schema.dump(species)
     return jsonify({"species": response})
+
+def return_json_error(str):
+    response = flask.Response(
+        json.dumps({"error": "'" + str + "' not found"}), 
+        mimetype="application/json"
+    )
+    response.status_code = 404
+    return response
+
 
 
 if __name__ == "__main__":
