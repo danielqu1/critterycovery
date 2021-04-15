@@ -21,7 +21,7 @@ class TestBackend(unittest.TestCase):
 
     def test_get_all_habitats(self):
         r = requests.get(URL + "/api/habitats").json()
-        self.assertEqual(len(r["habitats"]), 500)
+        self.assertEqual(len(r["habitats"]), 457)
 
     def test_get_all_species(self):
         r = requests.get(URL + "/api/species").json()
@@ -29,18 +29,18 @@ class TestBackend(unittest.TestCase):
 
     def test_get_one_country(self):
         r = requests.get(URL + "/api/countries/name=Afghanistan").json()
-        self.assertEqual(r["alpha2_code"], "AF")
-        self.assertEqual(r["region"], "Asia")
+        self.assertEqual(r["country"]["alpha2_code"], "AF")
+        self.assertEqual(r["country"]["region"], "Asia")
 
     def test_get_one_habitat(self):
-        r = requests.get(URL + "/api/countries/name=Sommerrain").json()
-        self.assertEqual(r["id"], 165595)
-        self.assertEqual(r["countries"], "DEU")
+        r = requests.get(URL + "/api/habitats/name=Sommerrain").json()
+        self.assertEqual(r["habitat"]["id"], 165595)
+        self.assertEqual(r["habitat"]["countries"], "DEU")
 
     def test_get_one_species(self):
         r = requests.get(URL + "/api/species/name=Spondylurus culebrae").json()
-        self.assertEqual(r["common_name"], "Culebra Skink")
-        self.assertEqual(r["phylum"], "CHORDATA")
+        self.assertEqual(r["species"]["common_name"], "Culebra Skink")
+        self.assertEqual(r["species"]["phylum"], "CHORDATA")
 
 if __name__ == "__main__":
     unittest.main()
