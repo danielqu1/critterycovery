@@ -60,8 +60,8 @@ scientific_name: varchar
 alpha2_code: varchar
 }
 
-species "1" -- "many" countries_per_species
-countries "many" -- "many" countries_per_species
-countries "1" -- "many" habitats
-species "many" -- "many" habitats
+species }|..|| countries_per_species
+countries }o..o{ countries_per_species
+countries }o..|| habitats
+species }o..o{ habitats
 @enduml
