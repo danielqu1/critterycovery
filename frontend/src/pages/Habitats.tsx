@@ -69,6 +69,7 @@ function Habitats(props : any) {
         history.push('/habitats');
     }
     
+    
     return(
         <Container>
             <HabitatModal
