@@ -31,6 +31,9 @@ Shaharyar Lakhani
 **Phase 2:**
 William Crawford
 
+**Phase 3:**
+Brian Wang
+
 ---
 
 ### Time Completion (hours):
@@ -46,6 +49,17 @@ Brian Wang | 15 | 21
 
 --- 
 Phase 2: 
+
+Name | Estimated | Actual
+--------- | --------- | ---------
+William Crawford | 40 | 50
+Sahithi Golkonda | 40 | 50
+Shaharyar Lakhani | 40 | 52
+Daniel Qu | 40 | 45
+Brian Wang | 40 | 50
+
+---
+Phase 3: 
 
 Name | Estimated | Actual
 --------- | --------- | ---------
