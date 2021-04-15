@@ -27,6 +27,15 @@ class TestBackend(unittest.TestCase):
         r = requests.get(URL + "/api/species").json()
         self.assertEqual(len(r["species"]), 498)
 
+    def test_get_one_country(self):
+        r = requests.get(URL + "/api/countries/name=Afghanistan").json()
+        self.assertEqual(len(r["alpha2_code"]), "AF")
+        self.assertEqual(len(r["region"]), "Asia")
+
+    def test_get_one_habitat(self):
+
+    def test_get_one_species(self):
+
 
 if __name__ == "__main__":
     unittest.main()
