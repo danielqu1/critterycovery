@@ -212,7 +212,7 @@ def get_countries():
 def get_country(name):
     country = countries_table.query.filter_by(name=name).first()
     if country is None:
-        return return_json_error(name)
+        return json_error(name)
     response = country_schema.dump(country)
     return jsonify({"country": response})
 
@@ -222,9 +222,7 @@ def get_country(name):
 def get_country_alpha2(alpha2_code):
     country = countries_table.query.filter_by(alpha2_code=alpha2_code).first()
     if country is None:
-        print("country ", alpha2_code, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(alpha2_code)
     response = country_schema.dump(country)
     return jsonify({"country": response})
 
@@ -234,9 +232,7 @@ def get_country_alpha2(alpha2_code):
 def get_country_alpha3(alpha3_code):
     country = countries_table.query.filter_by(alpha3_code=alpha3_code).first()
     if country is None:
-        print("country ", alpha3_code, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(alpha3_code)
     response = country_schema.dump(country)
     return jsonify({"country": response})
 
@@ -248,9 +244,7 @@ def get_country_habitats(name):
     alpha3_code = country["alpha3_code"]
     habitats = habitats_table.query.filter_by(countries=alpha3_code).all()
     if habitats is None:
-        print("country ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(name)
     response = habitats_names_schema.dump(habitats)
     return jsonify({"habitats": response})
 
@@ -262,9 +256,7 @@ def get_country_species(name):
     alpha2_code = country["alpha2_code"]
     species = countries_per_species.query.filter_by(alpha2_code=alpha2_code).all()
     if species is None:
-        print("country ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(name)
     response = species_schema.dump(species)
     return jsonify({"species": response})
 
@@ -284,9 +276,7 @@ def get_habitats():
 def get_habitat(name):
     habitat = habitats_table.query.filter_by(name=name).first()
     if habitat is None:
-        print("habitat ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(name)
     response = habitat_schema.dump(habitat)
     return jsonify({"habitat": response})
 
@@ -306,9 +296,7 @@ def get_species():
 def get_specie(name):
     specie = species_table.query.filter_by(scientific_name=name).first()
     if specie is None:
-        print("specie ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(name)
     response = specie_schema.dump(specie)
     return jsonify({"species": response})
 
@@ -318,9 +306,7 @@ def get_specie(name):
 def get_species_countries(name):
     alpha2_code = countries_per_species.query.filter_by(scientific_name=name).all()
     if alpha2_code is None:
-        print("species ", name, " does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(name)
     response = countries_schema.dump(alpha2_code)
     country_names = []
     for d in response:
@@ -340,13 +326,11 @@ def get_species_countries(name):
 def get_marine_species():
     species = species_table.query.filter_by(marine=True).all()
     if species is None:
-        print("species does not exist")
-        print("How to make error page?")
-        return {}
+        return json_error(None)
     response = species_schema.dump(species)
     return jsonify({"species": response})
 
-def return_json_error(str):
+def json_error(str):
     response = flask.Response(
         json.dumps({"error": "'" + str + "' not found"}), 
         mimetype="application/json"
