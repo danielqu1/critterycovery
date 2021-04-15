@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Modal, Button, Image,} from 'react-bootstrap'
+import {Modal, Button, Image, Card, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 
 interface countries {
@@ -11,9 +11,39 @@ interface habitats {
 	name: string;
 }
 
-function SpeciesModal(props : any) {
+const NA = "N/A";
+
+function prettyEntries(props: any) {
+	const properties: string[] = ["_class", "_order", "common_name", "family", "genus", "kingdom", "phylum", "population_trend", "scientific_name", "subspecies", "subpopulations", "population_trend", "marine", "freshwater", "terrestrial", "rationale", "geographic_range", "population", "habitat", "threats", "conservation_measures" ];
+
+	for (let property of properties) {
+		props.species[property] = (props.species[property]) ? props.species[property] : NA;      // convert blanks to unknown
+	}
+
+	for (let property of properties) {
+
+		let text = props.species[property]
+
+		if ((typeof text == "string") && (text.length < 20) && text != NA) {
+			let first = text.charAt(0);
+			let lower = text.toLowerCase().substring(1);
+			props.species[property] = first + lower;
+		}
+    }
+
+    if (props.species.common_name == NA) {
+        if (props.species.scientific_name == "Achatinella taeniolata") {
+            props.species.common_name = "O'ahu tree snail";
+        }
+    }
+
+}
+
+function SpeciesModal(props: any) {
+
 	const [countries, setCountries] = React.useState(new Array<countries>());
-	const [habitats, setHabitats] = React.useState(new Array<habitats>());
+    const [habitats, setHabitats] = React.useState(new Array<habitats>());
+
 	React.useEffect(() => {
 		setCountries(new Array<countries>())
 		if(props.species != null) {
@@ -32,11 +62,13 @@ function SpeciesModal(props : any) {
 				})
 			}
 		}
-	}, [countries]);
+    }, [countries]);
   
 	if(props.species == null){
 		return(<a></a>)
-	}
+    }
+
+    //prettyEntries(props);
 
 	const countryLinks = [];
 	for (let i = 0; i < countries.length; i++) {
@@ -60,22 +92,31 @@ function SpeciesModal(props : any) {
 		>
 			<Modal.Header closeButton>
 				<Modal.Title id="contained-modal-title-vcenter">
-					{props.species.common_name ? props.species.common_name : props.species.scientific_name}
+					{props.species.common_name != NA ? props.species.common_name : props.species.scientific_name}
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
 				<Image src={props.species.image_link} rounded fluid style={{width:'50%'}}/><br/>
-				Scientific Name: {props.species.scientific_name}<br/>
-				Kingdom: {props.species.kingdom}<br/>
-				Phylum: {props.species.phylum}<br/>
-				Class: {props.species._class}<br/>
-				Order: {props.species._order}<br/>
-				Family: {props.species.family}<br/>
-				Genus: {props.species.genus}<br/>
-				Taxonomic Notes: <br/><div dangerouslySetInnerHTML={{ __html: props.species.taxonomic_notes }}></div><br/>
+				Scientific Name: {props.species.scientific_name}<br />
 
-				Countries: <br/> {countryLinks} <br/>
-				Habitats: <br/> {habitatLinks} <br/>
+				<Card style={{ width: '60%' }} bg="light green">
+					<Card.Body>
+						<Card.Title>Taxonomy</Card.Title>
+						<ListGroup variant="flush">
+							<ListGroup.Item><span style={{ float: "left" }}>Kingdom: {props.species.kingdom}</span></ListGroup.Item>
+							<ListGroup.Item><span style={{ float: "left" }}>Phylum: {props.species.phylum}</span></ListGroup.Item>
+							<ListGroup.Item><span style={{ float: "left" }}>Class: {props.species._class}</span></ListGroup.Item>
+							<ListGroup.Item><span style={{ float: "left" }}>Order: {props.species._order}</span></ListGroup.Item>
+							<ListGroup.Item><span style={{ float: "left" }}>Family: {props.species.family}</span></ListGroup.Item>
+							<ListGroup.Item><span style={{ float: "left" }}>Genus: {props.species.genus}</span></ListGroup.Item>
+							<ListGroup.Item>Taxonomic Notes: <div dangerouslySetInnerHTML={{ __html: props.species.taxonomic_notes }}></div></ListGroup.Item>
+						</ListGroup>
+					</Card.Body>
+				</Card>
+				
+
+				Countries: <br /> {countryLinks ? countryLinks : "Unknown"} <br/>
+				Habitats: <br /> {habitatLinks ? habitatLinks : "Unknown"} <br/>
 				Subspecies: {props.species.subspecies}<br/>
 				Subpopulations: {props.species.subpopulations}<br/>
 				Population Trend: {props.species.population_trend}<br/>

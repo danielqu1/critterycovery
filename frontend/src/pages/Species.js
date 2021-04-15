@@ -33,68 +33,68 @@ import axios from 'axios';
 // }
 
 function Species() {
-    const {id} = useParams();
-    const [animals, setAnimals] = React.useState(new Array());
-    const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(false);
-    const [species, setSpecies] = React.useState(animals[0])
-    let history = useHistory();
+	const {id} = useParams();
+	const [animals, setAnimals] = React.useState(new Array());
+	const [isLoading, setLoading] = React.useState(true);
+	const [modalShow, setModalShow] = React.useState(false);
+	const [species, setSpecies] = React.useState(animals[0])
+	let history = useHistory();
 
-    React.useEffect(() => {
-        return () => {
-            if (history.action === "POP") {
-                setModalShow(false);
-            }
-            else if (history.action === "PUSH") {
-                setModalShow(true);
-            }
-        };
-    }, [history.action])
+	React.useEffect(() => {
+		return () => {
+			if (history.action === "POP") {
+				setModalShow(false);
+			}
+			else if (history.action === "PUSH") {
+				setModalShow(true);
+			}
+		};
+	}, [history.action])
 
-    React.useEffect(() => {
-            axios.get("/api/species").then((response) => {
-                setAnimals(response.data.species);
-                if(id != null){
-                    axios.get("/api/species/name=" + id).then((response) => {
-                        if(response.data != null){
-                            setSpecies(response.data.species)
-                            setModalShow(true)
-                        } 
-                    })
-                }
-                setLoading(false);    
-        })}, []);
-    
-    
-    if (isLoading) {
-        return Loading();
-    }
+	React.useEffect(() => {
+			axios.get("/api/species").then((response) => {
+				setAnimals(response.data.species);
+				if(id != null){
+					axios.get("/api/species/name=" + id).then((response) => {
+						if(response.data != null){
+							setSpecies(response.data.species)
+							setModalShow(true)
+						} 
+					})
+				}
+				setLoading(false);    
+		})}, []);
+	
+	
+	if (isLoading) {
+		return Loading();
+	}
 
-    function update(animal) {
-        history.push(`/species/${animal.scientific_name}`)
-        setSpecies(animal)
-        setModalShow(true)
-    }
+	function update(animal) {
+		history.push(`/species/${animal.scientific_name}`)
+		setSpecies(animal)
+		setModalShow(true)
+	}
 
-    function closeModal(){
-        setModalShow(false);
-        history.push('/species');
-    }
+	function closeModal(){
+		setModalShow(false);
+		history.push('/species');
+	}
 
-    return(
-        <Container>
-            <SpeciesModal
-                species={species}
-                show={modalShow}
-                onHide={() => closeModal()}
-            />
+	return(
+		<Container>
+			<SpeciesModal
+				species={species}
+				show={modalShow}
+				onHide={() => closeModal()}
+			/>
 
-            <SpeciesDeck
-                species={animals}
-                update={update}/>
-        </Container>
-        
-    );
+			<SpeciesDeck
+				species={animals}
+				update={update}/>
+		</Container>
+		
+	);
 }
 
 export default Species;
