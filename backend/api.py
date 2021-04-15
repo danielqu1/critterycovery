@@ -241,10 +241,10 @@ def get_country_alpha3(alpha3_code):
 @app.route("/api/countries/habitats/name=<name>", methods=["GET"])
 def get_country_habitats(name):
     country = country_schema.dump(countries_table.query.filter_by(name=name).first())
+    if len(country) == 0:
+        return json_error(name)
     alpha3_code = country["alpha3_code"]
     habitats = habitats_table.query.filter_by(countries=alpha3_code).all()
-    if habitats is None:
-        return json_error(name)
     response = habitats_names_schema.dump(habitats)
     return jsonify({"habitats": response})
 
