@@ -319,17 +319,7 @@ def get_species_countries(name):
     return jsonify({"countries": country_names})
 
 
-# sorting endpoints
-
-# filter by marine species
-@app.route("/api/species/marine", methods=["GET"])
-def get_marine_species():
-    species = species_table.query.filter_by(marine=True).all()
-    if species is None:
-        return json_error(None)
-    response = species_schema.dump(species)
-    return jsonify({"species": response})
-
+# returns json dump in the case of an error
 def json_error(str):
     response = flask.Response(
         json.dumps({"error": "'" + str + "' not found"}), 
