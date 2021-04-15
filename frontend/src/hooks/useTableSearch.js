@@ -33,9 +33,12 @@ export const useTableSearch = ({ searchVal, retrieve }) => {
 
   useEffect(() => {
     if (searchVal) {
+      const tempSearch = searchVal.toLowerCase().split(' ')
       const reqData = searchIndex.map((user, index) => {
-        if (user.allValues.toLowerCase().indexOf(searchVal.toLowerCase()) >= 0){
-          return origData[index];
+        for(const term of tempSearch){
+            if (user.allValues.toLowerCase().includes(term)){
+              return origData[index];
+            }
         }
         return null;
       });

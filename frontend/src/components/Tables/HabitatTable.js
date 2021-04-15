@@ -64,7 +64,7 @@ function HabitatTable(props) {
 			searchVal ? (
 			<Highlighter
 				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={[searchVal]}
+				searchWords={searchVal.split(' ')}
 				autoEscape
 				textToHighlight={text ? text.toString() : ''}
 			/>
