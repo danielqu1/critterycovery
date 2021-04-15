@@ -29,10 +29,13 @@ class TestBackend(unittest.TestCase):
 
     def test_get_one_country(self):
         r = requests.get(URL + "/api/countries/name=Afghanistan").json()
-        self.assertEqual(len(r["alpha2_code"]), "AF")
-        self.assertEqual(len(r["region"]), "Asia")
+        self.assertEqual(r["alpha2_code"], "AF")
+        self.assertEqual(r["region"], "Asia")
 
     def test_get_one_habitat(self):
+        r = requests.get(URL + "/api/countries/name=Sommerrain").json()
+        self.assertEqual(r["id"], 165595)
+        self.assertEqual(r["countries"], "DEU")
 
     def test_get_one_species(self):
 
