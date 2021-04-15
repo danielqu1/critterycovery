@@ -253,10 +253,10 @@ def get_country_habitats(name):
 @app.route("/api/countries/species/name=<name>", methods=["GET"])
 def get_country_species(name):
     country = country_schema.dump(countries_table.query.filter_by(name=name).first())
+    if len(country) == 0:
+        return json_error(name)
     alpha2_code = country["alpha2_code"]
     species = countries_per_species.query.filter_by(alpha2_code=alpha2_code).all()
-    if species is None:
-        return json_error(name)
     response = species_schema.dump(species)
     return jsonify({"species": response})
 
