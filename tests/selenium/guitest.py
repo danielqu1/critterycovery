@@ -17,7 +17,7 @@ from selenium.webdriver.common.by import By
 # make sure to pip3 install -r requirements.txt  to install selenium
 # then python3 guitest.py to run the tests
 
-DRIVER_PATH = "./chromedriver_linux_gitlab"
+DRIVER_PATH = "./chromedriver_chrome89_win32.exe"
 
 DEV = False  # if True, make sure you have frontend started with "yarn start"
 
@@ -143,7 +143,7 @@ class GuiTests(unittest.TestCase):
         if DEV:
             xpath = "/html/body/div/div/body/div[1]/div[1]/h1"
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
 
@@ -215,7 +215,7 @@ class GuiTests(unittest.TestCase):
             EC.presence_of_element_located((By.XPATH, xpath))
         )
 
-        self.assertEqual(element.text, "1.2108")
+        self.assertEqual(element.text, "0.1911743")
 
     def test_pagination_habitat(self):
         driver = self.driver
@@ -231,7 +231,7 @@ class GuiTests(unittest.TestCase):
         element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
-        self.assertEqual(element.text, "Big Draft")
+        self.assertEqual(element.text, "10014")
 
     def tearDown(self):  # part of unittest library; called after every test
         # self.driver.close()  # from example
