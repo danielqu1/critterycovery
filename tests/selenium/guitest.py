@@ -1,3 +1,5 @@
+import os 
+from sys import platform
 import unittest  # library to make many tests
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -17,7 +19,12 @@ from selenium.webdriver.common.by import By
 # make sure to pip3 install -r requirements.txt  to install selenium
 # then python3 guitest.py to run the tests
 
-DRIVER_PATH = "./chromedriver_linux_gitlab"
+if platform == 'win32':
+    DRIVER_PATH = "./chromedriver_chrome89_win32"
+elif platform == 'linux' or platform == 'linux2':
+    DRIVER_PATH = "./chromedriver_linux_gitlab"
+elif platform == 'darwin':
+    DRIVER_PATH = "./chromedriver_mac"
 
 DEV = False  # if True, make sure you have frontend started with "yarn start"
 
