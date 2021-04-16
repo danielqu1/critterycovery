@@ -57,26 +57,23 @@ class GuiTests(unittest.TestCase):
     def test_about_page_0(self):
         self.driver.get(URL + "/about")
 
-        xpath = "/html/body/div/div/div[2]/div/div/h1" 
+        xpath = "/html/body/div/div/div[2]/div/div/h1" if DEV else "/html/body/div/div/body/div[1]/div[1]/h1"
         result = self.driver.find_elements_by_xpath(xpath)[0] 
-
 
         self.assertEqual(result.text, "About Us")
 
     def test_about_page_1(self):
         self.driver.get(URL + "/about")
 
-        xpath = "/html/body/div/div/div[2]/div[9]/div/div/div/div/a/div/div/div/img" 
-        self.driver.find_elements_by_xpath(xpath)[0].click()
-        self.assertEqual(self.driver.current_url, "https://gitlab.com/cs373-group16/critterycovery")
+        xpath = "/html/body/div/div/div[2]/div[9]/div/div/div/div/a/div/div/div/img" if DEV else "/html/body/div/div/body/div[2]/a[1]"
 
-    def test_about_page_2(self):
-        self.driver.get(URL + "/about")
-
-        xpath = "/html/body/div/div/div[2]/div[4]/div[8]/div/a/div/div[2]/p"
-        result = self.driver.find_elements_by_xpath(xpath)[0] 
-
+<<<<<<< HEAD
         self.assertEqual(result.text, "Backend tool")
+=======
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        self.assertEqual(self.driver.current_url, "https://gitlab.com/cs373-group16/critterycovery")
+>>>>>>> parent of 959ef89 (redo selenium tests)
 
     
     def test_main_page_0(self):
