@@ -6,6 +6,8 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Input, Select,  } from 'antd';
 import 'antd/dist/antd.css';
 import PaginationMain from '../../components/Pagination/Pagination';
+const { Search } = Input;
+const { Option } = Select;
 
 function SpeciesDeck(props)  { 
 	const offset = 3;
@@ -13,23 +15,15 @@ function SpeciesDeck(props)  {
 	const [maxCardsShown, setCardsShown] = React.useState(10)
 	const [sortState, setSortState] = useState('Name(Asc)')
 	const [sortedData, setSortedData] = useState(props.species)
-
-	function giveData(){
-		return props.species
-	};
-	const { Search } = Input;
-	const { Option } = Select;
 	const [searchVal, setSearchVal] = React.useState('');
-	const { filteredData, loading } = useTableSearch({
+	const { filteredData, loading, callback } = useTableSearch({
 		searchVal,
-		retrieve: giveData,
+		data: props.species,
 	});
 
 	React.useEffect(() => {
-        return () => {
-			sort(sortState)
-        };
-    }, [filteredData, sortState])
+			setSortedData(filteredData, sort)
+    }, [filteredData])
 
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, sortedData.length); i++) {
@@ -42,31 +36,34 @@ function SpeciesDeck(props)  {
 			></SpeciesCard></a></Col>);
 	}
 
-	function sort(value){
+	function sort(value=sortState){
+		if(value!=sortState){
+			setSortState(value)
+		}
 		switch(value) {
 			case 'Name(Asc)':
-				setSortedData(filteredData.sort((a, b) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
+				setSortedData(sortedData.sort((a, b) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
 				break;
 			case 'Name(Desc)':
-				setSortedData(filteredData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
+				setSortedData(sortedData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
 				break;
 			case 'Class(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a._class.localeCompare(b._class))))
+				setSortedData(sortedData.sort((a, b) => (a._class.localeCompare(b._class))))
 				break;
 			case 'Class(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b._class.localeCompare(a._class))))
+				setSortedData(sortedData.sort((a, b) => (b._class.localeCompare(a._class))))
 				break;
 			case 'Order(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a._order.localeCompare(b._order))))
+				setSortedData(sortedData.sort((a, b) => (a._order.localeCompare(b._order))))
 				break;
 			case 'Order(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b._order.localeCompare(a._order))))
+				setSortedData(sortedData.sort((a, b) => (b._order.localeCompare(a._order))))
 				break;
 			case 'Family(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a.family.localeCompare(b.family))))
+				setSortedData(sortedData.sort((a, b) => (a.family.localeCompare(b.family))))
 				break;
 			case 'Family(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b.family.localeCompare(a.family))))
+				setSortedData(sortedData.sort((a, b) => (b.family.localeCompare(a.family))))
 				break;
 			default:
 			  // code block
@@ -93,7 +90,7 @@ function SpeciesDeck(props)  {
 					/>
 				</Row>
 				<Row>
-				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={setSortState}>
+				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={sort}>
 					<Option value='Name(Asc)'>Name(<ArrowUpOutlined />)</Option>
 					<Option value='Name(Desc)'>Name(<ArrowDownOutlined />)</Option>
 					<Option value='Class(Asc)'>Class(<ArrowUpOutlined />)</Option>

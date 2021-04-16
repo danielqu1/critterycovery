@@ -6,10 +6,17 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
 
+const { Search } = Input;
+
 function CountryTable(props) {
 	const [searchText, setSearchText] = React.useState('');
 	const [searchedColumn, setSearchedColumn] = React.useState('');
 	const [searchedInput, setSearchedInput] = React.useState(null);
+	const [searchVal, setSearchVal] = React.useState("");
+	const { filteredData, loading } = useTableSearch({
+		searchVal,
+		data: props.countries,
+	});
 	
 	let getColumnSearchProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -122,16 +129,7 @@ function CountryTable(props) {
 			...getColumnSearchProps('area'),
 		}
 	];
-	function giveData(){
-		return props.countries
-	};
-	
-	const { Search } = Input;
-	const [searchVal, setSearchVal] = React.useState("");
-	const { filteredData, loading } = useTableSearch({
-		searchVal,
-		retrieve: giveData,
-	});
+
 	return (<>
 				<Search
 					onChange={(e) => setSearchVal(e.target.value)}
