@@ -15,21 +15,35 @@ function SearchHandler(props){
 
     return (
         <Container>
-            <Row>
+            <Row className='justify-content-md-center'>
                 <Search
                     onChange={(e) => setSearchVal(e.target.value)}
                     defaultValue={props.query?props.query:''}
                     placeholder="Search"
                     style={{
-                        width: '50%'
+                        width: '50%',
+                        height: '100%',
+                        padding: '1% 0',
                     }}
                 />
             </Row>
-            <Row>Species</Row>
+            <Row>
+                <Container style={{textAlign:'center', padding: '1% 0', marginTop: '3%'}}>
+                    <h1 style={{fontWeight:'bold'}}>Species</h1>
+                </Container>
+            </Row>
             <SpeciesSearch data={props.species} searchVal={searchVal}/>
-            <Row>Habitats</Row>
+            <Row>
+                <Container style={{textAlign:'center', padding: '1% 0', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
+                    <h1 style={{fontWeight:'bold'}}>Habitats</h1>
+                </Container>
+            </Row>
             <HabitatSearch data={props.habitats} searchVal={searchVal}/>
-            <Row>Countries</Row>
+            <Row>
+                <Container style={{textAlign:'center', padding: '1% 0', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
+                    <h1 style={{fontWeight:'bold'}}>Countries</h1>
+                </Container>
+            </Row>
             <CountrySearch data={props.countries} searchVal={searchVal}/>
             
 

@@ -102,18 +102,15 @@ function Countries(props: any) {
                         <h1 style={{fontWeight:'bolder'}}>Countries</h1>
                     </Container>
                 </Row>
-                <Row>
+                <Row className='justify-content-md-center'>
                     <Search
                         onChange={(e) => setSearchVal(e.target.value)}
                         defaultValue = {query?query:''}
                         placeholder="Search"
-                        enterButton
                         style={{
-                            position: "sticky",
-                            top: "0",
-                            left: "0",
-                            width: "200px",
-                            marginTop: "2vh"
+                            width: '50%',
+                            height: '100%',
+                            padding: '1% 0',
                         }}
                     />
                 </Row>

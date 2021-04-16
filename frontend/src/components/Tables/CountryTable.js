@@ -30,26 +30,24 @@ function CountryTable(props) {
 			/>
 			<Space>
 				<Button
-				type="primary"
-				onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-				icon={<SearchOutlined />}
-				size="small"
-				style={{ width: 90 }}
-				>
-				Filter
+					type="primary"
+					onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+					icon={<SearchOutlined />}
+					size="small"
+					style={{ width: 90 }}>
+					Filter
 				</Button>
 				<Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-				Reset
+					Reset
 				</Button>
 				<Button
-				type="link"
-				size="small"
-				onClick={() => {
-					confirm({ closeDropdown: false });
-					setSearchText(selectedKeys[0]);
-					setSearchedColumn(dataIndex);
-				}}
-				>
+					type="link"
+					size="small"
+					onClick={() => {
+						confirm({ closeDropdown: false });
+						setSearchText(selectedKeys[0]);
+						setSearchedColumn(dataIndex);
+					}}>
 				</Button>
 			</Space>
 			</div>

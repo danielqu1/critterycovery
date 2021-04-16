@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 
 import SearchHandler from '../components/Search/SearchHandler'
+import {Container, Row} from 'react-bootstrap'
 import Loading from './Loading';
 import axios from 'axios'
 
@@ -36,11 +37,21 @@ function Search(){
     }
 
     return (
-            <SearchHandler
-                species={species}
-                habitats={habitats}
-                countries={countries}
-                query={query}/>
+        <Container>
+            <Row>
+                <Container style={{textAlign:'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+                    <h1 style={{fontWeight:'bolder'}}>Search</h1>
+                </Container>
+            </Row>
+            <Row>
+                <SearchHandler
+                    species={species}
+                    habitats={habitats}
+                    countries={countries}
+                    query={query}/>
+            </Row>
+            
+        </Container>
         );
     }
 
