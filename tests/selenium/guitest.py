@@ -117,7 +117,7 @@ class GuiTests(unittest.TestCase):
         self.driver.find_elements_by_xpath(xpath)[0].click() 
 
         self.assertEqual(self.driver.current_url, URL + "/")
-    
+
     def test_navbar_2(self):
         self.driver.get(URL + "/about")
 
@@ -125,122 +125,54 @@ class GuiTests(unittest.TestCase):
         self.driver.find_elements_by_xpath(xpath)[0].click() 
 
         self.assertEqual(self.driver.current_url, URL + "/about")
-    """
-    def test_main_page_2(self):
-        driver = self.driver
-        driver.get(URL)  # simulate going to this website
 
-        # print("title = " + driver.title)		# critterycovery
-
-        # just follow the HTML tags. If multiple, use [ ] brackes (1-indexed tho)
-        xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"  # change last div[1] to div[2] or div[3] to get "Habitats" / "Countries"
-
-        if DEV:
-            xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"
-
-        driver.find_elements_by_xpath(xpath)[0].click()  # click on Species
-
-        self.assertEqual(driver.current_url, URL + "/species")
-
-    def test_navbar_0(self):
-        driver = self.driver
-        driver.get(URL)
-
-        xpath = "/html/body/div/div/nav/a"
-
-        if DEV:
-            xpath = "/html/body/div/div/nav/a"
-
-        driver.find_elements_by_xpath(xpath)[0].click()
-
-        self.assertEqual(driver.current_url, URL + "/")
-
-    def test_navbar_1(self):
-        driver = self.driver
-        driver.get(URL + "/countries")
-
-        xpath = "/html/body/div/div/nav/a"
-
-        if DEV:
-            xpath = "/html/body/div/div/nav/a"
-
-        driver.find_elements_by_xpath(xpath)[0].click()
-
-        self.assertEqual(driver.current_url, URL + "/")
-
-
-
-
-
+    
     def test_species_0(self):
-        driver = self.driver
-        driver.get(URL + "/species")
+        self.driver.get(URL + "/species")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div[6]/a/div/div[2]/div"
-
-        if DEV:
-            xpath = "/html/body/div/div/div[2]/div/div[2]/div[6]/a/div/div/div"
-
-        element = WebDriverWait(driver, 10).until(
+        xpath = "/html/body/div/div/div[2]/div/div/h1"
+        element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
-
-        self.assertEqual(element.text, "Asiatic Cheetah")
-
+        self.assertEqual(element.text, "Species")
+    
     def test_species_1(self):
-        driver = self.driver
-        driver.get(URL + "/species")
+        self.driver.get(URL + "/species")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div[10]/a/div/div[2]/p"
-        if DEV:
-            xpath = "/html/body/div/div/div[2]/div/div[2]/div[10]/a/div/div/p"
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
+        xpath_pag = "/html/body/div/div/div[2]/div[2]/div/div[5]/div/ul/li[5]/a"
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, xpath_pag))
         )
+        self.driver.find_elements_by_xpath(xpath_pag)[0].click()
 
-        self.assertEqual(
-            element.text,
-            "Kingdom: ANIMALIA\nPhylum: CNIDARIA\nClass: ANTHOZOA\nOrder: SCLERACTINIA\nFamily: ACROPORIDAE",
-        )
-
+        xpath = "html/body/div/div/div[2]/div[2]/div/div[4]/div[5]/a/div/div[2]/div/span/span"
+        result = self.driver.find_elements_by_xpath(xpath)[0] 
+        self.assertEqual(result.text, "Asiatic Cheetah")
+    
+    
     def test_habitats_0(self):
-        driver = self.driver
-        driver.get(URL + "/habitats")
+        self.driver.get(URL + "/habitats")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[4]/td[2]"
-        element = WebDriverWait(driver, 10).until(
+        xpath = "/html/body/div/div/div[2]/div/div/div/h1"
+        element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
-
-        self.assertEqual(element.text, "Pike")
-
+        self.assertEqual(element.text, "Habitats")
+    
     def test_habitats_1(self):
-        driver = self.driver
-        driver.get(URL + "/habitats")
+        self.driver.get(URL + "/habitats")
 
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[9]/td[4]"
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
+        xpath_pag = "/html/body/div/div/div[2]/div/div[3]/div/div/div/ul/li[4]/a"
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, xpath_pag))
         )
+        self.driver.find_elements_by_xpath(xpath_pag)[0].click()
 
-        self.assertEqual(element.text, "0.1911743")
+        xpath = "/html/body/div/div/div[2]/div/div[3]/div/div/div/div/div/div/table/tbody/tr/td[2]"
+        result = self.driver.find_elements_by_xpath(xpath)[0] 
+        self.assertEqual(result.text, "Greenfoot Quarry")
 
-    def test_pagination_habitat(self):
-        driver = self.driver
-        driver.get(URL + "/habitats")
-
-        xpath_paginate = "/html/body/div/div/div[2]/div/div[3]/div/ul/li[5]/a"
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, xpath_paginate))
-        )  # page 3 of habitats
-        driver.find_elements_by_xpath(xpath_paginate)[0].click()
-
-        xpath = "/html/body/div/div/div[2]/div/div[2]/div/table/tbody/tr[3]/td[2]"
-        element = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
-        )
-        self.assertEqual(element.text, "10014")
-    """
+    
 
     def tearDown(self):  # part of unittest library; called after every test
         # self.driver.close()  # from example
