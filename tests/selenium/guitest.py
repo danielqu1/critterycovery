@@ -77,7 +77,6 @@ class GuiTests(unittest.TestCase):
 
         self.assertEqual(result.text, "Backend tool")
 
-    
     def test_main_page_0(self):
         self.driver.get(URL)
 
@@ -115,10 +114,15 @@ class GuiTests(unittest.TestCase):
         self.driver.get(URL)
 
         xpath = "/html/body/div/div/nav/button"
-        self.driver.find_elements_by_xpath(xpath)[0].click() #click the dropdown menu
+        self.driver.find_elements_by_xpath(xpath)[0].click() 
 
-        xpath = "/html/body/div/div/nav/div/div/a[2]"
-        self.driver.find_elements_by_xpath(xpath)[0].click()
+        self.assertEqual(self.driver.current_url, URL + "/")
+    
+    def test_navbar_2(self):
+        self.driver.get(URL + "/about")
+
+        xpath = "/html/body/div/div/nav/button"
+        self.driver.find_elements_by_xpath(xpath)[0].click() 
 
         self.assertEqual(self.driver.current_url, URL + "/about")
     """
