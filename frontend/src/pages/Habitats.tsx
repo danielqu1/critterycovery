@@ -5,6 +5,9 @@ import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import Loading from './Loading';
 import axios from 'axios';
+import { Table, Input, Button, Space } from 'antd'
+import 'antd/dist/antd.css'
+const { Search } = Input
 
 interface habitat {
     id: number;
@@ -25,6 +28,7 @@ function Habitats(props : any) {
     const [isLoading, setLoading] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(false);
     const [habitat, setHabitat] = React.useState(habitats[0])
+    const [searchVal, setSearchVal] = React.useState("");
     let history = useHistory();
 
     React.useEffect(() => {
@@ -80,9 +84,24 @@ function Habitats(props : any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
+                    <Search
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        placeholder="Search"
+                        enterButton
+                        style={{
+                            position: "sticky",
+                            top: "0",
+                            left: "0",
+                            width: "200px",
+                            marginTop: "2vh"
+                        }}
+                    />
+                </Row>
+                <Row>
                     <HabitatTable
                         habitats={habitats}
-                        update={update}/>
+                        update={update}
+                        searchVal={searchVal}/>
                 </Row>
             </Container>
         </Container>

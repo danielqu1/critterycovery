@@ -12,9 +12,8 @@ function HabitatTable(props) {
 	const [searchText, setSearchText] = React.useState('');
 	const [searchedColumn, setSearchedColumn] = React.useState('');
 	const [searchedInput, setSearchedInput] = React.useState(null);
-	const [searchVal, setSearchVal] = React.useState("");
 	const { filteredData, loading } = useTableSearch({
-		searchVal,
+		searchVal: props.searchVal,
 		data: props.habitats,
 	});
 	
@@ -68,10 +67,10 @@ function HabitatTable(props) {
 			}
 		},
 		render: (text) =>
-			searchVal ? (
+			props.searchVal ? (
 			<Highlighter
 				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={searchVal.split(' ')}
+				searchWords={props.searchVal.split(' ')}
 				autoEscape
 				textToHighlight={text ? text.toString() : ''}
 			/>
@@ -131,18 +130,6 @@ function HabitatTable(props) {
 	];
 	
 	return (<>
-				<Search
-					onChange={(e) => setSearchVal(e.target.value)}
-					placeholder="Search"
-					enterButton
-					style={{
-						position: "sticky",
-						top: "0",
-						left: "0",
-						width: "200px",
-						marginTop: "2vh"
-					}}
-				/>
 				<Table 	
 					dataSource={filteredData} 
 					columns={columns} 
