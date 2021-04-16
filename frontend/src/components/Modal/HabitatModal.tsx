@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Modal, Button, Image} from 'react-bootstrap'
+import {Modal, Button, Image} from 'react-bootstrap' 
 import axios from 'axios'
 
 interface species{
