@@ -32,7 +32,7 @@ import axios from 'axios';
 // 	conservation_measures: string;
 // 	image_link: string;
 // }
-const { Search } = Input
+
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
@@ -43,7 +43,7 @@ function Species() {
 	const [isLoading, setLoading] = React.useState(true);
 	const [modalShow, setModalShow] = React.useState(false);
 	const [species, setSpecies] = React.useState(animals[0])
-	const [searchVal, setSearchVal] = useState('')
+
 	let history = useHistory();
 	let query = useQuery().get('q')
 
@@ -71,9 +71,7 @@ function Species() {
 						//DO NOTHING
 					})
 				}
-				if (query){
-					setSearchVal(query)
-				}
+
 				setLoading(false);    
 		})}, [id, query]);
 	
@@ -100,23 +98,10 @@ function Species() {
 				show={modalShow}
 				onHide={() => closeModal()}
 			/>
-			<Search
-				onChange={(e) => setSearchVal(e.target.value)}
-				defaultValue={query?query:''}
-				placeholder="Search"
-				enterButton
-				style={{
-					position: "sticky",
-					top: "0",
-					left: "0",
-					width: "200px",
-					marginTop: "2vh"
-				}}
-			/>
 			<SpeciesDeck
 				species={animals}
 				update={update}
-				searchVal={searchVal}/>
+				query={query}/>
 		</Container>
 		
 	);
