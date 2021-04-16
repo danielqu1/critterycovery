@@ -103,13 +103,13 @@ function HabitatTable(props) {
 			sorter: (a, b) => a.designation_name.localeCompare(b.designation_name),
 			...getColumnSearchProps('designation_name'),
 		}, {
-			title: 'Land Area',
+			title: 'Land Area (km^2)',
 			dataIndex: 'reported_terrestrial_area',
 			key: 'reported_terrestrial_area',
 			sorter: (a, b) => a.reported_terrestrial_area - b.reported_terrestrial_area,
 			...getColumnSearchProps('reported_terrestrial_area'),
 		}, {
-			title: 'Water Area',
+			title: 'Water Area (km^2)',
 			dataIndex: 'reported_marine_area',
 			key: 'reported_marine_area',
 			sorter: (a, b) => a.reported_marine_area - b.reported_marine_area,

@@ -63,9 +63,9 @@ function HabitatModal(props: any) {
         <Image src={props.habitat.image_link} rounded fluid style={{width:'50%'}}/><br/>
         ID: {props.habitat.id.toString()}<br/>
         Marine: {props.habitat.marine.toString()}<br/>
-        Water Area: {props.habitat.reported_marine_area.toString()}<br/>
-        Land Area: {props.habitat.reported_terrestrial_area.toString()}<br/>
-        icun Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
+        Water Area: {props.habitat.reported_marine_area.toString()} km&sup2;<br/>
+        Land Area: {props.habitat.reported_terrestrial_area.toString()} km&sup2;<br/>
+        IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
         Designation: {props.habitat.designation_name}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
         <iframe title="Map of Country"
