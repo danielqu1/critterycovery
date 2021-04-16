@@ -11,7 +11,11 @@ import axios from 'axios'
 
 function Search(){
 return (
-    <></>
+    <Container>
+
+
+    </Container>
+    
     );
 }
 
