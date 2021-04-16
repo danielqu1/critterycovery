@@ -53,13 +53,12 @@ class GuiTests(unittest.TestCase):
         )
 
     # reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests
-    
+    """
     def test_about_page_0(self):
         self.driver.get(URL + "/about")
 
         xpath = "/html/body/div/div/div[2]/div/div/h1" 
         result = self.driver.find_elements_by_xpath(xpath)[0] 
-
 
         self.assertEqual(result.text, "About Us")
 
@@ -95,7 +94,33 @@ class GuiTests(unittest.TestCase):
         self.driver.find_elements_by_xpath(xpath)[0].click()
 
         self.assertEqual(self.driver.current_url, URL + "/species")
+    
+    def test_main_page_2(self):
+        self.driver.get(URL)
 
+        xpath = "/html/body/div/div/div[2]/div/div[3]/div[2]/div[3]/div/a/img"
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        self.assertEqual(self.driver.current_url, URL + "/countries")
+    
+    def test_navbar_0(self):
+        self.driver.get(URL + "/countries")
+
+        xpath = "/html/body/div/div/nav/a"
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        self.assertEqual(self.driver.current_url, URL + "/")
+    """
+    def test_navbar_1(self):
+        self.driver.get(URL)
+
+        xpath = "/html/body/div/div/nav/button"
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        xpath = "/html/body/div/div/nav/div/div/a[2]"
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        self.assertEqual(self.driver.current_url, URL + "/about")
     """
     def test_main_page_2(self):
         driver = self.driver
