@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Highlighter from 'react-highlight-words';
 
-export const useTableSearch = ({ searchVal, data, attributes }) => {
+export const useTableSearch = ({ searchVal, data }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [origData, setOrigData] = useState([]);
   const [searchIndex, setSearchIndex] = useState([]);
@@ -11,13 +11,6 @@ export const useTableSearch = ({ searchVal, data, attributes }) => {
     setLoading(true);
     const crawl = (user, allValues) => {
       if (!allValues) allValues = [];
-      if(attributes){
-        for(var att of attributes){
-          if (typeof user[key] === "object") crawl(user[key], allValues);
-          else allValues.push(user[att] + " ");
-        }
-        return allValues
-      }
       for (var key in user) {
         if (typeof user[key] === "object") crawl(user[key], allValues);
         else allValues.push(user[key] + " ");
@@ -36,7 +29,7 @@ export const useTableSearch = ({ searchVal, data, attributes }) => {
       if (users) setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     if (searchVal) {

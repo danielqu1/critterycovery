@@ -6,7 +6,7 @@ function HabitatCard(props: any) {
         <Card bg="white" style={{width: '100%'}}>
             {/*  */}
             <ResponsiveEmbed aspectRatio="1by1">
-                <Card.Img variant="top" src={props.image_link}/>
+                <Card.Img variant="top" src={props.habitat.image_link}/>
             </ResponsiveEmbed>
             <Card.Body>
                 <Card.Title><Highlighter

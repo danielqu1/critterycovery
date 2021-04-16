@@ -1,9 +1,10 @@
-import React from 'react'; 
+import React, {useState} from 'react'; 
 import logo from '../../images/logo.png';
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
 import {Search} from 'react-bootstrap-icons'
   
 const NavbarMain = () => { 
+  const [searchQ, setSearchQ] = useState('')
   return ( 
     <>
       <Navbar sticky="top" bg="success" style={{backgroundColor:'green', padding:0}} expand="lg">
@@ -27,8 +28,8 @@ const NavbarMain = () => {
             <Nav.Link className='nav-links' href="/countries">Countries</Nav.Link>
           </Nav>
           <Form inline style={{backgroundColor:'grey', padding: '.5% 2%'}}>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="dark" style={{verticalAlign:'center'}}><Search /></Button>
+            <FormControl type="q" placeholder="Search" className="mr-sm-2" onChange={e => setSearchQ(e.target.value)} />
+            <Button variant="dark" style={{verticalAlign:'center' }} href={'/search?q='+searchQ}><Search /></Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
