@@ -96,7 +96,6 @@ class GuiTests(unittest.TestCase):
 
         self.assertEqual(self.driver.current_url, URL + "/species")
 
-
     """
     def test_main_page_2(self):
         driver = self.driver
