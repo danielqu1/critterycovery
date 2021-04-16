@@ -66,9 +66,9 @@ function CountryModal(props: any) {
         Capital: {props.country.capital}<br/>
         Region: {props.country.region}<br/>
         Subregion: {props.country.subregion}<br/>
-        Latitude: {props.country.latitude}<br/>
-        Longitude: {props.country.longitude}<br/>
-        Area: {props.country.area}<br/>
+        Latitude: {props.country.latitude}&deg;<br/>
+        Longitude: {props.country.longitude}&deg;<br/>
+        Area: {props.country.area} km&sup2;<br/>
         Gini Index: {props.country.gini_index}<br/>
         <iframe title="Map of Country"
           width="600"

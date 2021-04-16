@@ -122,7 +122,7 @@ function CountryTable(props) {
 			sorter: (a, b) => a.regionlocaleCompare(b.region),
 			...getColumnSearchProps('region'),
 		}, {
-			title: 'Land Area',
+			title: 'Land Area (km^2)',
 			dataIndex: 'area',
 			key: 'area',
 			sorter: (a, b) => a.area - b.area,
