@@ -6,7 +6,6 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Input, Select,  } from 'antd';
 import 'antd/dist/antd.css';
 import PaginationMain from '../../components/Pagination/Pagination';
-const { Search } = Input;
 const { Option } = Select;
 
 function SpeciesDeck(props)  { 
@@ -15,7 +14,6 @@ function SpeciesDeck(props)  {
 	const [maxCardsShown, setCardsShown] = useState(10)
 	const [sortState, setSortState] = useState('Name(Asc)')
 	const [sortedData, setSortedData] = useState(props.species)
-	const [searchVal, setSearchVal] = useState('')
 
 	const [nameFilter, setNameFilter] = useState('')
 	const [classFilter, setClassFilter] = useState('')
@@ -24,13 +22,12 @@ function SpeciesDeck(props)  {
 
 	const [finalData, setFinalData] = useState(props.species)
 	const { filteredData, loading } = useTableSearch({
-		searchVal,
+		searchVal: props.searchVal,
 		data: props.species,
 	});
-	
 
 	useEffect(() => {
-		setSortedData(filteredData, sort)
+		setFinalData(filteredData, sort)
     }, [filteredData])
 	useEffect(() => {
 		filter()
@@ -43,7 +40,7 @@ function SpeciesDeck(props)  {
 			<SpeciesCard 
 				animal={finalData[i]} 
 				photo={finalData[i].image_link}
-				searchVal={searchVal}
+				searchVal={props.searchVal}
 			></SpeciesCard></a></Col>);
 	}
 
@@ -53,55 +50,43 @@ function SpeciesDeck(props)  {
 		}
 		switch(value) {
 			case 'Name(Asc)':
-				setSortedData(sortedData.sort((a, b) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
+				setFinalData(setFinalData.sort((a, b) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))), filter)
 				break;
 			case 'Name(Desc)':
-				setSortedData(sortedData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
+				setFinalData(setFinalData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))), filter)
 				break;
 			case 'Class(Asc)':
-				setSortedData(sortedData.sort((a, b) => (a._class.localeCompare(b._class))))
+				setFinalData(setFinalData.sort((a, b) => (a._class.localeCompare(b._class))), filter)
 				break;
 			case 'Class(Desc)':
-				setSortedData(sortedData.sort((a, b) => (b._class.localeCompare(a._class))))
+				setFinalData(setFinalData.sort((a, b) => (b._class.localeCompare(a._class))), filter)
 				break;
 			case 'Order(Asc)':
-				setSortedData(sortedData.sort((a, b) => (a._order.localeCompare(b._order))))
+				setFinalData(setFinalData.sort((a, b) => (a._order.localeCompare(b._order))), filter)
 				break;
 			case 'Order(Desc)':
-				setSortedData(sortedData.sort((a, b) => (b._order.localeCompare(a._order))))
+				setFinalData(setFinalData.sort((a, b) => (b._order.localeCompare(a._order))), filter)
 				break;
 			case 'Family(Asc)':
-				setSortedData(sortedData.sort((a, b) => (a.family.localeCompare(b.family))))
+				setFinalData(setFinalData.sort((a, b) => (a.family.localeCompare(b.family))), filter)
 				break;
 			case 'Family(Desc)':
-				setSortedData(sortedData.sort((a, b) => (b.family.localeCompare(a.family))))
+				setFinalData(setFinalData.sort((a, b) => (b.family.localeCompare(a.family))), filter)
 				break;
 			default:
 			  // code block
 		  }
-		  filter()
 	}
 
 	function filter(){
 		const filters = [{attribute:'_class', value: classFilter.toLowerCase()}, {attribute:'_order', value: orderFilter.toLowerCase()}, {attribute:'family', value: familyFilter.toLowerCase()}]
-		const nameFilteredData = sortedData.filter(data => (data.common_name ? data.common_name : data.scientific_name).toLowerCase().includes((nameFilter ? nameFilter : '').toLowerCase()))
+		const nameFilteredData = finalData.filter(data => (data.common_name ? data.common_name : data.scientific_name).toLowerCase().includes((nameFilter ? nameFilter : '').toLowerCase()))
 		setFinalData(nameFilteredData.filter(data => filters.every(filter => (data[filter.attribute] ? data[filter.attribute].toLowerCase() : '').includes(filter.value ? filter.value : ''))))
 	}
 	return(
 		<Container fluid className='justify-content-md-center'>
 				<Row>
-					<h1>{finalData.length} Species. {maxCardsShown} per page {nameFilter}</h1>
-				</Row>
-				<Row>
-					<Search
-						onChange={(e) => setSearchVal(e.target.value)}
-						placeholder='Search'
-						style={{
-							position: 'sticky',
-							width: '100%',
-							padding: '0 5%'
-						}}
-					/>
+					<h1>{finalData.length} Species. {maxCardsShown} per page {loading}</h1>
 				</Row>
 				<Row>
 					<Col>

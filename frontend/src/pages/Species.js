@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Container, Row, Col, CardColumns } from 'react-bootstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import SpeciesDeck from '../components/CardDecks/SpeciesDeck';
 import 'antd/dist/antd.css'
+import { Input } from 'antd'
 import Loading from './Loading';
 import axios from 'axios';
 
@@ -31,6 +32,10 @@ import axios from 'axios';
 // 	conservation_measures: string;
 // 	image_link: string;
 // }
+const { Search } = Input
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 function Species() {
 	const {id} = useParams();
@@ -38,7 +43,9 @@ function Species() {
 	const [isLoading, setLoading] = React.useState(true);
 	const [modalShow, setModalShow] = React.useState(false);
 	const [species, setSpecies] = React.useState(animals[0])
+	const [searchVal, setSearchVal] = useState('')
 	let history = useHistory();
+	let query = useQuery().get('q')
 
 	React.useEffect(() => {
 		return () => {
@@ -62,8 +69,11 @@ function Species() {
 						} 
 					})
 				}
+				if (query){
+					setSearchVal(query)
+				}
 				setLoading(false);    
-		})}, []);
+		})}, [id, query]);
 	
 	
 	if (isLoading) {
@@ -88,10 +98,23 @@ function Species() {
 				show={modalShow}
 				onHide={() => closeModal()}
 			/>
-
+			<Search
+				onChange={(e) => setSearchVal(e.target.value)}
+				defaultValue={query?query:''}
+				placeholder="Search"
+				enterButton
+				style={{
+					position: "sticky",
+					top: "0",
+					left: "0",
+					width: "200px",
+					marginTop: "2vh"
+				}}
+			/>
 			<SpeciesDeck
 				species={animals}
-				update={update}/>
+				update={update}
+				searchVal={searchVal}/>
 		</Container>
 		
 	);

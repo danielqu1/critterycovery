@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import { Input } from 'antd'
@@ -25,6 +25,10 @@ interface country {
 
 const { Search } = Input;
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 function Countries(props: any) {
     const offset = 3;
     const { id } = useParams<{ id: string }>();
@@ -34,6 +38,7 @@ function Countries(props: any) {
     const [country, setCountry] = React.useState(countries[0])
     const [searchVal, setSearchVal] = React.useState("");
     let history = useHistory();
+    let query = useQuery().get('q')
 
     React.useEffect(() => {
         return () => {
@@ -56,6 +61,10 @@ function Countries(props: any) {
                         setModalShow(true)
                     }
                 })
+            }
+
+            if (query){
+                setSearchVal(query)
             }
             setLoading(false);
         })
@@ -87,11 +96,12 @@ function Countries(props: any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>Countries.</h1>
+                    <h1>Countries. {query}</h1>
                 </Row>
                 <Row>
                     <Search
                         onChange={(e) => setSearchVal(e.target.value)}
+                        defaultValue = {query?query:''}
                         placeholder="Search"
                         enterButton
                         style={{

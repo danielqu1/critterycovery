@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import Loading from './Loading';
 import axios from 'axios';
-import { Table, Input, Button, Space } from 'antd'
+import { Input } from 'antd'
 import 'antd/dist/antd.css'
 const { Search } = Input
 
@@ -22,6 +22,10 @@ interface habitat {
     link: string;
 }
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 function Habitats(props : any) {
     const {id} = useParams<{ id: string }>();
     const [habitats, setHabitats] = React.useState(new Array<habitat>());
@@ -30,6 +34,7 @@ function Habitats(props : any) {
     const [habitat, setHabitat] = React.useState(habitats[0])
     const [searchVal, setSearchVal] = React.useState("");
     let history = useHistory();
+    let query = useQuery().get('q')
 
     React.useEffect(() => {
         return () => {
@@ -52,6 +57,9 @@ function Habitats(props : any) {
                             setModalShow(true)
                         } 
                     })
+                }
+                if (query){
+                    setSearchVal(query)
                 }
                 setLoading(false);    
             })
@@ -86,6 +94,7 @@ function Habitats(props : any) {
                 <Row>
                     <Search
                         onChange={(e) => setSearchVal(e.target.value)}
+                        defaultValue={query?query:''}
                         placeholder="Search"
                         enterButton
                         style={{
