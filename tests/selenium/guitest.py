@@ -181,7 +181,7 @@ class GuiTests(unittest.TestCase):
         )
         self.assertEqual(element.text, "Countries")
     
-    def test_countries_0(self):
+    def test_countries_1(self):
         self.driver.get(URL + "/countries")
 
         xpath_pag = "/html/body/div/div/div[2]/div/div[3]/div/div/div/ul/li[4]/a"
