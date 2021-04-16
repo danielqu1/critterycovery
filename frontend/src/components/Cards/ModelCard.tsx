@@ -4,7 +4,7 @@ function ModelCard(props: any) {
     return(
         <Container className='hoverable' style={{borderRadius: '8%', padding:0}}>
             <a href={props.models.href}>
-                <Image style={{width: '100%', height: '100%'}} src={props.models.image}></Image>
+                <Image style={{width: '50%', height: '50%'}} src={props.models.image}></Image>
             </a>
         </Container>
     );

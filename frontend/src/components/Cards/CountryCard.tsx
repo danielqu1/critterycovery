@@ -1,50 +1,44 @@
 import { Card, ResponsiveEmbed } from 'react-bootstrap';
 import Highlighter from 'react-highlight-words';
 
-function SpeciesCard(props: any) {
+function CountryCard(props: any) {
     return(
         <Card bg="white" style={{width: '100%'}}>
             {/*  */}
             <ResponsiveEmbed aspectRatio="1by1">
-                <Card.Img variant="top" src={props.photo}/>
+                <Card.Img variant="top" src={props.flag}/>
             </ResponsiveEmbed>
             <Card.Body>
                 <Card.Title><Highlighter
                                 highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                                 searchWords={props.searchVal.split(' ')}
                                 autoEscape
-                                textToHighlight={props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}
+                                textToHighlight={props.country.name}
                             /></Card.Title>
                 <Card.Text>
-                    Kingdom: <Highlighter
+                    Population: <Highlighter
                                 highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                                 searchWords={props.searchVal.split(' ')}
                                 autoEscape
-                                textToHighlight={props.animal.kingdom ? props.animal.kingdom.toString() : ''}
+                                textToHighlight={props.country.population ? props.country.population.toString() : ''}
                             /><br/>
-                    Phylum: <Highlighter
+                    Capital: <Highlighter
                                 highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                                 searchWords={props.searchVal.split(' ')}
                                 autoEscape
-                                textToHighlight={props.animal.phylum ? props.animal.phylum.toString() : ''}
+                                textToHighlight={props.country.capital ? props.country.capital.toString() : ''}
                             /><br/>
-                    Class: <Highlighter
+                    Region: <Highlighter
                                 highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                                 searchWords={props.searchVal.split(' ')}
                                 autoEscape
-                                textToHighlight={props.animal._class ? props.animal._class.toString() : ''}
+                                textToHighlight={props.country.region ? props.country.region.toString() : ''}
                             /><br/>
-                    Order: <Highlighter
+                    Land Area: <Highlighter
                                 highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                                 searchWords={props.searchVal.split(' ')}
                                 autoEscape
-                                textToHighlight={props.animal._order ? props.animal._order.toString() : ''}
-                            /><br/>
-                    Family: <Highlighter
-                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-                                searchWords={props.searchVal.split(' ')}
-                                autoEscape
-                                textToHighlight={props.animal.family ? props.animal.family.toString() : ''}
+                                textToHighlight={props.country.area ? props.country.area.toString() : ''}
                             /><br/>
                 </Card.Text>
             </Card.Body>
@@ -52,4 +46,4 @@ function SpeciesCard(props: any) {
     );
 }
 
-export default SpeciesCard;
+export default CountryCard;

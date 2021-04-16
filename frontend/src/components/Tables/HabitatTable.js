@@ -6,10 +6,16 @@ import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
 
+const { Search } = Input;
+
 function HabitatTable(props) {
 	const [searchText, setSearchText] = React.useState('');
 	const [searchedColumn, setSearchedColumn] = React.useState('');
 	const [searchedInput, setSearchedInput] = React.useState(null);
+	const { filteredData, loading } = useTableSearch({
+		searchVal: props.searchVal,
+		data: props.habitats,
+	});
 	
 	let getColumnSearchProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -61,10 +67,10 @@ function HabitatTable(props) {
 			}
 		},
 		render: (text) =>
-			searchVal ? (
+			props.searchVal ? (
 			<Highlighter
 				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={searchVal.split(' ')}
+				searchWords={props.searchVal.split(' ')}
 				autoEscape
 				textToHighlight={text ? text.toString() : ''}
 			/>
@@ -103,13 +109,13 @@ function HabitatTable(props) {
 			sorter: (a, b) => a.designation_name.localeCompare(b.designation_name),
 			...getColumnSearchProps('designation_name'),
 		}, {
-			title: 'Land Area',
+			title: 'Land Area (km^2)',
 			dataIndex: 'reported_terrestrial_area',
 			key: 'reported_terrestrial_area',
 			sorter: (a, b) => a.reported_terrestrial_area - b.reported_terrestrial_area,
 			...getColumnSearchProps('reported_terrestrial_area'),
 		}, {
-			title: 'Water Area',
+			title: 'Water Area (km^2)',
 			dataIndex: 'reported_marine_area',
 			key: 'reported_marine_area',
 			sorter: (a, b) => a.reported_marine_area - b.reported_marine_area,
@@ -122,29 +128,8 @@ function HabitatTable(props) {
 			...getColumnSearchProps('iucn_category'),
 		}
 	];
-	function giveData(){
-		return props.habitats
-	};
 	
-	const { Search } = Input;
-	const [searchVal, setSearchVal] = React.useState("");
-	const { filteredData, loading } = useTableSearch({
-		searchVal,
-		retrieve: giveData,
-	});
 	return (<>
-				<Search
-					onChange={(e) => setSearchVal(e.target.value)}
-					placeholder="Search"
-					enterButton
-					style={{
-						position: "sticky",
-						top: "0",
-						left: "0",
-						width: "200px",
-						marginTop: "2vh"
-					}}
-				/>
 				<Table 	
 					dataSource={filteredData} 
 					columns={columns} 

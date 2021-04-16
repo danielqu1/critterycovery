@@ -13,6 +13,8 @@ interface habitats {
 
 const NA = "N/A";
 
+const no_info = "information not available"
+
 function prettyEntries(props: any) {
 	const properties: string[] = ["_class", "_order", "common_name", "family", "genus", "kingdom", "phylum", "population_trend", "scientific_name", "subspecies", "subpopulations", "population_trend", "marine", "freshwater", "terrestrial", "rationale", "geographic_range", "population", "habitat", "threats", "conservation_measures" ];
 
@@ -74,11 +76,17 @@ function SpeciesModal(props: any) {
 	for (let i = 0; i < countries.length; i++) {
 		countryLinks.push(<a style={{ cursor: 'pointer' }} href={'/countries/'+countries[i].country}>{countries[i].country+' '}</a>);
 	}
+	if (countries.length == 0) {
+		countryLinks.push(<a>{no_info}</a>)
+	}
 	countryLinks.push(<br/>)
 
 	const habitatLinks = [];
 	for (let i = 0; i < habitats.length; i++) {
 		habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
+	}
+	if (habitats.length == 0) {
+		habitatLinks.push(<a>{no_info}</a>)
 	}
 	habitatLinks.push(<br/>)
   
@@ -115,21 +123,21 @@ function SpeciesModal(props: any) {
 				</Card>
 				
 
-				Countries: <br /> {countryLinks ? countryLinks : "Unknown"} <br/>
-				Habitats: <br /> {habitatLinks ? habitatLinks : "Unknown"} <br/>
-				Subspecies: {props.species.subspecies}<br/>
-				Subpopulations: {props.species.subpopulations}<br/>
-				Population Trend: {props.species.population_trend}<br/>
+				Countries: <br /> {countryLinks} <br/>
+				Habitats: <br /> {habitatLinks} <br/>
+				Subspecies: {props.species.subspecies ? props.species.subspecies : "none"}<br/>
+				Subpopulations: {props.species.subpopulations ? props.species.subpopulations : "none"}<br/>
+				Population Trend: {props.species.population_trend ? props.species.population_trend : no_info}<br/>
 				Marine: {props.species.marine.toString()}<br/>
 				Freshwater: {props.species.freshwater.toString()}<br/>
 				Terrestrial: {props.species.terrestrial.toString()}<br/>
 
-				Rationale: <br/><div dangerouslySetInnerHTML={{ __html: props.species.rationale }}></div><br/>
-				Geographic Range: <br/><div dangerouslySetInnerHTML={{ __html: props.species.geographic_range }}></div><br/>
-				Population: <br/><div dangerouslySetInnerHTML={{ __html: props.species.population }}></div><br/>
-				Habitat Desc: <br/><div dangerouslySetInnerHTML={{ __html: props.species.habitat }}></div><br/>
-				Threats: <br/><div dangerouslySetInnerHTML={{ __html: props.species.threats }}></div><br/>
-				Conservation Measures: <br/><div dangerouslySetInnerHTML={{ __html: props.species.conservation_measures }}></div><br/>
+				Rationale: <br/><div dangerouslySetInnerHTML={{ __html: props.species.rationale ? props.species.rationale : no_info }}></div><br/>
+				Geographic Range: <br/><div dangerouslySetInnerHTML={{ __html: props.species.geographic_range ? props.species.geographic_range : no_info }}></div><br/>
+				Population: <br/><div dangerouslySetInnerHTML={{ __html: props.species.population ? props.species.population : no_info }}></div><br/>
+				Habitat Description: <br/><div dangerouslySetInnerHTML={{ __html: props.species.habitat ? props.species.habitat : no_info}}></div><br/>
+				Threats: <br/><div dangerouslySetInnerHTML={{ __html: props.species.threats ? props.species.threats : no_info }}></div><br/>
+				Conservation Measures: <br/><div dangerouslySetInnerHTML={{ __html: props.species.conservation_measures ? props.species.conservation_measures : no_info }}></div><br/>
 
 			</Modal.Body>
 			<Modal.Footer>

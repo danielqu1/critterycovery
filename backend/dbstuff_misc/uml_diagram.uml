@@ -61,7 +61,7 @@ alpha2_code: varchar
 }
 
 species }|..|| countries_per_species
-countries }o..o{ countries_per_species
+countries }o..|| countries_per_species
 countries }o..|| habitats
 species }o..o{ habitats
 @enduml
