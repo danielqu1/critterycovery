@@ -56,6 +56,8 @@ function Habitats(props : any) {
                             setHabitat(response.data.habitat)
                             setModalShow(true)
                         } 
+                    }).catch(err => {
+                        //DO NOTHING
                     })
                 }
                 if (query){

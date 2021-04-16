@@ -60,6 +60,8 @@ function Countries(props: any) {
                         setCountry(response.data.country)
                         setModalShow(true)
                     }
+                }).catch(err => {
+                    //DO NOTHING
                 })
             }
 

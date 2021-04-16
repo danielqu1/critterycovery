@@ -67,6 +67,8 @@ function Species() {
 							setSpecies(response.data.species)
 							setModalShow(true)
 						} 
+					}).catch(err => {
+						//DO NOTHING
 					})
 				}
 				if (query){
