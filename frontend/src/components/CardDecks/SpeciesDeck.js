@@ -13,7 +13,6 @@ function SpeciesDeck(props)  {
 	const [startingCard, setStart] = useState(0)
 	const [maxCardsShown, setCardsShown] = useState(10)
 	const [sortState, setSortState] = useState('Name(Asc)')
-	const [sortedData, setSortedData] = useState(props.species)
 
 	const [nameFilter, setNameFilter] = useState('')
 	const [classFilter, setClassFilter] = useState('')

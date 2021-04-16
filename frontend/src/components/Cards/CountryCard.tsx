@@ -6,7 +6,7 @@ function CountryCard(props: any) {
         <Card bg="white" style={{width: '100%'}}>
             {/*  */}
             <ResponsiveEmbed aspectRatio="1by1">
-                <Card.Img variant="top" src={props.flag}/>
+                <Card.Img variant="top" src={props.country.flag}/>
             </ResponsiveEmbed>
             <Card.Body>
                 <Card.Title><Highlighter
