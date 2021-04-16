@@ -12,8 +12,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 function About() { 
 
 	const description: string = "This site is meant to educate people about different endangered species and address the problem" +
-	" of reducing populations. Unless we do something about this issue, we won't be able to save these species until its too late." +
-	" This would be a great shame because of the diversity that these animals bring to earth.";
+	" of reducing populations. Unless we do something about this issue, we won't be able to save these species until it's too late." +
+	" This would be a great shame because of the diversity that these animals bring to the earth.";
 
 	const compilation: string = "The compilation of our data allows us to focus on species that are critically endangered" +
 	" and identify their country, ecosystem, and other characteristics so that we can help reduct this endangerment. The data" +
@@ -48,7 +48,7 @@ function About() {
       </Row>
       <Row >
         <Container style={{textAlign:'center', paddingTop: '2%'}}>
-          <h1 style={{fontWeight:'bolder'}}>API's</h1>
+          <h1 style={{fontWeight:'bolder'}}>APIs</h1>
         </Container>
       </Row>
       <Row xs={1} sm={1} md={2} lg={3} xl={4}>

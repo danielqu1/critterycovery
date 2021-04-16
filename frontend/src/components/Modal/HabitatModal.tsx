@@ -11,6 +11,8 @@ interface country{
   alpha3_code: string;
 }
 
+const no_info = "information not available"
+
 function HabitatModal(props: any) {
   const country_default : country = {name: 'United States of America', alpha3_code: 'USA'}
   const [species, setSpecies] = React.useState(new Array<species>());
@@ -40,11 +42,16 @@ function HabitatModal(props: any) {
   for (let i = 0; i < species.length; i++) {
     speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
   }
+  if (species.length == 0) {
+		speciesLinks.push(<a>{no_info}</a>)
+	}
   speciesLinks.push(<br/>)
 
   let countryLink = <a></a>;
   if(country != null){
     countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
+  } else {
+    countryLink = <a>{no_info}</a>
   }
 
   return (
@@ -65,8 +72,8 @@ function HabitatModal(props: any) {
         Marine: {props.habitat.marine.toString()}<br/>
         Water Area: {props.habitat.reported_marine_area.toString()} km&sup2;<br/>
         Land Area: {props.habitat.reported_terrestrial_area.toString()} km&sup2;<br/>
-        IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
-        Designation: {props.habitat.designation_name}<br/>
+        IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : no_info}<br/>
+        Designation: {props.habitat.designation_name ? props.habitat.designation_name : no_info}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
         <iframe title="Map of Country"
           width="100%"
