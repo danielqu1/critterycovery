@@ -89,17 +89,6 @@ function SpeciesDeck(props)  {
 					<h1>{finalData.length} Species. {maxCardsShown} per page {loading}</h1>
 				</Row>
 				<Row>
-<<<<<<< HEAD
-				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={sort}>
-					<Option value='Name(Asc)'>Name(<ArrowUpOutlined />)</Option>
-					<Option value='Name(Desc)'>Name(<ArrowDownOutlined />)</Option>
-					<Option value='Class(Asc)'>Class(<ArrowUpOutlined />)</Option>
-					<Option value='Class(Desc)'>Class(<ArrowDownOutlined />)</Option>
-					<Option value='Order(Asc)'>Order(<ArrowUpOutlined />)</Option>
-					<Option value='Order(Desc)'>Order(<ArrowDownOutlined />)</Option>
-					<Option value='Family(Asc)'>Family(<ArrowUpOutlined />)</Option>
-					<Option value='Family(Desc)'>Family(<ArrowDownOutlined />)</Option>
-=======
 					<Col>
 						Name Filter:<br/>
 						<Input
@@ -135,7 +124,6 @@ function SpeciesDeck(props)  {
 							<Option value='Order(Desc)'>Order(<ArrowDownOutlined />)</Option>
 							<Option value='Family(Asc)'>Family(<ArrowUpOutlined />)</Option>
 							<Option value='Family(Desc)'>Family(<ArrowDownOutlined />)</Option>
->>>>>>> 87a4e9b1b37c1b577d0c1fbea45bf09739e46b9f
 
 						</Select>
 					</Col>
