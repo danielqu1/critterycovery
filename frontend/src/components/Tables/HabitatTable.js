@@ -139,6 +139,9 @@ function HabitatTable(props) {
 						onClick: event => {props.update(record);}, // click row
 						};
 					}}
+					pagination={{ 	showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} habitats`,
+									pageSizeOptions: [10, 20, 50],
+								}}
 					rowKey='name'
 				/>
 			</>			

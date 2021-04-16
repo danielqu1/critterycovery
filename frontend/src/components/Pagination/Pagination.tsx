@@ -31,8 +31,11 @@ function PaginationMain(props: any) {
     }
 
     return ( 
-        <Row className="justify-content-md-center" style={{paddingTop: '1%'}}>
-            <Col sm={8} md="auto">
+        <Row className="justify-content-md-center" style={{padding: '1% 0', margin: '2% 0', borderTop: '.25rem dotted grey'}}>
+            <Col xs lg="2">
+                {props.startingInstance}-{props.startingInstance+props.instancesPerPage} of {props.totalInstances} species
+            </Col>
+            <Col md="auto">
                 <Pagination>
                     <Pagination.First onClick={() => props.setStartingInstance(0)}/>
                     <Pagination.Prev onClick={() => props.setStartingInstance(Math.max(0, props.startingInstance - props.instancesPerPage))}/>
@@ -41,7 +44,7 @@ function PaginationMain(props: any) {
                     <Pagination.Last onClick={() => props.setStartingInstance((totalPages - 1) * props.instancesPerPage)}/>
                 </Pagination>
             </Col>
-            <Col sm={3} lg="2">
+            <Col xs lg="2">
                 <ButtonGroup>
                     <Button variant="outline-primary" onClick={() => props.setInstancesPerPage(10)}>10</Button> 
                     <Button variant="outline-primary" onClick={() => props.setInstancesPerPage(20)}>20</Button> 
