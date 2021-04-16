@@ -57,6 +57,11 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(r["habitat"]["iucn_category"], 5)
         self.assertEqual(r["country"]["id"], 140421)
 
+    def another_indiv_species(self):
+        r = requests.get(URL + "/api/species/name=Acipenser schrenckii").json()
+        self.assertEqual(r["species"]["_order"], "ACIPENSERIFORMES")
+        self.assertEqual(r["species"]["genus"], "Acipenser")
+
 
 
 if __name__ == "__main__":
