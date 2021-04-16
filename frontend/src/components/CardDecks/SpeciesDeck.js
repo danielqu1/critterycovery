@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
 import { Container, Row, Col, CardColumns } from 'react-bootstrap';
 import SpeciesCard from '../Cards/SpeciesCard';
-import { SearchOutlined } from '@ant-design/icons';
-import { Input, Select } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import { Input, Select,  } from 'antd';
 import 'antd/dist/antd.css';
 import PaginationMain from '../../components/Pagination/Pagination';
 
@@ -12,7 +12,7 @@ function SpeciesDeck(props)  {
 	const [startingCard, setStart] = React.useState(0)
 	const [maxCardsShown, setCardsShown] = React.useState(10)
 	const [sortState, setSortState] = useState('Name(Asc)')
-	const [sortedData, setSortedData] = useState(new Array())
+	const [sortedData, setSortedData] = useState(props.species)
 
 	function giveData(){
 		return props.species
@@ -50,6 +50,18 @@ function SpeciesDeck(props)  {
 			case 'Name(Desc)':
 				setSortedData(filteredData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
 				break;
+			case 'Class(Asc)':
+				setSortedData(filteredData.sort((a, b) => (a._class.localeCompare(b._class))))
+				break;
+			case 'Class(Desc)':
+				setSortedData(filteredData.sort((a, b) => (b._class.localeCompare(a._class))))
+				break;
+			case 'Order(Asc)':
+				setSortedData(filteredData.sort((a, b) => (a._order.localeCompare(b._order))))
+				break;
+			case 'Order(Desc)':
+				setSortedData(filteredData.sort((a, b) => (b._order.localeCompare(a._order))))
+				break;
 			case 'Family(Asc)':
 				setSortedData(filteredData.sort((a, b) => (a.family.localeCompare(b.family))))
 				break;
@@ -82,10 +94,15 @@ function SpeciesDeck(props)  {
 				</Row>
 				<Row>
 				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={setSortState}>
-					<Option value='Name(Asc)'>Name(asc)</Option>
-					<Option value='Name(Desc)'>Name(Desc)</Option>
-					<Option value='Family(Asc)'>Family(Asc)</Option>
-					<Option value='Family(Desc)'>Family(Desc)</Option>
+					<Option value='Name(Asc)'>Name(<ArrowUpOutlined />)</Option>
+					<Option value='Name(Desc)'>Name(<ArrowDownOutlined />)</Option>
+					<Option value='Class(Asc)'>Class(<ArrowUpOutlined />)</Option>
+					<Option value='Class(Desc)'>Class(<ArrowDownOutlined />)</Option>
+					<Option value='Order(Asc)'>Order(<ArrowUpOutlined />)</Option>
+					<Option value='Order(Desc)'>Order(<ArrowDownOutlined />)</Option>
+					<Option value='Family(Asc)'>Family(<ArrowUpOutlined />)</Option>
+					<Option value='Family(Desc)'>Family(<ArrowDownOutlined />)</Option>
+
 				</Select>
 				</Row>
 				<Row xs={1} sm={2} md={3} lg={4} xl={5}>
