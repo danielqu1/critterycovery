@@ -53,7 +53,7 @@ class GuiTests(unittest.TestCase):
         )
 
     # reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests
-    """
+    
     def test_about_page_0(self):
         self.driver.get(URL + "/about")
 
@@ -110,12 +110,12 @@ class GuiTests(unittest.TestCase):
         self.driver.find_elements_by_xpath(xpath)[0].click()
 
         self.assertEqual(self.driver.current_url, URL + "/")
-    """
+    
     def test_navbar_1(self):
         self.driver.get(URL)
 
         xpath = "/html/body/div/div/nav/button"
-        self.driver.find_elements_by_xpath(xpath)[0].click()
+        self.driver.find_elements_by_xpath(xpath)[0].click() #click the dropdown menu
 
         xpath = "/html/body/div/div/nav/div/div/a[2]"
         self.driver.find_elements_by_xpath(xpath)[0].click()
