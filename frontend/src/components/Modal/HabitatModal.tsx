@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {Modal, Button, Image} from 'react-bootstrap'
+import {Modal, Button, Image} from 'react-bootstrap' 
 import axios from 'axios'
 
 interface species{
@@ -10,6 +10,8 @@ interface country{
   name: string;
   alpha3_code: string;
 }
+
+const no_info = "information not available"
 
 function HabitatModal(props: any) {
   const country_default : country = {name: 'United States of America', alpha3_code: 'USA'}
@@ -40,11 +42,16 @@ function HabitatModal(props: any) {
   for (let i = 0; i < species.length; i++) {
     speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
   }
+  if (species.length == 0) {
+		speciesLinks.push(<a>{no_info}</a>)
+	}
   speciesLinks.push(<br/>)
 
   let countryLink = <a></a>;
   if(country != null){
     countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
+  } else {
+    countryLink = <a>{no_info}</a>
   }
 
   return (
@@ -63,10 +70,10 @@ function HabitatModal(props: any) {
         <Image src={props.habitat.image_link} rounded fluid style={{width:'50%'}}/><br/>
         ID: {props.habitat.id.toString()}<br/>
         Marine: {props.habitat.marine.toString()}<br/>
-        Water Area: {props.habitat.reported_marine_area.toString()}<br/>
-        Land Area: {props.habitat.reported_terrestrial_area.toString()}<br/>
-        icun Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : ""}<br/>
-        Designation: {props.habitat.designation_name}<br/>
+        Water Area: {props.habitat.reported_marine_area.toString()} km&sup2;<br/>
+        Land Area: {props.habitat.reported_terrestrial_area.toString()} km&sup2;<br/>
+        IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : no_info}<br/>
+        Designation: {props.habitat.designation_name ? props.habitat.designation_name : no_info}<br/>
         Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
         <iframe title="Map of Country"
           width="100%"

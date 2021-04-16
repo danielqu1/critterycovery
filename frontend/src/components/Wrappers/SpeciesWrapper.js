@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
-import { Container, Row, Col, CardColumns } from 'react-bootstrap';
-import SpeciesCard from '../Cards/SpeciesCard';
+import { Container, Row, Col } from 'react-bootstrap';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import PaginationMain from '../../components/Pagination/Pagination';
 import { Input, Select,  } from 'antd';
 import 'antd/dist/antd.css';
-import PaginationMain from '../../components/Pagination/Pagination';
 const { Option } = Select;
+const { Search } = Input
 
 function SpeciesDeck(props)  { 
 	const offset = 3;
 	const [startingCard, setStart] = useState(0)
 	const [maxCardsShown, setCardsShown] = useState(10)
 	const [sortState, setSortState] = useState('Name(Asc)')
-	const [sortedData, setSortedData] = useState(props.species)
 
 	const [nameFilter, setNameFilter] = useState('')
 	const [classFilter, setClassFilter] = useState('')
@@ -21,8 +20,9 @@ function SpeciesDeck(props)  {
 	const [familyFilter, setFamilyFilter] = useState('')
 
 	const [finalData, setFinalData] = useState(props.species)
+    const [searchVal, setSearchVal] = useState(props.query?props.query:'')
 	const { filteredData, loading } = useTableSearch({
-		searchVal: props.searchVal,
+		searchVal,
 		data: props.species,
 	});
 
@@ -32,17 +32,6 @@ function SpeciesDeck(props)  {
 	useEffect(() => {
 		filter()
     }, [nameFilter, classFilter, orderFilter, familyFilter])
-
-	const speciesCards = [];
-	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {
-		speciesCards.push(<Col className='container-fluid mt-4'>
-			<a style={{ cursor: 'pointer' }} onClick={() => props.update(finalData[i])}>
-			<SpeciesCard 
-				animal={finalData[i]} 
-				photo={finalData[i].image_link}
-				searchVal={props.searchVal}
-			></SpeciesCard></a></Col>);
-	}
 
 	function sort(value=sortState){
 		if(value!=sortState){
@@ -83,11 +72,22 @@ function SpeciesDeck(props)  {
 		const nameFilteredData = finalData.filter(data => (data.common_name ? data.common_name : data.scientific_name).toLowerCase().includes((nameFilter ? nameFilter : '').toLowerCase()))
 		setFinalData(nameFilteredData.filter(data => filters.every(filter => (data[filter.attribute] ? data[filter.attribute].toLowerCase() : '').includes(filter.value ? filter.value : ''))))
 	}
+
 	return(
 		<Container fluid className='justify-content-md-center'>
 				<Row>
-					<h1>{finalData.length} Species. {maxCardsShown} per page {loading}</h1>
+					<h1>{finalData.length} Species. {maxCardsShown} per page </h1>
 				</Row>
+                <Row>
+                    <Search
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        defaultValue={props.query?props.query:''}
+                        placeholder="Search"
+                        style={{
+                            width: '95%'
+                        }}
+                    />
+                </Row>
 				<Row>
 					<Col>
 						Name Filter:<br/>
@@ -129,9 +129,12 @@ function SpeciesDeck(props)  {
 					</Col>
 				
 				</Row>
-				<Row xs={1} sm={2} md={3} lg={4} xl={5}>
-					{speciesCards}
-				</Row>
+				<SpeciesDeck
+                    maxCardsShown = {maxCardsShown}
+                    data = {finalData}
+                    startingCard = {startingCard}
+                    update = {props.update}
+                    searchVal = {searchVal}/>
 				<PaginationMain 
 					instancesPerPage= {maxCardsShown}
 					totalInstances= {finalData.length}

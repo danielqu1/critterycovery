@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Highlighter from 'react-highlight-words';
 
-export const useTableSearch = ({ searchVal, retrieve }) => {
+export const useTableSearch = ({ searchVal, data, attributes }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [origData, setOrigData] = useState([]);
   const [searchIndex, setSearchIndex] = useState([]);
@@ -11,6 +11,13 @@ export const useTableSearch = ({ searchVal, retrieve }) => {
     setLoading(true);
     const crawl = (user, allValues) => {
       if (!allValues) allValues = [];
+      if(attributes){
+        for(var att of attributes){
+          if (typeof user[key] === "object") crawl(user[key], allValues);
+          else allValues.push(user[att] + " ");
+        }
+        return allValues
+      }
       for (var key in user) {
         if (typeof user[key] === "object") crawl(user[key], allValues);
         else allValues.push(user[key] + " ");
@@ -18,7 +25,7 @@ export const useTableSearch = ({ searchVal, retrieve }) => {
       return allValues;
     };
     const fetchData = () => {
-      const users = retrieve();
+      const users = data;
       setOrigData(users);
       setFilteredData(users);
       const searchInd = users.map(user => {
@@ -33,9 +40,12 @@ export const useTableSearch = ({ searchVal, retrieve }) => {
 
   useEffect(() => {
     if (searchVal) {
+      const tempSearch = searchVal.trim(' ').toLowerCase().split(' ').filter(i => i)
       const reqData = searchIndex.map((user, index) => {
-        if (user.allValues.toLowerCase().indexOf(searchVal.toLowerCase()) >= 0){
-          return origData[index];
+        for(const term of tempSearch){
+            if (user.allValues.toLowerCase().includes(term)){
+              return origData[index];
+            }
         }
         return null;
       });

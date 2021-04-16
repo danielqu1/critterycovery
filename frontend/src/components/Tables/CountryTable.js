@@ -10,6 +10,10 @@ function CountryTable(props) {
 	const [searchText, setSearchText] = React.useState('');
 	const [searchedColumn, setSearchedColumn] = React.useState('');
 	const [searchedInput, setSearchedInput] = React.useState(null);
+	const { filteredData, loading } = useTableSearch({
+		searchVal: props.searchVal,
+		data: props.countries,
+	});
 	
 	let getColumnSearchProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
@@ -61,10 +65,10 @@ function CountryTable(props) {
 			}
 		},
 		render: (text) =>
-			searchVal ? (
+			props.searchVal ? (
 			<Highlighter
 				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={[searchVal]}
+				searchWords={props.searchVal.split(' ')}
 				autoEscape
 				textToHighlight={text ? text.toString() : ''}
 			/>
@@ -106,6 +110,7 @@ function CountryTable(props) {
 			title: 'Capital',
 			dataIndex: 'capital',
 			key: 'capital',
+			defaultValue: 'information not available',
 			sorter: (a, b) => a.capitallocaleCompare(b.capital),
 			...getColumnSearchProps('capital'),
 		}, {
@@ -115,36 +120,15 @@ function CountryTable(props) {
 			sorter: (a, b) => a.regionlocaleCompare(b.region),
 			...getColumnSearchProps('region'),
 		}, {
-			title: 'Land Area',
+			title: 'Land Area (km^2)',
 			dataIndex: 'area',
 			key: 'area',
 			sorter: (a, b) => a.area - b.area,
 			...getColumnSearchProps('area'),
 		}
 	];
-	function giveData(){
-		return props.countries
-	};
-	
-	const { Search } = Input;
-	const [searchVal, setSearchVal] = React.useState("");
-	const { filteredData, loading } = useTableSearch({
-		searchVal,
-		retrieve: giveData,
-	});
+
 	return (<>
-				<Search
-					onChange={(e) => setSearchVal(e.target.value)}
-					placeholder="Search"
-					enterButton
-					style={{
-						position: "sticky",
-						top: "0",
-						left: "0",
-						width: "200px",
-						marginTop: "2vh"
-					}}
-				/>
 				<Table 	
 					dataSource={filteredData} 
 					columns={columns} 
