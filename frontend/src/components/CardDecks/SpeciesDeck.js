@@ -25,11 +25,13 @@ function SpeciesDeck(props)  {
 		retrieve: giveData,
 	});
 
+    
 	React.useEffect(() => {
         return () => {
-			sort(sortState)
+			sort()
         };
-    }, [filteredData, sortState])
+    }, [filteredData])
+    
 
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, sortedData.length); i++) {
@@ -93,7 +95,7 @@ function SpeciesDeck(props)  {
 					/>
 				</Row>
 				<Row>
-				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={setSortState}>
+				<Select defaultValue={sortState} style={{ width: '20%' }} onChange={sort}>
 					<Option value='Name(Asc)'>Name(<ArrowUpOutlined />)</Option>
 					<Option value='Name(Desc)'>Name(<ArrowDownOutlined />)</Option>
 					<Option value='Class(Asc)'>Class(<ArrowUpOutlined />)</Option>

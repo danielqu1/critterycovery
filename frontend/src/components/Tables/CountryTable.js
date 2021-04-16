@@ -106,13 +106,13 @@ function CountryTable(props) {
 			title: 'Capital',
 			dataIndex: 'capital',
 			key: 'capital',
-			sorter: (a, b) => a.capitallocaleCompare(b.capital),
+			sorter: (a, b) => a.capital.localeCompare(b.capital),
 			...getColumnSearchProps('capital'),
 		}, {
 			title: 'Region',
 			dataIndex: 'region',
 			key: 'region',
-			sorter: (a, b) => a.regionlocaleCompare(b.region),
+			sorter: (a, b) => a.region.localeCompare(b.region),
 			...getColumnSearchProps('region'),
 		}, {
 			title: 'Land Area',
