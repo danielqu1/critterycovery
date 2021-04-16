@@ -1,17 +1,18 @@
 import React from 'react';
-import { Image, Container } from 'react-bootstrap'
-import { Table, Input, Button, Space } from 'antd'
+import { Image } from 'react-bootstrap'
+import { Table, Input, Button, Space, Select, Row, Col } from 'antd'
 import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
+import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
 
-const { Search } = Input;
+const { Option } = Select;
 
 function HabitatTable(props) {
 	const [searchText, setSearchText] = React.useState('');
 	const [searchedColumn, setSearchedColumn] = React.useState('');
 	const [searchedInput, setSearchedInput] = React.useState(null);
+	const [searchedInput2, setSearchedInput2] = React.useState(null);
 	const { filteredData, loading } = useTableSearch({
 		searchVal: props.searchVal,
 		data: props.habitats,
@@ -21,9 +22,7 @@ function HabitatTable(props) {
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
 			<Input
-				ref={node => {
-				setSearchedInput(node);
-				}}
+				ref={node => {setSearchedInput(node);}}
 				placeholder={`${dataIndex}`}
 				value={selectedKeys[0]}
 				onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -56,11 +55,93 @@ function HabitatTable(props) {
 			</Space>
 			</div>
 		),
-		filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
 		onFilter: (value, record) =>
 			record[dataIndex]
 			? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
 			: '',
+		onFilterDropdownVisibleChange: (visible) => {
+			if (visible && searchedInput) {
+				setTimeout(() => searchedInput.select(), 100);
+			}
+		},
+		render: (text) =>
+			props.searchVal ? (
+			<Highlighter
+				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+				searchWords={props.searchVal.split(' ')}
+				autoEscape
+				textToHighlight={text ? text.toString() : ''}
+			/>
+			) : (
+			text
+			),
+	});
+
+	let getNumberFilterProps = (dataIndex) => ({
+		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+			<div style={{ padding: 8 }}>
+			<Row>
+				<Col style={{width:'20%'}}>
+					<Select defaultValue={'='} onChange={setSearchedInput2}>
+						<Option value='>'>{'>'}</Option>
+						<Option value='<'>{'<'}</Option>
+						<Option value='='>{'='}</Option>
+						<Option value='!'>{'!'}</Option>
+					</Select>
+				</Col>
+				<Col flex>
+					<Input
+						ref={node => {setSearchedInput(node);}}
+						placeholder={`${dataIndex}`}
+						value={selectedKeys[0]}
+						onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+						onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+						style={{ width: 188, marginBottom: 8, display: 'block' }}
+					/>
+				</Col>
+			</Row>
+			
+			
+			<Space>
+				<Button
+					type="primary"
+					onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+					icon={<SearchOutlined />}
+					size="small"
+					style={{ width: 90 }}
+					>
+					Filter
+				</Button>
+				<Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+					Reset
+				</Button>
+				<Button
+					type="link"
+					size="small"
+					onClick={() => {
+						confirm({ closeDropdown: false });
+						setSearchText(selectedKeys[0]);
+						setSearchedColumn(dataIndex);
+					}}
+					>
+				</Button>
+			</Space>
+			</div>
+		),
+		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+		onFilter: (value, record) => {
+			switch(searchedInput2){
+				case '>':
+					return Number(record[dataIndex]) > Number(value)
+				case '<':
+					return Number(record[dataIndex]) < Number(value)
+				case '!':
+					return Number(record[dataIndex]) != Number(value)
+				default:
+					return Number(record[dataIndex]) == Number(value)
+			}
+		},
 		onFilterDropdownVisibleChange: (visible) => {
 			if (visible && searchedInput) {
 				setTimeout(() => searchedInput.select(), 100);
@@ -113,19 +194,19 @@ function HabitatTable(props) {
 			dataIndex: 'reported_terrestrial_area',
 			key: 'reported_terrestrial_area',
 			sorter: (a, b) => a.reported_terrestrial_area - b.reported_terrestrial_area,
-			...getColumnSearchProps('reported_terrestrial_area'),
+			...getNumberFilterProps('reported_terrestrial_area'),
 		}, {
 			title: 'Water Area (km^2)',
 			dataIndex: 'reported_marine_area',
 			key: 'reported_marine_area',
 			sorter: (a, b) => a.reported_marine_area - b.reported_marine_area,
-			...getColumnSearchProps('reported_marine_area'),
+			...getNumberFilterProps('reported_marine_area'),
 		}, {
 			title: 'IUCN Category',
 			dataIndex: 'iucn_category',
 			key: 'iucn_category',
 			sorter: (a, b) => a.iucn_category - b.iucn_category,
-			...getColumnSearchProps('iucn_category'),
+			...getNumberFilterProps('iucn_category'),
 		}
 	];
 	

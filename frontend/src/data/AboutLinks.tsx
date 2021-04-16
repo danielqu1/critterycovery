@@ -22,7 +22,7 @@ type Tool = {
 			name: "Our Api",
 			text: "Doc on Postman",
 			img: Postman,
-			link: "https://documenter.getpostman.com/view/14742162/TzCL8TrF"
+			link: "https://documenter.getpostman.com/view/14742162/TzJrCzVs"
 		}
 	];
 

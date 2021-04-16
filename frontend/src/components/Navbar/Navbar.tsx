@@ -1,9 +1,11 @@
 import React, {useState} from 'react'; 
 import logo from '../../images/logo.png';
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
+import {useHistory} from 'react-router-dom'
 import {Search} from 'react-bootstrap-icons'
   
 const NavbarMain = () => { 
+  let history = useHistory();
   const [searchQ, setSearchQ] = useState('')
   return ( 
     <>
@@ -27,8 +29,17 @@ const NavbarMain = () => {
             <Nav.Link className='nav-links' href="/habitats">Habitats</Nav.Link>
             <Nav.Link className='nav-links' href="/countries">Countries</Nav.Link>
           </Nav>
-          <Form inline style={{backgroundColor:'grey', padding: '.5% 2%'}}>
-            <FormControl type="q" placeholder="Search" className="mr-sm-2" onChange={e => setSearchQ(e.target.value)} />
+          <Form inline style={{backgroundColor:'grey', padding: '.5% 2%'}} onSubmit={event => event.preventDefault()}>
+            <FormControl  
+                          placeholder="Search" 
+                          className="mr-sm-2" 
+                          onChange={e => setSearchQ(e.target.value)} 
+                          onKeyPress={(event:any) => {
+                            if (event.key === "Enter") {
+                              history.push('/search?q='+searchQ)
+                            }
+                          }}
+                          />
             <Button variant="dark" style={{verticalAlign:'center' }} href={'/search?q='+searchQ}><Search /></Button>
           </Form>
         </Navbar.Collapse>
