@@ -42,6 +42,11 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(r["species"]["common_name"], "Culebra Skink")
         self.assertEqual(r["species"]["phylum"], "CHORDATA")
 
+    def country_by_aplha2(self):
+        r = requests.get(URL + "/api/countries/alpha2_code=BZ").json()
+        self.assertEqual(r["country"]["region"], "Americas")
+        self.assertEqual(r["country"]["total_pop"], 370300)
+
 
 if __name__ == "__main__":
     unittest.main()
