@@ -52,6 +52,12 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(r["country"]["alpha2_code"], "KH")
         self.assertEqual(r["country"]["name"], "Cambodia")
 
+    def another_indiv_habitat(self):
+        r = requests.get(URL + "/api/habitats/name=Townclose Hills").json()
+        self.assertEqual(r["habitat"]["iucn_category"], 5)
+        self.assertEqual(r["country"]["id"], 140421)
+
+
 
 if __name__ == "__main__":
     unittest.main()
