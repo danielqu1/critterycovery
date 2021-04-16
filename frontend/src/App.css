@@ -49,8 +49,11 @@
 
 
 .font-medium-big {
-  color: #00dd59;
-  font-size: 2.4vw
+  /* color: #00dd59; */
+  color: #017931;
+  font-size: 2.4vw;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .hoverable{

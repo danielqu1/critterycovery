@@ -34,8 +34,8 @@ const Home = () => {
           <Row>
             <Col>
               <Container style={{background: 'rgba(255, 255, 255, 0.7)', borderRadius: '.7vw'}}>
-                <p className='font-big'> Critterycovery</p>
-                <p className='font-medium-big'>Showing animals that need help</p>
+                <p className='font-big'> critterycovery</p>
+                <p className='font-medium-big'>raising awareness about endangered animals</p>
                 <p></p>
               </Container>
               
