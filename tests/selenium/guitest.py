@@ -53,7 +53,7 @@ class GuiTests(unittest.TestCase):
         )
 
     # reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests
-
+    """
     def test_about_page_0(self):
         self.driver.get(URL + "/about")
 
@@ -76,36 +76,28 @@ class GuiTests(unittest.TestCase):
         xpath = "/html/body/div/div/div[2]/div[4]/div[8]/div/a/div/div[2]/p"
         result = self.driver.find_elements_by_xpath(xpath)[0] 
 
-
         self.assertEqual(result.text, "Backend tool")
 
-    """
+    
     def test_main_page_0(self):
-        driver = self.driver
-        driver.get(URL)
+        self.driver.get(URL)
 
-        result = driver.find_elements_by_class_name("card")  # there are three cards
+        xpath = "/html/body/div/div/div[2]/div/div[3]/div/div/div/p"
+        result = self.driver.find_elements_by_xpath(xpath)[0] 
 
-        self.assertEqual(len(result), 3)
-
+        self.assertEqual(result.text, "critterycovery")
+    
+    """
     def test_main_page_1(self):
-        driver = self.driver
-        driver.get(URL)  # simulate going to this website
+        self.driver.get(URL)
 
-        # print("title = " + driver.title)		# critterycovery
+        xpath = "/html/body/div/div/div[2]/div/div[3]/div[2]/div/div/a/img"
+        self.driver.find_elements_by_xpath(xpath)[0].click()
 
-        # just follow the HTML tags. If multiple, use [ ] brackes (1-indexed tho)
-        xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"  # change last div[1] to div[2] or div[3] to get "Habitats" / "Countries"
+        self.assertEqual(self.driver.current_url, URL + "/species")
 
-        if DEV:
-            xpath = "/html/body/div/div/body/div[2]/div/a[1]/div/div/div"
 
-        result = driver.find_elements_by_xpath(xpath)[
-            0
-        ]  # traverse path in HTML, get first cuz "find_elements"
-
-        self.assertEqual(result.text, "Species")
-
+    """
     def test_main_page_2(self):
         driver = self.driver
         driver.get(URL)  # simulate going to this website
