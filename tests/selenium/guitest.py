@@ -26,7 +26,7 @@ elif platform == 'linux' or platform == 'linux2':
 elif platform == 'darwin':
     DRIVER_PATH = "./chromedriver_mac"
 
-DEV = False  # if True, make sure you have frontend started with "yarn start"
+DEV = True  # if True, make sure you have frontend started with "yarn start"
 
 URL = "https://critterycovery.me"
 
@@ -54,6 +54,24 @@ class GuiTests(unittest.TestCase):
 
     # reference https://selenium-python.readthedocs.io/locating-elements.html#locating-elements  to write tests
 
+    def test_about_page_0(self):
+        self.driver.get(URL + "/about")
+
+        xpath = "/html/body/div/div/div[2]/div/div/h1" if DEV else "/html/body/div/div/body/div[1]/div[1]/h1"
+        result = self.driver.find_elements_by_xpath(xpath)[0] 
+
+        self.assertEqual(result.text, "About Us")
+
+    def test_about_page_1(self):
+        self.driver.get(URL + "/about")
+
+        xpath = "/html/body/div/div/div[2]/div[9]/div/div/div/div/a/div/div/div/img" if DEV else "/html/body/div/div/body/div[2]/a[1]"
+
+        self.driver.find_elements_by_xpath(xpath)[0].click()
+
+        self.assertEqual(self.driver.current_url, "https://gitlab.com/cs373-group16/critterycovery")
+
+    """
     def test_main_page_0(self):
         driver = self.driver
         driver.get(URL)
@@ -122,54 +140,9 @@ class GuiTests(unittest.TestCase):
 
         self.assertEqual(driver.current_url, URL + "/")
 
-    def test_loading(self):
-        driver = self.driver
 
-        driver.get(URL + "/species")
 
-        # print("title =" + driver.title) # critterycovery
 
-        xpath = "/html/body/div/div/div[2]"
-
-        if DEV:
-            xpath = "/html/body/div/div/div[2]"
-
-        result = driver.find_elements_by_xpath(xpath)[0]  # get first ([0]) because
-
-        self.assertEqual(result.text, "Loading...")
-
-    def test_about_page_0(self):
-        driver = self.driver
-
-        driver.get(URL + "/about")
-
-        # print("title =" + driver.title) # critterycovery
-
-        xpath = "/html/body/div/div/body/div[1]/div[1]/h1"
-
-        if DEV:
-            xpath = "/html/body/div/div/body/div[1]/div[1]/h1"
-
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
-        )
-
-        result = driver.find_elements_by_xpath(xpath)[0]  # get first ([0]) because
-
-        self.assertEqual(result.text, "General Description:")
-
-    def test_about_page_1(self):
-        driver = self.driver
-        driver.get(URL + "/about")
-        xpath = "/html/body/div/div/body/div[2]/a[1]"
-        if DEV:
-            xpath = "/html/body/div/div/body/div[2]/a[1]"
-
-        driver.find_elements_by_xpath(xpath)[0].click()
-
-        self.assertEqual(
-            driver.current_url, "https://gitlab.com/cs373-group16/critterycovery"
-        )
 
     def test_species_0(self):
         driver = self.driver
@@ -239,6 +212,7 @@ class GuiTests(unittest.TestCase):
             EC.presence_of_element_located((By.XPATH, xpath))
         )
         self.assertEqual(element.text, "10014")
+    """
 
     def tearDown(self):  # part of unittest library; called after every test
         # self.driver.close()  # from example
