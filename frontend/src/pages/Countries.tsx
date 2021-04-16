@@ -3,6 +3,8 @@ import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
+import { Input } from 'antd'
+import 'antd/dist/antd.css'
 import Loading from './Loading';
 import axios from 'axios'
 
@@ -21,6 +23,8 @@ interface country {
     flag: string;
 }
 
+const { Search } = Input;
+
 function Countries(props: any) {
     const offset = 3;
     const { id } = useParams<{ id: string }>();
@@ -28,8 +32,7 @@ function Countries(props: any) {
     const [isLoading, setLoading] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(false);
     const [country, setCountry] = React.useState(countries[0])
-    const [startingCard, setStart] = React.useState(0)
-    const [maxCardsShown, setCardsShown] = React.useState(10)
+    const [searchVal, setSearchVal] = React.useState("");
     let history = useHistory();
 
     React.useEffect(() => {
@@ -84,14 +87,27 @@ function Countries(props: any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>{countries.length} Countries. {maxCardsShown} per page</h1>
+                    <h1>Countries.</h1>
+                </Row>
+                <Row>
+                    <Search
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        placeholder="Search"
+                        enterButton
+                        style={{
+                            position: "sticky",
+                            top: "0",
+                            left: "0",
+                            width: "200px",
+                            marginTop: "2vh"
+                        }}
+                    />
                 </Row>
                 <Row>
                     <CountryTable
-                        maxCardsShown={maxCardsShown}
                         countries={countries}
-                        startingCard={startingCard}
-                        update={update} />
+                        update={update} 
+                        searchVal={searchVal}/>
                 </Row>
             </Container>
         </Container>
