@@ -98,10 +98,17 @@ function Species() {
 				show={modalShow}
 				onHide={() => closeModal()}
 			/>
-			<SpeciesDeck
-				species={animals}
-				update={update}
-				query={query}/>
+			<Row>
+				<Container style={{textAlign:'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+					<h1 style={{fontWeight:'bolder'}}>Species</h1>
+				</Container>
+			</Row>
+			<Row>
+				<SpeciesDeck
+					species={animals}
+					update={update}
+					query={query}/>
+			</Row>
 		</Container>
 		
 	);

@@ -94,6 +94,11 @@ function Habitats(props : any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
+                    <Container style={{textAlign:'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+                        <h1 style={{fontWeight:'bolder'}}>Habitats</h1>
+                    </Container>
+                </Row>
+                <Row>
                     <Search
                         onChange={(e) => setSearchVal(e.target.value)}
                         defaultValue={query?query:''}

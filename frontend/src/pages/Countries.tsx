@@ -98,7 +98,9 @@ function Countries(props: any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>Countries. {query}</h1>
+                    <Container style={{textAlign:'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+                        <h1 style={{fontWeight:'bolder'}}>Countries</h1>
+                    </Container>
                 </Row>
                 <Row>
                     <Search
