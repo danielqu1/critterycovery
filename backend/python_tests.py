@@ -47,6 +47,11 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(r["country"]["region"], "Americas")
         self.assertEqual(r["country"]["total_pop"], 370300)
 
+    def country_by_aplha3(self):
+        r = requests.get(URL + "/api/countries/alpha3_code=KHM").json()
+        self.assertEqual(r["country"]["alpha2_code"], "KH")
+        self.assertEqual(r["country"]["name"], "Cambodia")
+
 
 if __name__ == "__main__":
     unittest.main()
