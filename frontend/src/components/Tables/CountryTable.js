@@ -113,6 +113,7 @@ function CountryTable(props) {
 			title: 'Capital',
 			dataIndex: 'capital',
 			key: 'capital',
+			defaultValue: 'none',
 			sorter: (a, b) => a.capitallocaleCompare(b.capital),
 			...getColumnSearchProps('capital'),
 		}, {
