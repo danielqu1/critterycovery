@@ -26,7 +26,7 @@ elif platform == 'linux' or platform == 'linux2':
 elif platform == 'darwin':
     DRIVER_PATH = "./chromedriver_mac"
 
-DEV = True  # if True, make sure you have frontend started with "yarn start"
+DEV = False  # if True, make sure you have frontend started with "yarn start"
 
 URL = "https://critterycovery.me"
 

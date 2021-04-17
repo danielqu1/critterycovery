@@ -68,7 +68,7 @@ Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 40 | 50
 Sahithi Golkonda | 40 | 50
-Shaharyar Lakhani | 40 | 52
+Shaharyar Lakhani | 40 | 45
 Daniel Qu | 40 | 45
 Brian Wang | 40 | 50
 
@@ -96,3 +96,4 @@ Brian Wang | 40 | 50
 ---
 ### Comments 
 To run Selenium tests: python guitest.py in /tests/selenium
+Searching in the Species model works, but there is a small bug because the search results update after you have clicked a modal. 
