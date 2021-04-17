@@ -23,7 +23,7 @@ Brian Wang |bw25755 |bwang1008
 63c3a129df0373ffe5db22a7b9fd57d4bf412cfa
 
 **Phase 3:**
-63c3a129df0373ffe5db22a7b9fd57d4bf412cfa (update)
+4be2214c3e68f14b4f4bbda06de5afc0376971d0
 
 ---
 
@@ -68,7 +68,7 @@ Name | Estimated | Actual
 --------- | --------- | ---------
 William Crawford | 40 | 50
 Sahithi Golkonda | 40 | 50
-Shaharyar Lakhani | 40 | 52
+Shaharyar Lakhani | 40 | 45
 Daniel Qu | 40 | 45
 Brian Wang | 40 | 50
 
@@ -96,3 +96,4 @@ Brian Wang | 40 | 50
 ---
 ### Comments 
 To run Selenium tests: python guitest.py in /tests/selenium
+Searching in the Species model works, but there is a small bug because the search results update after you have clicked a modal. 
