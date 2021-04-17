@@ -22,6 +22,9 @@ Brian Wang |bw25755 |bwang1008
 **Phase 2:**
 63c3a129df0373ffe5db22a7b9fd57d4bf412cfa
 
+**Phase 3:**
+63c3a129df0373ffe5db22a7b9fd57d4bf412cfa (update)
+
 ---
 
 ### Project Leaders: 
@@ -30,6 +33,9 @@ Shaharyar Lakhani
 
 **Phase 2:**
 William Crawford
+
+**Phase 3:**
+Brian Wang
 
 ---
 
@@ -56,6 +62,17 @@ Daniel Qu | 40 | 45
 Brian Wang | 40 | 50
 
 ---
+Phase 3: 
+
+Name | Estimated | Actual
+--------- | --------- | ---------
+William Crawford | 40 | 50
+Sahithi Golkonda | 40 | 50
+Shaharyar Lakhani | 40 | 52
+Daniel Qu | 40 | 45
+Brian Wang | 40 | 50
+
+---
 
 ### Website: 
 [critterycovery.me](https://critterycovery.me)
@@ -63,7 +80,7 @@ Brian Wang | 40 | 50
 ---
 
 ### Postman API Documentation:
-[https://documenter.getpostman.com/view/14742162/TzCL8TrF](https://documenter.getpostman.com/view/14742162/TzCL8TrF)
+[https://documenter.getpostman.com/view/14742162/TzJrCzVs](https://documenter.getpostman.com/view/14742162/TzJrCzVs)
 
 ---
 

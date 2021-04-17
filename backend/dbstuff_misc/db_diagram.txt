@@ -1,0 +1,65 @@
+Table countries {
+  name varchar [pk]
+  alpha2_code varchar
+  alpha3_code varchar
+  total_pop int
+  capital varchar
+  region varchar
+  subregion varchar
+  latitude float
+  longitude float
+  area float
+  gini_index int
+  flag varchar
+  embedded_map_link varchar
+}
+
+Table species {
+  scientific_name varchar [pk]
+  subspecies varchar
+  kingdom varchar
+  phylum varchar
+  _class varchar
+  _order varchar
+  family varchar
+  genus varchar
+  common_name varchar
+  population_trend varchar
+  marine boolean
+  freshwater boolean
+  terrestrial boolean
+  taxonomic_notes text
+  rationale text
+  geographic_range text
+  population text
+  text_habitat text
+  threats text
+  conservation_measures text
+  image_link varchar
+}
+
+Table habitats {
+  id int
+  name varchar [pk]
+  marine boolean
+  reported_marine_area float
+  reported_terrestrial_area float
+  countries varchar
+  iucn_category int
+  designation_name varchar
+  designation_id int
+  link varchar
+  image_link varchar
+  embedded_map_link varchar
+}
+
+Table countries_per_species {
+  id int [pk]
+  scientific_name varchar
+  alpha2_code varchar
+}
+
+Ref: countries.alpha3_code < habitats.countries
+Ref: species.scientific_name < countries_per_species.scientific_name
+Ref: countries.alpha2_code < countries_per_species.alpha2_code
+Ref: habitats.name < species.text_habitat

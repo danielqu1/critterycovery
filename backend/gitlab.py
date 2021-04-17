@@ -63,9 +63,11 @@ def stats():
                         }
 
     for person in data:
-        data[person]["unittests"] = 4
+        data[person]["unittests"] = 8
 
-    data["br"]["unittests"] = 5
-    data["total"]["unittests"] = 21
+    data["br"]["unittests"] = 10
+    data["da"]["unittests"] = 9
+    data["w"]["unittests"] = 7
+    data["total"]["unittests"] = 42
 
     return {"stats": list(data.values())}

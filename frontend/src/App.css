@@ -1,15 +1,13 @@
-body {
-  background-color: #e6eeff;
+.body {
+  background-color: #DDDDDD;
+  position: relative;
   color: black;
-  padding: 1%, 0px, 0px, 0px;
-  font-family: Arial;
+  padding: 0;
+  font-family: Arial, sans-serif;
   text-align: center;
-  margin-top: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 0;
+  height: 100%;
   max-width: 100%;
-  overflow-x: hidden;
-  
 }
 
 /* Added for to-top button*/
@@ -32,24 +30,62 @@ body {
 
 .home-title {
   position: absolute;
-  top: calc(50vw * .5625);
+  top: calc(30vw * .5625);
   left: 0;
   margin-left: 5vw;
-  text-align: left;
+  text-align: center;
 }
 
 .font-big {
-  color: tomato;
+  color: #00B74A;
   font-size: 5vw;
-  
+  font-weight: bolder;
+  text-shadow: .15rem .15rem grey;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   padding-bottom: 0;
 }
 
+
+
 .font-medium-big {
+  /* color: #00dd59; */
+  color: #017931;
+  font-size: 1.9vw;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.hoverable{
+  background-color: rgb(255, 255, 255, .7);
+  transition: background-color 1s;
+  color: black;
+}
+.hoverable:hover {
+  background-color: rgb(255, 99, 71, .7);
   color: red;
-  font-size: 2.5vw
+}
+
+.unformat {
+  text-decoration: none;
+  padding: 0;
+  color: black;
+}
+.unformat:hover{
+  text-decoration: none;
+  color: black;
+}
+
+.cardShadow:hover{
+  box-shadow: 5px 5px 4px grey;
+  transition: box-shadow .5s;
+}
+
+.nav-links{
+  padding: '.5% 2%';
+  height: '100%';
+  color: black;
+  
 }
 
 /* Added for to-top button*/

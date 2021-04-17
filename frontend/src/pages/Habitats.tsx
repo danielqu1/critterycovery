@@ -1,10 +1,13 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
-import PaginationMain from '../components/Pagination/Pagination';
+import Loading from './Loading';
 import axios from 'axios';
+import { Input } from 'antd'
+import 'antd/dist/antd.css'
+const { Search } = Input
 
 interface habitat {
     id: number;
@@ -19,16 +22,19 @@ interface habitat {
     link: string;
 }
 
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
 function Habitats(props : any) {
-    const offset = 3;
     const {id} = useParams<{ id: string }>();
     const [habitats, setHabitats] = React.useState(new Array<habitat>());
     const [isLoading, setLoading] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(false);
     const [habitat, setHabitat] = React.useState(habitats[0])
-    const [startingCard, setStart] = React.useState(0)
-    const [maxCardsShown, setCardsShown] = React.useState(10)
+    const [searchVal, setSearchVal] = React.useState("");
     let history = useHistory();
+    let query = useQuery().get('q')
 
     React.useEffect(() => {
         return () => {
@@ -50,14 +56,20 @@ function Habitats(props : any) {
                             setHabitat(response.data.habitat)
                             setModalShow(true)
                         } 
+                    }).catch(err => {
+                        //DO NOTHING
                     })
                 }
+                if (query){
+                    setSearchVal(query)
+                }
                 setLoading(false);    
-        })}, []);
+            })
+    }, []);
     
     
     if (isLoading) {
-        return <div className="App">Loading...</div>;
+        return Loading();
     }
 
     function update(place : habitat) {
@@ -71,8 +83,9 @@ function Habitats(props : any) {
         history.push('/habitats');
     }
     
+    
     return(
-        <div>
+        <Container>
             <HabitatModal
                 habitat={habitat}
                 show={modalShow}
@@ -81,25 +94,30 @@ function Habitats(props : any) {
 
             <Container fluid className="justify-content-md-center">
                 <Row>
-                    <h1>{habitats.length} Habitats. {maxCardsShown} per page</h1>
+                    <Container style={{textAlign:'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
+                        <h1 style={{fontWeight:'bolder'}}>Habitats</h1>
+                    </Container>
+                </Row>
+                <Row className='justify-content-md-center'>
+                    <Search
+                        onChange={(e) => setSearchVal(e.target.value)}
+                        defaultValue={query?query:''}
+                        placeholder="Search"
+                        style={{
+                            width: '50%',
+                            height: '100%',
+                            padding: '1% 0',
+                        }}
+                    />
                 </Row>
                 <Row>
                     <HabitatTable
-                        maxCardsShown={maxCardsShown}
                         habitats={habitats}
-                        startingCard={startingCard}
-                        update={update}/>
+                        update={update}
+                        searchVal={searchVal}/>
                 </Row>
-                <PaginationMain 
-                    instancesPerPage= {maxCardsShown}
-                    totalInstances= {habitats.length}
-                    startingInstance= {startingCard}
-                    offsetPagesShownFromCurrent= {offset}
-                    setStartingInstance= {setStart}
-                    setInstancesPerPage= {setCardsShown}
-                ></PaginationMain>
             </Container>
-        </div>
+        </Container>
         
     );
 }

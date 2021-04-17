@@ -1,4 +1,5 @@
 import { Card, ResponsiveEmbed } from 'react-bootstrap';
+import Highlighter from 'react-highlight-words';
 
 function SpeciesCard(props: any) {
     return(
@@ -8,13 +9,43 @@ function SpeciesCard(props: any) {
                 <Card.Img variant="top" src={props.photo}/>
             </ResponsiveEmbed>
             <Card.Body>
-                <Card.Title>{props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}</Card.Title>
+                <Card.Title><Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal.common_name ? props.animal.common_name : props.animal.scientific_name}
+                            /></Card.Title>
                 <Card.Text>
-                    Kingdom: {props.animal.kingdom}<br/>
-                    Phylum: {props.animal.phylum}<br/>
-                    Class: {props.animal._class}<br/>
-                    Order: {props.animal._order}<br/>
-                    Family: {props.animal.family}<br/>
+                    Kingdom: <Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal.kingdom ? props.animal.kingdom.toString() : ''}
+                            /><br/>
+                    Phylum: <Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal.phylum ? props.animal.phylum.toString() : ''}
+                            /><br/>
+                    Class: <Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal._class ? props.animal._class.toString() : ''}
+                            /><br/>
+                    Order: <Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal._order ? props.animal._order.toString() : ''}
+                            /><br/>
+                    Family: <Highlighter
+                                highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                                searchWords={props.searchVal.split(' ')}
+                                autoEscape
+                                textToHighlight={props.animal.family ? props.animal.family.toString() : ''}
+                            /><br/>
                 </Card.Text>
             </Card.Body>
         </Card>

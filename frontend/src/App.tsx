@@ -2,11 +2,12 @@ import React from 'react';
 import './App.css'; 
 import NavbarMain from './components/Navbar/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import Home from './pages/home/Home';
-import About from './pages/about/About';
+import Home from './pages/Home';
+import About from './pages/About';
 import Species from './pages/Species';
 import Habitats from './pages/Habitats';
 import Countries from './pages/Countries';
+import Search from './pages/Search'
 import Error from './pages/Error'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
@@ -21,12 +22,10 @@ function App() {
         <Switch> 
           <Route path='/' exact component={Home} /> 
           <Route path='/about' exact component={About} /> 
-          <Route path='/species' exact component={Species} /> 
-          <Route path='/habitats' exact component={Habitats} /> 
-          <Route path='/countries' exact component={Countries} /> 
-          <Route path='/species/:id' children={<Species />} />
-          <Route path='/habitats/:id' children={<Habitats />} />
-          <Route path='/countries/:id' children={<Countries />} />
+          <Route path='/species/:id?' children={<Species />} />
+          <Route path='/habitats/:id?' children={<Habitats />} />
+          <Route path='/countries/:id?' children={<Countries />} />
+          <Route path='/search' children={<Search />} />
           <Route component={Error}/>
         </Switch> 
       </Router>

@@ -6,6 +6,8 @@ exports[`Modals Habitat Modal page 1`] = `ShallowWrapper {}`;
 
 exports[`Modals Species Modal page 1`] = `ShallowWrapper {}`;
 
+exports[`Pages About page 1`] = `ShallowWrapper {}`;
+
 exports[`Pages Error page 1`] = `ShallowWrapper {}`;
 
 exports[`Pages Home page 1`] = `ShallowWrapper {}`;
