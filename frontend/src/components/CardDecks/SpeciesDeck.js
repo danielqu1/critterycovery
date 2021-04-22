@@ -39,12 +39,11 @@ function SpeciesDeck(props)  {
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {
 		speciesCards.push(<Col className='container-fluid mt-4'>
-			<a style={{ cursor: 'pointer' }} onClick={() => props.update(finalData[i])}>
 			<SpeciesCard 
-				animal={finalData[i]} 
-				photo={finalData[i].image_link}
+				data={finalData[i]} 
 				searchVal={searchVal?searchVal:''}
-			></SpeciesCard></a></Col>);
+				onClick={() => props.update(finalData[i])}
+			/></Col>);
 	}
 
 	function sort(){

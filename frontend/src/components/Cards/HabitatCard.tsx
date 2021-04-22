@@ -8,8 +8,8 @@ const { Text, Title } = Typography;
 interface habitat {
     name: string;
     designation_name: string;
-    reported_land_area: number;
-    reported_water_area: number;
+    reported_terrestrial_area: number;
+    reported_marine_area: number;
     iucn_category: number;
     image_link: string;
 }
@@ -30,11 +30,11 @@ function HabitatCard(props: cardProps) {
         },
         {
             text: 'Land Area (Km^2): ',
-            highlightData: props.data.reported_land_area ? props.data.reported_land_area.toLocaleString(undefined) : null,
+            highlightData: props.data.reported_terrestrial_area ? props.data.reported_terrestrial_area.toLocaleString(undefined) : null,
         },
         {
             text: 'Water Area (Km^2): ',
-            hightlightData: props.data.reported_water_area ? props.data.reported_water_area.toLocaleString(undefined) : null,
+            hightlightData: props.data.reported_marine_area ? props.data.reported_marine_area.toLocaleString(undefined) : null,
         },
         {
             text: 'IUCN Category: ',
