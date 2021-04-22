@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTableSearch } from '../../hooks/useTableSearch';
 import SpeciesCard from '../Cards/SpeciesCard';
@@ -10,6 +11,7 @@ import { Input } from 'antd'
 import 'antd/dist/antd.css'
 
 function SubSearch(props){
+    const history = useHistory();
 	const maxCardsShown = 9;
     const { filteredData, loading }  = useTableSearch({
 		searchVal: props.searchVal,
@@ -19,11 +21,11 @@ function SubSearch(props){
     const habitatCards = [];
     for (let i = 0; i < Math.min(maxCardsShown, filteredData.length); i++) {
         habitatCards.push(<Col className='container-fluid mt-4'>
-            <a className='unformat' style={{ cursor: 'pointer' }} href={"/habitats/"+filteredData[i].name+"?q="+props.searchVal}>
             <HabitatCard 
-                habitat={filteredData[i]} 
+                data={filteredData[i]} 
                 searchVal={props.searchVal}
-            ></HabitatCard></a></Col>);
+                onClick={() => history.push("/habitats/"+filteredData[i].name+"?q="+props.searchVal)}
+            /></Col>);
     }
     if(filteredData.length > 9){
         habitatCards.push(<Col className='container-fluid mt-4'>

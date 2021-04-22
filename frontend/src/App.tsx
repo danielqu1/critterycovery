@@ -12,6 +12,8 @@ import Error from './pages/Error'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
 
+import 'antd/dist/antd.css'
+
 function App() {
 
   return (

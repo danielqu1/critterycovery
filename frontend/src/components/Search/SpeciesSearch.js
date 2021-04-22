@@ -22,12 +22,11 @@ function SubSearch(props){
     const speciesCards = [];
     for (let i = 0; i < Math.min(maxCardsShown, filteredData.length); i++) {
         speciesCards.push(<Col className='container-fluid mt-4'>
-            <a style={{ cursor: 'pointer' }} onClick={() => history.push("/species/"+filteredData[i].scientific_name+"?q="+props.searchVal)}>
             <SpeciesCard
-                animal={filteredData[i]} 
-                photo={filteredData[i].image_link}
+                data={filteredData[i]} 
                 searchVal={props.searchVal}
-            ></SpeciesCard></a></Col>);
+                onClick={() => history.push("/species/"+filteredData[i].name+"?q="+props.searchVal)}
+            /></Col>);
     }
     if(filteredData.length > 9){
         speciesCards.push(<Col className='container-fluid mt-4'>

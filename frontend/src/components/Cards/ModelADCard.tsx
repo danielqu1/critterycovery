@@ -1,13 +1,9 @@
-import { Card, Button, Image, Container} from 'react-bootstrap'
+import { Card } from 'antd'
 
 function ModelADCard(props: any) {
     return(
-        <Card bg="white" style={{width: '100%'}} >
-            <Card.Body>
-                <Card.Title>
-                    {props.model} has {props.number} more instances. Click here to view them.
-                </Card.Title>
-            </Card.Body>
+        <Card style={{width: '100%'}} >
+            {props.model} has {props.number} more instances. Click here to view them.
         </Card>
     );
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image } from 'react-bootstrap'
 import { Table, Input, Button, Space, Select, Row, Col } from 'antd'
-import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
