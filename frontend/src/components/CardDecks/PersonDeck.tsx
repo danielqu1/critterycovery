@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'; 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import PersonCard from '../Cards/PersonCard'
 
 import brian from "../../images/ourPhotos/brian.jpg"
@@ -41,7 +41,7 @@ function getStats(stats: PersonStats[], shortened: string): PersonStats {
 
 function PersonDeck()  { 
 	const [stats, setStats] = useState(new Array<PersonStats>());
-	React.useEffect(() => {
+	useEffect(() => {
 		axios.get<GitlabData>("/api/gitlabstats").then((response) => {
 		  setStats(response.data.stats);
 		})

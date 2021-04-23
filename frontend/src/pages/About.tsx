@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import PersonDeck from '../components/CardDecks/PersonDeck'
 import ToolDeck from '../components/CardDecks/ToolDeck'
 
@@ -7,7 +5,7 @@ import Tools from '../data/Tools'
 import Apis from '../data/Apis'
 import AboutLinks from '../data/AboutLinks'
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, } from 'react-bootstrap';
 
 function About() { 
 

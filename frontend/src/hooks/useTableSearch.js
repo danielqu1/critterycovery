@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Highlighter from 'react-highlight-words';
 
 export const useTableSearch = ({ searchVal, data }) => {
   const [filteredData, setFilteredData] = useState([]);

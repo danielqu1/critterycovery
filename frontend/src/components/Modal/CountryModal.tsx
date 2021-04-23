@@ -34,15 +34,15 @@ function CountryModal(props: any) {
   }, [props.country]);
 
   if(props.country == null){
-    return(<a></a>)
+    return(<></>)
   }
 
   const speciesLinks = [];
   for (let i = 0; i < species.length; i++) {
     speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
   }
-  if (species.length == 0) {
-		speciesLinks.push(<a>{no_info}</a>)
+  if (species.length === 0) {
+		speciesLinks.push(<>{no_info}</>)
 	}
   speciesLinks.push(<br/>)
 
@@ -50,8 +50,8 @@ function CountryModal(props: any) {
   for (let i = 0; i < habitats.length; i++) {
     habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
   }
-  if (habitats.length == 0) {
-		habitatLinks.push(<a>{no_info}</a>)
+  if (habitats.length === 0) {
+		habitatLinks.push(<>{no_info}</>)
 	}
   habitatLinks.push(<br/>)
   

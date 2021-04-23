@@ -1,4 +1,4 @@
-import React from 'react'; 
+import {useState, useEffect} from 'react'; 
 import {Modal, Button, Image, Card, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 
@@ -15,38 +15,12 @@ const NA = "N/A";
 
 const no_info = "information not available"
 
-function prettyEntries(props: any) {
-	const properties: string[] = ["_class", "_order", "common_name", "family", "genus", "kingdom", "phylum", "population_trend", "scientific_name", "subspecies", "subpopulations", "population_trend", "marine", "freshwater", "terrestrial", "rationale", "geographic_range", "population", "habitat", "threats", "conservation_measures" ];
-
-	for (let property of properties) {
-		props.species[property] = (props.species[property]) ? props.species[property] : NA;      // convert blanks to unknown
-	}
-
-	for (let property of properties) {
-
-		let text = props.species[property]
-
-		if ((typeof text == "string") && (text.length < 20) && text != NA) {
-			let first = text.charAt(0);
-			let lower = text.toLowerCase().substring(1);
-			props.species[property] = first + lower;
-		}
-    }
-
-    if (props.species.common_name == NA) {
-        if (props.species.scientific_name == "Achatinella taeniolata") {
-            props.species.common_name = "O'ahu tree snail";
-        }
-    }
-
-}
-
 function SpeciesModal(props: any) {
 
-	const [countries, setCountries] = React.useState(new Array<countries>());
-    const [habitats, setHabitats] = React.useState(new Array<habitats>());
+	const [countries, setCountries] = useState(new Array<countries>());
+    const [habitats, setHabitats] = useState(new Array<habitats>());
 
-	React.useEffect(() => {
+	useEffect(() => {
 		setCountries(new Array<countries>())
 		if(props.species != null) {
 			axios.get('/api/species/countries/name='+props.species.scientific_name).then((response) => {
@@ -55,29 +29,27 @@ function SpeciesModal(props: any) {
 		}
 	}, [props.species]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		setHabitats(new Array<habitats>())
-		if(countries != null) {
+		if(countries !== null) {
 			for (let i = 0; i < countries.length; i++) {
 				axios.get('/api/countries/habitats/name='+countries[i].country).then((response) => {
 					setHabitats(habitats.concat(response.data.habitats));
 				})
 			}
 		}
-    }, [countries]);
+    }, [countries, habitats]);
   
 	if(props.species == null){
-		return(<a></a>)
+		return(<></>)
     }
-
-    //prettyEntries(props);
 
 	const countryLinks = [];
 	for (let i = 0; i < countries.length; i++) {
 		countryLinks.push(<a style={{ cursor: 'pointer' }} href={'/countries/'+countries[i].country}>{countries[i].country+' '}</a>);
 	}
-	if (countries.length == 0) {
-		countryLinks.push(<a>{no_info}</a>)
+	if (countries.length === 0) {
+		countryLinks.push(<>{no_info}</>)
 	}
 	countryLinks.push(<br/>)
 
@@ -85,8 +57,8 @@ function SpeciesModal(props: any) {
 	for (let i = 0; i < habitats.length; i++) {
 		habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
 	}
-	if (habitats.length == 0) {
-		habitatLinks.push(<a>{no_info}</a>)
+	if (habitats.length === 0) {
+		habitatLinks.push(<>{no_info}</>)
 	}
 	habitatLinks.push(<br/>)
   
@@ -100,7 +72,7 @@ function SpeciesModal(props: any) {
 		>
 			<Modal.Header closeButton>
 				<Modal.Title id="contained-modal-title-vcenter">
-					{props.species.common_name != NA ? props.species.common_name : props.species.scientific_name}
+					{props.species.common_name !== NA ? props.species.common_name : props.species.scientific_name}
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>

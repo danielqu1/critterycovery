@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spinner, Container, Row } from 'react-bootstrap'
 
 let remarks:string[] = [

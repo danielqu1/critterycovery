@@ -1,19 +1,15 @@
-import React, {useEffect, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useTableSearch } from '../../hooks/useTableSearch';
-import SpeciesCard from '../Cards/SpeciesCard';
-import HabitatCard from '../Cards/HabitatCard';
 import CountryCard from '../Cards/CountryCard';
 import ModelADCard from '../Cards/ModelADCard';
 
-import { Input } from 'antd'
 import 'antd/dist/antd.css'
 
 function SubSearch(props){
     const history = useHistory();
 	const maxCardsShown = 9;
-    const { filteredData, loading }  = useTableSearch({
+    const { filteredData, }  = useTableSearch({
 		searchVal: props.searchVal,
 		data: props.data,
 	});

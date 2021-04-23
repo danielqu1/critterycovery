@@ -1,4 +1,4 @@
-import React from 'react'; 
+import {useState, useEffect} from 'react'; 
 import {Modal, Button, Image} from 'react-bootstrap' 
 import axios from 'axios'
 
@@ -15,10 +15,10 @@ const no_info = "information not available"
 
 function HabitatModal(props: any) {
   const country_default : country = {name: 'United States of America', alpha3_code: 'USA'}
-  const [species, setSpecies] = React.useState(new Array<species>());
-  const [country, setCountry] = React.useState(country_default);
+  const [species, setSpecies] = useState(new Array<species>());
+  const [country, setCountry] = useState(country_default);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if(props.habitat != null){
       axios.get('/api/countries/alpha3_code='+props.habitat.countries).then((response) => {
         setCountry(response.data.country);
@@ -26,32 +26,32 @@ function HabitatModal(props: any) {
     }
   }, [props.habitat]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSpecies(new Array<species>())
     if(props.habitat != null){
       axios.get('/api/countries/species/name='+country.name).then((response) => {
         setSpecies(response.data.species);
       })
     }
-  }, [country]);
+  }, [country, props.habitat]);
 
   if(props.habitat == null){
-    return(<a></a>)
+    return(<></>)
   }
   const speciesLinks = [];
   for (let i = 0; i < species.length; i++) {
     speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
   }
-  if (species.length == 0) {
-		speciesLinks.push(<a>{no_info}</a>)
+  if (species.length === 0) {
+		speciesLinks.push(<>{no_info}</>)
 	}
   speciesLinks.push(<br/>)
 
-  let countryLink = <a></a>;
-  if(country != null){
+  let countryLink = <></>;
+  if(country !== null){
     countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
   } else {
-    countryLink = <a>{no_info}</a>
+    countryLink = <>{no_info}</>
   }
 
   return (

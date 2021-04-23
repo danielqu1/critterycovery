@@ -1,10 +1,9 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import { Input } from 'antd'
-import 'antd/dist/antd.css'
 import Loading from './Loading';
 import axios from 'axios'
 
@@ -30,17 +29,16 @@ function useQuery() {
 }
 
 function Countries(props: any) {
-    const offset = 3;
     const { id } = useParams<{ id: string }>();
-    const [countries, setCountries] = React.useState(new Array<country>());
-    const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(false);
-    const [country, setCountry] = React.useState(countries[0])
-    const [searchVal, setSearchVal] = React.useState("");
+    const [countries, setCountries] = useState(new Array<country>());
+    const [isLoading, setLoading] = useState(true);
+    const [modalShow, setModalShow] = useState(false);
+    const [country, setCountry] = useState(countries[0])
+    const [searchVal, setSearchVal] = useState("");
     let history = useHistory();
     let query = useQuery().get('q')
 
-    React.useEffect(() => {
+    useEffect(() => {
         return () => {
             if (history.action === "POP") {
                 setModalShow(false);
@@ -51,7 +49,7 @@ function Countries(props: any) {
         };
     }, [history.action])
 
-    React.useEffect(() => {
+    useEffect(() => {
         axios.get("/api/countries").then((response) => {
             setCountries(response.data.countries);
             if (id != null) {
@@ -70,7 +68,7 @@ function Countries(props: any) {
             }
             setLoading(false);
         })
-    }, []);
+    }, [id, query]);
 
 
     if (isLoading) {

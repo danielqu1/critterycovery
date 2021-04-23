@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col } from 'react-bootstrap';
 import ToolCard from '../Cards/ToolCard'
 
@@ -10,8 +9,12 @@ type Tool = {
 	link: string;
 }
 
+interface ToolProps{
+	tools: Tool[]
+}
+
  // list of currently used tools
-function ToolDeck(props : any) {
+function ToolDeck(props : ToolProps) {
 	const cards = [];
 	for (let i = 0; i < props.tools.length; i++) {
 		cards.push(<Col style={{paddingLeft:0, paddingRight:0}}><ToolCard tool={props.tools[i]} style={{}}></ToolCard></Col>);

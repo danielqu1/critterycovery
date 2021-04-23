@@ -1,7 +1,6 @@
-import React from 'react';
+import { useState } from 'react';
 import { Image } from 'antd'
 import { Table, Input, Button, Space, Select, Row, Col } from 'antd'
-import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
@@ -11,10 +10,8 @@ import loadGIF from '../../images/loading.gif'
 const { Option } = Select;
 
 function HabitatTable(props) {
-	const [searchText, setSearchText] = React.useState('');
-	const [searchedColumn, setSearchedColumn] = React.useState('');
-	const [searchedInput, setSearchedInput] = React.useState(null);
-	const [searchedInput2, setSearchedInput2] = React.useState(null);
+	const [searchedInput, setSearchedInput] = useState(null);
+	const [searchedInput2, setSearchedInput2] = useState(null);
 	const { filteredData, loading } = useTableSearch({
 		searchVal: props.searchVal,
 		data: props.habitats,
@@ -69,8 +66,6 @@ function HabitatTable(props) {
 					size="small"
 					onClick={() => {
 						confirm({ closeDropdown: false });
-						setSearchText(selectedKeys[0]);
-						setSearchedColumn(dataIndex);
 					}}>
 				</Button>
 			</Space>
@@ -124,8 +119,6 @@ function HabitatTable(props) {
 					size="small"
 					onClick={() => {
 						confirm({ closeDropdown: false });
-						setSearchText(selectedKeys[0]);
-						setSearchedColumn(dataIndex);
 					}}
 					>
 				</Button>
@@ -139,22 +132,19 @@ function HabitatTable(props) {
 				case '<':
 					return Number(record[dataIndex]) < Number(value)
 				case '!':
-					return Number(record[dataIndex]) != Number(value)
+					return Number(record[dataIndex]) !== Number(value)
 				default:
-					return Number(record[dataIndex]) == Number(value)
+					return Number(record[dataIndex]) === Number(value)
 			}
 		},
 	});
 
 	function handleSearch(selectedKeys, confirm, dataIndex) {
 		confirm();
-		setSearchText(selectedKeys[0]);
-		setSearchedColumn(dataIndex);
 	}
 
 	function handleReset(clearFilters){
 		clearFilters();
-		setSearchText('');
 	}
 
 	const columns = [
@@ -187,12 +177,14 @@ function HabitatTable(props) {
 			key: 'name',
 			sorter: (a, b) => a.name.localeCompare(b.name),
 			...getColumnProps('name'),
+			...getFilterProps('name'),
 		}, {
 			title: 'Designation',
 			dataIndex: 'designation_name',
 			key: 'designation_name',
 			sorter: (a, b) => a.designation_name.localeCompare(b.designation_name),
 			...getColumnProps('designation_name'),
+			...getFilterProps('designation_name'),
 		}, {
 			title: 'Land Area (km^2)',
 			dataIndex: 'reported_terrestrial_area',

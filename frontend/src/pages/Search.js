@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import SearchHandler from '../components/Search/SearchHandler'
@@ -11,7 +11,7 @@ function useQuery() {
 }
 
 function Search(){
-    const [isLoading, setLoading] = React.useState(true);
+    const [isLoading, setLoading] = useState(true);
     
     const [species, setSpecies] = useState([]);
     const [habitats, setHabitats] = useState([]);

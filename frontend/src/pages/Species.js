@@ -1,10 +1,8 @@
-import React, {useState} from 'react';
-import { Container, Row, Col, CardColumns } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import SpeciesDeck from '../components/CardDecks/SpeciesDeck';
-import 'antd/dist/antd.css'
-import { Input } from 'antd'
 import Loading from './Loading';
 import axios from 'axios';
 
@@ -39,15 +37,15 @@ function useQuery() {
 
 function Species() {
 	const {id} = useParams();
-	const [animals, setAnimals] = React.useState(new Array());
-	const [isLoading, setLoading] = React.useState(true);
-	const [modalShow, setModalShow] = React.useState(false);
-	const [species, setSpecies] = React.useState(animals[0])
+	const [animals, setAnimals] = useState([]);
+	const [isLoading, setLoading] = useState(true);
+	const [modalShow, setModalShow] = useState(false);
+	const [species, setSpecies] = useState(animals[0])
 
 	let history = useHistory();
 	let query = useQuery().get('q')
 
-	React.useEffect(() => {
+	useEffect(() => {
 		return () => {
 			if (history.action === "POP") {
 				setModalShow(false);
@@ -58,8 +56,9 @@ function Species() {
 		};
 	}, [history.action])
 
-	React.useEffect(() => {
+	useEffect(() => {
 			axios.get("/api/species").then((response) => {
+				setLoading(true)
 				setAnimals(response.data.species);
 				if(id != null){
 					axios.get("/api/species/name=" + id).then((response) => {

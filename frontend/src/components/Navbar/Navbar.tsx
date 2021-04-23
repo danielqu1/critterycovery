@@ -1,4 +1,4 @@
-import React, {useState} from 'react'; 
+import {useState} from 'react'; 
 import logo from '../../images/logo.png';
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
 import {useHistory} from 'react-router-dom'

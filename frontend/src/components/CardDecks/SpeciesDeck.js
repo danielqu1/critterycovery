@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
-import { Container, Row, Col, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import SpeciesCard from '../Cards/SpeciesCard';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Input, Select,  } from 'antd';
-import 'antd/dist/antd.css';
 import PaginationMain from '../../components/Pagination/Pagination';
+
 const { Option } = Select;
 const { Search } = Input
 
@@ -24,17 +24,13 @@ function SpeciesDeck(props)  {
 	const [sortedData, setSortedData] = useState(props.species)
 	const [finalData, setFinalData] = useState(props.species)
 
-	const { filteredData, loading } = useTableSearch({
+	const { filteredData, } = useTableSearch({
 		searchVal: searchVal,
 		data: props.species,
 	});
 
-	useEffect(() => {
-		sort()
-    }, [filteredData, sortState])
-	useEffect(() => {
-		filter()
-    }, [nameFilter, classFilter, orderFilter, familyFilter, sortedData, sortState])
+	useCallback(sort, [filteredData, sortState])
+	useCallback(filter, [nameFilter, classFilter, orderFilter, familyFilter, sortedData])
 
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {

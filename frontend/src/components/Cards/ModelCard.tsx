@@ -1,4 +1,4 @@
-import { Card, Button, Image, Container} from 'react-bootstrap'
+import { Image, Container } from 'react-bootstrap'
 
 function ModelCard(props: any) {
     return(

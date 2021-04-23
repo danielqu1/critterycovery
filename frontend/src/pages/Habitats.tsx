@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
@@ -6,7 +6,6 @@ import HabitatModal from '../components/Modal/HabitatModal';
 import Loading from './Loading';
 import axios from 'axios';
 import { Input } from 'antd'
-import 'antd/dist/antd.css'
 const { Search } = Input
 
 interface habitat {
@@ -28,15 +27,15 @@ function useQuery() {
 
 function Habitats(props : any) {
     const {id} = useParams<{ id: string }>();
-    const [habitats, setHabitats] = React.useState(new Array<habitat>());
-    const [isLoading, setLoading] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(false);
-    const [habitat, setHabitat] = React.useState(habitats[0])
-    const [searchVal, setSearchVal] = React.useState("");
+    const [habitats, setHabitats] = useState(new Array<habitat>());
+    const [isLoading, setLoading] = useState(true);
+    const [modalShow, setModalShow] = useState(false);
+    const [habitat, setHabitat] = useState(habitats[0])
+    const [searchVal, setSearchVal] = useState("");
     let history = useHistory();
     let query = useQuery().get('q')
 
-    React.useEffect(() => {
+    useEffect(() => {
         return () => {
             if (history.action === "POP") {
                 setModalShow(false);
@@ -47,7 +46,7 @@ function Habitats(props : any) {
         };
     }, [history.action])
     
-    React.useEffect(() => {
+    useEffect(() => {
             axios.get("/api/habitats").then((response) => {
                 setHabitats(response.data.habitats);
                 if(id != null){
@@ -63,9 +62,9 @@ function Habitats(props : any) {
                 if (query){
                     setSearchVal(query)
                 }
-                setLoading(false);    
+                setLoading(false);
             })
-    }, []);
+    }, [id, query]);
     
     
     if (isLoading) {

@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import CountrySearch from './CountrySearch'
 import SpeciesSearch from './SpeciesSearch'
 import HabitatSearch from './HabitatSearch'
 
 import { Input } from 'antd'
-import 'antd/dist/antd.css'
-import Loading from '../../pages/Loading';
 
 const { Search } = Input
 

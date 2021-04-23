@@ -1,4 +1,3 @@
-import React from 'react';
 import { Pagination, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
 
 function PaginationMain(props: any) {
