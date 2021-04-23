@@ -30,7 +30,7 @@ function SpeciesDeck(props)  {
 	});
 
 	useCallback(sort, [filteredData, sortState])
-	useCallback(filter, [nameFilter, classFilter, orderFilter, familyFilter, sortedData])
+	useCallback(filter, [sortedData, nameFilter, classFilter, orderFilter, familyFilter])
 
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {

@@ -38,7 +38,8 @@ function SpeciesModal(props: any) {
 				})
 			}
 		}
-    }, [countries, habitats]);
+	// eslint-disable-next-line
+    }, [countries]);
   
 	if(props.species == null){
 		return(<></>)
