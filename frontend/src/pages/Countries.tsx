@@ -7,20 +7,7 @@ import { Input } from 'antd'
 import Loading from './Loading';
 import axios from 'axios'
 
-interface country {
-    name: string;
-    alpha2_code: string;
-    alpha3_code: string;
-    total_pop: number;
-    capital: string;
-    region: string;
-    subregion: string;
-    latitude: number;
-    longitude: number;
-    area: number;
-    gini_index: number;
-    flag: string;
-}
+import country from '../interfaces/country'
 
 const { Search } = Input;
 
@@ -39,7 +26,7 @@ function Countries(props: any) {
     let query = useQuery().get('q')
 
     history.listen((location, action) => {
-		if(location.pathname.match("\/countries\/+.") != null){
+		if(location.pathname.match("/countries/+.") != null){
 			setModalShow(true)
 		}
 		else{

@@ -157,6 +157,7 @@ function CountryTable(props) {
 					style={{objectFit:'cover'}}
 					alt={"Flag of a country"}
 					src={image}
+					preview={false}
 					placeholder={
 						<Image
 						preview={false}

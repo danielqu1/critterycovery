@@ -6,38 +6,15 @@ import SpeciesDeck from '../components/CardDecks/SpeciesDeck';
 import Loading from './Loading';
 import axios from 'axios';
 
-// interface species{
-//     common_name: string;
-//     scientific_name: string;
-//     kingdom: string;
-//     phylum: string;
-//     _class: string;
-//     _order: string;
-//     family: string;
-//     genus: string;
-//     subspecies: string;
-//     subpopulations: string;
-//     population_trend: string;
-//     marine: boolean;
-//     freshwater: boolean;
-//     terrestrial: boolean;
-// 	taxonomic_notes: string;
-// 	rationale: string;
-// 	geographic_range: string;
-// 	population: number;
-// 	text_habitat: string;
-// 	threats: string;
-// 	conservation_measures: string;
-// 	image_link: string;
-// }
+import speciesInterface from '../interfaces/species'
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
 function Species() {
-	const {id} = useParams();
-	const [animals, setAnimals] = useState([]);
+	const { id } = useParams<{ id: string }>();
+	const [animals, setAnimals] = useState(new Array<speciesInterface>());
 	const [isLoading, setLoading] = useState(true);
 	const [modalShow, setModalShow] = useState(false);
 	const [species, setSpecies] = useState(animals[0])
@@ -47,7 +24,7 @@ function Species() {
 
 
 	history.listen((location, action) => {
-		if(location.pathname.match("\/species\/+.") != null){
+		if(location.pathname.match("/species/+.") != null){
 			setModalShow(true)
 		}
 		else{
@@ -80,7 +57,7 @@ function Species() {
 		return Loading();
 	}
 
-	function update(animal) {
+	function update(animal:speciesInterface) {
 		setSpecies(animal)
 		history.push(`/species/${animal.scientific_name}`)
 	}

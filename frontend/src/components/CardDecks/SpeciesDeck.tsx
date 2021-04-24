@@ -1,15 +1,19 @@
 import { useState, useCallback } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
 import { Container, Row, Col } from 'react-bootstrap';
-import SpeciesCard from '../Cards/SpeciesCard';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Input, Select,  } from 'antd';
-import PaginationMain from '../../components/Pagination/Pagination';
+import PaginationMain from '../Pagination/Pagination';
+
+import SpeciesCard from '../Cards/ModelCard';
+import speciesProperties from '../Cards/Properties/Species';
+import speciesInterface from '../../interfaces/species';
 
 const { Option } = Select;
 const { Search } = Input
 
-function SpeciesDeck(props)  { 
+
+function SpeciesDeck(props: any)  { 
 	const offset = 3;
 	const [startingCard, setStart] = useState(0)
 	const [maxCardsShown, setCardsShown] = useState(10)
@@ -36,37 +40,41 @@ function SpeciesDeck(props)  {
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {
 		speciesCards.push(<Col className='container-fluid mt-4'>
 			<SpeciesCard 
-				data={finalData[i]} 
+				image={finalData[i].image_link}
+				image_alt={"Picture of "+finalData[i].scientific_name}
+				title={finalData[i].common_name ? finalData[i].common_name : finalData[i].scientific_name}
 				searchVal={searchVal?searchVal:''}
 				onClick={() => props.update(finalData[i])}
+				cardProperties={speciesProperties(finalData[i])}
+				imageRatio='100%'
 			/></Col>);
 	}
 
 	function sort(){
 		switch(sortState) {
 			case 'Name(Asc)':
-				setSortedData(filteredData.sort((a, b) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
 				break;
 			case 'Name(Desc)':
-				setSortedData(filteredData.sort((a, b) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
 				break;
 			case 'Class(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a._class.localeCompare(b._class))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a._class.localeCompare(b._class))))
 				break;
 			case 'Class(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b._class.localeCompare(a._class))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b._class.localeCompare(a._class))))
 				break;
 			case 'Order(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a._order.localeCompare(b._order))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a._order.localeCompare(b._order))))
 				break;
 			case 'Order(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b._order.localeCompare(a._order))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b._order.localeCompare(a._order))))
 				break;
 			case 'Family(Asc)':
-				setSortedData(filteredData.sort((a, b) => (a.family.localeCompare(b.family))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a.family.localeCompare(b.family))))
 				break;
 			case 'Family(Desc)':
-				setSortedData(filteredData.sort((a, b) => (b.family.localeCompare(a.family))))
+				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b.family.localeCompare(a.family))))
 				break;
 			default:
 			  // code block
@@ -75,8 +83,8 @@ function SpeciesDeck(props)  {
 
 	function filter(sorted=sortedData){
 		const filters = [{attribute:'_class', value: classFilter.toLowerCase()}, {attribute:'_order', value: orderFilter.toLowerCase()}, {attribute:'family', value: familyFilter.toLowerCase()}]
-		const nameFilteredData = sorted.filter(data => (data.common_name ? data.common_name : data.scientific_name).toLowerCase().includes((nameFilter ? nameFilter : '').toLowerCase()))
-		setFinalData(nameFilteredData.filter(data => filters.every(filter => (data[filter.attribute] ? data[filter.attribute].toLowerCase() : '').includes(filter.value ? filter.value : ''))))
+		const nameFilteredData = sorted.filter((data:any) => (data.common_name ? data.common_name : data.scientific_name).toLowerCase().includes((nameFilter ? nameFilter : '').toLowerCase()))
+		setFinalData(nameFilteredData.filter((data:any) => filters.every(filter => (data[filter.attribute] ? data[filter.attribute].toLowerCase() : '').includes(filter.value ? filter.value : ''))))
 	}
 	return(
 		<Container fluid className='justify-content-md-center'>

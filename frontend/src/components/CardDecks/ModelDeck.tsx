@@ -1,5 +1,5 @@
 import { Col } from 'react-bootstrap';
-import ModelCard from '../Cards/ModelCard';
+import HomeCard from '../Cards/HomeCard';
 
 import animal from '../../images/models/animal.png';
 import habitat from '../../images/models/habitat.png';
@@ -36,7 +36,7 @@ function ModelDeck()  {
 
     const cards = []
     for(let i = 0; i < models.length; i++){
-        cards.push(<Col><ModelCard models={models[i]}></ModelCard></Col>)
+        cards.push(<Col><HomeCard models={models[i]}/></Col>)
     }
   return (
     <>

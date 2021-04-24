@@ -6,20 +6,10 @@ import HabitatModal from '../components/Modal/HabitatModal';
 import Loading from './Loading';
 import axios from 'axios';
 import { Input } from 'antd'
-const { Search } = Input
 
-interface habitat {
-    id: number;
-    name: string;
-    marine: boolean;
-    reported_marine_area: number;
-    reported_terrestrial_area: number;
-    countries: string;
-    iucn_category: number;
-    designation_name: string;
-    designation_id: number;
-    link: string;
-}
+import habitat from '../interfaces/habitat'
+
+const { Search } = Input
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -36,7 +26,7 @@ function Habitats(props : any) {
     let query = useQuery().get('q')
 
     history.listen((location, action) => {
-		if(location.pathname.match("\/habitats\/+.") != null){
+		if(location.pathname.match("/habitats/+.") != null){
 			setModalShow(true)
 		}
 		else{

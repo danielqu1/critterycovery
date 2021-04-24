@@ -158,6 +158,7 @@ function HabitatTable(props) {
 					style={{objectFit:'cover'}}
 					alt={"Picture of a habitat"}
 					src={image}
+					preview={false}
 					placeholder={
 						<Image
 						preview={false}
