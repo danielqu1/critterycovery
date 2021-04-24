@@ -1,14 +1,10 @@
-import {useState, useEffect} from 'react'; 
+import {useState, useEffect, ReactElement,} from 'react'; 
 import {Modal, Button, Image, Card, ListGroup } from 'react-bootstrap'
-import axios from 'axios'
+import axios, { AxiosPromise } from 'axios'
 
 interface countries {
 	country: string;
 	alpha3_code: string;
-}
-
-interface habitats {
-	name: string;
 }
 
 const NA = "N/A";
@@ -18,7 +14,8 @@ const no_info = "information not available"
 function SpeciesModal(props: any) {
 
 	const [countries, setCountries] = useState(new Array<countries>());
-    const [habitats, setHabitats] = useState(new Array<habitats>());
+    const [habitats, setHabitats] = useState(new Array<string>());
+	const [habitatLinks, setHabitatLinks] = useState(new Array<ReactElement>())
 
 	useEffect(() => {
 		setCountries(new Array<countries>())
@@ -30,20 +27,43 @@ function SpeciesModal(props: any) {
 	}, [props.species]);
 
 	useEffect(() => {
-		setHabitats(new Array<habitats>())
+		let tempHabitats = new Array<string>()
 		if(countries !== null) {
+			let habitatRequests = new Array<AxiosPromise>()
 			for (let i = 0; i < countries.length; i++) {
-				axios.get('/api/countries/habitats/name='+countries[i].country).then((response) => {
-					setHabitats(habitats.concat(response.data.habitats));
-				})
+				habitatRequests.push(axios.get('/api/countries/habitats/name='+countries[i].country))
 			}
+			Promise.all(habitatRequests).then((responses) => {
+				for (let response of responses){
+					let respHabitats = response.data.habitats
+					for(let habitat of respHabitats){
+						tempHabitats.push(habitat.name)
+					}
+				}
+			})
 		}
+		setHabitats(tempHabitats)
 	// eslint-disable-next-line
     }, [countries]);
+
+	useEffect(() => {
+		makeLinks()
+	})
   
 	if(props.species == null){
 		return(<></>)
     }
+	function makeLinks(){
+		const links = [];
+		for (let i = 0; i < habitats.length; i++) {
+			links.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i]}>{habitats[i]+' '}</a>);
+		}
+		if (habitats.length === 0) {
+			links.push(<>{no_info}</>)
+		}
+		links.push(<br/>)
+		setHabitatLinks(links)
+	}
 
 	const countryLinks = [];
 	for (let i = 0; i < countries.length; i++) {
@@ -53,15 +73,6 @@ function SpeciesModal(props: any) {
 		countryLinks.push(<>{no_info}</>)
 	}
 	countryLinks.push(<br/>)
-
-	const habitatLinks = [];
-	for (let i = 0; i < habitats.length; i++) {
-		habitatLinks.push(<a style={{ cursor: 'pointer' }} href={'/habitats/'+habitats[i].name}>{habitats[i].name+' '}</a>);
-	}
-	if (habitats.length === 0) {
-		habitatLinks.push(<>{no_info}</>)
-	}
-	habitatLinks.push(<br/>)
   
 
 	return (

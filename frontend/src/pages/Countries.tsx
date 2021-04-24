@@ -68,7 +68,8 @@ function Countries(props: any) {
             }
             setLoading(false);
         })
-    }, [id, query]);
+    // eslint-disable-next-line
+    }, []);
 
 
     if (isLoading) {

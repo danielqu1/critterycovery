@@ -36,7 +36,7 @@ function SpeciesCard(props: cardProps) {
         },
         {
             text: 'Class: ',
-            hightlightData: props.data._class ? props.data._class.toLocaleLowerCase() : null,
+            highlightData: props.data._class ? props.data._class.toLocaleLowerCase() : null,
         },
         {
             text: 'Order: ',

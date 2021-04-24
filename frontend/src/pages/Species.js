@@ -71,8 +71,9 @@ function Species() {
 					})
 				}
 
-				setLoading(false);    
-		})}, [id, query]);
+				setLoading(false);
+		// eslint-disable-next-line
+		})}, []);
 	
 	
 	if (isLoading) {
