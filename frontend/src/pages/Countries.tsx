@@ -38,16 +38,14 @@ function Countries(props: any) {
     let history = useHistory();
     let query = useQuery().get('q')
 
-    useEffect(() => {
-        return () => {
-            if (history.action === "POP") {
-                setModalShow(false);
-            }
-            else if (history.action === "PUSH") {
-                setModalShow(true);
-            }
-        };
-    }, [history.action])
+    history.listen((location, action) => {
+		if(location.pathname.match("\/countries\/+.") != null){
+			setModalShow(true)
+		}
+		else{
+			setModalShow(false)
+		}
+	})
 
     useEffect(() => {
         axios.get("/api/countries").then((response) => {
@@ -56,7 +54,8 @@ function Countries(props: any) {
                 axios.get("/api/countries/name=" + id).then((response) => {
                     if (response.data != null) {
                         setCountry(response.data.country)
-                        setModalShow(true)
+                        history.replace('/countries')
+						history.push("/countries/" + id)
                     }
                 }).catch(err => {
                     //DO NOTHING
@@ -77,14 +76,13 @@ function Countries(props: any) {
     }
 
     function update(place: country) {
-        history.push(`/countries/${place.name}`)
         setCountry(place)
-        setModalShow(true)
+        history.push(`/countries/${place.name}`)
+        
     }
 
     function closeModal() {
-        setModalShow(false);
-        history.push('/countries');
+        history.goBack()
     }
 
     return (

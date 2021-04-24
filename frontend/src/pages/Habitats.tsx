@@ -35,16 +35,14 @@ function Habitats(props : any) {
     let history = useHistory();
     let query = useQuery().get('q')
 
-    useEffect(() => {
-        return () => {
-            if (history.action === "POP") {
-                setModalShow(false);
-            }
-            else if (history.action === "PUSH") {
-                setModalShow(true);
-            }
-        };
-    }, [history.action])
+    history.listen((location, action) => {
+		if(location.pathname.match("\/habitats\/+.") != null){
+			setModalShow(true)
+		}
+		else{
+			setModalShow(false)
+		}
+	})
     
     useEffect(() => {
             axios.get("/api/habitats").then((response) => {
@@ -53,7 +51,8 @@ function Habitats(props : any) {
                     axios.get("/api/habitats/name=" + id).then((response) => {
                         if(response.data != null){
                             setHabitat(response.data.habitat)
-                            setModalShow(true)
+                            history.replace('/habitats')
+						    history.push("/habitats/" + id)
                         } 
                     }).catch(err => {
                         //DO NOTHING
@@ -73,14 +72,12 @@ function Habitats(props : any) {
     }
 
     function update(place : habitat) {
-        history.push(`/habitats/${place.name}`)
         setHabitat(place)
-        setModalShow(true)
+        history.push(`/habitats/${place.name}`)
     }
 
     function closeModal(){
-        setModalShow(false);
-        history.push('/habitats');
+        history.goBack()
     }
     
     

@@ -45,16 +45,15 @@ function Species() {
 	let history = useHistory();
 	let query = useQuery().get('q')
 
-	useEffect(() => {
-		return () => {
-			if (history.action === "POP") {
-				setModalShow(false);
-			}
-			else if (history.action === "PUSH") {
-				setModalShow(true);
-			}
-		};
-	}, [history.action])
+
+	history.listen((location, action) => {
+		if(location.pathname.match("\/species\/+.") != null){
+			setModalShow(true)
+		}
+		else{
+			setModalShow(false)
+		}
+	})
 
 	useEffect(() => {
 			axios.get("/api/species").then((response) => {
@@ -63,8 +62,9 @@ function Species() {
 				if(id != null){
 					axios.get("/api/species/name=" + id).then((response) => {
 						if(response.data != null){
+							history.replace('/species')
+							history.push("/species/" + id)
 							setSpecies(response.data.species)
-							setModalShow(true)
 						} 
 					}).catch(err => {
 						//DO NOTHING
@@ -81,14 +81,12 @@ function Species() {
 	}
 
 	function update(animal) {
-		history.push(`/species/${animal.scientific_name}`)
 		setSpecies(animal)
-		setModalShow(true)
+		history.push(`/species/${animal.scientific_name}`)
 	}
 
 	function closeModal(){
-		setModalShow(false);
-		history.push('/species');
+		history.goBack();
 	}
 
 	return(
