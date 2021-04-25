@@ -20,19 +20,19 @@ type Tool = {
 			img: Redlist,
 			link: "http://apiv3.iucnredlist.org/api/v3/docs"
 		},
-        {
+		{
 			name: "Protected Planet",
 			text: "Habitats",
 			img: ProtectPlanet,
 			link: "https://api.protectedplanet.net/documentation"
 		},
-        {
+		{
 			name: "Rest Countries",
 			text: "Countries",
 			img: RestCountries,
 			link: "https://restcountries.eu"
 		},
-        {
+		{
 			name: "Google Maps",
 			text: "Embedded Maps",
 			img: GoogleMaps,

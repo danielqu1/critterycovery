@@ -19,28 +19,28 @@ function HabitatModal(props: any) {
   const [country, setCountry] = useState(country_default);
 
   useEffect(() => {
-    if(props.habitat != null){
-      axios.get('/api/countries/alpha3_code='+props.habitat.countries).then((response) => {
-        setCountry(response.data.country);
-      })
-    }
+	if(props.habitat != null){
+	  axios.get('/api/countries/alpha3_code='+props.habitat.countries).then((response) => {
+		setCountry(response.data.country);
+	  })
+	}
   }, [props.habitat]);
 
   useEffect(() => {
-    setSpecies(new Array<species>())
-    if(props.habitat != null){
-      axios.get('/api/countries/species/name='+country.name).then((response) => {
-        setSpecies(response.data.species);
-      })
-    }
+	setSpecies(new Array<species>())
+	if(props.habitat != null){
+	  axios.get('/api/countries/species/name='+country.name).then((response) => {
+		setSpecies(response.data.species);
+	  })
+	}
   }, [country, props.habitat]);
 
   if(props.habitat == null){
-    return(<></>)
+	return(<></>)
   }
   const speciesLinks = [];
   for (let i = 0; i < species.length; i++) {
-    speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
+	speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
   }
   if (species.length === 0) {
 		speciesLinks.push(<>{no_info}</>)
@@ -49,47 +49,47 @@ function HabitatModal(props: any) {
 
   let countryLink = <></>;
   if(country !== null){
-    countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
+	countryLink = (<a style={{ cursor: 'pointer' }} href={'/countries/'+country.name}>{country.name+' '}</a>)
   } else {
-    countryLink = <>{no_info}</>
+	countryLink = <>{no_info}</>
   }
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.habitat.name}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Image src={props.habitat.image_link} rounded fluid style={{width:'50%'}}/><br/>
-        ID: {props.habitat.id.toString()}<br/>
-        Marine: {props.habitat.marine.toString()}<br/>
-        Water Area: {props.habitat.reported_marine_area.toString()} km&sup2;<br/>
-        Land Area: {props.habitat.reported_terrestrial_area.toString()} km&sup2;<br/>
-        IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : no_info}<br/>
-        Designation: {props.habitat.designation_name ? props.habitat.designation_name : no_info}<br/>
-        Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
-        <iframe title="Map of Country"
-          width="100%"
-          height="20%"
-          style={{border: 0}}
-          loading="lazy"
-          allowFullScreen
-          src={props.habitat.embedded_map_link}>
-        </iframe> <br/>
-        Country: <br/>{countryLink}<br/>
-        Species: <br/>{speciesLinks}<br/>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+	<Modal
+	  {...props}
+	  size="lg"
+	  aria-labelledby="contained-modal-title-vcenter"
+	  centered
+	>
+	  <Modal.Header closeButton>
+		<Modal.Title id="contained-modal-title-vcenter">
+		  {props.habitat.name}
+		</Modal.Title>
+	  </Modal.Header>
+	  <Modal.Body>
+		<Image src={props.habitat.image_link} rounded fluid style={{width:'50%'}}/><br/>
+		ID: {props.habitat.id.toString()}<br/>
+		Marine: {props.habitat.marine.toString()}<br/>
+		Water Area: {props.habitat.reported_marine_area.toString()} km&sup2;<br/>
+		Land Area: {props.habitat.reported_terrestrial_area.toString()} km&sup2;<br/>
+		IUCN Category: {(props.habitat.icun_category)? props.habitat.icun_category.toString() : no_info}<br/>
+		Designation: {props.habitat.designation_name ? props.habitat.designation_name : no_info}<br/>
+		Link: <a href={props.habitat.link}>{props.habitat.link}</a><br/>
+		<iframe title="Map of Country"
+		  width="100%"
+		  height="20%"
+		  style={{border: 0}}
+		  loading="lazy"
+		  allowFullScreen
+		  src={props.habitat.embedded_map_link}>
+		</iframe> <br/>
+		Country: <br/>{countryLink}<br/>
+		Species: <br/>{speciesLinks}<br/>
+	  </Modal.Body>
+	  <Modal.Footer>
+		<Button onClick={props.onHide}>Close</Button>
+	  </Modal.Footer>
+	</Modal>
   );
 }
 

@@ -94,10 +94,10 @@ function SpeciesDeck(props: any)  {
 						defaultValue={props.query?props.query:''}
 						placeholder="Search"
 						style={{
-                            width: '50%',
-                            height: '100%',
-                            padding: '1% 0',
-                        }}
+							width: '50%',
+							height: '100%',
+							padding: '1% 0',
+						}}
 					/>
 				</Row>
 				<Row>

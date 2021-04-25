@@ -30,12 +30,12 @@ type Person = {
   }
 
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
-    for (let i = 0; i < stats.length; i++) {
-	    if (stats[i].name === shortened) {
-	    return stats[i];
-	    }
-    }
-    return {name: shortened, commits: 0, issues: 0, unittests: 0};
+	for (let i = 0; i < stats.length; i++) {
+		if (stats[i].name === shortened) {
+		return stats[i];
+		}
+	}
+	return {name: shortened, commits: 0, issues: 0, unittests: 0};
 }
 
 
@@ -56,7 +56,7 @@ function PersonDeck()  {
 		" this project, and is excited to use his skills from this class so" +
 		" far to potentially create a startup! His hobbies include playing basketball," +
 		" going on hikes, singing, and cooking.",
-	    role: "Backend Lead and Dev",
+		role: "Backend Lead and Dev",
 		photo: shaharyar
 	},
 	{
@@ -101,21 +101,21 @@ function PersonDeck()  {
 		name: "Total",
 		stats: getStats(stats, "total"),
 		aboutInfo: "All",
-        role: "All commits, issues, and unittests",
-        photo: savetheanimals
+		role: "All commits, issues, and unittests",
+		photo: savetheanimals
 	}
 	];
 
 	const cards = []
 	for(let i = 0; i < people.length; i++){
 		cards.push(<Col className="container-fluid mt-4"><PersonCard person={people[i]}></PersonCard></Col>)
-    }
+	}
 
-    return (
-        <>
-        {cards}
-        </>
-    ); 
+	return (
+		<>
+		{cards}
+		</>
+	); 
 }; 
   
 export default PersonDeck;

@@ -16,23 +16,23 @@ import 'antd/dist/antd.css'
 
 function App() {
 
-  return (
-    <div className="App">
-      <Router> 
-        <NavbarMain /> 
-        <ScrollToTopBtn />
-        <Switch> 
-          <Route path='/' exact component={Home} /> 
-          <Route path='/about' exact component={About} /> 
-          <Route path='/species/:id?' children={<Species />} />
-          <Route path='/habitats/:id?' children={<Habitats />} />
-          <Route path='/countries/:id?' children={<Countries />} />
-          <Route path='/search' children={<Search />} />
-          <Route component={Error}/>
-        </Switch> 
-      </Router>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Router>
+				<NavbarMain />
+				<ScrollToTopBtn />
+				<Switch>
+					<Route path='/' exact component={Home} />
+					<Route path='/about' exact component={About} />
+					<Route path='/species/:id?' children={<Species />} />
+					<Route path='/habitats/:id?' children={<Habitats />} />
+					<Route path='/countries/:id?' children={<Countries />} />
+					<Route path='/search' children={<Search />} />
+					<Route component={Error} />
+				</Switch>
+			</Router>
+		</div>
+	);
 }
 
 export default App;

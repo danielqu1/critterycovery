@@ -14,7 +14,7 @@ const no_info = "information not available"
 function SpeciesModal(props: any) {
 
 	const [countries, setCountries] = useState(new Array<countries>());
-    const [habitats, setHabitats] = useState(new Array<string>());
+	const [habitats, setHabitats] = useState(new Array<string>());
 	const [habitatLinks, setHabitatLinks] = useState(new Array<ReactElement>())
 
 	useEffect(() => {
@@ -44,7 +44,7 @@ function SpeciesModal(props: any) {
 		}
 		setHabitats(tempHabitats)
 	// eslint-disable-next-line
-    }, [countries]);
+	}, [countries]);
 
 	useEffect(() => {
 		makeLinks()
@@ -52,7 +52,7 @@ function SpeciesModal(props: any) {
   
 	if(props.species == null){
 		return(<></>)
-    }
+	}
 	function makeLinks(){
 		const links = [];
 		for (let i = 0; i < habitats.length; i++) {

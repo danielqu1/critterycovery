@@ -9,7 +9,7 @@ import axios from 'axios';
 import speciesInterface from '../interfaces/species'
 
 function useQuery() {
-    return new URLSearchParams(useLocation().search);
+	return new URLSearchParams(useLocation().search);
 }
 
 function Species() {
