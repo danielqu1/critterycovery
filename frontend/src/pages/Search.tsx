@@ -83,7 +83,7 @@ function SearchPage(){
 					</Row>
 			
 		</Container>
-		);
-	}
+	);
+}
 
 export default SearchPage;

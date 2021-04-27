@@ -27,6 +27,7 @@ const NavbarMain = () => {
 						<Nav.Link className='nav-links' href="/about">About</Nav.Link>
 						<Nav.Link className='nav-links' href="/species">Species</Nav.Link><Nav.Link className='nav-links' href="/habitats">Habitats</Nav.Link>
 						<Nav.Link className='nav-links' href="/countries">Countries</Nav.Link>
+						<Nav.Link className='nav-links' href="/support">Support</Nav.Link>
 					</Nav>
 					<Form inline style={{ backgroundColor: 'grey', padding: '.5% 2%' }} onSubmit={event => event.preventDefault()}>
 						<FormControl

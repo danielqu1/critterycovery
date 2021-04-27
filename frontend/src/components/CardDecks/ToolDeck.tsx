@@ -1,7 +1,7 @@
 import { Col } from 'react-bootstrap';
 import ToolCard from '../Cards/ToolCard'
 
-// must be consisten with props.tool in ToolCard
+// must be consistent with props.tool in ToolCard
 type Tool = {
 	name: string;
 	text: string;
