@@ -1,4 +1,7 @@
 import { Container, Row } from 'react-bootstrap';
+import ToolDeck from '../components/CardDecks/ToolDeck'
+
+import SupportGroups from '../data/SupportGroups'
 
 function Support() {
 
@@ -20,16 +23,15 @@ function Support() {
 				<Row>
 					<Container style={{ textAlign: 'center', padding: '2% 0', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey' }}>
 						<h1 style={{ fontWeight: 'bolder' }}>Support</h1>
-						<p>{description1}</p>
-						<p>{description2}</p>
-						<p>{description3}</p>
+						<p style={{ fontSize: '15pt' }}>{description1}</p>
+						<p style={{ fontSize: '15pt' }}>{description2}</p>
+						<p style={{ fontSize: '15pt' }}>{description3}</p>
 					</Container>
 				</Row>
 
-				<Row>
-					Hey there
+				<Row className="justify-content-md-center" style={{ paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey' }}>
+					{<ToolDeck tools={SupportGroups()} />}
 				</Row>
-
 
 
 			</Container>
