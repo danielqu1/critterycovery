@@ -1,4 +1,5 @@
 // get all image logos
+import Antd from "../images/tools/Antd.png"
 import AWSLogo from "../images/tools/AWSLogo.png"
 import BlackLogo from "../images/tools/BlackLogo.png"
 import DockerLogo from "../images/tools/DockerLogo.png"
@@ -24,6 +25,12 @@ type Tool = {
  // list of currently used tools
  function Tools() {
 	let tools: Tool[] = [
+		{
+			name: "Ant Design",
+			text: "Design Tool",
+			img: Antd,
+			link: "https://ant.design/"
+		},
 		{
 			name: "Amazon Web Services",
 			text: "Server host",
