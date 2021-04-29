@@ -5,7 +5,7 @@ import Tools from '../data/Tools'
 import Apis from '../data/Apis'
 import AboutLinks from '../data/AboutLinks'
 
-import { Container, Row, } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function About() { 
 
@@ -55,12 +55,8 @@ function About() {
 					<h1 style={{ fontWeight: 'bolder' }}>Links</h1>
 				</Container>
 			</Row>
-			<Row className="justify-content-md-center" style={{ paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey' }} xs={1} lg={2}>
-				<Container >
-					<Row className="justify-content-md-center" xs={1} md={2}>
-						{<ToolDeck tools={AboutLinks()} />}
-					</Row>
-				</Container>
+			<Row className="justify-content-md-center" style={{ paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey' }} xs={1} sm={1} md={2} lg={3} xl={4}>
+        {<ToolDeck tools={AboutLinks()} />}
 			</Row>
 		</Container>
 	);
