@@ -1,6 +1,9 @@
 import ReactPlayer from 'react-player';
 import { Container, Row, Col } from 'react-bootstrap'
+import { Typography, Divider } from 'antd';
 import ModelDeck from '../components/CardDecks/ModelDeck'
+
+const { Title, Paragraph, Text, Link } = Typography;
 
 const Home = () => { 
 
@@ -33,11 +36,10 @@ const Home = () => {
 				</div>
 				<Container className='home-title' style={{ width: '40%', zIndex: 10 }}>
 					<Row>
-						<Col>
+						<Col style={{padding: '0 1.5%', height:'auto'}}>
 							<Container style={{ background: 'rgba(255, 255, 255, 0.7)', borderRadius: '.7vw' }}>
-								<p className='font-big'> critterycovery</p>
-								<p className='font-medium-big'>raising awareness for endangered animals</p>
-								<p></p>
+								<p className='font-big' style={{padding:0, marginBottom:0}}> critterycovery</p><br/>
+								<p className='font-medium-big' style={{padding:0, marginTop:0, marginBottom:'3.33%'}}>raising awareness for endangered animals</p>
 							</Container>
 						</Col>
 					</Row>

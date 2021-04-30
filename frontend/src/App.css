@@ -43,17 +43,12 @@
   text-shadow: .15rem .15rem grey;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  padding-bottom: 0;
 }
-
-
 
 .font-medium-big {
   /* color: #00dd59; */
   color: #017931;
   font-size: 1.9vw;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .hoverable{
