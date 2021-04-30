@@ -5,7 +5,7 @@ import Tools from '../data/Tools'
 import Apis from '../data/Apis'
 import AboutLinks from '../data/AboutLinks'
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 function About() { 
 
