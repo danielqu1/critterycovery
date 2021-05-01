@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/endangered-species-by-order",
+  "main": "48ecac54ac9657ea@491.js",
+  "version": "491.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/endangered-species-by-order",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

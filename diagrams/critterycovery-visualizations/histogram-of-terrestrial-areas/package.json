@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/histogram-of-terrestrial-areas",
+  "main": "b257edf64d1a217c@312.js",
+  "version": "312.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
