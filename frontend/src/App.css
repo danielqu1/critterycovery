@@ -30,6 +30,7 @@
 
 .home-title {
   position: absolute;
+  width: 100px;
   top: calc(30vw * .5625);
   left: 0;
   margin-left: 5vw;
@@ -38,7 +39,7 @@
 
 .font-big {
   color: #00B74A;
-  font-size: 5vw;
+  font-size: 36pt;
   font-weight: bolder;
   text-shadow: .15rem .15rem grey;
   text-rendering: optimizeLegibility !important;
@@ -48,7 +49,7 @@
 .font-medium-big {
   /* color: #00dd59; */
   color: #017931;
-  font-size: 1.9vw;
+  font-size: 18pt;
 }
 
 .hoverable{
@@ -92,3 +93,13 @@
     opacity: 1;
   }
 }
+
+/* @media only screen and (max-width: 800px) {
+  .font-big {
+    font-size: 5vw;
+  }
+  
+  .font-medium-big {
+    font-size: 2.5vw;
+  }
+} */

@@ -9,7 +9,7 @@ const NavbarMain = () => {
 	const [searchQ, setSearchQ] = useState('')
 	return (
 		<>
-			<Navbar sticky="top" bg="success" style={{ backgroundColor: 'green', padding: 0 }} expand="lg">
+			<Navbar sticky="top" bg="success" style={{ height:'5%', backgroundColor: 'green', padding: 0 }} expand="lg">
 				<Navbar.Brand href="/" style={{ paddingLeft: '4%' }}>
 					<img
 						src={logo}

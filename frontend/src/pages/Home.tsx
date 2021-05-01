@@ -20,7 +20,7 @@ const Home = () => {
 						<ReactPlayer
 							style={{ overflowX: 'hidden', overflowY: 'hidden', visibility: videoVisibility  }}
 							className='react-player'
-							url={'https://www.youtu.be/8rPB4A3zDnQ?t=' + Math.floor(Math.random() * 1200)}
+							url={'https://www.youtu.be/8rPB4A3zDnQ?t=' + Math.floor(Math.random() * 1180)}
 							playing={true}
 							controls={false}
 							onStart={video_start}
@@ -30,7 +30,7 @@ const Home = () => {
 										autoplay: 1, showinfo: 0, disablekb: 1,
 										fs: 0, iv_load_policy: 3, loop: 1,
 										modestbranding: 1, rel: 0, pip: 0,
-										end: 1190
+										end: 1180
 									}
 								}
 							}}
@@ -40,7 +40,7 @@ const Home = () => {
 							height='calc(100vw * .5625)'
 						/>
 					</div>
-					<Container className='home-title' style={{ width: '40%', zIndex: 10 }}>
+					<Container className='home-title' style={{width:'100%', maxWidth:'600px', zIndex: 10 }}>
 						<Row>
 							<Col style={{padding: '0 1.5%', height:'auto'}}>
 								<Container style={{ background: 'rgba(255, 255, 255, 0.7)', borderRadius: '.7vw' }}>
@@ -54,7 +54,7 @@ const Home = () => {
 						</Row>
 					</Container>
 				</Container>
-				<Container style={{overflow:'hidden',paddingTop:'100%'}}></Container>
+				<Container style={{overflow:'hidden', paddingTop:'100%'}}/>
 			</Container>
 		</div>
 	); 
