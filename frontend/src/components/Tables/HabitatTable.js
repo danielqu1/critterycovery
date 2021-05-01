@@ -18,6 +18,12 @@ function HabitatTable(props) {
 	});
 	
 	let getColumnProps = (dataIndex) => ({
+		width: '15%',
+		padding: '4% 0',
+		margin: 0,
+		fontSize: '2pt',
+		textWrap: 'word-break',
+		whiteSpace: 'no-wrap',
 		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
 		onFilterDropdownVisibleChange: (visible) => {
 			if (visible && searchedInput) {
@@ -215,6 +221,8 @@ function HabitatTable(props) {
 					dataSource={filteredData} 
 					columns={columns} 
 					loading={loading}
+					width='100%'
+					sticky={{offsetHeader: '6.5%'}}
 					onRow={(record, rowIndex) => {
 						return {
 						onClick: event => {props.update(record);}, // click row
