@@ -1,5 +1,5 @@
 import {useState, useEffect, ReactElement,} from 'react'; 
-import {Modal, Button, Image, Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
+import {Modal, Button, Image, Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios, { AxiosPromise } from 'axios'
 import { Typography } from 'antd';
 
@@ -9,8 +9,6 @@ interface countries {
 	country: string;
 	alpha3_code: string;
 }
-
-const NA = "N/A";
 
 const no_info = "information not available"
 
@@ -87,6 +85,13 @@ function SpeciesModal(props: any) {
 			'Unknown': '#bcbcbc',
 			null: '#bcbcbc'
 		}
+	
+	function colorTranslator(data : any){
+		if(translateColor[data]){
+			return translateColor[data]
+		}
+		return '#bcbcbc'
+	}
 
 	return (
 		<Modal
@@ -100,9 +105,8 @@ function SpeciesModal(props: any) {
 					{props.species.common_name ? props.species.common_name : props.species.scientific_name}
 				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body style={{backgroundImage: 'linear-gradient(#ffffff, #a5a5a5)'}}>
+			<Modal.Body>
 				
-
 				<Container style={{marginBottom: '4%'}}>
 					<Row xs={1} lg={2}>
 						<Col style={{paddingRight:'2%'}}>
@@ -125,10 +129,10 @@ function SpeciesModal(props: any) {
 							<Row style={{marginBottom:'4%'}}>
 								<ListGroup>
 									<ListGroup.Item style={{backgroundColor: '#FFB37C'}}><span style={{ float: "left" }}>Subpopulations: {props.species.subpopulations ? props.species.subpopulations : "none"}</span></ListGroup.Item>
-									<ListGroup.Item style={{backgroundColor: translateColor[props.species.population_trend]}}><span style={{ float: "left" }}>Population Trend: {props.species.population_trend ? props.species.population_trend : no_info}</span></ListGroup.Item>
-									<ListGroup.Item style={{backgroundColor: translateColor[props.species.marine]}}><span style={{ float: "left" }}>Marine: {props.species.marine.toString()}</span></ListGroup.Item>
-									<ListGroup.Item style={{backgroundColor: translateColor[props.species.freshwater]}}><span style={{ float: "left" }}>Freshwater: {props.species.freshwater.toString()}</span></ListGroup.Item>
-									<ListGroup.Item style={{backgroundColor: translateColor[props.species.terrestrial]}}><span style={{ float: "left" }}>Terrestrial: {props.species.terrestrial.toString()}</span></ListGroup.Item>
+									<ListGroup.Item style={{backgroundColor: colorTranslator(props.species.population_trend)}}><span style={{ float: "left" }}>Population Trend: {props.species.population_trend ? props.species.population_trend : no_info}</span></ListGroup.Item>
+									<ListGroup.Item style={{backgroundColor: colorTranslator(props.species.marine)}}><span style={{ float: "left" }}>Marine: {props.species.marine.toString()}</span></ListGroup.Item>
+									<ListGroup.Item style={{backgroundColor: colorTranslator(props.species.freshwater)}}><span style={{ float: "left" }}>Freshwater: {props.species.freshwater.toString()}</span></ListGroup.Item>
+									<ListGroup.Item style={{backgroundColor: colorTranslator(props.species.terrestrial)}}><span style={{ float: "left" }}>Terrestrial: {props.species.terrestrial.toString()}</span></ListGroup.Item>
 								</ListGroup>
 							</Row>
 							<Row>
