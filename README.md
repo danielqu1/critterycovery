@@ -37,6 +37,9 @@ William Crawford
 **Phase 3:**
 Brian Wang
 
+**Phase 4:**
+Sahithi Golkonda
+
 ---
 
 ### Time Completion (hours):
@@ -92,6 +95,15 @@ Brian Wang | 40 | 50
 ### Pipelines 
 
 [https://gitlab.com/cs373-group16/critterycovery/-/pipelines](https://gitlab.com/cs373-group16/critterycovery/-/pipelines)
+
+---
+
+### D3 Visualizations 
+
+[https://observablehq.com/@sahithi-golkonda/endangered-species-by-order](https://observablehq.com/@sahithi-golkonda/endangered-species-by-order)
+[https://observablehq.com/@sahithi-golkonda/countries-distribution](https://observablehq.com/@sahithi-golkonda/countries-distribution)
+[https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart](https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart)
+[https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas)
 
 ---
 ### Comments 
