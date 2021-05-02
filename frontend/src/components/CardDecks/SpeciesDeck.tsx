@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
@@ -33,8 +33,8 @@ function SpeciesDeck(props: any)  {
 		data: props.species,
 	});
 
-	useCallback(sort, [filteredData, sortState])
-	useCallback(filter, [sortedData, nameFilter, classFilter, orderFilter, familyFilter])
+	useEffect(()=>sort(), [filteredData, sortState])
+	useEffect(()=>filter(), [sortedData, nameFilter, classFilter, orderFilter, familyFilter])
 
 	const speciesCards = [];
 	for (let i = startingCard; i < Math.min(startingCard + maxCardsShown, finalData.length); i++) {
@@ -51,30 +51,31 @@ function SpeciesDeck(props: any)  {
 	}
 
 	function sort(){
+		let tempArray = filteredData.slice()
 		switch(sortState) {
 			case 'Name(Asc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (((a.common_name ? a.common_name : a.scientific_name).localeCompare(b.common_name ? b.common_name : b.scientific_name)))))
 				break;
 			case 'Name(Desc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (((b.common_name ? b.common_name : b.scientific_name).localeCompare(a.common_name ? a.common_name : a.scientific_name)))))
 				break;
 			case 'Class(Asc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a._class.localeCompare(b._class))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (a._class.localeCompare(b._class))))
 				break;
 			case 'Class(Desc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b._class.localeCompare(a._class))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (b._class.localeCompare(a._class))))
 				break;
 			case 'Order(Asc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a._order.localeCompare(b._order))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (a._order.localeCompare(b._order))))
 				break;
 			case 'Order(Desc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b._order.localeCompare(a._order))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (b._order.localeCompare(a._order))))
 				break;
 			case 'Family(Asc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (a.family.localeCompare(b.family))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (a.family.localeCompare(b.family))))
 				break;
 			case 'Family(Desc)':
-				setSortedData(filteredData.sort((a:speciesInterface, b:speciesInterface) => (b.family.localeCompare(a.family))))
+				setSortedData(tempArray.sort((a:speciesInterface, b:speciesInterface) => (b.family.localeCompare(a.family))))
 				break;
 			default:
 			  // code block
