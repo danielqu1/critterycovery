@@ -4,6 +4,7 @@ import { useParams, useHistory, useLocation } from 'react-router-dom';
 import HabitatTable from '../components/Tables/HabitatTable';
 import HabitatModal from '../components/Modal/HabitatModal';
 import Loading from './Loading';
+import NoDATA from './NoDATA';
 import axios from 'axios';
 import { Input } from 'antd'
 
@@ -19,6 +20,7 @@ function Habitats(props : any) {
 	const {id} = useParams<{ id: string }>();
 	const [habitats, setHabitats] = useState(new Array<habitat>());
 	const [isLoading, setLoading] = useState(true);
+	const [noData, setNoData] = useState(false);
 	const [modalShow, setModalShow] = useState(false);
 	const [habitat, setHabitat] = useState(habitats[0])
 	const [searchVal, setSearchVal] = useState("");
@@ -45,19 +47,23 @@ function Habitats(props : any) {
 							history.push("/habitats/" + id)
 						} 
 					}).catch(err => {
-						//DO NOTHING
+						setNoData(true);
 					})
 				}
 				if (query){
 					setSearchVal(query)
 				}
 				setLoading(false);
+			}).catch(err => {
+				setNoData(true);
 			})
 	// eslint-disable-next-line
 	}, []);
 	
-	
-	if (isLoading) {
+	if (noData){
+		return NoDATA();
+	}
+	else if (isLoading) {
 		return Loading();
 	}
 

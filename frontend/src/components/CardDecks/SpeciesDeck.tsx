@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useTableSearch } from '../../hooks/useTableSearch';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
@@ -33,7 +33,9 @@ function SpeciesDeck(props: any)  {
 		data: props.species,
 	});
 
+	// eslint-disable-next-line
 	useEffect(()=>sort(), [filteredData, sortState])
+	// eslint-disable-next-line
 	useEffect(()=>filter(), [sortedData, nameFilter, classFilter, orderFilter, familyFilter])
 
 	const speciesCards = [];

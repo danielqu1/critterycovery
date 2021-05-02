@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import SearchHandler from '../components/Search/SearchHandler'
 import {Container, Row} from 'react-bootstrap'
 import Loading from './Loading';
+import NoDATA from './NoDATA';
 import axios from 'axios'
 
 import { Input } from 'antd'
@@ -17,6 +18,7 @@ function useQuery() {
 function SearchPage(){
 	let query = useQuery().get('q')
 	const [isLoading, setLoading] = useState(true);
+	const [noData, setNoData] = useState(false);
 	const [searchVal, setSearchVal] = useState(query?query:'')
 	
 	const [species, setSpecies] = useState([]);
@@ -26,17 +28,26 @@ function SearchPage(){
 	useEffect(() => {
 		axios.get("/api/species").then((response) => {
 			setSpecies(response.data.species);   
+		}).catch(err => {
+			setNoData(true);
 		})
 		axios.get("/api/habitats").then((response) => {
 			setHabitats(response.data.habitats);   
+		}).catch(err => {
+			setNoData(true);
 		})
 		axios.get("/api/countries").then((response) => {
 			setCountries(response.data.countries);   
+		}).catch(err => {
+			setNoData(true);
 		})
 		setLoading(false);
 	}, []);
 
-	if (isLoading) {
+	if (noData){
+		return NoDATA();
+	}
+	else if (isLoading) {
 		return Loading();
 	}
 

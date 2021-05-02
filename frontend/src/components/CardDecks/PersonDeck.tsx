@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import NoDATA from '../../pages/NoDATA';
 import { Col } from 'react-bootstrap';
 import PersonCard from '../Cards/PersonCard'
 
@@ -41,12 +42,19 @@ function getStats(stats: PersonStats[], shortened: string): PersonStats {
 
 function PersonDeck()  { 
 	const [stats, setStats] = useState(new Array<PersonStats>());
+	const [noData, setNoData] = useState(false);
 	useEffect(() => {
 		axios.get<GitlabData>("/api/gitlabstats").then((response) => {
 		  setStats(response.data.stats);
+		}).catch(err => {
+			setNoData(true);
 		})
 	}, []);
 	
+	if (noData){
+		return NoDATA();
+	}
+
 	let people: Person[] = [
 	{
 		name: "Shaharyar Lakhani",

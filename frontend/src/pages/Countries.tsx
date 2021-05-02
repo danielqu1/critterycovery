@@ -5,6 +5,7 @@ import CountryTable from '../components/Tables/CountryTable';
 import CountryModal from '../components/Modal/CountryModal';
 import { Input } from 'antd'
 import Loading from './Loading';
+import NoDATA from './NoDATA';
 import axios from 'axios'
 
 import country from '../interfaces/country'
@@ -19,6 +20,7 @@ function Countries(props: any) {
 	const { id } = useParams<{ id: string }>();
 	const [countries, setCountries] = useState(new Array<country>());
 	const [isLoading, setLoading] = useState(true);
+	const [noData, setNoData] = useState(false);
 	const [modalShow, setModalShow] = useState(false);
 	const [country, setCountry] = useState(countries[0])
 	const [searchVal, setSearchVal] = useState("");
@@ -45,7 +47,7 @@ function Countries(props: any) {
 						history.push("/countries/" + id)
 					}
 				}).catch(err => {
-					//DO NOTHING
+					setNoData(true);
 				})
 			}
 
@@ -53,12 +55,16 @@ function Countries(props: any) {
 				setSearchVal(query)
 			}
 			setLoading(false);
+		}).catch(err => {
+			setNoData(true);
 		})
 	// eslint-disable-next-line
 	}, []);
 
-
-	if (isLoading) {
+	if (noData){
+		return NoDATA();
+	}
+	else if (isLoading) {
 		return Loading();
 	}
 

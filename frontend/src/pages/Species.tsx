@@ -3,7 +3,9 @@ import { Container, Row } from 'react-bootstrap';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import SpeciesModal from '../components/Modal/SpeciesModal';
 import SpeciesDeck from '../components/CardDecks/SpeciesDeck';
+
 import Loading from './Loading';
+import NoDATA from './NoDATA';
 import axios from 'axios';
 
 import speciesInterface from '../interfaces/species'
@@ -16,6 +18,7 @@ function Species() {
 	const { id } = useParams<{ id: string }>();
 	const [animals, setAnimals] = useState(new Array<speciesInterface>());
 	const [isLoading, setLoading] = useState(true);
+	const [noData, setNoData] = useState(false);
 	const [modalShow, setModalShow] = useState(false);
 	const [species, setSpecies] = useState(animals[0])
 
@@ -44,16 +47,20 @@ function Species() {
 							setSpecies(response.data.species)
 						} 
 					}).catch(err => {
-						//DO NOTHING
+						setNoData(true);
 					})
 				}
 
 				setLoading(false);
+		}).catch(err => {
+			setNoData(true);
 		// eslint-disable-next-line
 		})}, []);
 	
-	
-	if (isLoading) {
+	if (noData){
+		return NoDATA();
+	}
+	else if (isLoading) {
 		return Loading();
 	}
 
