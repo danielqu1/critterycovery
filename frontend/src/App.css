@@ -39,7 +39,7 @@
 
 .font-big {
   color: #00B74A;
-  font-size: 36pt;
+  font-size: 56pt;
   font-weight: bolder;
   text-shadow: .15rem .15rem grey;
   text-rendering: optimizeLegibility !important;
@@ -49,7 +49,7 @@
 .font-medium-big {
   /* color: #00dd59; */
   color: #017931;
-  font-size: 18pt;
+  font-size: 24pt;
 }
 
 .hoverable{
@@ -94,12 +94,22 @@
   }
 }
 
-/* @media only screen and (max-width: 800px) {
+@media only screen and (max-width: 800px) {
   .font-big {
-    font-size: 5vw;
+    font-size: 48pt;
   }
   
   .font-medium-big {
-    font-size: 2.5vw;
+    font-size: 18pt;
   }
-} */
+}
+
+@media only screen and (max-width: 600px) {
+  .font-big {
+    font-size: 36pt;
+  }
+  
+  .font-medium-big {
+    font-size: 12pt;
+  }
+}
