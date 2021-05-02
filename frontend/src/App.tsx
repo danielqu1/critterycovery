@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css'; 
-import NavbarMain from './components/Navbar/Navbar'; 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
+
+import NavbarMain from './components/Navbar/Navbar'; 
 import Home from './pages/Home';
 import About from './pages/About';
 import Species from './pages/Species';
@@ -10,10 +10,15 @@ import Countries from './pages/Countries';
 import Support from './pages/Support';
 import Search from './pages/Search';
 import Error from './pages/Error';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
 
-import 'antd/dist/antd.css'
+import './App.css';
+import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Created in index.tsx. Here, we place a Router and the Navigation Bar 
+ * as links to the other pages of the website. 
+ */
 
 function App() {
 

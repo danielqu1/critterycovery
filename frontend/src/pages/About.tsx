@@ -7,6 +7,13 @@ import AboutLinks from '../data/AboutLinks'
 
 import { Container, Row } from 'react-bootstrap';
 
+/* Rendering for critterycovery.me/about page. 
+ * We placed our info and member information in PersonDeck
+ * We then place our Tools used in ToolDeck
+ * We place the APIs we used beneath that
+ * We then place the information about our GitLab and Postman below that
+ */
+
 function About() { 
 
 	const description: string = "This site is meant to educate people about different endangered species and address the problem" +
