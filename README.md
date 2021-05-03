@@ -110,7 +110,8 @@ Brian Wang | 40 | 50
 **Around ATX:**
 
 [https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart](https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart) \
-[https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin](https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin)
+[https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin](https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin) \
+[https://observablehq.com/@sahithi-golkonda/diatnce-to-city-center-vs-price-for-austin-hotels](https://observablehq.com/@sahithi-golkonda/diatnce-to-city-center-vs-price-for-austin-hotels)
 
 ---
 ### Comments 
