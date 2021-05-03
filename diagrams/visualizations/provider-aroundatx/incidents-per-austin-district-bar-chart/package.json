@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/incidents-per-austin-district-bar-chart",
+  "main": "be4bddda0081e22a@275.js",
+  "version": "275.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

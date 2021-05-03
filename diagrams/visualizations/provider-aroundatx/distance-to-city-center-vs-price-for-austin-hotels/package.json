@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/distance-to-city-center-vs-price-for-austin-hotels",
+  "main": "8aa92e1a8ed423e3@265.js",
+  "version": "265.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/distance-to-city-center-vs-price-for-austin-hotels",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
