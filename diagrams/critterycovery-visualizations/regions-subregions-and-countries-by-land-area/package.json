@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/regions-subregions-and-countries-by-land-area",
+  "main": "14c382036e47af60@263.js",
+  "version": "263.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}
