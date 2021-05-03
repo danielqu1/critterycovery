@@ -100,7 +100,7 @@ Brian Wang | 40 | 50
 
 ### D3 Visualizations 
 
-[https://observablehq.com/@sahithi-golkonda/endangered-species-by-order](https://observablehq.com/@sahithi-golkonda/endangered-species-by-order) \
+[https://observablehq.com/@sahithi-golkonda/endangered-species-by-class](https://observablehq.com/@sahithi-golkonda/endangered-species-by-class) \
 [https://observablehq.com/@sahithi-golkonda/countries-distribution](https://observablehq.com/@sahithi-golkonda/countries-distribution) \
 [https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart](https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart) \
 [https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas)
