@@ -98,12 +98,20 @@ Brian Wang | 40 | 50
 
 ---
 
-### D3 Visualizations 
+### D3 Visualizations
 
-[https://observablehq.com/@sahithi-golkonda/endangered-species-by-class](https://observablehq.com/@sahithi-golkonda/endangered-species-by-class) \
+[https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area](https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area) \
+[https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area-zoomable](https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area-zoomable) \
 [https://observablehq.com/@sahithi-golkonda/countries-distribution](https://observablehq.com/@sahithi-golkonda/countries-distribution) \
+[https://observablehq.com/@sahithi-golkonda/endangered-species-by-class](https://observablehq.com/@sahithi-golkonda/endangered-species-by-class) \
 [https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart](https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart) \
-[https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas)
+[https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas) 
+
+**Around ATX:**
+
+[https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart](https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart) \
+[https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin](https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin) \
+[https://observablehq.com/@sahithi-golkonda/diatnce-to-city-center-vs-price-for-austin-hotels](https://observablehq.com/@sahithi-golkonda/diatnce-to-city-center-vs-price-for-austin-hotels)
 
 ---
 ### Comments 

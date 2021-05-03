@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/endangered-species-by-class",
+  "main": "48ecac54ac9657ea@495.js",
+  "version": "495.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/endangered-species-by-class",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

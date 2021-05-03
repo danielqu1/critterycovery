@@ -1,6 +1,6 @@
-# Countries Distribution
+# Regions, Subregions, and Countries by Land Area
 
-https://observablehq.com/d/aaf27e84bbc72459@56
+https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area@263
 
 View this notebook in your browser by running a web server in this folder. For
 example:
@@ -14,14 +14,14 @@ import this module directly into your application. To npm install:
 
 ~~~sh
 npm install @observablehq/runtime@4
-npm install https://api.observablehq.com/d/aaf27e84bbc72459.tgz?v=3
+npm install https://api.observablehq.com/d/14c382036e47af60.tgz?v=3
 ~~~
 
 Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "aaf27e84bbc72459";
+import define from "@sahithi-golkonda/regions-subregions-and-countries-by-land-area";
 ~~~
 
 To log the value of the cell named “foo”:

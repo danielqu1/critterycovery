@@ -1,6 +1,6 @@
-# Habitats Per Country Bar Chart
+# Countries Distribution
 
-https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart@270
+https://observablehq.com/@sahithi-golkonda/countries-distribution@56
 
 View this notebook in your browser by running a web server in this folder. For
 example:
@@ -14,14 +14,14 @@ import this module directly into your application. To npm install:
 
 ~~~sh
 npm install @observablehq/runtime@4
-npm install https://api.observablehq.com/d/09e841c98e3b819a.tgz?v=3
+npm install https://api.observablehq.com/d/aaf27e84bbc72459.tgz?v=3
 ~~~
 
 Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "@sahithi-golkonda/habitats-per-country-bar-chart";
+import define from "@sahithi-golkonda/countries-distribution";
 ~~~
 
 To log the value of the cell named “foo”:

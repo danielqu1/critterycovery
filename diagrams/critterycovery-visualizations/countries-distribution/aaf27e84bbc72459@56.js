@@ -1,3 +1,4 @@
+// https://observablehq.com/@sahithi-golkonda/countries-distribution@56
 export default function define(runtime, observer) {
   const main = runtime.module();
   const fileAttachments = new Map([["land-50m.json",new URL("./files/7b6ff41e373e01d7b5b95773e297d40625bd9ccc1936a023a066a7edd8da5eaadec4ab7a565303539e41e001f2e6730f3ee1e259fae4f19dc59e8d6b2f2ec22b",import.meta.url)],["countries.json",new URL("./files/a87cd6e000d37fe81d928482b7418e2595c395045301f410c98acc4d0acbb1ffcda29e8773aa7a8c927d32b18322ec720e6fe57f0e94167d914e3adf3a2c23c7",import.meta.url)]]);
