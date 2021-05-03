@@ -105,10 +105,12 @@ Brian Wang | 40 | 50
 [https://observablehq.com/@sahithi-golkonda/countries-distribution](https://observablehq.com/@sahithi-golkonda/countries-distribution) \
 [https://observablehq.com/@sahithi-golkonda/endangered-species-by-class](https://observablehq.com/@sahithi-golkonda/endangered-species-by-class) \
 [https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart](https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart) \
-[https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas) \
+[https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas](https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas) 
 
 **Around ATX:**
-[https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart](https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart)
+
+[https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart](https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart) \
+[https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin](https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin)
 
 ---
 ### Comments 
