@@ -1,6 +1,6 @@
 # Habitats Per Country Bar Chart
 
-https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart@269
+https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart@270
 
 View this notebook in your browser by running a web server in this folder. For
 example:

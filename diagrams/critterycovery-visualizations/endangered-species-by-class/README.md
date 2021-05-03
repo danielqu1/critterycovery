@@ -1,6 +1,6 @@
-# Endangered Species by Order
+# Endangered Species by Class
 
-https://observablehq.com/@sahithi-golkonda/endangered-species-by-order@491
+https://observablehq.com/@sahithi-golkonda/endangered-species-by-class@495
 
 View this notebook in your browser by running a web server in this folder. For
 example:
@@ -21,7 +21,7 @@ Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "@sahithi-golkonda/endangered-species-by-order";
+import define from "@sahithi-golkonda/endangered-species-by-class";
 ~~~
 
 To log the value of the cell named “foo”:

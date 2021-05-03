@@ -1,7 +1,7 @@
-// https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas@312
+// https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas@335
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["unemployment-x.csv",new URL("./files/8a6057f29caa4e010854bfc31984511e074ff9042ec2a99f30924984821414fbaeb75e59654e9303db359dfa0c1052534691dac86017c4c2f992d23b874f9b6e",import.meta.url)],["habitats.json",new URL("./files/e897851db7e2cbaf5e296cd7621ff45c3e13500caf5e9135131f48571e22425edcf65f0659fb5165a964a628987c0de2df345896bc74d159bca76adff4cefde7",import.meta.url)]]);
+  const fileAttachments = new Map([["habitats.json",new URL("./files/e897851db7e2cbaf5e296cd7621ff45c3e13500caf5e9135131f48571e22425edcf65f0659fb5165a964a628987c0de2df345896bc74d159bca76adff4cefde7",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Histogram of Terrestrial Areas
@@ -32,14 +32,11 @@ This chart shows the distribution of terrestrial area of the habitats in the cri
   return svg.node();
 }
 );
-  main.variable(observer("data1")).define("data1", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
-Object.assign(d3.csvParse(await FileAttachment("unemployment-x.csv").text(), ({rate}) => +rate), {x: "Unemployment (%)", y: "Counties"})
-)});
   main.variable(observer("data_temp")).define("data_temp", ["FileAttachment"], async function(FileAttachment){return(
 Object.assign(await FileAttachment("habitats.json").json(), ({reported_terrestrial_area}) => +reported_terrestrial_area, {x: "Terrestrial Area", y: "Counties"})
 )});
   main.variable(observer("data")).define("data", ["data_temp"], function(data_temp){return(
-data_temp.map(function(d) { return d.reported_terrestrial_area; })
+data_temp.map(function(d) { return d.reported_terrestrial_area})
 )});
   main.variable(observer("bins")).define("bins", ["d3","data"], function(d3,data){return(
 d3.bin().thresholds(40)(data)

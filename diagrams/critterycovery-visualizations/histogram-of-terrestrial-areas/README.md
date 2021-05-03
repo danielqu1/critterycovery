@@ -1,6 +1,6 @@
 # Histogram of Terrestrial Areas
 
-https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas@312
+https://observablehq.com/@sahithi-golkonda/histogram-of-terrestrial-areas@335
 
 View this notebook in your browser by running a web server in this folder. For
 example:

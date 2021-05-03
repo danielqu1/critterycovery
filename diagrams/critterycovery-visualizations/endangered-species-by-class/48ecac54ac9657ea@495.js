@@ -1,12 +1,12 @@
-// https://observablehq.com/@sahithi-golkonda/endangered-species-by-order@491
+// https://observablehq.com/@sahithi-golkonda/endangered-species-by-class@495
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["population-by-age.csv",new URL("./files/bee673b386dd058ab8d2cf353acbedc6aa01ebd1e6f63e2a9ab1b4273c7e6efd1eeea526345e4be7f0012d5db3ec743ef39ad9e6a043c196670bf9658cb02e79",import.meta.url)],["species.json",new URL("./files/f10653dfea62a726ae20969d0f1967c76876626230ac4df9b891ba55dde8d2d5b675bf73b4c5127997c87a9599492cc9246130fbeb597088a82339352f512721",import.meta.url)]]);
+  const fileAttachments = new Map([["species.json",new URL("./files/f10653dfea62a726ae20969d0f1967c76876626230ac4df9b891ba55dde8d2d5b675bf73b4c5127997c87a9599492cc9246130fbeb597088a82339352f512721",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
-md`# Endangered Species by Order
+md`# Endangered Species by Class
 
-This chart shows the breakdown of endangered species in the critterycovery database by species order. Data: [critterycovery](http://critterycovery.me/api/species)`
+This chart shows the breakdown of endangered species in the critterycovery database by species class. Data: [critterycovery](http://critterycovery.me/api/species)`
 )});
   main.variable(observer("chart")).define("chart", ["pie","data","d3","width","height","color","arc","arcLabel"], function(pie,data,d3,width,height,color,arc,arcLabel)
 {
@@ -51,9 +51,6 @@ This chart shows the breakdown of endangered species in the critterycovery datab
   return svg.node();
 }
 );
-  main.variable(observer("data1")).define("data1", ["d3","FileAttachment"], async function(d3,FileAttachment){return(
-d3.csvParse(await FileAttachment("population-by-age.csv").text(), d3.autoType)
-)});
   main.variable(observer("frequency")).define("frequency", function(){return(
 function frequency(input){ 
   //find frequency of each 

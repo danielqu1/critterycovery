@@ -1,4 +1,4 @@
-// https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart@269
+// https://observablehq.com/@sahithi-golkonda/habitats-per-country-bar-chart@270
 export default function define(runtime, observer) {
   const main = runtime.module();
   const fileAttachments = new Map([["habitats.json",new URL("./files/e897851db7e2cbaf5e296cd7621ff45c3e13500caf5e9135131f48571e22425edcf65f0659fb5165a964a628987c0de2df345896bc74d159bca76adff4cefde7",import.meta.url)]]);
@@ -70,7 +70,8 @@ function frequency(input){
       value: obj[key]
     });
   }
-  return(array)
+  var sorted = array.sort((a, b) => ((a.name < b.name) ? -1 : ((b.name < a.name) ? 1 : 0)));
+  return(sorted)
 }
 )});
   main.variable(observer("all_data")).define("all_data", ["FileAttachment"], function(FileAttachment){return(
