@@ -28,6 +28,7 @@ type Person = {
 	aboutInfo: string;
 	role: string;
 	photo: string;
+	linkedin: string | null;
   }
 
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
@@ -65,7 +66,8 @@ function PersonDeck()  {
 		" far to potentially create a startup! His hobbies include playing basketball," +
 		" going on hikes, singing, and cooking.",
 		role: "Backend Lead and Dev",
-		photo: shaharyar
+		photo: shaharyar,
+		linkedin: 'https://www.linkedin.com/in/shaharyar-lakhani'
 	},
 	{
 		name: "Brian Wang",
@@ -74,7 +76,8 @@ function PersonDeck()  {
 		" SWE this semester, and he can't wait to see the website up and running!" +
 		" His hobbies include reading and doing jigsaw puzzles.",
 		role: "Test Master and Frontend Dev",
-		photo: brian
+		photo: brian,
+		linkedin: 'https://www.linkedin.com/in/brian-wang-451205170'
 	},
 	{
 		name: "Daniel Qu",
@@ -83,7 +86,8 @@ function PersonDeck()  {
 		" fairly new to web development, but is very eager to learn. He recently adopted a" +
 		" kitten named Kiki! In his free time he enjoys playing chess and Sudoku.",
 		role: "Documentation Expert and Dev",
-		photo: daniel
+		photo: daniel,
+		linkedin: 'https://www.linkedin.com/in/daniel-qu-9a11951a1'
 	},
 	{
 		name: "William Crawford",
@@ -93,7 +97,8 @@ function PersonDeck()  {
 		" startup hopeful and wants to learn something new everyday. In his free " +
 		"time, he likes to swim and play building or strategy based video games.",
 		role: "Frontend Lead and Designer",
-		photo: will
+		photo: will,
+		linkedin: 'https://www.linkedin.com/in/wctech'
 	},
 	{
 		name: "Sahithi Golkonda",
@@ -103,14 +108,16 @@ function PersonDeck()  {
 		" Officer for the Women in Computer Science organization at UT. In her free " +
 		"time, she enjoys running, hiking, and rowing.",
 		role: "Data Guru and API Manager",
-		photo: sahithi
+		photo: sahithi,
+		linkedin: 'https://www.linkedin.com/in/sahithi-golkonda'
 	},
 	{
 		name: "Total",
 		stats: getStats(stats, "total"),
 		aboutInfo: "All",
 		role: "All commits, issues, and unittests",
-		photo: savetheanimals
+		photo: savetheanimals,
+		linkedin: null
 	}
 	];
 
