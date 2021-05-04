@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+/* 	Creates a deck of person cards displayed on the about page.
+	each card displays information about a developer or the summary */
+import { useState, useEffect } from 'react';
 import axios from 'axios'; 
-import { Container, Row, Col } from 'react-bootstrap';
+import NoDATA from '../../pages/NoDATA';
+import { Col } from 'react-bootstrap';
 import PersonCard from '../Cards/PersonCard'
 
 import brian from "../../images/ourPhotos/brian.jpg"
@@ -27,26 +30,37 @@ type Person = {
 	aboutInfo: string;
 	role: string;
 	photo: string;
+	linkedin: string | null;
   }
 
+// Unpacks statistics for each person
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
-    for (let i = 0; i < stats.length; i++) {
-	    if (stats[i].name === shortened) {
-	    return stats[i];
-	    }
-    }
-    return {name: shortened, commits: 0, issues: 0, unittests: 0};
+	for (let i = 0; i < stats.length; i++) {
+		if (stats[i].name === shortened) {
+		return stats[i];
+		}
+	}
+	return {name: shortened, commits: 0, issues: 0, unittests: 0};
 }
 
 
 function PersonDeck()  { 
 	const [stats, setStats] = useState(new Array<PersonStats>());
-	React.useEffect(() => {
+	const [noData, setNoData] = useState(false);
+	//Pulls commits, unittests, and issues from the api
+	useEffect(() => {
 		axios.get<GitlabData>("/api/gitlabstats").then((response) => {
 		  setStats(response.data.stats);
+		}).catch(err => {
+			setNoData(true);
 		})
 	}, []);
 	
+	if (noData){
+		return NoDATA();
+	}
+
+	//Array of people, add to this with the same format to add a developer
 	let people: Person[] = [
 	{
 		name: "Shaharyar Lakhani",
@@ -56,8 +70,9 @@ function PersonDeck()  {
 		" this project, and is excited to use his skills from this class so" +
 		" far to potentially create a startup! His hobbies include playing basketball," +
 		" going on hikes, singing, and cooking.",
-	    role: "Backend Lead and Dev",
-		photo: shaharyar
+		role: "Backend Lead and Dev",
+		photo: shaharyar,
+		linkedin: 'https://www.linkedin.com/in/shaharyar-lakhani'
 	},
 	{
 		name: "Brian Wang",
@@ -66,7 +81,8 @@ function PersonDeck()  {
 		" SWE this semester, and he can't wait to see the website up and running!" +
 		" His hobbies include reading and doing jigsaw puzzles.",
 		role: "Test Master and Frontend Dev",
-		photo: brian
+		photo: brian,
+		linkedin: 'https://www.linkedin.com/in/brian-wang-451205170'
 	},
 	{
 		name: "Daniel Qu",
@@ -75,7 +91,8 @@ function PersonDeck()  {
 		" fairly new to web development, but is very eager to learn. He recently adopted a" +
 		" kitten named Kiki! In his free time he enjoys playing chess and Sudoku.",
 		role: "Documentation Expert and Dev",
-		photo: daniel
+		photo: daniel,
+		linkedin: 'https://www.linkedin.com/in/daniel-qu-9a11951a1'
 	},
 	{
 		name: "William Crawford",
@@ -85,7 +102,8 @@ function PersonDeck()  {
 		" startup hopeful and wants to learn something new everyday. In his free " +
 		"time, he likes to swim and play building or strategy based video games.",
 		role: "Frontend Lead and Designer",
-		photo: will
+		photo: will,
+		linkedin: 'https://www.linkedin.com/in/wctech'
 	},
 	{
 		name: "Sahithi Golkonda",
@@ -95,27 +113,29 @@ function PersonDeck()  {
 		" Officer for the Women in Computer Science organization at UT. In her free " +
 		"time, she enjoys running, hiking, and rowing.",
 		role: "Data Guru and API Manager",
-		photo: sahithi
+		photo: sahithi,
+		linkedin: 'https://www.linkedin.com/in/sahithi-golkonda'
 	},
 	{
 		name: "Total",
 		stats: getStats(stats, "total"),
 		aboutInfo: "All",
-        role: "All commits, issues, and unittests",
-        photo: savetheanimals
+		role: "All commits, issues, and unittests",
+		photo: savetheanimals,
+		linkedin: null
 	}
 	];
 
 	const cards = []
 	for(let i = 0; i < people.length; i++){
 		cards.push(<Col className="container-fluid mt-4"><PersonCard person={people[i]}></PersonCard></Col>)
-    }
+	}
 
-    return (
-        <>
-        {cards}
-        </>
-    ); 
+	return (
+		<>
+		{cards}
+		</>
+	); 
 }; 
   
 export default PersonDeck;

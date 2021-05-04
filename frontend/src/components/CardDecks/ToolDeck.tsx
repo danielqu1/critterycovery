@@ -1,8 +1,8 @@
-import React from 'react';
+// Creates a deck of tools from an array of tools given in props.tools
 import { Col } from 'react-bootstrap';
 import ToolCard from '../Cards/ToolCard'
 
-// must be consisten with props.tool in ToolCard
+// must be consistent with props.tool in ToolCard
 type Tool = {
 	name: string;
 	text: string;
@@ -10,8 +10,12 @@ type Tool = {
 	link: string;
 }
 
+interface ToolProps{
+	tools: Tool[]
+}
+
  // list of currently used tools
-function ToolDeck(props : any) {
+function ToolDeck(props : ToolProps) {
 	const cards = [];
 	for (let i = 0; i < props.tools.length; i++) {
 		cards.push(<Col style={{paddingLeft:0, paddingRight:0}}><ToolCard tool={props.tools[i]} style={{}}></ToolCard></Col>);

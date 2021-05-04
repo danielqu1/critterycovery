@@ -30,6 +30,7 @@
 
 .home-title {
   position: absolute;
+  width: 100px;
   top: calc(30vw * .5625);
   left: 0;
   margin-left: 5vw;
@@ -38,22 +39,17 @@
 
 .font-big {
   color: #00B74A;
-  font-size: 5vw;
+  font-size: 56pt;
   font-weight: bolder;
   text-shadow: .15rem .15rem grey;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  padding-bottom: 0;
 }
-
-
 
 .font-medium-big {
   /* color: #00dd59; */
   color: #017931;
-  font-size: 1.9vw;
-  padding-top: 0;
-  padding-bottom: 0;
+  font-size: 24pt;
 }
 
 .hoverable{
@@ -88,6 +84,20 @@
   
 }
 
+.spacing{
+  text-align: center;
+  padding-top: 2%;
+  margin-top: 3%;
+}
+
+.border-top{
+  border-top: '.25rem dotted grey';
+}
+
+.border-bottom{
+  border-bottom: '.25rem dotted grey';
+}
+
 /* Added for to-top button*/
 @keyframes fadeIn {
   from {
@@ -95,5 +105,25 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .font-big {
+    font-size: 48pt;
+  }
+  
+  .font-medium-big {
+    font-size: 18pt;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .font-big {
+    font-size: 36pt;
+  }
+  
+  .font-medium-big {
+    font-size: 12pt;
   }
 }

@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import PersonDeck from '../components/CardDecks/PersonDeck'
 import ToolDeck from '../components/CardDecks/ToolDeck'
 
@@ -7,7 +5,14 @@ import Tools from '../data/Tools'
 import Apis from '../data/Apis'
 import AboutLinks from '../data/AboutLinks'
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
+
+/* Rendering for critterycovery.me/about page. 
+ * We placed our info and member information in PersonDeck
+ * We then place our Tools used in ToolDeck
+ * We place the APIs we used beneath that
+ * We then place the information about our GitLab and Postman below that
+ */
 
 function About() { 
 
@@ -20,54 +25,48 @@ function About() {
 	" used here can come of real help to different organizations that aim to protect animals."; 
 
 	return (
-    <Container fluid style={{ width: '70%' }}>
-      <Row>
-        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
-          <h1 style={{fontWeight:'bolder'}}>About Us</h1>
-          <p style={{fontSize: '18pt'}}>{ description }</p>
-        </Container>
-        
-      </Row>
-      <Row xs={1} sm={2} md={2} lg={3}>
-        {<PersonDeck />}
-      </Row>
-      <Row >
-        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
-          <h1 style={{fontWeight:'bolder'}}>Tools</h1>
-        </Container>
-      
-      </Row>
-      <Row xs={1} sm={1} md={2} lg={3} xl={4}>
-          {<ToolDeck tools={Tools()} />}
-      </Row>
-      <Row>
-        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey'}}>
-          <h1 style={{fontWeight:'bolder'}}>Data</h1>
-          <p style={{fontSize: '18pt'}}>{ compilation }</p>
-        </Container>
-      </Row>
-      <Row >
-        <Container style={{textAlign:'center', paddingTop: '2%'}}>
-          <h1 style={{fontWeight:'bolder'}}>APIs</h1>
-        </Container>
-      </Row>
-      <Row xs={1} sm={1} md={2} lg={3} xl={4}>
-          {<ToolDeck tools={Apis()} />}
-      </Row>
-      <Row >
-        <Container style={{textAlign:'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey'}}>
-          <h1 style={{fontWeight:'bolder'}}>Links</h1>
-        </Container>
-      </Row>
-      <Row className="justify-content-md-center" style={{paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey'}} xs={1} lg={2}>
-        <Container >
-          <Row className="justify-content-md-center" xs={1} md={2}>
-            {<ToolDeck tools={AboutLinks()} />}
-          </Row>
-        </Container>
-      </Row>
-    </Container>
-  ); 
+		<Container fluid style={{ width: '70%' }}>
+			<Row>
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey' }}>
+					<h1 style={{ fontWeight: 'bolder' }}>About Us</h1>
+					<p style={{ fontSize: '18pt' }}>{description}</p>
+				</Container>
+			</Row>
+			<Row xs={1} sm={2} md={2} lg={3}>
+				{<PersonDeck />}
+			</Row>
+			<Row >
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey' }}>
+					<h1 style={{ fontWeight: 'bolder' }}>Tools</h1>
+				</Container>
+			</Row>
+			<Row xs={1} sm={1} md={2} lg={3} xl={4}>
+				{<ToolDeck tools={Tools()} />}
+			</Row>
+			<Row>
+				<Container className='spacing' style={{borderTop:'.25rem dotted grey', borderBottom:'.25rem dotted grey'}}>
+					<h1 style={{ fontWeight: 'bolder' }}>Data</h1>
+					<p style={{ fontSize: '18pt' }}>{compilation}</p>
+				</Container>
+			</Row>
+			<Row>
+				<Container style={{ textAlign: 'center', paddingTop: '2%' }}>
+					<h1 style={{ fontWeight: 'bolder' }}>APIs</h1>
+				</Container>
+			</Row>
+			<Row xs={1} sm={1} md={2} lg={3} xl={4}>
+				{<ToolDeck tools={Apis()} />}
+			</Row>
+			<Row >
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey' }}>
+					<h1 style={{ fontWeight: 'bolder' }}>Links</h1>
+				</Container>
+			</Row>
+			<Row className="justify-content-md-center" style={{ paddingBottom: '2%', marginBottom: '3%', borderBottom: '.25rem dotted grey' }} xs={1} sm={1} md={2} lg={3} xl={4}>
+        {<ToolDeck tools={AboutLinks()} />}
+			</Row>
+		</Container>
+	);
 }; 
-  
+
 export default About;

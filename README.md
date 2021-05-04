@@ -37,6 +37,9 @@ William Crawford
 **Phase 3:**
 Brian Wang
 
+**Phase 4:**
+Sahithi Golkonda
+
 ---
 
 ### Time Completion (hours):
@@ -92,6 +95,18 @@ Brian Wang | 40 | 50
 ### Pipelines 
 
 [https://gitlab.com/cs373-group16/critterycovery/-/pipelines](https://gitlab.com/cs373-group16/critterycovery/-/pipelines)
+
+---
+
+### D3 Visualizations
+
+**Our Visualizations Collection:**
+
+[https://observablehq.com/collection/@sahithi-golkonda/critterycovery-visualizations](https://observablehq.com/collection/@sahithi-golkonda/critterycovery-visualizations) 
+
+**Around ATX Visualizations Collection:**
+
+[https://observablehq.com/collection/@sahithi-golkonda/around-atx-visualizations](https://observablehq.com/collection/@sahithi-golkonda/around-atx-visualizations) 
 
 ---
 ### Comments 

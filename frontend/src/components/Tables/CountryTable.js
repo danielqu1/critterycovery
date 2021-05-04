@@ -1,24 +1,53 @@
-import React from 'react';
-import { Image } from 'react-bootstrap'
-import { Table, Input, Button, Space, Select, Row, Col } from 'antd'
-import 'antd/dist/antd.css'
+// Handles the creation of a table with filters for the country model
+import { useState } from 'react';
+import { Image, Table, Input, Button, Space, Select, Row, Col } from 'antd'
 import Highlighter from 'react-highlight-words';
 import { FilterOutlined, SearchOutlined } from '@ant-design/icons';
 import { useTableSearch } from "../../hooks/useTableSearch";
 
+import loadGIF from '../../images/loading.gif'
+import DefaultImage from '../../data/DefaultImage';
+
 const { Option } = Select;
 
 function CountryTable(props) {
-	const [searchText, setSearchText] = React.useState('');
-	const [searchedColumn, setSearchedColumn] = React.useState('');
-	const [searchedInput, setSearchedInput] = React.useState(null);
-	const [searchedInput2, setSearchedInput2] = React.useState(null);
+	const [searchedInput, setSearchedInput] = useState(null);
+	const [searchedInput2, setSearchedInput2] = useState(null);
 	const { filteredData, loading } = useTableSearch({
 		searchVal: props.searchVal,
 		data: props.countries,
 	});
 	
-	let getColumnSearchProps = (dataIndex) => ({
+	//Set of props added to every column of the table
+	let getColumnProps = (dataIndex) => ({
+		width: '15%',
+		padding: '4% 0',
+		margin: 0,
+		fontSize: '2pt',
+		textWrap: 'word-break',
+		whiteSpace: 'no-wrap',
+		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+		onFilterDropdownVisibleChange: (visible) => {
+			if (visible && searchedInput) {
+				setTimeout(() => searchedInput.select(), 100);
+			}
+		},
+		// Adds highlighting to text
+		render: (text) =>
+			props.searchVal ? (
+			<Highlighter style={{width: '100%'}}
+				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+				searchWords={props.searchVal.split(' ')}
+				autoEscape
+				textToHighlight={text ? text.toString() : ''}
+			/>
+			) : (
+			text
+			),
+	});
+
+	// Props necessary to add generic text dropdown filtering to a column
+	let getFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
 			<Input
@@ -48,36 +77,18 @@ function CountryTable(props) {
 					size="small"
 					onClick={() => {
 						confirm({ closeDropdown: false });
-						setSearchText(selectedKeys[0]);
-						setSearchedColumn(dataIndex);
 					}}>
 				</Button>
 			</Space>
 			</div>
 		),
-		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
 		onFilter: (value, record) =>
 			record[dataIndex]
 			? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
 			: '',
-		onFilterDropdownVisibleChange: (visible) => {
-			if (visible && searchedInput) {
-				setTimeout(() => searchedInput.select(), 100);
-			}
-		},
-		render: (text) =>
-			props.searchVal ? (
-			<Highlighter
-				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={props.searchVal.split(' ')}
-				autoEscape
-				textToHighlight={text ? text.toString() : ''}
-			/>
-			) : (
-			text
-			),
-	});
-
+	})
+	
+	// Props necessary for adding dropdown number filtering to a column
 	let getNumberFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
@@ -97,7 +108,7 @@ function CountryTable(props) {
 						value={selectedKeys[0]}
 						onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
 						onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-						style={{ width: 188, marginBottom: 8, display: 'block' }}
+						style={{ width: '100%', marginBottom: 8, display: 'block' }}
 					/>
 				</Col>
 			</Row>
@@ -121,15 +132,12 @@ function CountryTable(props) {
 					size="small"
 					onClick={() => {
 						confirm({ closeDropdown: false });
-						setSearchText(selectedKeys[0]);
-						setSearchedColumn(dataIndex);
 					}}
 					>
 				</Button>
 			</Space>
 			</div>
 		),
-		filterIcon: (filtered) => <FilterOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
 		onFilter: (value, record) => {
 			switch(searchedInput2){
 				case '>':
@@ -137,38 +145,20 @@ function CountryTable(props) {
 				case '<':
 					return Number(record[dataIndex]) < Number(value)
 				case '!':
-					return Number(record[dataIndex]) != Number(value)
+					return Number(record[dataIndex]) !== Number(value)
 				default:
-					return Number(record[dataIndex]) == Number(value)
+					return Number(record[dataIndex]) === Number(value)
 			}
 		},
-		onFilterDropdownVisibleChange: (visible) => {
-			if (visible && searchedInput) {
-				setTimeout(() => searchedInput.select(), 100);
-			}
-		},
-		render: (text) =>
-			props.searchVal ? (
-			<Highlighter
-				highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-				searchWords={props.searchVal.split(' ')}
-				autoEscape
-				textToHighlight={text ? text.toString() : ''}
-			/>
-			) : (
-			text
-			),
 	});
 
+	// antd functions for the filtering
 	function handleSearch(selectedKeys, confirm, dataIndex) {
 		confirm();
-		setSearchText(selectedKeys[0]);
-		setSearchedColumn(dataIndex);
 	}
 
 	function handleReset(clearFilters){
 		clearFilters();
-		setSearchText('');
 	}
 
 	const columns = [
@@ -176,18 +166,41 @@ function CountryTable(props) {
 			title: 'Flag',
 			dataIndex: 'flag',
 			key: 'flag',
-			render: (flag) => <Image src={flag} rounded fluid style={{ width: '40%' }} />,
+			width: '25%',
+			padding: 0,
+			margin: 0,
+			render: (image) => <Image 
+					width='100%'
+					height='100%'
+					style={{objectFit:'cover'}}
+					alt={"Flag of a country"}
+					src={image}
+					preview={false}
+					placeholder={
+						<Image
+						preview={false}
+						src={loadGIF}
+						width='100%'
+						height='100%'
+						style={{objectFit:'cover'}}
+						alt="loading gif"
+						/>
+					}
+					fallback={DefaultImage()}
+				/>,
 		}, {
 			title: 'Name',
 			dataIndex: 'name',
 			key: 'name',
 			sorter: (a, b) => a.name.localeCompare(b.name),
-			...getColumnSearchProps('name'),
+			...getColumnProps('name'),
+			...getFilterProps('name'),
 		}, {
 			title: 'Population',
 			dataIndex: 'total_pop',
 			key: 'total_pop',
 			sorter: (a, b) => a.total_pop - b.total_pop,
+			...getColumnProps('total_pop'),
 			...getNumberFilterProps('total_pop'),
 		}, {
 			title: 'Capital',
@@ -195,18 +208,21 @@ function CountryTable(props) {
 			key: 'capital',
 			defaultValue: 'information not available',
 			sorter: (a, b) => a.capital.localeCompare(b.capital),
-			...getColumnSearchProps('capital'),
+			...getColumnProps('capital'),
+			...getFilterProps('capital'),
 		}, {
 			title: 'Region',
 			dataIndex: 'region',
 			key: 'region',
 			sorter: (a, b) => a.region.localeCompare(b.region),
-			...getColumnSearchProps('region'),
+			...getColumnProps('region'),
+			...getFilterProps('region'),
 		}, {
 			title: 'Land Area (km^2)',
 			dataIndex: 'area',
 			key: 'area',
 			sorter: (a, b) => a.area - b.area,
+			...getColumnProps('area'),
 			...getNumberFilterProps('area'),
 		}
 	];
@@ -216,6 +232,8 @@ function CountryTable(props) {
 					dataSource={filteredData} 
 					columns={columns} 
 					loading={loading}
+					width='100%'
+					sticky={{offsetHeader: '6.5%'}}
 					onRow={(record, rowIndex) => {
 						return {
 						onClick: event => {props.update(record);}, // click row

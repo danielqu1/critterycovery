@@ -1,0 +1,14 @@
+{
+  "name": "@sahithi-golkonda/countries-distribution",
+  "main": "aaf27e84bbc72459@80.js",
+  "version": "80.0.0",
+  "homepage": "https://observablehq.com/@sahithi-golkonda/countries-distribution",
+  "author": {
+    "name": "Sahithi Golkonda",
+    "url": "https://observablehq.com/@sahithi-golkonda"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

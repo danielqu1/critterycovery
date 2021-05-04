@@ -1,15 +1,13 @@
-import { Card, Button, Image, Container} from 'react-bootstrap'
+// Card shown on the search page displaying how many more search results 
+// there are after displaying n search results
+import { Card } from 'antd'
 
 function ModelADCard(props: any) {
-    return(
-        <Card bg="white" style={{width: '100%'}} >
-            <Card.Body>
-                <Card.Title>
-                    {props.model} has {props.number} more instances. Click here to view them.
-                </Card.Title>
-            </Card.Body>
-        </Card>
-    );
+	return(
+		<Card style={{width: '100%'}} >
+			{props.model} has {props.number} more instances. Click here to view them.
+		</Card>
+	);
 }
 
 export default ModelADCard;

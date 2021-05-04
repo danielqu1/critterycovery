@@ -18,7 +18,7 @@ type Tool = {
 			img: Gitlab,
 			link: "https://gitlab.com/cs373-group16/critterycovery"
 		},
-        {
+		{
 			name: "Our Api",
 			text: "Doc on Postman",
 			img: Postman,
