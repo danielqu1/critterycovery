@@ -1,10 +1,13 @@
+// Adds pagination to an array of elements
 import { Pagination, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
 
 function PaginationMain(props: any) {
 
-	const pageButtons = [];
-	const totalPages = Math.ceil(props.totalInstances / props.instancesPerPage);
-	const activePage = Math.floor(props.startingInstance/props.instancesPerPage + 1);
+	const pageButtons = []; // array of buttons that the user can use to switch pages
+	const totalPages = Math.ceil(props.totalInstances / props.instancesPerPage); // number of array items
+	const activePage = Math.floor(props.startingInstance/props.instancesPerPage + 1); //current page that is loaded
+
+	// Creates buttons based on current page, items per page, and whether the page is near the beginning or end.
 	if (activePage - props.offsetPagesShownFromCurrent > 0){
 		pageButtons.push(<Pagination.Item onClick={() => props.setStartingInstance(0)}>{1}</Pagination.Item>)
 		if (activePage - props.offsetPagesShownFromCurrent - 1 > 0){
@@ -32,9 +35,11 @@ function PaginationMain(props: any) {
 	return ( 
 		<Row className="justify-content-md-center" style={{padding: '1% 0', margin: '2% 0', borderTop: '.25rem dotted grey'}}>
 			<Col xs lg="2">
+				{/* displays the item numbers being shown and total number of items */}
 				{props.startingInstance}-{props.startingInstance+props.instancesPerPage} of {props.totalInstances} species
 			</Col>
 			<Col md="auto">
+				{/* react bootstrap pagination already gives us onclick functionality and allows us to add buttons */}
 				<Pagination>
 					<Pagination.First onClick={() => props.setStartingInstance(0)}/>
 					<Pagination.Prev onClick={() => props.setStartingInstance(Math.max(0, props.startingInstance - props.instancesPerPage))}/>
@@ -44,6 +49,7 @@ function PaginationMain(props: any) {
 				</Pagination>
 			</Col>
 			<Col xs lg="2">
+				{/* buttons for changing the number of items per page */}
 				<ButtonGroup>
 					<Button variant="outline-primary" onClick={() => props.setInstancesPerPage(10)}>10</Button> 
 					<Button variant="outline-primary" onClick={() => props.setInstancesPerPage(20)}>20</Button> 

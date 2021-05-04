@@ -1,3 +1,4 @@
+// Attributes for Species
 import species from '../../../interfaces/species'
 interface properties{
 	text: string;

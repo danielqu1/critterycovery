@@ -1,3 +1,4 @@
+// Modal acts as an instance page for countries. Displays information and media for countries
 import {useEffect, useState} from 'react'; 
 import {Modal, Button, Container, Col, Row, ListGroup} from 'react-bootstrap' 
 import axios from 'axios'
@@ -19,6 +20,8 @@ const no_info = "information not available"
 function CountryModal(props: any) {
 	const [species, setSpecies] = useState(new Array<species>());
 	const [habitats, setHabitats] = useState(new Array<habitats>());
+
+	// Loads the connection data between country and species
 	useEffect(() => {
 	setSpecies(new Array<species>())
 	if(props.country != null){
@@ -28,6 +31,7 @@ function CountryModal(props: any) {
 	}
 	}, [props.country]);
 
+	// Loads the connection data between country and habitat
 	useEffect(() => {
 	setHabitats(new Array<habitats>())
 	if(props.country != null){
@@ -41,6 +45,7 @@ function CountryModal(props: any) {
 	return(<></>)
 	}
 
+	// Build lists of connections with links
 	const speciesLinks = [];
 	for (let i = 0; i < species.length; i++) {
 	speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);

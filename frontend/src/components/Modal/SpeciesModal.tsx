@@ -1,3 +1,4 @@
+// Modal acts as an instance page for species. Displays information and media for species
 import {useState, useEffect, ReactElement,} from 'react'; 
 import {Modal, Button, Container, Row, Col, ListGroup } from 'react-bootstrap'
 import axios, { AxiosPromise } from 'axios'
@@ -21,6 +22,7 @@ function SpeciesModal(props: any) {
 	const [habitats, setHabitats] = useState(new Array<string>());
 	const [habitatLinks, setHabitatLinks] = useState(new Array<ReactElement>())
 
+	// Loads the connection data between species and country
 	useEffect(() => {
 		setCountries(new Array<countries>())
 		if(props.species != null) {
@@ -30,13 +32,16 @@ function SpeciesModal(props: any) {
 		}
 	}, [props.species]);
 
+	// Loads the connection data between species and habitat
 	useEffect(() => {
 		let tempHabitats = new Array<string>()
 		if(countries !== null) {
+			// Creates a list of requests that need to all be done before we compile a list of habitats
 			let habitatRequests = new Array<AxiosPromise>()
 			for (let i = 0; i < countries.length; i++) {
 				habitatRequests.push(axios.get('/api/countries/habitats/name='+countries[i].country))
 			}
+			// Once we have habitat data, add all habitats to list for each response
 			Promise.all(habitatRequests).then((responses) => {
 				for (let response of responses){
 					let respHabitats = response.data.habitats
@@ -69,6 +74,7 @@ function SpeciesModal(props: any) {
 		setHabitatLinks(links)
 	}
 
+	// Build lists of connections with links
 	const countryLinks = [];
 	for (let i = 0; i < countries.length; i++) {
 		countryLinks.push(<a style={{ cursor: 'pointer' }} href={'/countries/'+countries[i].country}>{countries[i].country+' '}</a>);
@@ -78,6 +84,8 @@ function SpeciesModal(props: any) {
 	}
 	countryLinks.push(<br/>)
   
+	// Array that translates string values into colors
+	// useful for making boxes with true in them green
 	const translateColor:any = 
 		{
 			true: '#93ff68',
@@ -89,6 +97,7 @@ function SpeciesModal(props: any) {
 			null: '#bcbcbc'
 		}
 	
+	// function that applies the coloring array to the data
 	function colorTranslator(data : any){
 		if(translateColor[data]){
 			return translateColor[data]

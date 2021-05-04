@@ -1,3 +1,4 @@
+// Attributes for Habitats
 import habitat from '../../../interfaces/habitat'
 interface properties{
 	text: string;

@@ -1,3 +1,4 @@
+// Attributes for Countries
 import country from '../../../interfaces/country'
 interface properties{
 	text: string;

@@ -1,3 +1,4 @@
+// Modal acts as an instance page for habitats. Displays information and media for habitats
 import {useState, useEffect} from 'react'; 
 import {Modal, Button, Container, Col, Row, ListGroup} from 'react-bootstrap' 
 import axios from 'axios'
@@ -22,6 +23,7 @@ function HabitatModal(props: any) {
 	const [species, setSpecies] = useState(new Array<species>());
 	const [country, setCountry] = useState(country_default);
 
+	// Loads the connection data between habitat and country
 	useEffect(() => {
 		if(props.habitat != null){
 			axios.get('/api/countries/alpha3_code='+props.habitat.countries).then((response) => {
@@ -30,6 +32,7 @@ function HabitatModal(props: any) {
 		}
 	}, [props.habitat]);
 
+	// Loads the connection data between habitat and species
 	useEffect(() => {
 		setSpecies(new Array<species>())
 		if(props.habitat != null){
@@ -42,6 +45,8 @@ function HabitatModal(props: any) {
 	if(props.habitat == null){
 		return(<></>)
 	}
+
+	// Build lists of connections with links
 	const speciesLinks = [];
 	for (let i = 0; i < species.length; i++) {
 		speciesLinks.push(<a style={{ cursor: 'pointer' }} href={'/species/'+species[i].scientific_name}>{species[i].scientific_name+' '}</a>);
@@ -58,6 +63,8 @@ function HabitatModal(props: any) {
 	countryLinks = <>{no_info}</>
 	}
 
+	// Array that translates string values into colors
+	// useful for making boxes with true in them green
 	const translateColor:any = 
 		{
 			true: '#93ff68',
@@ -65,6 +72,7 @@ function HabitatModal(props: any) {
 			null: '#bcbcbc'
 		}
 	
+	// function that applies the coloring array to the data
 	function colorTranslator(data : any){
 		if(translateColor[data]){
 			return translateColor[data]

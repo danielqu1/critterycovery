@@ -1,3 +1,4 @@
+// Navbar that is displayed globally across the website
 import {useState} from 'react'; 
 import logo from '../../images/logo.png';
 import {Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap'
@@ -37,6 +38,7 @@ const NavbarMain = () => {
 							placeholder="Search"
 							className="mr-sm-2"
 							onChange={e => setSearchQ(e.target.value)}
+							// if the user presses enter, it loads the search page with the query
 							onKeyPress={(event: any) => {
 								if (event.key === "Enter") {
 									history.push('/search?q=' + searchQ)
