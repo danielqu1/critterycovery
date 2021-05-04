@@ -84,6 +84,20 @@
   
 }
 
+.spacing{
+  text-align: center;
+  padding-top: 2%;
+  margin-top: 3%;
+}
+
+.border-top{
+  border-top: '.25rem dotted grey';
+}
+
+.border-bottom{
+  border-bottom: '.25rem dotted grey';
+}
+
 /* Added for to-top button*/
 @keyframes fadeIn {
   from {

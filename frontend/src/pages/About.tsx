@@ -27,7 +27,7 @@ function About() {
 	return (
 		<Container fluid style={{ width: '70%' }}>
 			<Row>
-				<Container style={{ textAlign: 'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey' }}>
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey' }}>
 					<h1 style={{ fontWeight: 'bolder' }}>About Us</h1>
 					<p style={{ fontSize: '18pt' }}>{description}</p>
 				</Container>
@@ -36,7 +36,7 @@ function About() {
 				{<PersonDeck />}
 			</Row>
 			<Row >
-				<Container style={{ textAlign: 'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey' }}>
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey' }}>
 					<h1 style={{ fontWeight: 'bolder' }}>Tools</h1>
 				</Container>
 			</Row>
@@ -44,7 +44,7 @@ function About() {
 				{<ToolDeck tools={Tools()} />}
 			</Row>
 			<Row>
-				<Container style={{ textAlign: 'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey', borderBottom: '.25rem dotted grey' }}>
+				<Container className='spacing' style={{borderTop:'.25rem dotted grey', borderBottom:'.25rem dotted grey'}}>
 					<h1 style={{ fontWeight: 'bolder' }}>Data</h1>
 					<p style={{ fontSize: '18pt' }}>{compilation}</p>
 				</Container>
@@ -58,7 +58,7 @@ function About() {
 				{<ToolDeck tools={Apis()} />}
 			</Row>
 			<Row >
-				<Container style={{ textAlign: 'center', paddingTop: '2%', marginTop: '3%', borderTop: '.25rem dotted grey' }}>
+				<Container className='spacing' style={{ borderTop: '.25rem dotted grey' }}>
 					<h1 style={{ fontWeight: 'bolder' }}>Links</h1>
 				</Container>
 			</Row>
