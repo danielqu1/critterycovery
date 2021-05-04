@@ -1,5 +1,6 @@
 import { Spinner, Container, Row } from 'react-bootstrap'
 
+// Array of strings which one is picked for the text on the page
 let remarks:string[] = [
 	"Thwarting Deforestation",
 	"Sending Cute Animal Piks",
@@ -10,6 +11,8 @@ let remarks:string[] = [
 	"Listening to Baby Animals"
 ]
 
+// LOADING PAGE
+// Displays some text to keep the user interested and a spinner
 function Loading() {
 	return(
 		<Container fluid style={{padding:'15%'}}>

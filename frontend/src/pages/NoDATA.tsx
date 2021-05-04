@@ -1,5 +1,6 @@
 import { Container, Row } from 'react-bootstrap'
 
+// Error page displayed whenever data cannot be loaded from axios
 function NoDATA() {
 	return (
 		<Container fluid style={{ padding: '15%' }}>

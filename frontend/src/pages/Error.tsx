@@ -1,5 +1,7 @@
 import { Container, Row } from 'react-bootstrap'
 
+// Displays a simple page for whenever the router has no other path
+// Basically just a generic 404 error page
 function Error() {
 	return (
 		<Container fluid style={{ padding: '15%' }}>

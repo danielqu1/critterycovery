@@ -12,7 +12,6 @@ import Search from './pages/Search';
 import Error from './pages/Error';
 import ScrollToTopBtn from "./hooks/ScrollToTop";
 import Visualizations from './pages/Visualizations';
-import ProviderVisualizations from './pages/ProviderVisualizations';
 
 import './App.css';
 import 'antd/dist/antd.css';
@@ -38,7 +37,6 @@ function App() {
 					<Route path='/support' children={<Support />} />
 					<Route path='/search' children={<Search />} />
 					<Route path='/visualizations' children={<Visualizations />} />
-					<Route path='/providerVisualizations' children={<ProviderVisualizations />} />
 					<Route component={Error} />
 				</Switch>
 			</Router>

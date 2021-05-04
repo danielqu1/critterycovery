@@ -1,3 +1,4 @@
+// The data that should be available from the api for each country
 interface country {
 	name: string;
 	alpha2_code: string;

@@ -1,3 +1,4 @@
+// Handles the creation of a table with filters for the country model
 import { useState } from 'react';
 import { Image, Table, Input, Button, Space, Select, Row, Col } from 'antd'
 import Highlighter from 'react-highlight-words';
@@ -17,6 +18,7 @@ function CountryTable(props) {
 		data: props.countries,
 	});
 	
+	//Set of props added to every column of the table
 	let getColumnProps = (dataIndex) => ({
 		width: '15%',
 		padding: '4% 0',
@@ -30,6 +32,7 @@ function CountryTable(props) {
 				setTimeout(() => searchedInput.select(), 100);
 			}
 		},
+		// Adds highlighting to text
 		render: (text) =>
 			props.searchVal ? (
 			<Highlighter style={{width: '100%'}}
@@ -42,6 +45,8 @@ function CountryTable(props) {
 			text
 			),
 	});
+
+	// Props necessary to add generic text dropdown filtering to a column
 	let getFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
@@ -82,6 +87,8 @@ function CountryTable(props) {
 			? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
 			: '',
 	})
+	
+	// Props necessary for adding dropdown number filtering to a column
 	let getNumberFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
@@ -145,6 +152,7 @@ function CountryTable(props) {
 		},
 	});
 
+	// antd functions for the filtering
 	function handleSearch(selectedKeys, confirm, dataIndex) {
 		confirm();
 	}

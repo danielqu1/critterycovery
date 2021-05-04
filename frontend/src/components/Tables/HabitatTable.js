@@ -1,3 +1,4 @@
+// Handles the creation of a table with filters for the habitat model
 import { useState } from 'react';
 import { Image } from 'antd'
 import { Table, Input, Button, Space, Select, Row, Col } from 'antd'
@@ -18,6 +19,7 @@ function HabitatTable(props) {
 		data: props.habitats,
 	});
 	
+	//Set of props added to every column of the table
 	let getColumnProps = (dataIndex) => ({
 		width: '15%',
 		padding: '4% 0',
@@ -41,6 +43,8 @@ function HabitatTable(props) {
 			text
 			),
 	});
+
+	// Props necessary to add generic text dropdown filtering to a column
 	let getFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
@@ -81,6 +85,8 @@ function HabitatTable(props) {
 			? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
 			: '',
 	})
+
+	// Props necessary for adding dropdown number filtering to a column
 	let getNumberFilterProps = (dataIndex) => ({
 		filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
 			<div style={{ padding: 8 }}>
@@ -144,6 +150,7 @@ function HabitatTable(props) {
 		},
 	});
 
+	// antd functions for the filtering
 	function handleSearch(selectedKeys, confirm, dataIndex) {
 		confirm();
 	}

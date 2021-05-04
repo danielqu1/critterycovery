@@ -1,3 +1,4 @@
+// The data that should be available from the api for each habitat
 interface habitat {
 	id: number;
 	name: string;

@@ -12,9 +12,15 @@ import country from '../interfaces/country'
 
 const { Search } = Input;
 
+// parses the url for ?q=<query>
 function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
+
+/* Rendering for critterycovery.me/countries page. 
+ * Displays a title with a search bar underneath
+ * Under that, it loads the table from CountriesTable with built in filters and pagination
+ */
 
 function Countries(props: any) {
 	const { id } = useParams<{ id: string }>();
@@ -27,6 +33,7 @@ function Countries(props: any) {
 	let history = useHistory();
 	let query = useQuery().get('q')
 
+	//Displays the modal if an instance is expected
 	history.listen((location, action) => {
 		if(location.pathname.match("/countries/+.") != null){
 			setModalShow(true)
@@ -36,6 +43,7 @@ function Countries(props: any) {
 		}
 	})
 
+	//Loads the countries and country instance data if exists
 	useEffect(() => {
 		axios.get("/api/countries").then((response) => {
 			setCountries(response.data.countries);
@@ -61,6 +69,7 @@ function Countries(props: any) {
 	// eslint-disable-next-line
 	}, []);
 
+	//Displays errors if occur
 	if (noData){
 		return NoDATA();
 	}
@@ -68,12 +77,14 @@ function Countries(props: any) {
 		return Loading();
 	}
 
+	// Changes the data in the modal and displays it
 	function update(place: country) {
 		setCountry(place)
 		history.push(`/countries/${place.name}`)
 		
 	}
 
+	// Removes the instance from the url and hides modal
 	function closeModal() {
 		history.goBack()
 	}

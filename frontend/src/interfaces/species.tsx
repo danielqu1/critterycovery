@@ -1,3 +1,4 @@
+// The data that should be available from the api for each species
 interface species{
 	common_name: string;
 	scientific_name: string;

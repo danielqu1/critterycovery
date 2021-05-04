@@ -12,9 +12,15 @@ import habitat from '../interfaces/habitat'
 
 const { Search } = Input
 
+// parses the url for ?q=<query>
 function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
+
+/* Rendering for critterycovery.me/habitats page. 
+ * Displays a title with a search bar underneath
+ * Under that, it loads the table from HabitatTable with built in filters and pagination
+ */
 
 function Habitats(props : any) {
 	const {id} = useParams<{ id: string }>();
@@ -27,6 +33,7 @@ function Habitats(props : any) {
 	let history = useHistory();
 	let query = useQuery().get('q')
 
+	//Displays the modal if an instance is expected
 	history.listen((location, action) => {
 		if(location.pathname.match("/habitats/+.") != null){
 			setModalShow(true)
@@ -36,6 +43,7 @@ function Habitats(props : any) {
 		}
 	})
 	
+	//Loads the habitats and habitat instance data if exists
 	useEffect(() => {
 			axios.get("/api/habitats").then((response) => {
 				setHabitats(response.data.habitats);
@@ -60,6 +68,7 @@ function Habitats(props : any) {
 	// eslint-disable-next-line
 	}, []);
 	
+	//Displays errors if occur
 	if (noData){
 		return NoDATA();
 	}
@@ -67,11 +76,13 @@ function Habitats(props : any) {
 		return Loading();
 	}
 
+	// Changes the data in the modal and displays it
 	function update(place : habitat) {
 		setHabitat(place)
 		history.push(`/habitats/${place.name}`)
 	}
 
+	// Removes the instance from the url and hides modal
 	function closeModal(){
 		history.goBack()
 	}
