@@ -1,3 +1,4 @@
+// Card that displays an icon representing one model on the home page
 import { Image, Container } from 'react-bootstrap'
 
 function HomeCard(props: any) {

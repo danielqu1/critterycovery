@@ -1,3 +1,5 @@
+// Card shown on the search page displaying how many more search results 
+// there are after displaying n search results
 import { Card } from 'antd'
 
 function ModelADCard(props: any) {
