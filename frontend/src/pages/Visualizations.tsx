@@ -1,36 +1,21 @@
 import React from 'react'
-// vizData = ../components/vizdata/
-// code = ../components/vizgraphs/
+import {Container} from 'react-bootstrap';
 
 function Visualizations() {
     return (
-        <div>
+        <Container fluid style={{ width: '50%' }}>
             <br />
-            <h1>Provider Data</h1>
-            <hr />
-            <h3>Incidents Per Austin District</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/incidents-per-austin-district-bar-chart?cells=viewof+order%2Cchart" />
-            <hr />
-            <h3>Types of Restaurants in Austin</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/types-of-restaurants-in-austin?cells=chart" />
-            <hr />
-            <h3>Distance to City Center vs Price for Austin Hotels</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/distance-to-city-center-vs-price-for-austin-hotels?cells=viewof+selection" />
-            <hr />
             <h1>Our Data</h1>
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/regions-subregions-and-countries-by-land-area-zoomable?cells=header%2Cchart" />
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/countries-distribution?cells=header%2Cmap" />
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/endangered-species-by-class?cells=header%2Cchart" />
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/habitats-per-country-bar-chart?cells=header%2Cchart" />
             <hr />
-            <h3>Regions by Country</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/regions-subregions-and-countries-by-land-area-zoomable?cells=chart" />
-            <hr />
-            <h3>Country Distribution</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/countries-distribution?cells=map" />
-            <hr />
-            <h3>Endangered Species by Class</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/endangered-species-by-class?cells=chart" />
-            <hr />
-            <h3>Habitats per country</h3>
-            <iframe width="70%" height="700" src="https://observablehq.com/embed/@sahithi-golkonda/habitats-per-country-bar-chart?cells=chart" />
-        </div>
+            <h1>Provider Data</h1>
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/incidents-per-austin-district-bar-chart?cells=header%2Cviewof+order%2Cchart" />
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/types-of-restaurants-in-austin?cells=header%2Cchart" />
+            <iframe width="100%" height="700" frameBorder="0" src="https://observablehq.com/embed/@sahithi-golkonda/distance-to-city-center-vs-price-for-austin-hotels?cells=header%2Cviewof+selection%2CselectOutput" />
+        </Container>
     )
 }
 
