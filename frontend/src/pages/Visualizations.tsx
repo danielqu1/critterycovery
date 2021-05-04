@@ -1,7 +1,4 @@
 import React from 'react'
-import BarChart from '../viz/vizgraphs/BarChart'
-import providerIncidents from '../viz/vizdata/temp-atx-incidents.json'
-import providerRestaurants from '../viz/vizgraphs/TypesOfRestaurantsInAustin'
 // vizData = ../components/vizdata/
 // code = ../components/vizgraphs/
 
