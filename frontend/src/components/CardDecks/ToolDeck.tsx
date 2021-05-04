@@ -1,3 +1,4 @@
+// Creates a deck of tools from an array of tools given in props.tools
 import { Col } from 'react-bootstrap';
 import ToolCard from '../Cards/ToolCard'
 

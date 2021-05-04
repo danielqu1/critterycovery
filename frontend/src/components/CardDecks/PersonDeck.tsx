@@ -1,3 +1,5 @@
+/* 	Creates a deck of person cards displayed on the about page.
+	each card displays information about a developer or the summary */
 import { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import NoDATA from '../../pages/NoDATA';
@@ -31,6 +33,7 @@ type Person = {
 	linkedin: string | null;
   }
 
+// Unpacks statistics for each person
 function getStats(stats: PersonStats[], shortened: string): PersonStats {
 	for (let i = 0; i < stats.length; i++) {
 		if (stats[i].name === shortened) {
@@ -44,6 +47,7 @@ function getStats(stats: PersonStats[], shortened: string): PersonStats {
 function PersonDeck()  { 
 	const [stats, setStats] = useState(new Array<PersonStats>());
 	const [noData, setNoData] = useState(false);
+	//Pulls commits, unittests, and issues from the api
 	useEffect(() => {
 		axios.get<GitlabData>("/api/gitlabstats").then((response) => {
 		  setStats(response.data.stats);
@@ -56,6 +60,7 @@ function PersonDeck()  {
 		return NoDATA();
 	}
 
+	//Array of people, add to this with the same format to add a developer
 	let people: Person[] = [
 	{
 		name: "Shaharyar Lakhani",

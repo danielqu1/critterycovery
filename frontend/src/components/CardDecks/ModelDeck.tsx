@@ -1,3 +1,4 @@
+/* Displays 3 cards on the home page which each have an icon representing each model */
 import { Col } from 'react-bootstrap';
 import HomeCard from '../Cards/HomeCard';
 
@@ -12,8 +13,8 @@ type Models = {
 	text: string
 }
 
-
 function ModelDeck()  { 
+	//Array of cards, add to this using the same format to add models
 	let models: Models[] = [
 		{ href: "/species",
 		  title: "Species",
@@ -38,6 +39,7 @@ function ModelDeck()  {
 	for(let i = 0; i < models.length; i++){
 		cards.push(<Col style={{padding:0}}><HomeCard models={models[i]}/></Col>)
 	}
+	
   return (
 	<>
 	{cards}
