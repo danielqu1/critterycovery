@@ -28,4 +28,4 @@ postman:
     name: postman/newman_alpine33
     entrypoint: [""]
   script:
-    - newman run tests.postman_collection.json -e variables.postman_globals.json
+    - newman run tests/postman/tests.postman_collection.json -e tests/postman/variables.postman_globals.json
