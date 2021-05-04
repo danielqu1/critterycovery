@@ -1,7 +1,7 @@
 // https://observablehq.com/@sahithi-golkonda/incidents-per-austin-district-bar-chart@275
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["aroundatx-incidents.json",new URL("./files/62465ba7f134a078e5a179c35c799bb13e4e2bb9770ede699930d1142d6b996aaa67640c43a1d695b2612f37c62097d70e29b61c523beef78c0c9971587b08a0",import.meta.url)]]);
+  const fileAttachments = new Map([["aroundatx-incidents.json",new URL("./files/aroundatx-incidents.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Incidents Per Austin District Bar Chart

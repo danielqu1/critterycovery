@@ -1,6 +1,6 @@
 # Types of Restaurants in Austin
 
-https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin@217
+https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin@218
 
 View this notebook in your browser by running a web server in this folder. For
 example:

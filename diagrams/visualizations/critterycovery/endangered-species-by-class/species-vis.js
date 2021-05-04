@@ -1,7 +1,7 @@
 // https://observablehq.com/@sahithi-golkonda/endangered-species-by-class@495
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["species.json",new URL("./files/f10653dfea62a726ae20969d0f1967c76876626230ac4df9b891ba55dde8d2d5b675bf73b4c5127997c87a9599492cc9246130fbeb597088a82339352f512721",import.meta.url)]]);
+  const fileAttachments = new Map([["species.json",new URL("./files/species.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Endangered Species by Class

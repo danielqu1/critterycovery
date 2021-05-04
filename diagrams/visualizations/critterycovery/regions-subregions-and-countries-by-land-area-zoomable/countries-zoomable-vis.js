@@ -1,7 +1,7 @@
 // https://observablehq.com/@sahithi-golkonda/regions-subregions-and-countries-by-land-area-zoomable@412
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["countries@1.json",new URL("./files/46e6bad065fe078efcbffeac88493a65cf64377450681c6c5433e48b56b43645668d6e34f36dd974c0a6329e805a7fc04aefbf00a188508872d44ec7b82a961d",import.meta.url)]]);
+  const fileAttachments = new Map([["countries@1.json",new URL("./files/countries.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Regions, Subregions, and Countries by Land Area - Zoomable

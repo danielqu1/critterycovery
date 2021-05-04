@@ -1,7 +1,7 @@
-// https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin@217
+// https://observablehq.com/@sahithi-golkonda/types-of-restaurants-in-austin@218
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["flare.csv",new URL("./files/aee5d40e70ea9830c96efe6da03ad32187ff7223ad1b7b84e38c32127ccf6661b576fe0005b42657703e7bfaaefabc74550268cc35f64122a652fc471110c832",import.meta.url)],["aroundatx-restaurants.json",new URL("./files/3a95e38e1dc9e9e371a51082fc86f26825926dbd99a57a844ef4c937086c451e471d12ca489429854db26f37731f2ff3dbc8f295b8b206d093cc81e5ac605d11",import.meta.url)]]);
+  const fileAttachments = new Map([["aroundatx-restaurants.json",new URL("./files/aroundatx-restaurants.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Types of Restaurants in Austin
@@ -82,11 +82,6 @@ all_data.map(function(d) { return d.type; })
 )});
   main.variable(observer("data")).define("data", ["frequency","temp_data"], function(frequency,temp_data){return(
 frequency(temp_data)
-)});
-  main.variable(observer("data1")).define("data1", ["FileAttachment"], async function(FileAttachment){return(
-(await FileAttachment("flare.csv").csv())
-  .filter(({value}) => value !== "")
-  .map(({id, value}) => ({name: id.split(".").pop(), title: id.replace(/\./g, "/"), group: id.split(".")[1], value: +value}))
 )});
   main.variable(observer("pack")).define("pack", ["d3","width","height"], function(d3,width,height){return(
 data => d3.pack()

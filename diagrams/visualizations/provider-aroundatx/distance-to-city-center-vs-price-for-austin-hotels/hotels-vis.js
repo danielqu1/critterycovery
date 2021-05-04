@@ -1,7 +1,7 @@
 // https://observablehq.com/@sahithi-golkonda/distance-to-city-center-vs-price-for-austin-hotels@265
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["aroundatx-hotels.json",new URL("./files/1b8c4e0478f2c35561524e02ff1e34c36a19a80c2f3a4ba2b6d2a11c387ecbd4293908df0141d9ab54e85c6d9ca25f28a0f5e988a5a9437a613fbda8e6400232",import.meta.url)]]);
+  const fileAttachments = new Map([["aroundatx-hotels.json",new URL("./files/aroundatx-hotels.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md","data"], function(md,data){return(
 md`# Distance to City Center vs Price for Austin Hotels

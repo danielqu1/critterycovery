@@ -1,7 +1,11 @@
 // https://observablehq.com/@sahithi-golkonda/countries-distribution@80
 export default function define(runtime, observer) {
   const main = runtime.module();
-  const fileAttachments = new Map([["land-50m.json",new URL("./files/7b6ff41e373e01d7b5b95773e297d40625bd9ccc1936a023a066a7edd8da5eaadec4ab7a565303539e41e001f2e6730f3ee1e259fae4f19dc59e8d6b2f2ec22b",import.meta.url)],["countries.json",new URL("./files/a87cd6e000d37fe81d928482b7418e2595c395045301f410c98acc4d0acbb1ffcda29e8773aa7a8c927d32b18322ec720e6fe57f0e94167d914e3adf3a2c23c7",import.meta.url)]]);
+  // hello team! 
+  // when y'all copy this file to the frontend directory remember to copy land-50m.json and countries.json
+  // and then update the relative paths in the line below, which would be "./files/land-50m.json"
+  // please don't change the name before new URL though, because that's the alias of the filename that's used within the code
+  const fileAttachments = new Map([["land-50m.json",new URL("./files/land-50m.json",import.meta.url)],["countries.json",new URL("./files/countries.json",import.meta.url)]]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], function(md){return(
 md`# Countries Distribution
