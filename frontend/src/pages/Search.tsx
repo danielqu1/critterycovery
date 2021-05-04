@@ -11,10 +11,15 @@ import { Input } from 'antd'
 
 const { Search } = Input
 
+// Loads the query parameter from the url
 function useQuery() {
 	return new URLSearchParams(useLocation().search);
 }
 
+/* Search page for the website
+ * Displays search results underneath a searchbar for each model
+ * calls searchHandler 3 times (one for each model)
+ */
 function SearchPage(){
 	let query = useQuery().get('q')
 	const [isLoading, setLoading] = useState(true);
@@ -25,6 +30,7 @@ function SearchPage(){
 	const [habitats, setHabitats] = useState([]);
 	const [countries, setCountries] = useState([]);
 
+	// Loads data for each model
 	useEffect(() => {
 		axios.get("/api/species").then((response) => {
 			setSpecies(response.data.species);   
@@ -44,6 +50,7 @@ function SearchPage(){
 		setLoading(false);
 	}, []);
 
+	// Displays error if occured
 	if (noData){
 		return NoDATA();
 	}

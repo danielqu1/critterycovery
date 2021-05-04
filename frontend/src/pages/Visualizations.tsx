@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap';
 
+// Displays visualizations from us and our providers through iframes to a website
 function Visualizations() {
     return (
         <Container fluid style={{ width: '70%' }}>

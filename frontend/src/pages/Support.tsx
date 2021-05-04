@@ -3,6 +3,8 @@ import ToolDeck from '../components/CardDecks/ToolDeck'
 
 import SupportGroups from '../data/SupportGroups'
 
+// Support page for the website to encourage civic responsibility
+// displays information for how to get involved
 function Support() {
 
 	const description1 : string = "Many animals are on the verge of becoming extinct on Earth. " +
