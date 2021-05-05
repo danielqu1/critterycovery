@@ -79,7 +79,7 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(result.text, "Javascript Unit Testing")
 
-	def test_main_page_0(self):
+	def NO_test_main_page_0(self):
 		self.driver.get(URL)
 
 		xpath = "/html/body/div/div/div[2]/div/div/div[3]/div[1]/div/div/p"
@@ -88,7 +88,7 @@ class GuiTests(unittest.TestCase):
 		self.assertEqual(result.text, "critterycovery")
 	
 	
-	def test_main_page_1(self):
+	def NO_test_main_page_1(self):
 		self.driver.get(URL)
 
 		xpath = "/html/body/div/div/div[2]/div/div/div[3]/div[2]/div/div/a/img"
@@ -96,7 +96,7 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(self.driver.current_url, URL + "/species")
 	
-	def test_main_page_2(self):
+	def NO_test_main_page_2(self):
 		self.driver.get(URL)
 
 		xpath = "/html/body/div/div/div[2]/div/div/div[3]/div[2]/div[3]/div/a/img"
@@ -104,7 +104,7 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(self.driver.current_url, URL + "/countries")
 	
-	def test_navbar_0(self):
+	def NO_test_navbar_0(self):
 		self.driver.get(URL + "/countries")
 
 		xpath = "/html/body/div/div/nav/a"
@@ -112,7 +112,7 @@ class GuiTests(unittest.TestCase):
 
 		self.assertEqual(self.driver.current_url, URL + "/")
 	
-	def test_navbar_1(self):
+	def NO_test_navbar_1(self):
 		self.driver.get(URL)
 
 		xpath = "/html/body/div/div/nav/button"
