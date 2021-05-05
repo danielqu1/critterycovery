@@ -25,6 +25,9 @@ Brian Wang |bw25755 |bwang1008
 **Phase 3:**
 4be2214c3e68f14b4f4bbda06de5afc0376971d0
 
+**Phase 4:**
+931d6e3411ae74522acb874933e6c39ed0ab5346
+
 ---
 
 ### Project Leaders: 
@@ -74,6 +77,17 @@ Sahithi Golkonda | 40 | 50
 Shaharyar Lakhani | 40 | 45
 Daniel Qu | 40 | 45
 Brian Wang | 40 | 50
+
+---
+Phase 4: 
+
+Name | Estimated | Actual
+--------- | --------- | ---------
+William Crawford | 30 | 40
+Sahithi Golkonda | 30 | 35
+Shaharyar Lakhani | 30 | 35
+Daniel Qu | 30 | 35
+Brian Wang | 30 | 35
 
 ---
 
