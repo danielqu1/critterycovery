@@ -15,7 +15,7 @@ type Tool = {
  function Apis() {
 	let apis: Tool[] = [
 		{
-			name: "ICUN Redlist",
+			name: "IUCN Redlist",
 			text: "Species",
 			img: Redlist,
 			link: "http://apiv3.iucnredlist.org/api/v3/docs"
