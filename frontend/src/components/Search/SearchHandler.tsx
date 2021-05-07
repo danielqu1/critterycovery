@@ -86,9 +86,9 @@ function SearchHandler(props:any){
 	// Creates an extra card to link to a search page for the model if the results overflow
 	if(filteredData.length > 9){
 		cards.push(<Col className='container-fluid mt-4'>
-			<a className='unformat' style={{ cursor: 'pointer' }} href={"/species/?q="+props.searchVal}>
+			<a className='unformat' style={{ cursor: 'pointer' }} href={"/"+typeCard+"/?q="+props.searchVal}>
 			<ModelADCard 
-				model = {'Species'} 
+				model = {typeCard} 
 				number = {filteredData.length - maxCardsShown}
 			></ModelADCard></a></Col>);
 	}

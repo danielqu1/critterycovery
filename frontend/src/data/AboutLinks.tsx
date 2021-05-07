@@ -1,6 +1,7 @@
 // get all image logos
 import Postman from "../images/tools/PostmanLogo.png"
 import Gitlab from "../images/tools/GitLabLogo.png"
+import Youtube from "../images/tools/youtubeLogo.png"
 
 type Tool = {
 	name: string;
@@ -23,7 +24,14 @@ type Tool = {
 			text: "Doc on Postman",
 			img: Postman,
 			link: "https://documenter.getpostman.com/view/14742162/TzJrCzVs"
-		}
+		},
+		{
+			name: "Our Presentation",
+			text: "Watch on Youtube",
+			img: Youtube,
+			link: "https://youtu.be/4aju_i0ZhkM"
+		},
+
 	];
 
 	return (
